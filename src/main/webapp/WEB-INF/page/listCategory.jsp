@@ -29,8 +29,10 @@
     </c:forEach>
 </table>
 <div align="center">
+    <a href="listCategory?start=0">首页</a>
     <a href="listCategory?start=${page.start - page.count}">上一页</a>
-    <a href="listCategory?start=${page.start+page.count}">下一页</a>
+    <a href="listCategory?start=${page.start + page.count}">下一页</a>
+    <a href="listCategory?start=${page.last}">末页</a>
 </div>
 </body>
 </html>
