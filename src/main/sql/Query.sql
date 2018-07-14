@@ -33,4 +33,5 @@ insert into category_ values(null,'category1');
 insert into category_ values(null,'category2');
 insert into category_ values(null,'category3');
 insert into category_ values(null,'category4');
-insert into category_ values(null,'category5');
+insert into category_ values(null,'category100');
+select * from category_;

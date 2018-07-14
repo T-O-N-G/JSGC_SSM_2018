@@ -20,4 +20,6 @@ public interface CategoryMapper {
     //利用方法的多态性和SQL语句的动态性相匹配.
     public List<Category> list(@Param("start") int start, @Param("count") int count);
     public List<Category> list();
+
+    public int count();
 }

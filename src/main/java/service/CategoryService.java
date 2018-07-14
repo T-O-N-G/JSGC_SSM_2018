@@ -16,4 +16,6 @@ public interface CategoryService {
 
     public List<Category> list(int start,int count);
     public List<Category> list();
+
+    public int count();
 }
