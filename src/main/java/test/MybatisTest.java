@@ -20,7 +20,7 @@ public class MybatisTest {
     public void testAdd() {
         for (int i = 0; i < 100; i++) {
             Category category = new Category();
-            category.setName("Category" + i);
+            category.setName("类目" + i);
             categoryMapper.add(category);
         }
 
