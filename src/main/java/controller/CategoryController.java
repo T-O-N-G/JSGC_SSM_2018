@@ -15,11 +15,12 @@ import java.util.List;
 
 //告诉SpringMVC这是一个控制器类
 @Controller
-@RequestMapping("")
+//@RequestMapping(value = "categoryController")
 public class CategoryController {
     @Autowired
     CategoryService categoryService;
 
+    //RequestMapping的value值前面有没有斜杠都没有关系
     @RequestMapping(value = "listCategory" , method = RequestMethod.GET)//默认就是GET
     public ModelAndView listCategory(Page page) {
 
