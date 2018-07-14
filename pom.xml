@@ -320,6 +320,7 @@
             </plugins>
         </pluginManagement>
 
+        <!--指定resources的目录-->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>

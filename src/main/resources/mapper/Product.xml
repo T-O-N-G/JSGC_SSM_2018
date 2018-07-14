@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.ProductMapper">
+    <resultMap id="ProductBean" type="Product">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="price" property="price"/>
+        <!--多对一的关系-->
+        <!-- property: 指的是属性名称, javaType：指的是属性的类型 -->
+        <!--由于调用了另一个命名空间中的方法, 所以select要把命名空间加上-->
+        <association property="category" javaType="Category" select="mapper.CategoryMapper.getById" column="cid"/>
+    </resultMap>
+    <insert id="add" parameterType ="Product" useGeneratedKeys="true" keyProperty="id">
+        insert into product_ (id, name, price, cid) values (null, #{name}, #{price},#{category.id});
+
+    </insert>
+    <delete id="delete" parameterType="Product">
+        delete from product_ where id = #{id}
+    </delete>
+
+    <update id="update" parameterType="Product">
+        update product_ set name = #{name}, price = #{price}, cid = #{category.id} where id= #{id}
+    </update>
+    <!--<select id="getProductById" parameterType="_int" resultType="Product">-->
+        <!--select * from product_ where id = #{id}-->
+    <!--</select>-->
+    <!--单个查询, join连接查询-->
+    <select id="getById" parameterType="_int" resultMap="ProductBean">
+        select * from  product_ where id = #{id}
+    </select>
+
+    <select id="getByCategoryId" parameterType="_int" resultMap="ProductBean">
+                select * from product_ p where p.cid = #{cid}
+    </select>
+    <!--<select id="listProduct" resultType="Product">-->
+        <!--select * from   Product_-->
+    <!--</select>-->
+    <!--查询列表, 多对一的查询, 根据id查询Product, 关联将Orders查询出来, 通过resultMap把数据取出来放在对应的对象属性里-->
+    <!--<select id="listProduct" resultMap="productBean">-->
+        <!--select c.*, p.*, c.id 'cid', p.id 'pid', c.name 'cname', p.name 'pname'-->
+        <!--from product_ p left join category_ c on c.id = p.cid-->
+        <!--<where>-->
+            <!--<if test="price != null and price > 0">-->
+                <!--and p.price > #{price}-->
+            <!--</if>-->
+            <!--<if test="name != null">-->
+                <!--and p.name like concat('%',#{name},'%')-->
+            <!--</if>-->
+        <!--</where>-->
+    <!--</select>-->
+
+    <!--延迟加载的listProduct-->
+    <select id="list" resultMap="ProductBean">
+        select * from product_ p;
+    </select>
+
+</mapper>

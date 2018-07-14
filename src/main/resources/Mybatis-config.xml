@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!-- 打开延迟加载的开关 -->
+        <setting name="lazyLoadingEnabled" value="true" />
+        <!-- 将积极加载改为消息加载即按需加载 -->
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <!--开启缓存-->
+        <!--<setting name="cacheEnabled" value="true"/>-->
+    </settings>
+
+    <!--配置resultType的别名-->
+    <typeAliases>
+        <package name="pojo"/>
+    </typeAliases>
+
+    <!--配置PageHelper插件-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+        </plugin>
+    </plugins>
+
+    <!--<mappers>-->
+        <!--<mapper resource="mapper/Category.xml"/>-->
+        <!--<mapper resource="mapper/Product.xml"/>-->
+        <!--<mapper resource="mapper/Order.xml"/>-->
+        <!--<mapper resource="mapper/OrderItem.xml"/>-->
+    <!--</mappers>-->
+
+    <!--把Mybatis的全局设置文件导入到SqlSessionFactoryBean的configLocation中时,environment失效.
+数据库的Environment由DataSource来指定.-->
+    <!--<environments default="development">-->
+    <!--<environment id="development">-->
+    <!--<transactionManager type="JDBC"/>-->
+    <!--<dataSource type="POOLED">-->
+    <!--<property name="driver" value="com.mysql.cj.jdbc.Driver"/>-->
+    <!--<property name="url" value="jdbc:mysql://localhost:3306/how2j?characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;useSSL=false"/>-->
+    <!--<property name="username" value="root"/>-->
+    <!--<property name="password" value="4763"/>-->
+    <!--</dataSource>-->
+    <!--</environment>-->
+    <!--</environments>-->
+</configuration>

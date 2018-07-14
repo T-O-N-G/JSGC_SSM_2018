@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.OrderMapper">
+    <resultMap id="OrderBean" type="Order">
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <!--注意select和ResultMap不能同时使用, 以及ofType可以省略-->
+        <collection property="orderItemList" ofType="OrderItem" select="mapper.OrderItemMapper._getByOrderId"
+                    column="id"/>
+    </resultMap>
+    <insert id="add" parameterType="Order" useGeneratedKeys="true" keyProperty="id">
+        insert into order_ values(null, #{code})
+    </insert>
+    <delete id="delete" parameterType="Order">
+        delete from order_ where id =#{id}
+    </delete>
+    <update id="update" parameterType="Order">
+        update order_ set code=#{code} where id=#{id}
+    </update>
+    <select id="getById" resultMap="OrderBean" parameterType="_int">
+        select * from order_ where id = #{id};
+    </select>
+    <select id="list" resultMap="OrderBean">
+        select * from order_
+    </select>
+
+
+</mapper>
