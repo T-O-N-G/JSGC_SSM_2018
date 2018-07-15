@@ -17,6 +17,11 @@ public class MybatisTest {
     private CategoryMapper categoryMapper;
 
     @Test
+    public void deleteAll(){
+        categoryMapper.deleteAll();
+    }
+
+    @Test
     public void testAdd() {
         for (int i = 0; i < 100; i++) {
             Category category = new Category();

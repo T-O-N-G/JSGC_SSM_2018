@@ -10,6 +10,10 @@ public interface CategoryService {
 
     public void delete(Category category);
 
+    public void delete(int id);
+
+    public void deleteAll();
+
     public int update(Category category);
 
     public Category getById(int id);

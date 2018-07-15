@@ -11,6 +11,7 @@ import service.CategoryService;
 import util.Page;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 //告诉SpringMVC这是一个控制器类
@@ -25,6 +26,7 @@ public class CategoryController {
     public ModelAndView listCategory(Page page) {
 
         ModelAndView mav = new ModelAndView("listCategory");
+        //每一次获取列表之前都要计算totalCount,以及更新last的值
         int totalCount = categoryService.count();
         page.calculateLast(totalCount);
 
@@ -32,6 +34,32 @@ public class CategoryController {
         mav.addObject("cs", categoryList);
 
         return mav;
+    }
+
+    @RequestMapping("editCategory")
+    public ModelAndView editCategory(HttpServletRequest request) {
+//        int id = category.getId();
+        int id = Integer.parseInt(request.getParameter("id"));
+        int startIndex = Integer.parseInt(request.getParameter("startIndex"));
+        Category category = categoryService.getById(id);
+        ModelAndView mav = new ModelAndView("editCategory");
+        mav.addObject("startIndex", startIndex);
+        mav.addObject("category", category);
+
+        return mav;
+    }
+
+    @RequestMapping("updateCategory")
+    public ModelAndView updateCategory(Category category, int startIndex) {
+        categoryService.update(category);
+        return new ModelAndView("redirect:/listCategory?start=" + startIndex);
+    }
+
+    @RequestMapping("deleteCategory")
+    public ModelAndView deleteCategory(HttpServletRequest request, int startIndex) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        categoryService.delete(id);
+        return new ModelAndView("redirect:/listCategory?start=" + startIndex);
     }
 
 }

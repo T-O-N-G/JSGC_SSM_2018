@@ -24,6 +24,16 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public void delete(int id) {
+        categoryMapper.delete(id);
+    }
+
+    @Override
+    public void deleteAll() {
+        categoryMapper.deleteAll();
+    }
+
+    @Override
     public int update(Category category) {
         return categoryMapper.update(category);
     }
