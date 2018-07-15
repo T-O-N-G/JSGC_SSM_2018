@@ -32,11 +32,16 @@ public class Page {
     }
 
     public void calculateLast(int total) {
-        if (total % count == 0) {
-            last = total - count;
+        if (total == 0) {
+            last = 0;
         } else {
-            last = total - total % count;
+            if (total % count == 0) {
+                last = total - count;
+            } else {
+                last = total - total % count;
+            }
         }
+
     }
 
 }

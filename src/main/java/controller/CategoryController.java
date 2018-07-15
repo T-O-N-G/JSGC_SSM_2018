@@ -1,18 +1,19 @@
 package controller;
 
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonObjectFormatVisitor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pojo.Category;
 import service.CategoryService;
 import util.Page;
+import net.sf.json.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Map;
 
 //告诉SpringMVC这是一个控制器类
 @Controller
@@ -31,6 +32,9 @@ public class CategoryController {
         page.calculateLast(totalCount);
 
         List<Category> categoryList = categoryService.list(page.getStart(), page.getCount());
+//        if (categoryList == null) {
+//            mav.setViewName("listEmpty");
+//        }
         mav.addObject("cs", categoryList);
 
         return mav;
@@ -49,10 +53,18 @@ public class CategoryController {
         return mav;
     }
 
-    @RequestMapping("updateCategory")
-    public ModelAndView updateCategory(Category category, int startIndex) {
+    @ResponseBody
+    @RequestMapping(value = "updateCategory" , method = RequestMethod.POST)
+    public String updateCategory(@RequestBody Category category, int startIndex) {
+        System.out.println("SSM接受到浏览器提交的json，并转换为Category对象: "+ category);
         categoryService.update(category);
-        return new ModelAndView("redirect:/listCategory?start=" + startIndex);
+        System.out.println(startIndex);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("OK", "OK");
+        //接受ajax请求之后无法通过Controller来进行页面跳转.
+//        ModelAndView mav = new ModelAndView("redirect:/listCategory?start=" + startIndex);
+//        System.out.println("创建了一个mav. ViewName为: " + mav.getViewName());
+        return jsonObject.toString();
     }
 
     @RequestMapping("deleteCategory")

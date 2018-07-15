@@ -18,8 +18,15 @@
                                 expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <!--注解驱动, 以使得访问路径与方法的匹配可以通过注解配置-->
-    <mvc:annotation-driven/>
+    <!--mvc注解驱动, 以使得访问路径与方法的匹配可以通过注解配置-->
+    <!--并且解决Json数据的中文问题-->
+    <mvc:annotation-driven >
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes" value="text/plain;charset=UTF-8" />
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
     <!--静态页面, 如html, css, js, image等-->
     <mvc:default-servlet-handler />
 

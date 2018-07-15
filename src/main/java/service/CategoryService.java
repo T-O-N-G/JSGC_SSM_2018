@@ -18,8 +18,12 @@ public interface CategoryService {
 
     public Category getById(int id);
 
-    public List<Category> list(int start,int count);
+    public List<Category> list(int start, int count);
+
     public List<Category> list();
 
     public int count();
+
+    //用于测试事务管理用
+    public void addTwo();
 }

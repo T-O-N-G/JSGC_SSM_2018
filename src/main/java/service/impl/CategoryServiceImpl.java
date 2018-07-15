@@ -4,6 +4,8 @@ import mapper.CategoryMapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import pojo.Category;
 import service.CategoryService;
 
@@ -56,5 +58,14 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public int count() {
         return categoryMapper.count();
+    }
+
+    @Override
+    @Transactional(propagation=Propagation.REQUIRED,rollbackForClassName="Exception")
+    public void addTwo() {
+        categoryMapper.add(new Category("C1"));
+        categoryMapper.add(new Category("名字长对应字段放不下,名字长对应字段放不下," +
+                "名字长对应字段放不下,名字长对应字段放不下,名字长对应字段放不下," +
+                "名字长对应字段放不下,名字长对应字段放不下,名字长对应字段放不下,"));
     }
 }

@@ -1,12 +1,12 @@
 package test;
 
-import mapper.CategoryMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pojo.Category;
+import service.CategoryService;
 
 import java.util.List;
 
@@ -14,30 +14,35 @@ import java.util.List;
 @ContextConfiguration("classpath:SpringApplicationContext.xml")
 public class MybatisTest {
     @Autowired
-    private CategoryMapper categoryMapper;
+    private CategoryService categoryService;
 
     @Test
     public void deleteAll(){
-        categoryMapper.deleteAll();
+        categoryService.deleteAll();
     }
 
     @Test
     public void testAdd() {
-        for (int i = 0; i < 100; i++) {
-            Category category = new Category();
-            category.setName("类目" + i);
-            categoryMapper.add(category);
+        for (int i = 0; i < 12; i++) {
+            Category category = new Category("类目" + i);
+//            category.setName("类目" + i);
+            categoryService.add(category);
         }
 
     }
 
     @Test
     public void testList() {
-        System.out.println(categoryMapper);
-        List<Category> cs=categoryMapper.list();
+        System.out.println(categoryService);
+        List<Category> cs= categoryService.list();
         for (Category c : cs) {
             System.out.println(c.getName());
         }
     }
 
+    @Test
+    public void testTransaction() {
+        categoryService.deleteAll();
+        categoryService.addTwo();
+    }
 }
