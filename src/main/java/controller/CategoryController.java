@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pojo.Category;
+import redis.RedisCache;
+import redis.RedisClient;
 import service.CategoryService;
 import util.Page;
 import net.sf.json.JSONObject;
@@ -19,6 +21,9 @@ import java.util.Map;
 @Controller
 //@RequestMapping(value = "categoryController")
 public class CategoryController {
+//    RedisCache redisCache = new RedisCache();
+    RedisClient redisClient = new RedisClient();
+
     @Autowired
     CategoryService categoryService;
 
@@ -30,7 +35,7 @@ public class CategoryController {
         //每一次获取列表之前都要计算totalCount,以及更新last的值
         int totalCount = categoryService.count();
         page.calculateLast(totalCount);
-
+        System.out.println(redisClient.getByKey("foo"));
         List<Category> categoryList = categoryService.list(page.getStart(), page.getCount());
 //        if (categoryList == null) {
 //            mav.setViewName("listEmpty");

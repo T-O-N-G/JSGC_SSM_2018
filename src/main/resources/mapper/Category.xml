@@ -5,6 +5,7 @@
 
 <mapper namespace="mapper.CategoryMapper">
     <!--开启二级缓存-->
+    <!--<cache type="redis.RedisCache" />-->
     <!--<cache/>-->
     <!--定义一个resultMap-->
     <resultMap id="CategoryBean" type="Category">

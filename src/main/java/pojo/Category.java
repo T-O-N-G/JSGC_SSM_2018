@@ -1,8 +1,11 @@
 package pojo;
 
+import java.util.ArrayList;
+
 public class Category {
     private int id;
     private String name;
+    private ArrayList<Product> products = new ArrayList<>();
     public int getId() {
         return id;
     }
@@ -11,6 +14,14 @@ public class Category {
     }
     public String getName() {
         return name;
+    }
+
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(ArrayList<Product> products) {
+        this.products = products;
     }
 
     public Category() {
