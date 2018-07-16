@@ -25,9 +25,9 @@
     <!--使用Druid连接池-->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <!-- 基本属性 url、user、password -->
-        <property name="url" value="jdbc:mysql://localhost:3306/how2j?characterEncoding=UTF-8&amp;useSSL=false" />
-        <property name="username" value="root" />
-        <property name="password" value="4763" />
+        <property name="url" value="jdbc:mysql://123.206.254.42:3306/how2j?characterEncoding=UTF-8&amp;useSSL=false" />
+        <property name="username" value="tong" />
+        <property name="password" value="DeepDarkM" />
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
 
         <!-- 配置初始化大小、最小、最大的连接池大小 -->
