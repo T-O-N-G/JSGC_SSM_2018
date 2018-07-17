@@ -183,6 +183,15 @@
             <classifier>jdk15</classifier>
         </dependency>
 
+        <!--JWT 依赖-->
+        <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+
+
 
 
         <!--jsql parser-->
