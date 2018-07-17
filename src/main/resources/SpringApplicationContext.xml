@@ -73,4 +73,6 @@
         <property name="dataSource" ref="dataSource" />
     </bean>
 
+    <import resource="spring-jedis.xml"></import>
+
 </beans>
