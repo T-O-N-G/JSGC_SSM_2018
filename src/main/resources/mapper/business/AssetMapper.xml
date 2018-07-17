@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.dao.AssetMapper" >
+  <resultMap id="BaseResultMap" type="test.model.Asset" >
+    <id column="assetID" property="assetid" jdbcType="INTEGER" />
+    <result column="assetSerial" property="assetserial" jdbcType="VARCHAR" />
+    <result column="assetName" property="assetname" jdbcType="VARCHAR" />
+    <result column="assetSpec" property="assetspec" jdbcType="VARCHAR" />
+    <result column="assetModel" property="assetmodel" jdbcType="VARCHAR" />
+    <result column="assetAmount" property="assetamount" jdbcType="INTEGER" />
+    <result column="assetMoney" property="assetmoney" jdbcType="INTEGER" />
+    <result column="assetDate" property="assetdate" jdbcType="DATE" />
+    <result column="assetOwner" property="assetowner" jdbcType="VARCHAR" />
+    <result column="assetComment" property="assetcomment" jdbcType="VARCHAR" />
+    <result column="assetDelete" property="assetdelete" jdbcType="INTEGER" />
+    <result column="assetStatus" property="assetstatus" jdbcType="INTEGER" />
+    <result column="projectID" property="projectid" jdbcType="INTEGER" />
+    <result column="assetDepID" property="assetdepid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    assetID, assetSerial, assetName, assetSpec, assetModel, assetAmount, assetMoney, 
+    assetDate, assetOwner, assetComment, assetDelete, assetStatus, projectID, assetDepID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from asset
+    where assetID = #{assetid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from asset
+    where assetID = #{assetid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="test.model.Asset" >
+    insert into asset (assetID, assetSerial, assetName, 
+      assetSpec, assetModel, assetAmount, 
+      assetMoney, assetDate, assetOwner, 
+      assetComment, assetDelete, assetStatus, 
+      projectID, assetDepID)
+    values (#{assetid,jdbcType=INTEGER}, #{assetserial,jdbcType=VARCHAR}, #{assetname,jdbcType=VARCHAR}, 
+      #{assetspec,jdbcType=VARCHAR}, #{assetmodel,jdbcType=VARCHAR}, #{assetamount,jdbcType=INTEGER}, 
+      #{assetmoney,jdbcType=INTEGER}, #{assetdate,jdbcType=DATE}, #{assetowner,jdbcType=VARCHAR}, 
+      #{assetcomment,jdbcType=VARCHAR}, #{assetdelete,jdbcType=INTEGER}, #{assetstatus,jdbcType=INTEGER}, 
+      #{projectid,jdbcType=INTEGER}, #{assetdepid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="test.model.Asset" >
+    insert into asset
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="assetid != null" >
+        assetID,
+      </if>
+      <if test="assetserial != null" >
+        assetSerial,
+      </if>
+      <if test="assetname != null" >
+        assetName,
+      </if>
+      <if test="assetspec != null" >
+        assetSpec,
+      </if>
+      <if test="assetmodel != null" >
+        assetModel,
+      </if>
+      <if test="assetamount != null" >
+        assetAmount,
+      </if>
+      <if test="assetmoney != null" >
+        assetMoney,
+      </if>
+      <if test="assetdate != null" >
+        assetDate,
+      </if>
+      <if test="assetowner != null" >
+        assetOwner,
+      </if>
+      <if test="assetcomment != null" >
+        assetComment,
+      </if>
+      <if test="assetdelete != null" >
+        assetDelete,
+      </if>
+      <if test="assetstatus != null" >
+        assetStatus,
+      </if>
+      <if test="projectid != null" >
+        projectID,
+      </if>
+      <if test="assetdepid != null" >
+        assetDepID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="assetid != null" >
+        #{assetid,jdbcType=INTEGER},
+      </if>
+      <if test="assetserial != null" >
+        #{assetserial,jdbcType=VARCHAR},
+      </if>
+      <if test="assetname != null" >
+        #{assetname,jdbcType=VARCHAR},
+      </if>
+      <if test="assetspec != null" >
+        #{assetspec,jdbcType=VARCHAR},
+      </if>
+      <if test="assetmodel != null" >
+        #{assetmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="assetamount != null" >
+        #{assetamount,jdbcType=INTEGER},
+      </if>
+      <if test="assetmoney != null" >
+        #{assetmoney,jdbcType=INTEGER},
+      </if>
+      <if test="assetdate != null" >
+        #{assetdate,jdbcType=DATE},
+      </if>
+      <if test="assetowner != null" >
+        #{assetowner,jdbcType=VARCHAR},
+      </if>
+      <if test="assetcomment != null" >
+        #{assetcomment,jdbcType=VARCHAR},
+      </if>
+      <if test="assetdelete != null" >
+        #{assetdelete,jdbcType=INTEGER},
+      </if>
+      <if test="assetstatus != null" >
+        #{assetstatus,jdbcType=INTEGER},
+      </if>
+      <if test="projectid != null" >
+        #{projectid,jdbcType=INTEGER},
+      </if>
+      <if test="assetdepid != null" >
+        #{assetdepid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="test.model.Asset" >
+    update asset
+    <set >
+      <if test="assetserial != null" >
+        assetSerial = #{assetserial,jdbcType=VARCHAR},
+      </if>
+      <if test="assetname != null" >
+        assetName = #{assetname,jdbcType=VARCHAR},
+      </if>
+      <if test="assetspec != null" >
+        assetSpec = #{assetspec,jdbcType=VARCHAR},
+      </if>
+      <if test="assetmodel != null" >
+        assetModel = #{assetmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="assetamount != null" >
+        assetAmount = #{assetamount,jdbcType=INTEGER},
+      </if>
+      <if test="assetmoney != null" >
+        assetMoney = #{assetmoney,jdbcType=INTEGER},
+      </if>
+      <if test="assetdate != null" >
+        assetDate = #{assetdate,jdbcType=DATE},
+      </if>
+      <if test="assetowner != null" >
+        assetOwner = #{assetowner,jdbcType=VARCHAR},
+      </if>
+      <if test="assetcomment != null" >
+        assetComment = #{assetcomment,jdbcType=VARCHAR},
+      </if>
+      <if test="assetdelete != null" >
+        assetDelete = #{assetdelete,jdbcType=INTEGER},
+      </if>
+      <if test="assetstatus != null" >
+        assetStatus = #{assetstatus,jdbcType=INTEGER},
+      </if>
+      <if test="projectid != null" >
+        projectID = #{projectid,jdbcType=INTEGER},
+      </if>
+      <if test="assetdepid != null" >
+        assetDepID = #{assetdepid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where assetID = #{assetid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test.model.Asset" >
+    update asset
+    set assetSerial = #{assetserial,jdbcType=VARCHAR},
+      assetName = #{assetname,jdbcType=VARCHAR},
+      assetSpec = #{assetspec,jdbcType=VARCHAR},
+      assetModel = #{assetmodel,jdbcType=VARCHAR},
+      assetAmount = #{assetamount,jdbcType=INTEGER},
+      assetMoney = #{assetmoney,jdbcType=INTEGER},
+      assetDate = #{assetdate,jdbcType=DATE},
+      assetOwner = #{assetowner,jdbcType=VARCHAR},
+      assetComment = #{assetcomment,jdbcType=VARCHAR},
+      assetDelete = #{assetdelete,jdbcType=INTEGER},
+      assetStatus = #{assetstatus,jdbcType=INTEGER},
+      projectID = #{projectid,jdbcType=INTEGER},
+      assetDepID = #{assetdepid,jdbcType=INTEGER}
+    where assetID = #{assetid,jdbcType=INTEGER}
+  </update>
+</mapper>

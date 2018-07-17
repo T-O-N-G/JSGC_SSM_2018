@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.dao.BudgetReplyMapper" >
+  <resultMap id="BaseResultMap" type="test.model.BudgetReply" >
+    <id column="budgetReplyID" property="budgetreplyid" jdbcType="INTEGER" />
+    <result column="budgetReplyInfo" property="budgetreplyinfo" jdbcType="VARCHAR" />
+    <result column="versionID" property="versionid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    budgetReplyID, budgetReplyInfo, versionID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from budgetreply
+    where budgetReplyID = #{budgetreplyid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from budgetreply
+    where budgetReplyID = #{budgetreplyid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="test.model.BudgetReply" >
+    insert into budgetreply (budgetReplyID, budgetReplyInfo, versionID
+      )
+    values (#{budgetreplyid,jdbcType=INTEGER}, #{budgetreplyinfo,jdbcType=VARCHAR}, #{versionid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test.model.BudgetReply" >
+    insert into budgetreply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="budgetreplyid != null" >
+        budgetReplyID,
+      </if>
+      <if test="budgetreplyinfo != null" >
+        budgetReplyInfo,
+      </if>
+      <if test="versionid != null" >
+        versionID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="budgetreplyid != null" >
+        #{budgetreplyid,jdbcType=INTEGER},
+      </if>
+      <if test="budgetreplyinfo != null" >
+        #{budgetreplyinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="versionid != null" >
+        #{versionid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="test.model.BudgetReply" >
+    update budgetreply
+    <set >
+      <if test="budgetreplyinfo != null" >
+        budgetReplyInfo = #{budgetreplyinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="versionid != null" >
+        versionID = #{versionid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where budgetReplyID = #{budgetreplyid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test.model.BudgetReply" >
+    update budgetreply
+    set budgetReplyInfo = #{budgetreplyinfo,jdbcType=VARCHAR},
+      versionID = #{versionid,jdbcType=INTEGER}
+    where budgetReplyID = #{budgetreplyid,jdbcType=INTEGER}
+  </update>
+</mapper>

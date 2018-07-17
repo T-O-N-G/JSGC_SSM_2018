@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.dao.VersionMapper" >
+  <resultMap id="BaseResultMap" type="test.model.Version" >
+    <id column="verisionID" property="verisionid" jdbcType="INTEGER" />
+    <result column="versionDate" property="versiondate" jdbcType="DATE" />
+    <result column="versionBuildNum" property="versionbuildnum" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    verisionID, versionDate, versionBuildNum
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from version
+    where verisionID = #{verisionid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from version
+    where verisionID = #{verisionid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="test.model.Version" >
+    insert into version (verisionID, versionDate, versionBuildNum
+      )
+    values (#{verisionid,jdbcType=INTEGER}, #{versiondate,jdbcType=DATE}, #{versionbuildnum,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test.model.Version" >
+    insert into version
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="verisionid != null" >
+        verisionID,
+      </if>
+      <if test="versiondate != null" >
+        versionDate,
+      </if>
+      <if test="versionbuildnum != null" >
+        versionBuildNum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="verisionid != null" >
+        #{verisionid,jdbcType=INTEGER},
+      </if>
+      <if test="versiondate != null" >
+        #{versiondate,jdbcType=DATE},
+      </if>
+      <if test="versionbuildnum != null" >
+        #{versionbuildnum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="test.model.Version" >
+    update version
+    <set >
+      <if test="versiondate != null" >
+        versionDate = #{versiondate,jdbcType=DATE},
+      </if>
+      <if test="versionbuildnum != null" >
+        versionBuildNum = #{versionbuildnum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where verisionID = #{verisionid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test.model.Version" >
+    update version
+    set versionDate = #{versiondate,jdbcType=DATE},
+      versionBuildNum = #{versionbuildnum,jdbcType=VARCHAR}
+    where verisionID = #{verisionid,jdbcType=INTEGER}
+  </update>
+</mapper>

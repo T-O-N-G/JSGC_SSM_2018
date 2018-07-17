@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.dao.BudgetDetailMapper" >
+  <resultMap id="BaseResultMap" type="test.model.BudgetDetail" >
+    <id column="budgetID" property="budgetid" jdbcType="INTEGER" />
+    <result column="budgetSerial" property="budgetserial" jdbcType="VARCHAR" />
+    <result column="projectBudgetSum" property="projectbudgetsum" jdbcType="INTEGER" />
+    <result column="projectContractsSum" property="projectcontractssum" jdbcType="INTEGER" />
+    <result column="projectContractsPayed" property="projectcontractspayed" jdbcType="INTEGER" />
+    <result column="projectContractsNotPayed" property="projectcontractsnotpayed" jdbcType="INTEGER" />
+    <result column="projectBudgetLeft" property="projectbudgetleft" jdbcType="INTEGER" />
+    <result column="projectID" property="projectid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    budgetID, budgetSerial, projectBudgetSum, projectContractsSum, projectContractsPayed, 
+    projectContractsNotPayed, projectBudgetLeft, projectID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from budgetdetail
+    where budgetID = #{budgetid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from budgetdetail
+    where budgetID = #{budgetid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="test.model.BudgetDetail" >
+    insert into budgetdetail (budgetID, budgetSerial, projectBudgetSum, 
+      projectContractsSum, projectContractsPayed, 
+      projectContractsNotPayed, projectBudgetLeft, 
+      projectID)
+    values (#{budgetid,jdbcType=INTEGER}, #{budgetserial,jdbcType=VARCHAR}, #{projectbudgetsum,jdbcType=INTEGER}, 
+      #{projectcontractssum,jdbcType=INTEGER}, #{projectcontractspayed,jdbcType=INTEGER}, 
+      #{projectcontractsnotpayed,jdbcType=INTEGER}, #{projectbudgetleft,jdbcType=INTEGER}, 
+      #{projectid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="test.model.BudgetDetail" >
+    insert into budgetdetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="budgetid != null" >
+        budgetID,
+      </if>
+      <if test="budgetserial != null" >
+        budgetSerial,
+      </if>
+      <if test="projectbudgetsum != null" >
+        projectBudgetSum,
+      </if>
+      <if test="projectcontractssum != null" >
+        projectContractsSum,
+      </if>
+      <if test="projectcontractspayed != null" >
+        projectContractsPayed,
+      </if>
+      <if test="projectcontractsnotpayed != null" >
+        projectContractsNotPayed,
+      </if>
+      <if test="projectbudgetleft != null" >
+        projectBudgetLeft,
+      </if>
+      <if test="projectid != null" >
+        projectID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="budgetid != null" >
+        #{budgetid,jdbcType=INTEGER},
+      </if>
+      <if test="budgetserial != null" >
+        #{budgetserial,jdbcType=VARCHAR},
+      </if>
+      <if test="projectbudgetsum != null" >
+        #{projectbudgetsum,jdbcType=INTEGER},
+      </if>
+      <if test="projectcontractssum != null" >
+        #{projectcontractssum,jdbcType=INTEGER},
+      </if>
+      <if test="projectcontractspayed != null" >
+        #{projectcontractspayed,jdbcType=INTEGER},
+      </if>
+      <if test="projectcontractsnotpayed != null" >
+        #{projectcontractsnotpayed,jdbcType=INTEGER},
+      </if>
+      <if test="projectbudgetleft != null" >
+        #{projectbudgetleft,jdbcType=INTEGER},
+      </if>
+      <if test="projectid != null" >
+        #{projectid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="test.model.BudgetDetail" >
+    update budgetdetail
+    <set >
+      <if test="budgetserial != null" >
+        budgetSerial = #{budgetserial,jdbcType=VARCHAR},
+      </if>
+      <if test="projectbudgetsum != null" >
+        projectBudgetSum = #{projectbudgetsum,jdbcType=INTEGER},
+      </if>
+      <if test="projectcontractssum != null" >
+        projectContractsSum = #{projectcontractssum,jdbcType=INTEGER},
+      </if>
+      <if test="projectcontractspayed != null" >
+        projectContractsPayed = #{projectcontractspayed,jdbcType=INTEGER},
+      </if>
+      <if test="projectcontractsnotpayed != null" >
+        projectContractsNotPayed = #{projectcontractsnotpayed,jdbcType=INTEGER},
+      </if>
+      <if test="projectbudgetleft != null" >
+        projectBudgetLeft = #{projectbudgetleft,jdbcType=INTEGER},
+      </if>
+      <if test="projectid != null" >
+        projectID = #{projectid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where budgetID = #{budgetid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test.model.BudgetDetail" >
+    update budgetdetail
+    set budgetSerial = #{budgetserial,jdbcType=VARCHAR},
+      projectBudgetSum = #{projectbudgetsum,jdbcType=INTEGER},
+      projectContractsSum = #{projectcontractssum,jdbcType=INTEGER},
+      projectContractsPayed = #{projectcontractspayed,jdbcType=INTEGER},
+      projectContractsNotPayed = #{projectcontractsnotpayed,jdbcType=INTEGER},
+      projectBudgetLeft = #{projectbudgetleft,jdbcType=INTEGER},
+      projectID = #{projectid,jdbcType=INTEGER}
+    where budgetID = #{budgetid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.dao.DocumentMapper" >
+  <resultMap id="BaseResultMap" type="test.model.Document" >
+    <id column="documentID" property="documentid" jdbcType="INTEGER" />
+    <result column="documentSerial" property="documentserial" jdbcType="VARCHAR" />
+    <result column="documentName" property="documentname" jdbcType="VARCHAR" />
+    <result column="documentUploadTime" property="documentuploadtime" jdbcType="DATE" />
+    <result column="documentOwner" property="documentowner" jdbcType="VARCHAR" />
+    <result column="documentComment" property="documentcomment" jdbcType="VARCHAR" />
+    <result column="documentUrl" property="documenturl" jdbcType="VARCHAR" />
+    <result column="documentType" property="documenttype" jdbcType="INTEGER" />
+    <result column="documentDelete" property="documentdelete" jdbcType="INTEGER" />
+    <result column="projectID" property="projectid" jdbcType="INTEGER" />
+    <result column="contractID" property="contractid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    documentID, documentSerial, documentName, documentUploadTime, documentOwner, documentComment, 
+    documentUrl, documentType, documentDelete, projectID, contractID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from document
+    where documentID = #{documentid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from document
+    where documentID = #{documentid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="test.model.Document" >
+    insert into document (documentID, documentSerial, documentName, 
+      documentUploadTime, documentOwner, documentComment, 
+      documentUrl, documentType, documentDelete, 
+      projectID, contractID)
+    values (#{documentid,jdbcType=INTEGER}, #{documentserial,jdbcType=VARCHAR}, #{documentname,jdbcType=VARCHAR}, 
+      #{documentuploadtime,jdbcType=DATE}, #{documentowner,jdbcType=VARCHAR}, #{documentcomment,jdbcType=VARCHAR}, 
+      #{documenturl,jdbcType=VARCHAR}, #{documenttype,jdbcType=INTEGER}, #{documentdelete,jdbcType=INTEGER}, 
+      #{projectid,jdbcType=INTEGER}, #{contractid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="test.model.Document" >
+    insert into document
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="documentid != null" >
+        documentID,
+      </if>
+      <if test="documentserial != null" >
+        documentSerial,
+      </if>
+      <if test="documentname != null" >
+        documentName,
+      </if>
+      <if test="documentuploadtime != null" >
+        documentUploadTime,
+      </if>
+      <if test="documentowner != null" >
+        documentOwner,
+      </if>
+      <if test="documentcomment != null" >
+        documentComment,
+      </if>
+      <if test="documenturl != null" >
+        documentUrl,
+      </if>
+      <if test="documenttype != null" >
+        documentType,
+      </if>
+      <if test="documentdelete != null" >
+        documentDelete,
+      </if>
+      <if test="projectid != null" >
+        projectID,
+      </if>
+      <if test="contractid != null" >
+        contractID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="documentid != null" >
+        #{documentid,jdbcType=INTEGER},
+      </if>
+      <if test="documentserial != null" >
+        #{documentserial,jdbcType=VARCHAR},
+      </if>
+      <if test="documentname != null" >
+        #{documentname,jdbcType=VARCHAR},
+      </if>
+      <if test="documentuploadtime != null" >
+        #{documentuploadtime,jdbcType=DATE},
+      </if>
+      <if test="documentowner != null" >
+        #{documentowner,jdbcType=VARCHAR},
+      </if>
+      <if test="documentcomment != null" >
+        #{documentcomment,jdbcType=VARCHAR},
+      </if>
+      <if test="documenturl != null" >
+        #{documenturl,jdbcType=VARCHAR},
+      </if>
+      <if test="documenttype != null" >
+        #{documenttype,jdbcType=INTEGER},
+      </if>
+      <if test="documentdelete != null" >
+        #{documentdelete,jdbcType=INTEGER},
+      </if>
+      <if test="projectid != null" >
+        #{projectid,jdbcType=INTEGER},
+      </if>
+      <if test="contractid != null" >
+        #{contractid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="test.model.Document" >
+    update document
+    <set >
+      <if test="documentserial != null" >
+        documentSerial = #{documentserial,jdbcType=VARCHAR},
+      </if>
+      <if test="documentname != null" >
+        documentName = #{documentname,jdbcType=VARCHAR},
+      </if>
+      <if test="documentuploadtime != null" >
+        documentUploadTime = #{documentuploadtime,jdbcType=DATE},
+      </if>
+      <if test="documentowner != null" >
+        documentOwner = #{documentowner,jdbcType=VARCHAR},
+      </if>
+      <if test="documentcomment != null" >
+        documentComment = #{documentcomment,jdbcType=VARCHAR},
+      </if>
+      <if test="documenturl != null" >
+        documentUrl = #{documenturl,jdbcType=VARCHAR},
+      </if>
+      <if test="documenttype != null" >
+        documentType = #{documenttype,jdbcType=INTEGER},
+      </if>
+      <if test="documentdelete != null" >
+        documentDelete = #{documentdelete,jdbcType=INTEGER},
+      </if>
+      <if test="projectid != null" >
+        projectID = #{projectid,jdbcType=INTEGER},
+      </if>
+      <if test="contractid != null" >
+        contractID = #{contractid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where documentID = #{documentid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test.model.Document" >
+    update document
+    set documentSerial = #{documentserial,jdbcType=VARCHAR},
+      documentName = #{documentname,jdbcType=VARCHAR},
+      documentUploadTime = #{documentuploadtime,jdbcType=DATE},
+      documentOwner = #{documentowner,jdbcType=VARCHAR},
+      documentComment = #{documentcomment,jdbcType=VARCHAR},
+      documentUrl = #{documenturl,jdbcType=VARCHAR},
+      documentType = #{documenttype,jdbcType=INTEGER},
+      documentDelete = #{documentdelete,jdbcType=INTEGER},
+      projectID = #{projectid,jdbcType=INTEGER},
+      contractID = #{contractid,jdbcType=INTEGER}
+    where documentID = #{documentid,jdbcType=INTEGER}
+  </update>
+</mapper>

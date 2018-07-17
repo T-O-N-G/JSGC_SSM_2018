@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.dao.BuildContentMapper" >
+  <resultMap id="BaseResultMap" type="test.model.BuildContent" >
+    <id column="buildContentID" property="buildcontentid" jdbcType="INTEGER" />
+    <result column="versionID" property="versionid" jdbcType="INTEGER" />
+    <result column="buildInfo" property="buildinfo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    buildContentID, versionID, buildInfo
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from buildcontent
+    where buildContentID = #{buildcontentid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from buildcontent
+    where buildContentID = #{buildcontentid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="test.model.BuildContent" >
+    insert into buildcontent (buildContentID, versionID, buildInfo
+      )
+    values (#{buildcontentid,jdbcType=INTEGER}, #{versionid,jdbcType=INTEGER}, #{buildinfo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test.model.BuildContent" >
+    insert into buildcontent
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="buildcontentid != null" >
+        buildContentID,
+      </if>
+      <if test="versionid != null" >
+        versionID,
+      </if>
+      <if test="buildinfo != null" >
+        buildInfo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="buildcontentid != null" >
+        #{buildcontentid,jdbcType=INTEGER},
+      </if>
+      <if test="versionid != null" >
+        #{versionid,jdbcType=INTEGER},
+      </if>
+      <if test="buildinfo != null" >
+        #{buildinfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="test.model.BuildContent" >
+    update buildcontent
+    <set >
+      <if test="versionid != null" >
+        versionID = #{versionid,jdbcType=INTEGER},
+      </if>
+      <if test="buildinfo != null" >
+        buildInfo = #{buildinfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where buildContentID = #{buildcontentid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test.model.BuildContent" >
+    update buildcontent
+    set versionID = #{versionid,jdbcType=INTEGER},
+      buildInfo = #{buildinfo,jdbcType=VARCHAR}
+    where buildContentID = #{buildcontentid,jdbcType=INTEGER}
+  </update>
+</mapper>
