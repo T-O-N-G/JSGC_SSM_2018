@@ -8,7 +8,7 @@ public class JwtTest {
 
     @Test
     public void testJwt() throws Exception {
-        JwtUtil util = new JwtUtil();
+        JwtUtil util = new JwtUtil("2222222");
         String ab = util.createJWT("jwt", "{id:100,name:xiaohong}", 6000000);
         System.out.println(ab);
         //eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiJEU1NGQVdEV0FEQVMuLi4iLCJzdWIiOiJ7aWQ6MTAwLG5hbWU6eGlhb2hvbmd9IiwidXNlcl9uYW1lIjoiYWRtaW4iLCJuaWNrX25hbWUiOiJEQVNEQTEyMSIsImV4cCI6MTUxNzgzNTE0NiwiaWF0IjoxNTE3ODM1MDg2LCJqdGkiOiJqd3QifQ.ncVrqdXeiCfrB9v6BulDRWUDDdROB7f-_Hg5N0po980
