@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="mapper.admin.AccountantMapper" >
+<mapper namespace="mapper.com.jsgc.admin.AccountantMapper" >
   <resultMap id="BaseResultMap" type="com.jsxm.admin.Accountant" >
     <id column="accountantID" property="accountantid" jdbcType="INTEGER" />
     <result column="accountantSerial" property="accountantserial" jdbcType="VARCHAR" />
