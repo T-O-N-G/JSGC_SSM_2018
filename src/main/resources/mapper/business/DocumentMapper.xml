@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="mapper.business.DocumentMapper" >
+<mapper namespace="mapper.com.jsgc.business.DocumentMapper" >
   <resultMap id="BaseResultMap" type="com.jsxm.business.Document" >
     <id column="documentID" property="documentid" jdbcType="INTEGER" />
     <result column="documentSerial" property="documentserial" jdbcType="VARCHAR" />
