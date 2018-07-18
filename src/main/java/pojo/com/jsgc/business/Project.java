@@ -25,7 +25,7 @@ public class Project {
     private Integer budgetId;
 
     private Integer projectChargerId;
-
+    private Integer projectDepartmentId;
 
     private List<Contract> contractList;
 
@@ -118,5 +118,13 @@ public class Project {
 
     public void setProjectChargerId(Integer projectChargerId) {
         this.projectChargerId = projectChargerId;
+    }
+
+    public Integer getProjectDepartmentId() {
+        return projectDepartmentId;
+    }
+
+    public void setProjectDepartmentId(Integer projectDepartmentId) {
+        this.projectDepartmentId = projectDepartmentId;
     }
 }
