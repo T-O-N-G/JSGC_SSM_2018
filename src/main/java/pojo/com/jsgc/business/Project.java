@@ -26,6 +26,7 @@ public class Project {
 
     private Integer projectChargerId;
 
+
     private List<Contract> contractList;
 
     private BudgetDetail budgetDetail;
