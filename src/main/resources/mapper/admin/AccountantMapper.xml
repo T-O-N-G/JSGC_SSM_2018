@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="test.dao.AccountantMapper" >
-  <resultMap id="BaseResultMap" type="test.model.Accountant" >
+<mapper namespace="mapper.admin.AccountantMapper" >
+  <resultMap id="BaseResultMap" type="com.jsxm.admin.Accountant" >
     <id column="accountantID" property="accountantid" jdbcType="INTEGER" />
     <result column="accountantSerial" property="accountantserial" jdbcType="VARCHAR" />
     <result column="accountantName" property="accountantname" jdbcType="VARCHAR" />
@@ -21,13 +21,13 @@
     delete from accountant
     where accountantID = #{accountantid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="test.model.Accountant" >
+  <insert id="insert" parameterType="com.jsxm.admin.Accountant" >
     insert into accountant (accountantID, accountantSerial, accountantName, 
       accountantType, versionID)
     values (#{accountantid,jdbcType=INTEGER}, #{accountantserial,jdbcType=VARCHAR}, #{accountantname,jdbcType=VARCHAR}, 
       #{accountanttype,jdbcType=INTEGER}, #{versionid,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="test.model.Accountant" >
+  <insert id="insertSelective" parameterType="com.jsxm.admin.Accountant" >
     insert into accountant
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="accountantid != null" >
@@ -64,7 +64,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="test.model.Accountant" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.jsxm.admin.Accountant" >
     update accountant
     <set >
       <if test="accountantserial != null" >
@@ -82,7 +82,7 @@
     </set>
     where accountantID = #{accountantid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="test.model.Accountant" >
+  <update id="updateByPrimaryKey" parameterType="com.jsxm.admin.Accountant" >
     update accountant
     set accountantSerial = #{accountantserial,jdbcType=VARCHAR},
       accountantName = #{accountantname,jdbcType=VARCHAR},

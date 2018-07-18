@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="test.dao.BudgetDetailMapper" >
-  <resultMap id="BaseResultMap" type="test.model.BudgetDetail" >
+<mapper namespace="mapper.business.BudgetDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.jsxm.business.BudgetDetail" >
     <id column="budgetID" property="budgetid" jdbcType="INTEGER" />
     <result column="budgetSerial" property="budgetserial" jdbcType="VARCHAR" />
     <result column="projectBudgetSum" property="projectbudgetsum" jdbcType="INTEGER" />
@@ -25,7 +25,7 @@
     delete from budgetdetail
     where budgetID = #{budgetid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="test.model.BudgetDetail" >
+  <insert id="insert" parameterType="com.jsxm.business.BudgetDetail" >
     insert into budgetdetail (budgetID, budgetSerial, projectBudgetSum, 
       projectContractsSum, projectContractsPayed, 
       projectContractsNotPayed, projectBudgetLeft, 
@@ -35,7 +35,7 @@
       #{projectcontractsnotpayed,jdbcType=INTEGER}, #{projectbudgetleft,jdbcType=INTEGER}, 
       #{projectid,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="test.model.BudgetDetail" >
+  <insert id="insertSelective" parameterType="com.jsxm.business.BudgetDetail" >
     insert into budgetdetail
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="budgetid != null" >
@@ -90,7 +90,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="test.model.BudgetDetail" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.jsxm.business.BudgetDetail" >
     update budgetdetail
     <set >
       <if test="budgetserial != null" >
@@ -117,7 +117,7 @@
     </set>
     where budgetID = #{budgetid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="test.model.BudgetDetail" >
+  <update id="updateByPrimaryKey" parameterType="com.jsxm.business.BudgetDetail" >
     update budgetdetail
     set budgetSerial = #{budgetserial,jdbcType=VARCHAR},
       projectBudgetSum = #{projectbudgetsum,jdbcType=INTEGER},

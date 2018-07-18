@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="test.dao.AssetMapper" >
-  <resultMap id="BaseResultMap" type="test.model.Asset" >
+<mapper namespace="mapper.business.AssetMapper" >
+  <resultMap id="BaseResultMap" type="com.jsxm.business.Asset" >
     <id column="assetID" property="assetid" jdbcType="INTEGER" />
     <result column="assetSerial" property="assetserial" jdbcType="VARCHAR" />
     <result column="assetName" property="assetname" jdbcType="VARCHAR" />
@@ -31,7 +31,7 @@
     delete from asset
     where assetID = #{assetid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="test.model.Asset" >
+  <insert id="insert" parameterType="com.jsxm.business.Asset" >
     insert into asset (assetID, assetSerial, assetName, 
       assetSpec, assetModel, assetAmount, 
       assetMoney, assetDate, assetOwner, 
@@ -43,7 +43,7 @@
       #{assetcomment,jdbcType=VARCHAR}, #{assetdelete,jdbcType=INTEGER}, #{assetstatus,jdbcType=INTEGER}, 
       #{projectid,jdbcType=INTEGER}, #{assetdepid,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="test.model.Asset" >
+  <insert id="insertSelective" parameterType="com.jsxm.business.Asset" >
     insert into asset
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="assetid != null" >
@@ -134,7 +134,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="test.model.Asset" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.jsxm.business.Asset" >
     update asset
     <set >
       <if test="assetserial != null" >
@@ -179,7 +179,7 @@
     </set>
     where assetID = #{assetid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="test.model.Asset" >
+  <update id="updateByPrimaryKey" parameterType="com.jsxm.business.Asset" >
     update asset
     set assetSerial = #{assetserial,jdbcType=VARCHAR},
       assetName = #{assetname,jdbcType=VARCHAR},

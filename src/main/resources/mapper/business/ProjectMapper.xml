@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="test.dao.ProjectMapper" >
-  <resultMap id="BaseResultMap" type="test.model.Project" >
+<mapper namespace="mapper.business.ProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.jsxm.business.Project" >
     <id column="projectID" property="projectid" jdbcType="INTEGER" />
     <result column="projectSerial" property="projectserial" jdbcType="VARCHAR" />
     <result column="projectName" property="projectname" jdbcType="VARCHAR" />
@@ -28,7 +28,7 @@
     delete from project
     where projectID = #{projectid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="test.model.Project" >
+  <insert id="insert" parameterType="com.jsxm.business.Project" >
     insert into project (projectID, projectSerial, projectName, 
       projectBudgetSum, projectStartTime, projectEndTime, 
       projectStatus, projectComment, projectDelete, 
@@ -38,7 +38,7 @@
       #{projectstatus,jdbcType=INTEGER}, #{projectcomment,jdbcType=VARCHAR}, #{projectdelete,jdbcType=INTEGER}, 
       #{budgetid,jdbcType=INTEGER}, #{projectchargerid,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="test.model.Project" >
+  <insert id="insertSelective" parameterType="com.jsxm.business.Project" >
     insert into project
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="projectid != null" >
@@ -111,7 +111,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="test.model.Project" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.jsxm.business.Project" >
     update project
     <set >
       <if test="projectserial != null" >
@@ -147,7 +147,7 @@
     </set>
     where projectID = #{projectid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="test.model.Project" >
+  <update id="updateByPrimaryKey" parameterType="com.jsxm.business.Project" >
     update project
     set projectSerial = #{projectserial,jdbcType=VARCHAR},
       projectName = #{projectname,jdbcType=VARCHAR},

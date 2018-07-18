@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="test.dao.VersionMapper" >
-  <resultMap id="BaseResultMap" type="test.model.Version" >
+<mapper namespace="mapper.admin.VersionMapper" >
+  <resultMap id="BaseResultMap" type="com.jsxm.admin.Version" >
     <id column="verisionID" property="verisionid" jdbcType="INTEGER" />
     <result column="versionDate" property="versiondate" jdbcType="DATE" />
     <result column="versionBuildNum" property="versionbuildnum" jdbcType="VARCHAR" />
@@ -19,13 +19,13 @@
     delete from version
     where verisionID = #{verisionid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="test.model.Version" >
+  <insert id="insert" parameterType="com.jsxm.admin.Version" >
     insert into version (verisionID, versionDate, versionBuildNum
       )
     values (#{verisionid,jdbcType=INTEGER}, #{versiondate,jdbcType=DATE}, #{versionbuildnum,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="test.model.Version" >
+  <insert id="insertSelective" parameterType="com.jsxm.admin.Version" >
     insert into version
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="verisionid != null" >
@@ -50,7 +50,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="test.model.Version" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.jsxm.admin.Version" >
     update version
     <set >
       <if test="versiondate != null" >
@@ -62,7 +62,7 @@
     </set>
     where verisionID = #{verisionid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="test.model.Version" >
+  <update id="updateByPrimaryKey" parameterType="com.jsxm.admin.Version" >
     update version
     set versionDate = #{versiondate,jdbcType=DATE},
       versionBuildNum = #{versionbuildnum,jdbcType=VARCHAR}

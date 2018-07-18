@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="test.dao.DepartmentMapper" >
-  <resultMap id="BaseResultMap" type="test.model.Department" >
+<mapper namespace="mapper.admin.DepartmentMapper" >
+  <resultMap id="BaseResultMap" type="com.jsxm.admin.Department" >
     <id column="departmentID" property="departmentid" jdbcType="INTEGER" />
     <result column="departmentName" property="departmentname" jdbcType="VARCHAR" />
     <result column="versionID" property="versionid" jdbcType="INTEGER" />
@@ -19,13 +19,13 @@
     delete from department
     where departmentID = #{departmentid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="test.model.Department" >
+  <insert id="insert" parameterType="com.jsxm.admin.Department" >
     insert into department (departmentID, departmentName, versionID
       )
     values (#{departmentid,jdbcType=INTEGER}, #{departmentname,jdbcType=VARCHAR}, #{versionid,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="test.model.Department" >
+  <insert id="insertSelective" parameterType="com.jsxm.admin.Department" >
     insert into department
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="departmentid != null" >
@@ -50,7 +50,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="test.model.Department" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.jsxm.admin.Department" >
     update department
     <set >
       <if test="departmentname != null" >
@@ -62,7 +62,7 @@
     </set>
     where departmentID = #{departmentid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="test.model.Department" >
+  <update id="updateByPrimaryKey" parameterType="com.jsxm.admin.Department" >
     update department
     set departmentName = #{departmentname,jdbcType=VARCHAR},
       versionID = #{versionid,jdbcType=INTEGER}

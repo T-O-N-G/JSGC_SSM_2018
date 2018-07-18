@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="test.dao.BuildContentMapper" >
-  <resultMap id="BaseResultMap" type="test.model.BuildContent" >
+<mapper namespace="mapper.admin.BuildContentMapper" >
+  <resultMap id="BaseResultMap" type="com.jsxm.admin.BuildContent" >
     <id column="buildContentID" property="buildcontentid" jdbcType="INTEGER" />
     <result column="versionID" property="versionid" jdbcType="INTEGER" />
     <result column="buildInfo" property="buildinfo" jdbcType="VARCHAR" />
@@ -19,13 +19,13 @@
     delete from buildcontent
     where buildContentID = #{buildcontentid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="test.model.BuildContent" >
+  <insert id="insert" parameterType="com.jsxm.admin.BuildContent" >
     insert into buildcontent (buildContentID, versionID, buildInfo
       )
     values (#{buildcontentid,jdbcType=INTEGER}, #{versionid,jdbcType=INTEGER}, #{buildinfo,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="test.model.BuildContent" >
+  <insert id="insertSelective" parameterType="com.jsxm.admin.BuildContent" >
     insert into buildcontent
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="buildcontentid != null" >
@@ -50,7 +50,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="test.model.BuildContent" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.jsxm.admin.BuildContent" >
     update buildcontent
     <set >
       <if test="versionid != null" >
@@ -62,7 +62,7 @@
     </set>
     where buildContentID = #{buildcontentid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="test.model.BuildContent" >
+  <update id="updateByPrimaryKey" parameterType="com.jsxm.admin.BuildContent" >
     update buildcontent
     set versionID = #{versionid,jdbcType=INTEGER},
       buildInfo = #{buildinfo,jdbcType=VARCHAR}

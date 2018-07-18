@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="test.dao.FinanceMapper" >
-  <resultMap id="BaseResultMap" type="test.model.Finance" >
+<mapper namespace="mapper.business.FinanceMapper" >
+  <resultMap id="BaseResultMap" type="com.jsxm.business.Finance" >
     <id column="financeID" property="financeid" jdbcType="INTEGER" />
     <result column="financeSerials" property="financeserials" jdbcType="VARCHAR" />
     <result column="financeDate" property="financedate" jdbcType="DATE" />
@@ -33,7 +33,7 @@
     delete from finance
     where financeID = #{financeid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="test.model.Finance" >
+  <insert id="insert" parameterType="com.jsxm.business.Finance" >
     insert into finance (financeID, financeSerials, financeDate, 
       financeName, financeMoney, financeStatus, 
       financeDelete, financeBorrowerID, financeLenderID, 
@@ -47,7 +47,7 @@
       #{paymethodid,jdbcType=INTEGER}, #{projectid,jdbcType=INTEGER}, #{contractid,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="test.model.Finance" >
+  <insert id="insertSelective" parameterType="com.jsxm.business.Finance" >
     insert into finance
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="financeid != null" >
@@ -144,7 +144,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="test.model.Finance" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.jsxm.business.Finance" >
     update finance
     <set >
       <if test="financeserials != null" >
@@ -192,7 +192,7 @@
     </set>
     where financeID = #{financeid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="test.model.Finance" >
+  <update id="updateByPrimaryKey" parameterType="com.jsxm.business.Finance" >
     update finance
     set financeSerials = #{financeserials,jdbcType=VARCHAR},
       financeDate = #{financedate,jdbcType=DATE},

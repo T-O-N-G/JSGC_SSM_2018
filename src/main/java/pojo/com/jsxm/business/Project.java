@@ -1,6 +1,7 @@
 package pojo.com.jsxm.business;
 
 import java.util.Date;
+import java.util.List;
 
 public class Project {
     private Integer projectid;
@@ -24,6 +25,11 @@ public class Project {
     private Integer budgetid;
 
     private Integer projectchargerid;
+
+    private List<Contract> contractList;
+
+    private BudgetDetail budgetDetail;
+
 
     public Integer getProjectid() {
         return projectid;

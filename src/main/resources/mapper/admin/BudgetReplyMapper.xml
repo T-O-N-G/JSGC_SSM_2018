@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="test.dao.BudgetReplyMapper" >
-  <resultMap id="BaseResultMap" type="test.model.BudgetReply" >
+<mapper namespace="mapper.admin.BudgetReplyMapper" >
+  <resultMap id="BaseResultMap" type="com.jsxm.admin.BudgetReply" >
     <id column="budgetReplyID" property="budgetreplyid" jdbcType="INTEGER" />
     <result column="budgetReplyInfo" property="budgetreplyinfo" jdbcType="VARCHAR" />
     <result column="versionID" property="versionid" jdbcType="INTEGER" />
@@ -19,13 +19,13 @@
     delete from budgetreply
     where budgetReplyID = #{budgetreplyid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="test.model.BudgetReply" >
+  <insert id="insert" parameterType="com.jsxm.admin.BudgetReply" >
     insert into budgetreply (budgetReplyID, budgetReplyInfo, versionID
       )
     values (#{budgetreplyid,jdbcType=INTEGER}, #{budgetreplyinfo,jdbcType=VARCHAR}, #{versionid,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="test.model.BudgetReply" >
+  <insert id="insertSelective" parameterType="com.jsxm.admin.BudgetReply" >
     insert into budgetreply
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="budgetreplyid != null" >
@@ -50,7 +50,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="test.model.BudgetReply" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.jsxm.admin.BudgetReply" >
     update budgetreply
     <set >
       <if test="budgetreplyinfo != null" >
@@ -62,7 +62,7 @@
     </set>
     where budgetReplyID = #{budgetreplyid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="test.model.BudgetReply" >
+  <update id="updateByPrimaryKey" parameterType="com.jsxm.admin.BudgetReply" >
     update budgetreply
     set budgetReplyInfo = #{budgetreplyinfo,jdbcType=VARCHAR},
       versionID = #{versionid,jdbcType=INTEGER}

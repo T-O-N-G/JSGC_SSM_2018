@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="test.dao.ContractMapper" >
-  <resultMap id="BaseResultMap" type="test.model.Contract" >
+<mapper namespace="mapper.business.ContractMapper" >
+  <resultMap id="BaseResultMap" type="com.jsxm.business.Contract" >
     <id column="contractID" property="contractid" jdbcType="INTEGER" />
     <result column="contractSerial" property="contractserial" jdbcType="VARCHAR" />
     <result column="contractName" property="contractname" jdbcType="VARCHAR" />
@@ -28,7 +28,7 @@
     delete from contract
     where contractID = #{contractid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="test.model.Contract" >
+  <insert id="insert" parameterType="com.jsxm.business.Contract" >
     insert into contract (contractID, contractSerial, contractName, 
       contractOwner, contractPartner, contractSignedTime, 
       contractMoney, contractContent, contractComment, 
@@ -38,7 +38,7 @@
       #{contractmoney,jdbcType=INTEGER}, #{contractcontent,jdbcType=VARCHAR}, #{contractcomment,jdbcType=VARCHAR}, 
       #{contractdelete,jdbcType=INTEGER}, #{projectid,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="test.model.Contract" >
+  <insert id="insertSelective" parameterType="com.jsxm.business.Contract" >
     insert into contract
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="contractid != null" >
@@ -111,7 +111,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="test.model.Contract" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.jsxm.business.Contract" >
     update contract
     <set >
       <if test="contractserial != null" >
@@ -147,7 +147,7 @@
     </set>
     where contractID = #{contractid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="test.model.Contract" >
+  <update id="updateByPrimaryKey" parameterType="com.jsxm.business.Contract" >
     update contract
     set contractSerial = #{contractserial,jdbcType=VARCHAR},
       contractName = #{contractname,jdbcType=VARCHAR},
