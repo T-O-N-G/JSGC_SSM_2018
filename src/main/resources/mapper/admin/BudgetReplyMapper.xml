@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mapper.admin.BudgetReplyMapper" >
   <resultMap id="BaseResultMap" type="com.jsxm.admin.BudgetReply" >
-    <id column="budgetReplyID" property="budgetreplyid" jdbcType="INTEGER" />
-    <result column="budgetReplyInfo" property="budgetreplyinfo" jdbcType="VARCHAR" />
-    <result column="versionID" property="versionid" jdbcType="INTEGER" />
+    <id column="budgetReplyID" property="budgetReplyId" jdbcType="INTEGER" />
+    <result column="budgetReplyInfo" property="budgetReplyInfo" jdbcType="VARCHAR" />
+    <result column="versionID" property="versionId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     budgetReplyID, budgetReplyInfo, versionID
@@ -13,59 +13,59 @@
     select 
     <include refid="Base_Column_List" />
     from budgetreply
-    where budgetReplyID = #{budgetreplyid,jdbcType=INTEGER}
+    where budgetReplyID = #{budgetReplyId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from budgetreply
-    where budgetReplyID = #{budgetreplyid,jdbcType=INTEGER}
+    where budgetReplyID = #{budgetReplyId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.jsxm.admin.BudgetReply" >
     insert into budgetreply (budgetReplyID, budgetReplyInfo, versionID
       )
-    values (#{budgetreplyid,jdbcType=INTEGER}, #{budgetreplyinfo,jdbcType=VARCHAR}, #{versionid,jdbcType=INTEGER}
+    values (#{budgetReplyId,jdbcType=INTEGER}, #{budgetReplyInfo,jdbcType=VARCHAR}, #{versionId,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.jsxm.admin.BudgetReply" >
     insert into budgetreply
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="budgetreplyid != null" >
+      <if test="budgetReplyId != null" >
         budgetReplyID,
       </if>
-      <if test="budgetreplyinfo != null" >
+      <if test="budgetReplyInfo != null" >
         budgetReplyInfo,
       </if>
-      <if test="versionid != null" >
+      <if test="versionId != null" >
         versionID,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="budgetreplyid != null" >
-        #{budgetreplyid,jdbcType=INTEGER},
+      <if test="budgetReplyId != null" >
+        #{budgetReplyId,jdbcType=INTEGER},
       </if>
-      <if test="budgetreplyinfo != null" >
-        #{budgetreplyinfo,jdbcType=VARCHAR},
+      <if test="budgetReplyInfo != null" >
+        #{budgetReplyInfo,jdbcType=VARCHAR},
       </if>
-      <if test="versionid != null" >
-        #{versionid,jdbcType=INTEGER},
+      <if test="versionId != null" >
+        #{versionId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.jsxm.admin.BudgetReply" >
     update budgetreply
     <set >
-      <if test="budgetreplyinfo != null" >
-        budgetReplyInfo = #{budgetreplyinfo,jdbcType=VARCHAR},
+      <if test="budgetReplyInfo != null" >
+        budgetReplyInfo = #{budgetReplyInfo,jdbcType=VARCHAR},
       </if>
-      <if test="versionid != null" >
-        versionID = #{versionid,jdbcType=INTEGER},
+      <if test="versionId != null" >
+        versionID = #{versionId,jdbcType=INTEGER},
       </if>
     </set>
-    where budgetReplyID = #{budgetreplyid,jdbcType=INTEGER}
+    where budgetReplyID = #{budgetReplyId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jsxm.admin.BudgetReply" >
     update budgetreply
-    set budgetReplyInfo = #{budgetreplyinfo,jdbcType=VARCHAR},
-      versionID = #{versionid,jdbcType=INTEGER}
-    where budgetReplyID = #{budgetreplyid,jdbcType=INTEGER}
+    set budgetReplyInfo = #{budgetReplyInfo,jdbcType=VARCHAR},
+      versionID = #{versionId,jdbcType=INTEGER}
+    where budgetReplyID = #{budgetReplyId,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -1,18 +1,18 @@
 package pojo.com.jsxm.admin;
 
 public class BuyOrgForm {
-    private Integer buyorgformid;
+    private Integer buyOrgFormId;
 
     private String buyorgforminfo;
 
     private Integer versionid;
 
-    public Integer getBuyorgformid() {
-        return buyorgformid;
+    public Integer getBuyOrgFormId() {
+        return buyOrgFormId;
     }
 
-    public void setBuyorgformid(Integer buyorgformid) {
-        this.buyorgformid = buyorgformid;
+    public void setBuyOrgFormId(Integer buyOrgFormId) {
+        this.buyOrgFormId = buyOrgFormId;
     }
 
     public String getBuyorgforminfo() {

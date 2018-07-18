@@ -1,33 +1,33 @@
 package pojo.com.jsxm.admin;
 
 public class BudgetReply {
-    private Integer budgetreplyid;
+    private Integer budgetReplyId;
 
-    private String budgetreplyinfo;
+    private String budgetReplyInfo;
 
-    private Integer versionid;
+    private Integer versionId;
 
-    public Integer getBudgetreplyid() {
-        return budgetreplyid;
+    public Integer getBudgetReplyId() {
+        return budgetReplyId;
     }
 
-    public void setBudgetreplyid(Integer budgetreplyid) {
-        this.budgetreplyid = budgetreplyid;
+    public void setBudgetReplyId(Integer budgetReplyId) {
+        this.budgetReplyId = budgetReplyId;
     }
 
-    public String getBudgetreplyinfo() {
-        return budgetreplyinfo;
+    public String getBudgetReplyInfo() {
+        return budgetReplyInfo;
     }
 
-    public void setBudgetreplyinfo(String budgetreplyinfo) {
-        this.budgetreplyinfo = budgetreplyinfo == null ? null : budgetreplyinfo.trim();
+    public void setBudgetReplyInfo(String budgetReplyInfo) {
+        this.budgetReplyInfo = budgetReplyInfo == null ? null : budgetReplyInfo.trim();
     }
 
-    public Integer getVersionid() {
-        return versionid;
+    public Integer getVersionId() {
+        return versionId;
     }
 
-    public void setVersionid(Integer versionid) {
-        this.versionid = versionid;
+    public void setVersionId(Integer versionId) {
+        this.versionId = versionId;
     }
 }

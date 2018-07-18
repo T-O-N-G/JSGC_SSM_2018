@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.jsxm.admin.Department" >
     <id column="departmentID" property="departmentid" jdbcType="INTEGER" />
     <result column="departmentName" property="departmentname" jdbcType="VARCHAR" />
-    <result column="versionID" property="versionid" jdbcType="INTEGER" />
+    <result column="versionID" property="versionId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     departmentID, departmentName, versionID
@@ -22,7 +22,7 @@
   <insert id="insert" parameterType="com.jsxm.admin.Department" >
     insert into department (departmentID, departmentName, versionID
       )
-    values (#{departmentid,jdbcType=INTEGER}, #{departmentname,jdbcType=VARCHAR}, #{versionid,jdbcType=INTEGER}
+    values (#{departmentid,jdbcType=INTEGER}, #{departmentname,jdbcType=VARCHAR}, #{versionId,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.jsxm.admin.Department" >
@@ -34,7 +34,7 @@
       <if test="departmentname != null" >
         departmentName,
       </if>
-      <if test="versionid != null" >
+      <if test="versionId != null" >
         versionID,
       </if>
     </trim>
@@ -45,8 +45,8 @@
       <if test="departmentname != null" >
         #{departmentname,jdbcType=VARCHAR},
       </if>
-      <if test="versionid != null" >
-        #{versionid,jdbcType=INTEGER},
+      <if test="versionId != null" >
+        #{versionId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -56,8 +56,8 @@
       <if test="departmentname != null" >
         departmentName = #{departmentname,jdbcType=VARCHAR},
       </if>
-      <if test="versionid != null" >
-        versionID = #{versionid,jdbcType=INTEGER},
+      <if test="versionId != null" >
+        versionID = #{versionId,jdbcType=INTEGER},
       </if>
     </set>
     where departmentID = #{departmentid,jdbcType=INTEGER}
@@ -65,7 +65,7 @@
   <update id="updateByPrimaryKey" parameterType="com.jsxm.admin.Department" >
     update department
     set departmentName = #{departmentname,jdbcType=VARCHAR},
-      versionID = #{versionid,jdbcType=INTEGER}
+      versionID = #{versionId,jdbcType=INTEGER}
     where departmentID = #{departmentid,jdbcType=INTEGER}
   </update>
 </mapper>

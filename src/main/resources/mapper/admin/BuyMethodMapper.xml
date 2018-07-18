@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mapper.admin.BuyMethodMapper" >
   <resultMap id="BaseResultMap" type="com.jsxm.admin.BuyMethod" >
-    <id column="buyMethodID" property="buymethodid" jdbcType="INTEGER" />
-    <result column="buyMethodInfo" property="buymethodinfo" jdbcType="VARCHAR" />
-    <result column="versionID" property="versionid" jdbcType="INTEGER" />
+    <id column="buyMethodID" property="buyMethodId" jdbcType="INTEGER" />
+    <result column="buyMethodInfo" property="buyMethodInfo" jdbcType="VARCHAR" />
+    <result column="versionID" property="versionId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     buyMethodID, buyMethodInfo, versionID
@@ -13,59 +13,59 @@
     select 
     <include refid="Base_Column_List" />
     from buymethod
-    where buyMethodID = #{buymethodid,jdbcType=INTEGER}
+    where buyMethodID = #{buyMethodId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from buymethod
-    where buyMethodID = #{buymethodid,jdbcType=INTEGER}
+    where buyMethodID = #{buyMethodId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.jsxm.admin.BuyMethod" >
     insert into buymethod (buyMethodID, buyMethodInfo, versionID
       )
-    values (#{buymethodid,jdbcType=INTEGER}, #{buymethodinfo,jdbcType=VARCHAR}, #{versionid,jdbcType=INTEGER}
+    values (#{buyMethodId,jdbcType=INTEGER}, #{buyMethodInfo,jdbcType=VARCHAR}, #{versionId,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.jsxm.admin.BuyMethod" >
     insert into buymethod
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="buymethodid != null" >
+      <if test="buyMethodId != null" >
         buyMethodID,
       </if>
-      <if test="buymethodinfo != null" >
+      <if test="buyMethodInfo != null" >
         buyMethodInfo,
       </if>
-      <if test="versionid != null" >
+      <if test="versionId != null" >
         versionID,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="buymethodid != null" >
-        #{buymethodid,jdbcType=INTEGER},
+      <if test="buyMethodId != null" >
+        #{buyMethodId,jdbcType=INTEGER},
       </if>
-      <if test="buymethodinfo != null" >
-        #{buymethodinfo,jdbcType=VARCHAR},
+      <if test="buyMethodInfo != null" >
+        #{buyMethodInfo,jdbcType=VARCHAR},
       </if>
-      <if test="versionid != null" >
-        #{versionid,jdbcType=INTEGER},
+      <if test="versionId != null" >
+        #{versionId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.jsxm.admin.BuyMethod" >
     update buymethod
     <set >
-      <if test="buymethodinfo != null" >
-        buyMethodInfo = #{buymethodinfo,jdbcType=VARCHAR},
+      <if test="buyMethodInfo != null" >
+        buyMethodInfo = #{buyMethodInfo,jdbcType=VARCHAR},
       </if>
-      <if test="versionid != null" >
-        versionID = #{versionid,jdbcType=INTEGER},
+      <if test="versionId != null" >
+        versionID = #{versionId,jdbcType=INTEGER},
       </if>
     </set>
-    where buyMethodID = #{buymethodid,jdbcType=INTEGER}
+    where buyMethodID = #{buyMethodId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jsxm.admin.BuyMethod" >
     update buymethod
-    set buyMethodInfo = #{buymethodinfo,jdbcType=VARCHAR},
-      versionID = #{versionid,jdbcType=INTEGER}
-    where buyMethodID = #{buymethodid,jdbcType=INTEGER}
+    set buyMethodInfo = #{buyMethodInfo,jdbcType=VARCHAR},
+      versionID = #{versionId,jdbcType=INTEGER}
+    where buyMethodID = #{buyMethodId,jdbcType=INTEGER}
   </update>
 </mapper>

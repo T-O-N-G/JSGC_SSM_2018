@@ -1,53 +1,53 @@
 package pojo.com.jsxm.admin;
 
 public class Accountant {
-    private Integer accountantid;
+    private Integer accountantId;
 
-    private String accountantserial;
+    private String accountantSerial;
 
-    private String accountantname;
+    private String accountantName;
 
-    private Integer accountanttype;
+    private Integer accountantType;
 
-    private Integer versionid;
+    private Integer versionId;
 
-    public Integer getAccountantid() {
-        return accountantid;
+    public Integer getAccountantId() {
+        return accountantId;
     }
 
-    public void setAccountantid(Integer accountantid) {
-        this.accountantid = accountantid;
+    public void setAccountantId(Integer accountantId) {
+        this.accountantId = accountantId;
     }
 
-    public String getAccountantserial() {
-        return accountantserial;
+    public String getAccountantSerial() {
+        return accountantSerial;
     }
 
-    public void setAccountantserial(String accountantserial) {
-        this.accountantserial = accountantserial == null ? null : accountantserial.trim();
+    public void setAccountantSerial(String accountantSerial) {
+        this.accountantSerial = accountantSerial == null ? null : accountantSerial.trim();
     }
 
-    public String getAccountantname() {
-        return accountantname;
+    public String getAccountantName() {
+        return accountantName;
     }
 
-    public void setAccountantname(String accountantname) {
-        this.accountantname = accountantname == null ? null : accountantname.trim();
+    public void setAccountantName(String accountantName) {
+        this.accountantName = accountantName == null ? null : accountantName.trim();
     }
 
-    public Integer getAccountanttype() {
-        return accountanttype;
+    public Integer getAccountantType() {
+        return accountantType;
     }
 
-    public void setAccountanttype(Integer accountanttype) {
-        this.accountanttype = accountanttype;
+    public void setAccountantType(Integer accountantType) {
+        this.accountantType = accountantType;
     }
 
-    public Integer getVersionid() {
-        return versionid;
+    public Integer getVersionId() {
+        return versionId;
     }
 
-    public void setVersionid(Integer versionid) {
-        this.versionid = versionid;
+    public void setVersionid(Integer versionId) {
+        this.versionId = versionId;
     }
 }

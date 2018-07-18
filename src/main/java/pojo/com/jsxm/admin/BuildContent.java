@@ -1,33 +1,33 @@
 package pojo.com.jsxm.admin;
 
 public class BuildContent {
-    private Integer buildcontentid;
+    private Integer buildContentId;
 
-    private Integer versionid;
+    private Integer versionId;
 
-    private String buildinfo;
+    private String buildInfo;
 
-    public Integer getBuildcontentid() {
-        return buildcontentid;
+    public Integer getBuildContentId() {
+        return buildContentId;
     }
 
-    public void setBuildcontentid(Integer buildcontentid) {
-        this.buildcontentid = buildcontentid;
+    public void setBuildContentId(Integer buildContentId) {
+        this.buildContentId = buildContentId;
     }
 
-    public Integer getVersionid() {
-        return versionid;
+    public Integer getVersionId() {
+        return versionId;
     }
 
-    public void setVersionid(Integer versionid) {
-        this.versionid = versionid;
+    public void setVersionId(Integer versionId) {
+        this.versionId = versionId;
     }
 
-    public String getBuildinfo() {
-        return buildinfo;
+    public String getBuildInfo() {
+        return buildInfo;
     }
 
-    public void setBuildinfo(String buildinfo) {
-        this.buildinfo = buildinfo == null ? null : buildinfo.trim();
+    public void setBuildInfo(String buildInfo) {
+        this.buildInfo = buildInfo == null ? null : buildInfo.trim();
     }
 }

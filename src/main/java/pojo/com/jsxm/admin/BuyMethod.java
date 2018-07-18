@@ -1,33 +1,33 @@
 package pojo.com.jsxm.admin;
 
 public class BuyMethod {
-    private Integer buymethodid;
+    private Integer buyMethodId;
 
-    private String buymethodinfo;
+    private String buyMethodInfo;
 
-    private Integer versionid;
+    private Integer versionId;
 
-    public Integer getBuymethodid() {
-        return buymethodid;
+    public Integer getBuyMethodId() {
+        return buyMethodId;
     }
 
-    public void setBuymethodid(Integer buymethodid) {
-        this.buymethodid = buymethodid;
+    public void setBuyMethodId(Integer buyMethodId) {
+        this.buyMethodId = buyMethodId;
     }
 
-    public String getBuymethodinfo() {
-        return buymethodinfo;
+    public String getBuyMethodInfo() {
+        return buyMethodInfo;
     }
 
-    public void setBuymethodinfo(String buymethodinfo) {
-        this.buymethodinfo = buymethodinfo == null ? null : buymethodinfo.trim();
+    public void setBuyMethodInfo(String buyMethodInfo) {
+        this.buyMethodInfo = buyMethodInfo == null ? null : buyMethodInfo.trim();
     }
 
-    public Integer getVersionid() {
-        return versionid;
+    public Integer getVersionId() {
+        return versionId;
     }
 
-    public void setVersionid(Integer versionid) {
-        this.versionid = versionid;
+    public void setVersionId(Integer versionId) {
+        this.versionId = versionId;
     }
 }

@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.jsxm.admin.BuyType" >
     <id column="buyTypeID" property="buytypeid" jdbcType="INTEGER" />
     <result column="buyTypeInfo" property="buytypeinfo" jdbcType="VARCHAR" />
-    <result column="versionID" property="versionid" jdbcType="INTEGER" />
+    <result column="versionID" property="versionId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     buyTypeID, buyTypeInfo, versionID
@@ -22,7 +22,7 @@
   <insert id="insert" parameterType="com.jsxm.admin.BuyType" >
     insert into buytype (buyTypeID, buyTypeInfo, versionID
       )
-    values (#{buytypeid,jdbcType=INTEGER}, #{buytypeinfo,jdbcType=VARCHAR}, #{versionid,jdbcType=INTEGER}
+    values (#{buytypeid,jdbcType=INTEGER}, #{buytypeinfo,jdbcType=VARCHAR}, #{versionId,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.jsxm.admin.BuyType" >
@@ -34,7 +34,7 @@
       <if test="buytypeinfo != null" >
         buyTypeInfo,
       </if>
-      <if test="versionid != null" >
+      <if test="versionId != null" >
         versionID,
       </if>
     </trim>
@@ -45,8 +45,8 @@
       <if test="buytypeinfo != null" >
         #{buytypeinfo,jdbcType=VARCHAR},
       </if>
-      <if test="versionid != null" >
-        #{versionid,jdbcType=INTEGER},
+      <if test="versionId != null" >
+        #{versionId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -56,8 +56,8 @@
       <if test="buytypeinfo != null" >
         buyTypeInfo = #{buytypeinfo,jdbcType=VARCHAR},
       </if>
-      <if test="versionid != null" >
-        versionID = #{versionid,jdbcType=INTEGER},
+      <if test="versionId != null" >
+        versionID = #{versionId,jdbcType=INTEGER},
       </if>
     </set>
     where buyTypeID = #{buytypeid,jdbcType=INTEGER}
@@ -65,7 +65,7 @@
   <update id="updateByPrimaryKey" parameterType="com.jsxm.admin.BuyType" >
     update buytype
     set buyTypeInfo = #{buytypeinfo,jdbcType=VARCHAR},
-      versionID = #{versionid,jdbcType=INTEGER}
+      versionID = #{versionId,jdbcType=INTEGER}
     where buyTypeID = #{buytypeid,jdbcType=INTEGER}
   </update>
 </mapper>
