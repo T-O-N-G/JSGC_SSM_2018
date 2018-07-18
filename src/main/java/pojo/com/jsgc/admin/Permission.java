@@ -1,20 +1,20 @@
 package pojo.com.jsgc.admin;
 
 public class Permission {
-    private Integer permissionid;
+    private Integer permissionId;
 
     private String url;
 
     private Integer level;
 
-    private String permissioncomment;
+    private String permissionComment;
 
-    public Integer getPermissionid() {
-        return permissionid;
+    public Integer getPermissionId() {
+        return permissionId;
     }
 
-    public void setPermissionid(Integer permissionid) {
-        this.permissionid = permissionid;
+    public void setPermissionId(Integer permissionId) {
+        this.permissionId = permissionId;
     }
 
     public String getUrl() {
@@ -33,11 +33,11 @@ public class Permission {
         this.level = level;
     }
 
-    public String getPermissioncomment() {
-        return permissioncomment;
+    public String getPermissionComment() {
+        return permissionComment;
     }
 
-    public void setPermissioncomment(String permissioncomment) {
-        this.permissioncomment = permissioncomment == null ? null : permissioncomment.trim();
+    public void setPermissionComment(String permissionComment) {
+        this.permissionComment = permissionComment == null ? null : permissionComment.trim();
     }
 }

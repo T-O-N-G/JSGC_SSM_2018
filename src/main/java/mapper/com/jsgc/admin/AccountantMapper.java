@@ -4,13 +4,13 @@ package mapper.com.jsgc.admin;
 import pojo.com.jsgc.admin.Accountant;
 
 public interface AccountantMapper {
-    int deleteByPrimaryKey(Integer accountantid);
+    int deleteByPrimaryKey(Integer accountantId);
 
     int insert(Accountant record);
 
     int insertSelective(Accountant record);
 
-    Accountant selectByPrimaryKey(Integer accountantid);
+    Accountant selectByPrimaryKey(Integer accountantId);
 
     int updateByPrimaryKeySelective(Accountant record);
 

@@ -1,33 +1,33 @@
 package pojo.com.jsgc.admin;
 
 public class PayMethod {
-    private Integer paymethodid;
+    private Integer payMethodId;
 
-    private String paymethodinfo;
+    private String payMethodInfo;
 
-    private Integer versionid;
+    private Integer versionId;
 
-    public Integer getPaymethodid() {
-        return paymethodid;
+    public Integer getPayMethodId() {
+        return payMethodId;
     }
 
-    public void setPaymethodid(Integer paymethodid) {
-        this.paymethodid = paymethodid;
+    public void setPayMethodId(Integer payMethodId) {
+        this.payMethodId = payMethodId;
     }
 
-    public String getPaymethodinfo() {
-        return paymethodinfo;
+    public String getPayMethodInfo() {
+        return payMethodInfo;
     }
 
-    public void setPaymethodinfo(String paymethodinfo) {
-        this.paymethodinfo = paymethodinfo == null ? null : paymethodinfo.trim();
+    public void setPayMethodInfo(String payMethodInfo) {
+        this.payMethodInfo = payMethodInfo == null ? null : payMethodInfo.trim();
     }
 
-    public Integer getVersionid() {
-        return versionid;
+    public Integer getVersionId() {
+        return versionId;
     }
 
-    public void setVersionid(Integer versionid) {
-        this.versionid = versionid;
+    public void setVersionId(Integer versionId) {
+        this.versionId = versionId;
     }
 }

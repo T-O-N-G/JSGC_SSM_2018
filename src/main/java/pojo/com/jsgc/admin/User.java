@@ -1,9 +1,9 @@
 package pojo.com.jsgc.admin;
 
 public class User {
-    private Integer userid;
+    private Integer userId;
 
-    private String username;
+    private String userName;
 
     private String password;
 
@@ -11,24 +11,24 @@ public class User {
 
     private Integer phone;
 
-    private Integer permissionlevel;
+    private Integer permissionLevel;
 
-    private Integer userdelete;
+    private Integer userDelete;
 
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
     public String getPassword() {
@@ -55,19 +55,19 @@ public class User {
         this.phone = phone;
     }
 
-    public Integer getPermissionlevel() {
-        return permissionlevel;
+    public Integer getPermissionLevel() {
+        return permissionLevel;
     }
 
-    public void setPermissionlevel(Integer permissionlevel) {
-        this.permissionlevel = permissionlevel;
+    public void setPermissionLevel(Integer permissionLevel) {
+        this.permissionLevel = permissionLevel;
     }
 
-    public Integer getUserdelete() {
-        return userdelete;
+    public Integer getUserDelete() {
+        return userDelete;
     }
 
-    public void setUserdelete(Integer userdelete) {
-        this.userdelete = userdelete;
+    public void setUserDelete(Integer userDelete) {
+        this.userDelete = userDelete;
     }
 }

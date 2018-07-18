@@ -3,153 +3,153 @@ package pojo.com.jsgc.business;
 import java.util.Date;
 
 public class Finance {
-    private Integer financeid;
+    private Integer financeId;
 
-    private String financeserials;
+    private String financeSerials;
 
-    private Date financedate;
+    private Date financeDate;
 
-    private String financename;
+    private String financeName;
 
-    private Integer financemoney;
+    private Integer financeMoney;
 
-    private Integer financestatus;
+    private Integer financeStatus;
 
-    private Integer financedelete;
+    private Integer financeDelete;
 
-    private Integer financeborrowerid;
+    private Integer financeBorrowerId;
 
-    private Integer financelenderid;
+    private Integer financeLenderId;
 
-    private Integer financebuyorgid;
+    private Integer financeBuyOrgId;
 
-    private Integer financebuymethodid;
+    private Integer financeBuyMethodId;
 
-    private Integer financetypeid;
+    private Integer financeTypeId;
 
-    private Integer paymethodid;
+    private Integer payMethodId;
 
-    private Integer projectid;
+    private Integer projectId;
 
-    private Integer contractid;
+    private Integer contractId;
 
-    public Integer getFinanceid() {
-        return financeid;
+    public Integer getFinanceId() {
+        return financeId;
     }
 
-    public void setFinanceid(Integer financeid) {
-        this.financeid = financeid;
+    public void setFinanceId(Integer financeId) {
+        this.financeId = financeId;
     }
 
-    public String getFinanceserials() {
-        return financeserials;
+    public String getFinanceSerials() {
+        return financeSerials;
     }
 
-    public void setFinanceserials(String financeserials) {
-        this.financeserials = financeserials == null ? null : financeserials.trim();
+    public void setFinanceSerials(String financeSerials) {
+        this.financeSerials = financeSerials == null ? null : financeSerials.trim();
     }
 
-    public Date getFinancedate() {
-        return financedate;
+    public Date getFinanceDate() {
+        return financeDate;
     }
 
-    public void setFinancedate(Date financedate) {
-        this.financedate = financedate;
+    public void setFinanceDate(Date financeDate) {
+        this.financeDate = financeDate;
     }
 
-    public String getFinancename() {
-        return financename;
+    public String getFinanceName() {
+        return financeName;
     }
 
-    public void setFinancename(String financename) {
-        this.financename = financename == null ? null : financename.trim();
+    public void setFinanceName(String financeName) {
+        this.financeName = financeName == null ? null : financeName.trim();
     }
 
-    public Integer getFinancemoney() {
-        return financemoney;
+    public Integer getFinanceMoney() {
+        return financeMoney;
     }
 
-    public void setFinancemoney(Integer financemoney) {
-        this.financemoney = financemoney;
+    public void setFinanceMoney(Integer financeMoney) {
+        this.financeMoney = financeMoney;
     }
 
-    public Integer getFinancestatus() {
-        return financestatus;
+    public Integer getFinanceStatus() {
+        return financeStatus;
     }
 
-    public void setFinancestatus(Integer financestatus) {
-        this.financestatus = financestatus;
+    public void setFinanceStatus(Integer financeStatus) {
+        this.financeStatus = financeStatus;
     }
 
-    public Integer getFinancedelete() {
-        return financedelete;
+    public Integer getFinanceDelete() {
+        return financeDelete;
     }
 
-    public void setFinancedelete(Integer financedelete) {
-        this.financedelete = financedelete;
+    public void setFinanceDelete(Integer financeDelete) {
+        this.financeDelete = financeDelete;
     }
 
-    public Integer getFinanceborrowerid() {
-        return financeborrowerid;
+    public Integer getFinanceBorrowerId() {
+        return financeBorrowerId;
     }
 
-    public void setFinanceborrowerid(Integer financeborrowerid) {
-        this.financeborrowerid = financeborrowerid;
+    public void setFinanceBorrowerId(Integer financeBorrowerId) {
+        this.financeBorrowerId = financeBorrowerId;
     }
 
-    public Integer getFinancelenderid() {
-        return financelenderid;
+    public Integer getFinanceLenderId() {
+        return financeLenderId;
     }
 
-    public void setFinancelenderid(Integer financelenderid) {
-        this.financelenderid = financelenderid;
+    public void setFinanceLenderId(Integer financeLenderId) {
+        this.financeLenderId = financeLenderId;
     }
 
-    public Integer getFinancebuyorgid() {
-        return financebuyorgid;
+    public Integer getFinanceBuyOrgId() {
+        return financeBuyOrgId;
     }
 
-    public void setFinancebuyorgid(Integer financebuyorgid) {
-        this.financebuyorgid = financebuyorgid;
+    public void setFinanceBuyOrgId(Integer financeBuyOrgId) {
+        this.financeBuyOrgId = financeBuyOrgId;
     }
 
-    public Integer getFinancebuymethodid() {
-        return financebuymethodid;
+    public Integer getFinanceBuyMethodId() {
+        return financeBuyMethodId;
     }
 
-    public void setFinancebuymethodid(Integer financebuymethodid) {
-        this.financebuymethodid = financebuymethodid;
+    public void setFinanceBuyMethodId(Integer financeBuyMethodId) {
+        this.financeBuyMethodId = financeBuyMethodId;
     }
 
-    public Integer getFinancetypeid() {
-        return financetypeid;
+    public Integer getFinanceTypeId() {
+        return financeTypeId;
     }
 
-    public void setFinancetypeid(Integer financetypeid) {
-        this.financetypeid = financetypeid;
+    public void setFinanceTypeId(Integer financeTypeId) {
+        this.financeTypeId = financeTypeId;
     }
 
-    public Integer getPaymethodid() {
-        return paymethodid;
+    public Integer getPayMethodId() {
+        return payMethodId;
     }
 
-    public void setPaymethodid(Integer paymethodid) {
-        this.paymethodid = paymethodid;
+    public void setPayMethodId(Integer payMethodId) {
+        this.payMethodId = payMethodId;
     }
 
-    public Integer getProjectid() {
-        return projectid;
+    public Integer getProjectId() {
+        return projectId;
     }
 
-    public void setProjectid(Integer projectid) {
-        this.projectid = projectid;
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
     }
 
-    public Integer getContractid() {
-        return contractid;
+    public Integer getContractId() {
+        return contractId;
     }
 
-    public void setContractid(Integer contractid) {
-        this.contractid = contractid;
+    public void setContractId(Integer contractId) {
+        this.contractId = contractId;
     }
 }

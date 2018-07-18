@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="mapper.com.jsgc.admin.BudgetReplyMapper" >
-  <resultMap id="BaseResultMap" type="com.jsxm.admin.BudgetReply" >
+<mapper namespace="mapper.com.jsgc.admin.budgetReplyMapper" >
+  <resultMap id="BaseResultMap" type="com.jsgc.admin.budgetReply" >
     <id column="budgetReplyID" property="budgetReplyId" jdbcType="INTEGER" />
     <result column="budgetReplyInfo" property="budgetReplyInfo" jdbcType="VARCHAR" />
     <result column="versionID" property="versionId" jdbcType="INTEGER" />
@@ -12,21 +12,21 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from budgetreply
+    from budgetReply
     where budgetReplyID = #{budgetReplyId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from budgetreply
+    delete from budgetReply
     where budgetReplyID = #{budgetReplyId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.jsxm.admin.BudgetReply" >
-    insert into budgetreply (budgetReplyID, budgetReplyInfo, versionID
+  <insert id="insert" parameterType="com.jsgc.admin.budgetReply" >
+    insert into budgetReply (budgetReplyID, budgetReplyInfo, versionID
       )
     values (#{budgetReplyId,jdbcType=INTEGER}, #{budgetReplyInfo,jdbcType=VARCHAR}, #{versionId,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.jsxm.admin.BudgetReply" >
-    insert into budgetreply
+  <insert id="insertSelective" parameterType="com.jsgc.admin.budgetReply" >
+    insert into budgetReply
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="budgetReplyId != null" >
         budgetReplyID,
@@ -50,8 +50,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jsxm.admin.BudgetReply" >
-    update budgetreply
+  <update id="updateByPrimaryKeySelective" parameterType="com.jsgc.admin.budgetReply" >
+    update budgetReply
     <set >
       <if test="budgetReplyInfo != null" >
         budgetReplyInfo = #{budgetReplyInfo,jdbcType=VARCHAR},
@@ -62,8 +62,8 @@
     </set>
     where budgetReplyID = #{budgetReplyId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jsxm.admin.BudgetReply" >
-    update budgetreply
+  <update id="updateByPrimaryKey" parameterType="com.jsgc.admin.budgetReply" >
+    update budgetReply
     set budgetReplyInfo = #{budgetReplyInfo,jdbcType=VARCHAR},
       versionID = #{versionId,jdbcType=INTEGER}
     where budgetReplyID = #{budgetReplyId,jdbcType=INTEGER}

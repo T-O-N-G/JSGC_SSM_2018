@@ -3,113 +3,113 @@ package pojo.com.jsgc.business;
 import java.util.Date;
 
 public class Document {
-    private Integer documentid;
+    private Integer documentId;
 
-    private String documentserial;
+    private String documentSerial;
 
-    private String documentname;
+    private String documentName;
 
-    private Date documentuploadtime;
+    private Date documentUploadTime;
 
-    private String documentowner;
+    private String documentOwner;
 
-    private String documentcomment;
+    private String documentComment;
 
-    private String documenturl;
+    private String documentUrl;
 
-    private Integer documenttype;
+    private Integer documentType;
 
-    private Integer documentdelete;
+    private Integer documentDelete;
 
-    private Integer projectid;
+    private Integer projectId;
 
-    private Integer contractid;
+    private Integer contractId;
 
-    public Integer getDocumentid() {
-        return documentid;
+    public Integer getDocumentId() {
+        return documentId;
     }
 
-    public void setDocumentid(Integer documentid) {
-        this.documentid = documentid;
+    public void setDocumentId(Integer documentId) {
+        this.documentId = documentId;
     }
 
-    public String getDocumentserial() {
-        return documentserial;
+    public String getDocumentSerial() {
+        return documentSerial;
     }
 
-    public void setDocumentserial(String documentserial) {
-        this.documentserial = documentserial == null ? null : documentserial.trim();
+    public void setDocumentSerial(String documentSerial) {
+        this.documentSerial = documentSerial == null ? null : documentSerial.trim();
     }
 
-    public String getDocumentname() {
-        return documentname;
+    public String getDocumentName() {
+        return documentName;
     }
 
-    public void setDocumentname(String documentname) {
-        this.documentname = documentname == null ? null : documentname.trim();
+    public void setDocumentName(String documentName) {
+        this.documentName = documentName == null ? null : documentName.trim();
     }
 
-    public Date getDocumentuploadtime() {
-        return documentuploadtime;
+    public Date getDocumentUploadTime() {
+        return documentUploadTime;
     }
 
-    public void setDocumentuploadtime(Date documentuploadtime) {
-        this.documentuploadtime = documentuploadtime;
+    public void setDocumentUploadTime(Date documentUploadTime) {
+        this.documentUploadTime = documentUploadTime;
     }
 
-    public String getDocumentowner() {
-        return documentowner;
+    public String getDocumentOwner() {
+        return documentOwner;
     }
 
-    public void setDocumentowner(String documentowner) {
-        this.documentowner = documentowner == null ? null : documentowner.trim();
+    public void setDocumentOwner(String documentOwner) {
+        this.documentOwner = documentOwner == null ? null : documentOwner.trim();
     }
 
-    public String getDocumentcomment() {
-        return documentcomment;
+    public String getDocumentComment() {
+        return documentComment;
     }
 
-    public void setDocumentcomment(String documentcomment) {
-        this.documentcomment = documentcomment == null ? null : documentcomment.trim();
+    public void setDocumentComment(String documentComment) {
+        this.documentComment = documentComment == null ? null : documentComment.trim();
     }
 
-    public String getDocumenturl() {
-        return documenturl;
+    public String getDocumentUrl() {
+        return documentUrl;
     }
 
-    public void setDocumenturl(String documenturl) {
-        this.documenturl = documenturl == null ? null : documenturl.trim();
+    public void setDocumentUrl(String documentUrl) {
+        this.documentUrl = documentUrl == null ? null : documentUrl.trim();
     }
 
-    public Integer getDocumenttype() {
-        return documenttype;
+    public Integer getDocumentType() {
+        return documentType;
     }
 
-    public void setDocumenttype(Integer documenttype) {
-        this.documenttype = documenttype;
+    public void setDocumentType(Integer documentType) {
+        this.documentType = documentType;
     }
 
-    public Integer getDocumentdelete() {
-        return documentdelete;
+    public Integer getDocumentDelete() {
+        return documentDelete;
     }
 
-    public void setDocumentdelete(Integer documentdelete) {
-        this.documentdelete = documentdelete;
+    public void setDocumentDelete(Integer documentDelete) {
+        this.documentDelete = documentDelete;
     }
 
-    public Integer getProjectid() {
-        return projectid;
+    public Integer getProjectId() {
+        return projectId;
     }
 
-    public void setProjectid(Integer projectid) {
-        this.projectid = projectid;
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
     }
 
-    public Integer getContractid() {
-        return contractid;
+    public Integer getContractId() {
+        return contractId;
     }
 
-    public void setContractid(Integer contractid) {
-        this.contractid = contractid;
+    public void setContractId(Integer contractId) {
+        this.contractId = contractId;
     }
 }

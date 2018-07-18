@@ -3,143 +3,143 @@ package pojo.com.jsgc.business;
 import java.util.Date;
 
 public class Asset {
-    private Integer assetid;
+    private Integer assetId;
 
-    private String assetserial;
+    private String assetSerial;
 
-    private String assetname;
+    private String assetName;
 
-    private String assetspec;
+    private String assetSpec;
 
-    private String assetmodel;
+    private String assetModel;
 
-    private Integer assetamount;
+    private Integer assetAmount;
 
-    private Integer assetmoney;
+    private Integer assetMoney;
 
-    private Date assetdate;
+    private Date assetDate;
 
-    private String assetowner;
+    private String assetOwner;
 
-    private String assetcomment;
+    private String assetComment;
 
-    private Integer assetdelete;
+    private Integer assetDelete;
 
-    private Integer assetstatus;
+    private Integer assetStatus;
 
-    private Integer projectid;
+    private Integer projectId;
 
-    private Integer assetdepid;
+    private Integer assetdepId;
 
-    public Integer getAssetid() {
-        return assetid;
+    public Integer getAssetId() {
+        return assetId;
     }
 
-    public void setAssetid(Integer assetid) {
-        this.assetid = assetid;
+    public void setAssetId(Integer assetId) {
+        this.assetId = assetId;
     }
 
-    public String getAssetserial() {
-        return assetserial;
+    public String getAssetSerial() {
+        return assetSerial;
     }
 
-    public void setAssetserial(String assetserial) {
-        this.assetserial = assetserial == null ? null : assetserial.trim();
+    public void setAssetSerial(String assetSerial) {
+        this.assetSerial = assetSerial == null ? null : assetSerial.trim();
     }
 
-    public String getAssetname() {
-        return assetname;
+    public String getAssetName() {
+        return assetName;
     }
 
-    public void setAssetname(String assetname) {
-        this.assetname = assetname == null ? null : assetname.trim();
+    public void setAssetName(String assetName) {
+        this.assetName = assetName == null ? null : assetName.trim();
     }
 
-    public String getAssetspec() {
-        return assetspec;
+    public String getAssetSpec() {
+        return assetSpec;
     }
 
-    public void setAssetspec(String assetspec) {
-        this.assetspec = assetspec == null ? null : assetspec.trim();
+    public void setAssetSpec(String assetSpec) {
+        this.assetSpec = assetSpec == null ? null : assetSpec.trim();
     }
 
-    public String getAssetmodel() {
-        return assetmodel;
+    public String getAssetModel() {
+        return assetModel;
     }
 
-    public void setAssetmodel(String assetmodel) {
-        this.assetmodel = assetmodel == null ? null : assetmodel.trim();
+    public void setAssetModel(String assetModel) {
+        this.assetModel = assetModel == null ? null : assetModel.trim();
     }
 
-    public Integer getAssetamount() {
-        return assetamount;
+    public Integer getAssetAmount() {
+        return assetAmount;
     }
 
-    public void setAssetamount(Integer assetamount) {
-        this.assetamount = assetamount;
+    public void setAssetAmount(Integer assetAmount) {
+        this.assetAmount = assetAmount;
     }
 
-    public Integer getAssetmoney() {
-        return assetmoney;
+    public Integer getAssetMoney() {
+        return assetMoney;
     }
 
-    public void setAssetmoney(Integer assetmoney) {
-        this.assetmoney = assetmoney;
+    public void setAssetMoney(Integer assetMoney) {
+        this.assetMoney = assetMoney;
     }
 
-    public Date getAssetdate() {
-        return assetdate;
+    public Date getAssetDate() {
+        return assetDate;
     }
 
-    public void setAssetdate(Date assetdate) {
-        this.assetdate = assetdate;
+    public void setAssetDate(Date assetDate) {
+        this.assetDate = assetDate;
     }
 
-    public String getAssetowner() {
-        return assetowner;
+    public String getAssetOwner() {
+        return assetOwner;
     }
 
-    public void setAssetowner(String assetowner) {
-        this.assetowner = assetowner == null ? null : assetowner.trim();
+    public void setAssetOwner(String assetOwner) {
+        this.assetOwner = assetOwner == null ? null : assetOwner.trim();
     }
 
-    public String getAssetcomment() {
-        return assetcomment;
+    public String getAssetComment() {
+        return assetComment;
     }
 
-    public void setAssetcomment(String assetcomment) {
-        this.assetcomment = assetcomment == null ? null : assetcomment.trim();
+    public void setAssetComment(String assetComment) {
+        this.assetComment = assetComment == null ? null : assetComment.trim();
     }
 
-    public Integer getAssetdelete() {
-        return assetdelete;
+    public Integer getAssetDelete() {
+        return assetDelete;
     }
 
-    public void setAssetdelete(Integer assetdelete) {
-        this.assetdelete = assetdelete;
+    public void setAssetDelete(Integer assetDelete) {
+        this.assetDelete = assetDelete;
     }
 
-    public Integer getAssetstatus() {
-        return assetstatus;
+    public Integer getAssetStatus() {
+        return assetStatus;
     }
 
-    public void setAssetstatus(Integer assetstatus) {
-        this.assetstatus = assetstatus;
+    public void setAssetStatus(Integer assetStatus) {
+        this.assetStatus = assetStatus;
     }
 
-    public Integer getProjectid() {
-        return projectid;
+    public Integer getProjectId() {
+        return projectId;
     }
 
-    public void setProjectid(Integer projectid) {
-        this.projectid = projectid;
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
     }
 
-    public Integer getAssetdepid() {
-        return assetdepid;
+    public Integer getAssetdepId() {
+        return assetdepId;
     }
 
-    public void setAssetdepid(Integer assetdepid) {
-        this.assetdepid = assetdepid;
+    public void setAssetdepId(Integer assetdepId) {
+        this.assetdepId = assetdepId;
     }
 }

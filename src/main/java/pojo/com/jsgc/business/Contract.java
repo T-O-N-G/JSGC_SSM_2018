@@ -3,113 +3,113 @@ package pojo.com.jsgc.business;
 import java.util.Date;
 
 public class Contract {
-    private Integer contractid;
+    private Integer contractId;
 
-    private String contractserial;
+    private String contractSerial;
 
-    private String contractname;
+    private String contractName;
 
-    private String contractowner;
+    private String contractOwner;
 
-    private String contractpartner;
+    private String contractPartner;
 
-    private Date contractsignedtime;
+    private Date contractSignedTime;
 
-    private Integer contractmoney;
+    private Integer contractMoney;
 
-    private String contractcontent;
+    private String contractContent;
 
-    private String contractcomment;
+    private String contractComment;
 
-    private Integer contractdelete;
+    private Integer contractDelete;
 
-    private Integer projectid;
+    private Integer projectId;
 
-    public Integer getContractid() {
-        return contractid;
+    public Integer getContractId() {
+        return contractId;
     }
 
-    public void setContractid(Integer contractid) {
-        this.contractid = contractid;
+    public void setContractId(Integer contractId) {
+        this.contractId = contractId;
     }
 
-    public String getContractserial() {
-        return contractserial;
+    public String getContractSerial() {
+        return contractSerial;
     }
 
-    public void setContractserial(String contractserial) {
-        this.contractserial = contractserial == null ? null : contractserial.trim();
+    public void setContractSerial(String contractSerial) {
+        this.contractSerial = contractSerial == null ? null : contractSerial.trim();
     }
 
-    public String getContractname() {
-        return contractname;
+    public String getContractName() {
+        return contractName;
     }
 
-    public void setContractname(String contractname) {
-        this.contractname = contractname == null ? null : contractname.trim();
+    public void setContractName(String contractName) {
+        this.contractName = contractName == null ? null : contractName.trim();
     }
 
-    public String getContractowner() {
-        return contractowner;
+    public String getContractOwner() {
+        return contractOwner;
     }
 
-    public void setContractowner(String contractowner) {
-        this.contractowner = contractowner == null ? null : contractowner.trim();
+    public void setContractOwner(String contractOwner) {
+        this.contractOwner = contractOwner == null ? null : contractOwner.trim();
     }
 
-    public String getContractpartner() {
-        return contractpartner;
+    public String getContractPartner() {
+        return contractPartner;
     }
 
-    public void setContractpartner(String contractpartner) {
-        this.contractpartner = contractpartner == null ? null : contractpartner.trim();
+    public void setContractPartner(String contractPartner) {
+        this.contractPartner = contractPartner == null ? null : contractPartner.trim();
     }
 
-    public Date getContractsignedtime() {
-        return contractsignedtime;
+    public Date getContractSignedTime() {
+        return contractSignedTime;
     }
 
-    public void setContractsignedtime(Date contractsignedtime) {
-        this.contractsignedtime = contractsignedtime;
+    public void setContractSignedTime(Date contractSignedTime) {
+        this.contractSignedTime = contractSignedTime;
     }
 
-    public Integer getContractmoney() {
-        return contractmoney;
+    public Integer getContractMoney() {
+        return contractMoney;
     }
 
-    public void setContractmoney(Integer contractmoney) {
-        this.contractmoney = contractmoney;
+    public void setContractMoney(Integer contractMoney) {
+        this.contractMoney = contractMoney;
     }
 
-    public String getContractcontent() {
-        return contractcontent;
+    public String getContractContent() {
+        return contractContent;
     }
 
-    public void setContractcontent(String contractcontent) {
-        this.contractcontent = contractcontent == null ? null : contractcontent.trim();
+    public void setContractContent(String contractContent) {
+        this.contractContent = contractContent == null ? null : contractContent.trim();
     }
 
-    public String getContractcomment() {
-        return contractcomment;
+    public String getContractComment() {
+        return contractComment;
     }
 
-    public void setContractcomment(String contractcomment) {
-        this.contractcomment = contractcomment == null ? null : contractcomment.trim();
+    public void setContractComment(String contractComment) {
+        this.contractComment = contractComment == null ? null : contractComment.trim();
     }
 
-    public Integer getContractdelete() {
-        return contractdelete;
+    public Integer getContractDelete() {
+        return contractDelete;
     }
 
-    public void setContractdelete(Integer contractdelete) {
-        this.contractdelete = contractdelete;
+    public void setContractDelete(Integer contractDelete) {
+        this.contractDelete = contractDelete;
     }
 
-    public Integer getProjectid() {
-        return projectid;
+    public Integer getProjectId() {
+        return projectId;
     }
 
-    public void setProjectid(Integer projectid) {
-        this.projectid = projectid;
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
     }
 }

@@ -1,28 +1,28 @@
 package pojo.com.jsgc.business;
 
 public class BudgetDetail {
-    private Integer budgetid;
+    private Integer budgetId;
 
     private String budgetserial;
 
-    private Integer projectbudgetsum;
+    private Integer projectBudgetSum;
 
-    private Integer projectcontractssum;
+    private Integer projectContractsSum;
 
-    private Integer projectcontractspayed;
+    private Integer projectContractsPayed;
 
-    private Integer projectcontractsnotpayed;
+    private Integer projectContractsNotPayed;
 
-    private Integer projectbudgetleft;
+    private Integer projectBudgetLeft;
 
-    private Integer projectid;
+    private Integer projectId;
 
-    public Integer getBudgetid() {
-        return budgetid;
+    public Integer getBudgetId() {
+        return budgetId;
     }
 
-    public void setBudgetid(Integer budgetid) {
-        this.budgetid = budgetid;
+    public void setBudgetId(Integer budgetId) {
+        this.budgetId = budgetId;
     }
 
     public String getBudgetserial() {
@@ -33,51 +33,51 @@ public class BudgetDetail {
         this.budgetserial = budgetserial == null ? null : budgetserial.trim();
     }
 
-    public Integer getProjectbudgetsum() {
-        return projectbudgetsum;
+    public Integer getProjectBudgetSum() {
+        return projectBudgetSum;
     }
 
-    public void setProjectbudgetsum(Integer projectbudgetsum) {
-        this.projectbudgetsum = projectbudgetsum;
+    public void setProjectBudgetSum(Integer projectBudgetSum) {
+        this.projectBudgetSum = projectBudgetSum;
     }
 
     public Integer getProjectcontractssum() {
-        return projectcontractssum;
+        return projectContractsSum;
     }
 
     public void setProjectcontractssum(Integer projectcontractssum) {
-        this.projectcontractssum = projectcontractssum;
+        this.projectContractsSum = projectcontractssum;
     }
 
-    public Integer getProjectcontractspayed() {
-        return projectcontractspayed;
+    public Integer getProjectContractsPayed() {
+        return projectContractsPayed;
     }
 
-    public void setProjectcontractspayed(Integer projectcontractspayed) {
-        this.projectcontractspayed = projectcontractspayed;
+    public void setProjectContractsPayed(Integer projectContractsPayed) {
+        this.projectContractsPayed = projectContractsPayed;
     }
 
     public Integer getProjectcontractsnotpayed() {
-        return projectcontractsnotpayed;
+        return projectContractsNotPayed;
     }
 
     public void setProjectcontractsnotpayed(Integer projectcontractsnotpayed) {
-        this.projectcontractsnotpayed = projectcontractsnotpayed;
+        this.projectContractsNotPayed = projectcontractsnotpayed;
     }
 
-    public Integer getProjectbudgetleft() {
-        return projectbudgetleft;
+    public Integer getProjectBudgetLeft() {
+        return projectBudgetLeft;
     }
 
-    public void setProjectbudgetleft(Integer projectbudgetleft) {
-        this.projectbudgetleft = projectbudgetleft;
+    public void setProjectBudgetLeft(Integer projectBudgetLeft) {
+        this.projectBudgetLeft = projectBudgetLeft;
     }
 
-    public Integer getProjectid() {
-        return projectid;
+    public Integer getProjectId() {
+        return projectId;
     }
 
-    public void setProjectid(Integer projectid) {
-        this.projectid = projectid;
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
     }
 }

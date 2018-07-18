@@ -5,7 +5,7 @@ public class Department {
 
     private String departmentname;
 
-    private Integer versionid;
+    private Integer versionId;
 
     public Integer getDepartmentid() {
         return departmentid;
@@ -23,11 +23,11 @@ public class Department {
         this.departmentname = departmentname == null ? null : departmentname.trim();
     }
 
-    public Integer getVersionid() {
-        return versionid;
+    public Integer getVersionId() {
+        return versionId;
     }
 
-    public void setVersionid(Integer versionid) {
-        this.versionid = versionid;
+    public void setVersionId(Integer versionId) {
+        this.versionId = versionId;
     }
 }

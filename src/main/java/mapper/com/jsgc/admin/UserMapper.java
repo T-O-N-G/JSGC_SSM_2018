@@ -4,13 +4,13 @@ package mapper.com.jsgc.admin;
 import pojo.com.jsgc.admin.User;
 
 public interface UserMapper {
-    int deleteByPrimaryKey(Integer userid);
+    int deleteByPrimaryKey(Integer userId);
 
     int insert(User record);
 
     int insertSelective(User record);
 
-    User selectByPrimaryKey(Integer userid);
+    User selectByPrimaryKey(Integer userId);
 
     int updateByPrimaryKeySelective(User record);
 

@@ -4,13 +4,13 @@ package mapper.com.jsgc.admin;
 import pojo.com.jsgc.admin.Department;
 
 public interface DepartmentMapper {
-    int deleteByPrimaryKey(Integer departmentid);
+    int deleteByPrimaryKey(Integer departmentId);
 
     int insert(Department record);
 
     int insertSelective(Department record);
 
-    Department selectByPrimaryKey(Integer departmentid);
+    Department selectByPrimaryKey(Integer departmentId);
 
     int updateByPrimaryKeySelective(Department record);
 

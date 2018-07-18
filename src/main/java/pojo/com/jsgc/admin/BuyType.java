@@ -1,18 +1,18 @@
 package pojo.com.jsgc.admin;
 
 public class BuyType {
-    private Integer buytypeid;
+    private Integer buyTypeId;
 
     private String buytypeinfo;
 
-    private Integer versionid;
+    private Integer versionId;
 
-    public Integer getBuytypeid() {
-        return buytypeid;
+    public Integer getBuyTypeId() {
+        return buyTypeId;
     }
 
-    public void setBuytypeid(Integer buytypeid) {
-        this.buytypeid = buytypeid;
+    public void setBuyTypeId(Integer buyTypeId) {
+        this.buyTypeId = buyTypeId;
     }
 
     public String getBuytypeinfo() {
@@ -23,11 +23,11 @@ public class BuyType {
         this.buytypeinfo = buytypeinfo == null ? null : buytypeinfo.trim();
     }
 
-    public Integer getVersionid() {
-        return versionid;
+    public Integer getVersionId() {
+        return versionId;
     }
 
-    public void setVersionid(Integer versionid) {
-        this.versionid = versionid;
+    public void setVersionId(Integer versionId) {
+        this.versionId = versionId;
     }
 }

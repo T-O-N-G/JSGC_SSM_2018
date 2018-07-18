@@ -3,33 +3,33 @@ package pojo.com.jsgc.admin;
 import java.util.Date;
 
 public class Version {
-    private Integer verisionid;
+    private Integer verisionId;
 
-    private Date versiondate;
+    private Date versionDate;
 
-    private String versionbuildnum;
+    private String versionBuildNum;
 
-    public Integer getVerisionid() {
-        return verisionid;
+    public Integer getVerisionId() {
+        return verisionId;
     }
 
-    public void setVerisionid(Integer verisionid) {
-        this.verisionid = verisionid;
+    public void setVerisionId(Integer verisionId) {
+        this.verisionId = verisionId;
     }
 
-    public Date getVersiondate() {
-        return versiondate;
+    public Date getVersionDate() {
+        return versionDate;
     }
 
-    public void setVersiondate(Date versiondate) {
-        this.versiondate = versiondate;
+    public void setVersionDate(Date versionDate) {
+        this.versionDate = versionDate;
     }
 
-    public String getVersionbuildnum() {
-        return versionbuildnum;
+    public String getVersionBuildNum() {
+        return versionBuildNum;
     }
 
-    public void setVersionbuildnum(String versionbuildnum) {
-        this.versionbuildnum = versionbuildnum == null ? null : versionbuildnum.trim();
+    public void setVersionBuildNum(String versionBuildNum) {
+        this.versionBuildNum = versionBuildNum == null ? null : versionBuildNum.trim();
     }
 }

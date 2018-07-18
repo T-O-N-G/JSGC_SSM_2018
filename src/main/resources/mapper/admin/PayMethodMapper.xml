@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mapper.com.jsgc.admin.PayMethodMapper" >
-  <resultMap id="BaseResultMap" type="com.jsxm.admin.PayMethod" >
-    <id column="payMethodID" property="paymethodid" jdbcType="INTEGER" />
-    <result column="payMethodInfo" property="paymethodinfo" jdbcType="VARCHAR" />
+  <resultMap id="BaseResultMap" type="com.jsgc.admin.PayMethod" >
+    <id column="payMethodID" property="payMethodId" jdbcType="INTEGER" />
+    <result column="payMethodInfo" property="payMethodInfo" jdbcType="VARCHAR" />
     <result column="versionID" property="versionId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -13,25 +13,25 @@
     select 
     <include refid="Base_Column_List" />
     from paymethod
-    where payMethodID = #{paymethodid,jdbcType=INTEGER}
+    where payMethodID = #{payMethodId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from paymethod
-    where payMethodID = #{paymethodid,jdbcType=INTEGER}
+    where payMethodID = #{payMethodId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.jsxm.admin.PayMethod" >
+  <insert id="insert" parameterType="com.jsgc.admin.PayMethod" >
     insert into paymethod (payMethodID, payMethodInfo, versionID
       )
-    values (#{paymethodid,jdbcType=INTEGER}, #{paymethodinfo,jdbcType=VARCHAR}, #{versionId,jdbcType=INTEGER}
+    values (#{payMethodId,jdbcType=INTEGER}, #{payMethodInfo,jdbcType=VARCHAR}, #{versionId,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.jsxm.admin.PayMethod" >
+  <insert id="insertSelective" parameterType="com.jsgc.admin.PayMethod" >
     insert into paymethod
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="paymethodid != null" >
+      <if test="payMethodId != null" >
         payMethodID,
       </if>
-      <if test="paymethodinfo != null" >
+      <if test="payMethodInfo != null" >
         payMethodInfo,
       </if>
       <if test="versionId != null" >
@@ -39,33 +39,33 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="paymethodid != null" >
-        #{paymethodid,jdbcType=INTEGER},
+      <if test="payMethodId != null" >
+        #{payMethodId,jdbcType=INTEGER},
       </if>
-      <if test="paymethodinfo != null" >
-        #{paymethodinfo,jdbcType=VARCHAR},
+      <if test="payMethodInfo != null" >
+        #{payMethodInfo,jdbcType=VARCHAR},
       </if>
       <if test="versionId != null" >
         #{versionId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jsxm.admin.PayMethod" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.jsgc.admin.PayMethod" >
     update paymethod
     <set >
-      <if test="paymethodinfo != null" >
-        payMethodInfo = #{paymethodinfo,jdbcType=VARCHAR},
+      <if test="payMethodInfo != null" >
+        payMethodInfo = #{payMethodInfo,jdbcType=VARCHAR},
       </if>
       <if test="versionId != null" >
         versionID = #{versionId,jdbcType=INTEGER},
       </if>
     </set>
-    where payMethodID = #{paymethodid,jdbcType=INTEGER}
+    where payMethodID = #{payMethodId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jsxm.admin.PayMethod" >
+  <update id="updateByPrimaryKey" parameterType="com.jsgc.admin.PayMethod" >
     update paymethod
-    set payMethodInfo = #{paymethodinfo,jdbcType=VARCHAR},
+    set payMethodInfo = #{payMethodInfo,jdbcType=VARCHAR},
       versionID = #{versionId,jdbcType=INTEGER}
-    where payMethodID = #{paymethodid,jdbcType=INTEGER}
+    where payMethodID = #{payMethodId,jdbcType=INTEGER}
   </update>
 </mapper>

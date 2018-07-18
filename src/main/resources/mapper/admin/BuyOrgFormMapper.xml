@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mapper.com.jsgc.admin.BuyOrgFormMapper" >
-  <resultMap id="BaseResultMap" type="com.jsxm.admin.BuyOrgForm" >
+  <resultMap id="BaseResultMap" type="com.jsgc.admin.BuyOrgForm" >
     <id column="buyOrgFormID" property="buyOrgFormId" jdbcType="INTEGER" />
-    <result column="buyOrgFormInfo" property="buyorgforminfo" jdbcType="VARCHAR" />
+    <result column="buyOrgFormInfo" property="buyOrgFormInfo" jdbcType="VARCHAR" />
     <result column="versionID" property="versionId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -19,19 +19,19 @@
     delete from buyorgform
     where buyOrgFormID = #{buyOrgFormId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.jsxm.admin.BuyOrgForm" >
+  <insert id="insert" parameterType="com.jsgc.admin.BuyOrgForm" >
     insert into buyorgform (buyOrgFormID, buyOrgFormInfo, versionID
       )
-    values (#{buyOrgFormId,jdbcType=INTEGER}, #{buyorgforminfo,jdbcType=VARCHAR}, #{versionId,jdbcType=INTEGER}
+    values (#{buyOrgFormId,jdbcType=INTEGER}, #{buyOrgFormInfo,jdbcType=VARCHAR}, #{versionId,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.jsxm.admin.BuyOrgForm" >
+  <insert id="insertSelective" parameterType="com.jsgc.admin.BuyOrgForm" >
     insert into buyorgform
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="buyOrgFormId != null" >
         buyOrgFormID,
       </if>
-      <if test="buyorgforminfo != null" >
+      <if test="buyOrgFormInfo != null" >
         buyOrgFormInfo,
       </if>
       <if test="versionId != null" >
@@ -42,19 +42,19 @@
       <if test="buyOrgFormId != null" >
         #{buyOrgFormId,jdbcType=INTEGER},
       </if>
-      <if test="buyorgforminfo != null" >
-        #{buyorgforminfo,jdbcType=VARCHAR},
+      <if test="buyOrgFormInfo != null" >
+        #{buyOrgFormInfo,jdbcType=VARCHAR},
       </if>
       <if test="versionId != null" >
         #{versionId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jsxm.admin.BuyOrgForm" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.jsgc.admin.BuyOrgForm" >
     update buyorgform
     <set >
-      <if test="buyorgforminfo != null" >
-        buyOrgFormInfo = #{buyorgforminfo,jdbcType=VARCHAR},
+      <if test="buyOrgFormInfo != null" >
+        buyOrgFormInfo = #{buyOrgFormInfo,jdbcType=VARCHAR},
       </if>
       <if test="versionId != null" >
         versionID = #{versionId,jdbcType=INTEGER},
@@ -62,9 +62,9 @@
     </set>
     where buyOrgFormID = #{buyOrgFormId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jsxm.admin.BuyOrgForm" >
+  <update id="updateByPrimaryKey" parameterType="com.jsgc.admin.BuyOrgForm" >
     update buyorgform
-    set buyOrgFormInfo = #{buyorgforminfo,jdbcType=VARCHAR},
+    set buyOrgFormInfo = #{buyOrgFormInfo,jdbcType=VARCHAR},
       versionID = #{versionId,jdbcType=INTEGER}
     where buyOrgFormID = #{buyOrgFormId,jdbcType=INTEGER}
   </update>

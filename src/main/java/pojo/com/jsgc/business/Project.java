@@ -4,118 +4,118 @@ import java.util.Date;
 import java.util.List;
 
 public class Project {
-    private Integer projectid;
+    private Integer projectId;
 
-    private String projectserial;
+    private String projectSerial;
 
-    private String projectname;
+    private String projectName;
 
-    private Integer projectbudgetsum;
+    private Integer projectBudgetSum;
 
-    private Date projectstarttime;
+    private Date projectStartTime;
 
-    private Date projectendtime;
+    private Date projectEndTime;
 
-    private Integer projectstatus;
+    private Integer projectStatus;
 
-    private String projectcomment;
+    private String projectComment;
 
-    private Integer projectdelete;
+    private Integer projectDelete;
 
-    private Integer budgetid;
+    private Integer budgetId;
 
-    private Integer projectchargerid;
+    private Integer projectChargerId;
 
     private List<Contract> contractList;
 
     private BudgetDetail budgetDetail;
 
 
-    public Integer getProjectid() {
-        return projectid;
+    public Integer getProjectId() {
+        return projectId;
     }
 
-    public void setProjectid(Integer projectid) {
-        this.projectid = projectid;
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
     }
 
-    public String getProjectserial() {
-        return projectserial;
+    public String getProjectSerial() {
+        return projectSerial;
     }
 
-    public void setProjectserial(String projectserial) {
-        this.projectserial = projectserial == null ? null : projectserial.trim();
+    public void setProjectSerial(String projectSerial) {
+        this.projectSerial = projectSerial == null ? null : projectSerial.trim();
     }
 
-    public String getProjectname() {
-        return projectname;
+    public String getProjectName() {
+        return projectName;
     }
 
-    public void setProjectname(String projectname) {
-        this.projectname = projectname == null ? null : projectname.trim();
+    public void setProjectName(String projectName) {
+        this.projectName = projectName == null ? null : projectName.trim();
     }
 
-    public Integer getProjectbudgetsum() {
-        return projectbudgetsum;
+    public Integer getProjectBudgetSum() {
+        return projectBudgetSum;
     }
 
-    public void setProjectbudgetsum(Integer projectbudgetsum) {
-        this.projectbudgetsum = projectbudgetsum;
+    public void setProjectBudgetSum(Integer projectBudgetSum) {
+        this.projectBudgetSum = projectBudgetSum;
     }
 
-    public Date getProjectstarttime() {
-        return projectstarttime;
+    public Date getProjectStartTime() {
+        return projectStartTime;
     }
 
-    public void setProjectstarttime(Date projectstarttime) {
-        this.projectstarttime = projectstarttime;
+    public void setProjectStartTime(Date projectStartTime) {
+        this.projectStartTime = projectStartTime;
     }
 
-    public Date getProjectendtime() {
-        return projectendtime;
+    public Date getProjectEndTime() {
+        return projectEndTime;
     }
 
-    public void setProjectendtime(Date projectendtime) {
-        this.projectendtime = projectendtime;
+    public void setProjectEndTime(Date projectEndTime) {
+        this.projectEndTime = projectEndTime;
     }
 
-    public Integer getProjectstatus() {
-        return projectstatus;
+    public Integer getProjectStatus() {
+        return projectStatus;
     }
 
-    public void setProjectstatus(Integer projectstatus) {
-        this.projectstatus = projectstatus;
+    public void setProjectStatus(Integer projectStatus) {
+        this.projectStatus = projectStatus;
     }
 
-    public String getProjectcomment() {
-        return projectcomment;
+    public String getProjectComment() {
+        return projectComment;
     }
 
-    public void setProjectcomment(String projectcomment) {
-        this.projectcomment = projectcomment == null ? null : projectcomment.trim();
+    public void setProjectComment(String projectComment) {
+        this.projectComment = projectComment == null ? null : projectComment.trim();
     }
 
-    public Integer getProjectdelete() {
-        return projectdelete;
+    public Integer getProjectDelete() {
+        return projectDelete;
     }
 
-    public void setProjectdelete(Integer projectdelete) {
-        this.projectdelete = projectdelete;
+    public void setProjectDelete(Integer projectDelete) {
+        this.projectDelete = projectDelete;
     }
 
-    public Integer getBudgetid() {
-        return budgetid;
+    public Integer getBudgetId() {
+        return budgetId;
     }
 
-    public void setBudgetid(Integer budgetid) {
-        this.budgetid = budgetid;
+    public void setBudgetId(Integer budgetId) {
+        this.budgetId = budgetId;
     }
 
-    public Integer getProjectchargerid() {
-        return projectchargerid;
+    public Integer getProjectChargerId() {
+        return projectChargerId;
     }
 
-    public void setProjectchargerid(Integer projectchargerid) {
-        this.projectchargerid = projectchargerid;
+    public void setProjectChargerId(Integer projectChargerId) {
+        this.projectChargerId = projectChargerId;
     }
 }

@@ -3,9 +3,9 @@ package pojo.com.jsgc.admin;
 public class BuyOrgForm {
     private Integer buyOrgFormId;
 
-    private String buyorgforminfo;
+    private String buyOrgFormInfo;
 
-    private Integer versionid;
+    private Integer versionId;
 
     public Integer getBuyOrgFormId() {
         return buyOrgFormId;
@@ -15,19 +15,19 @@ public class BuyOrgForm {
         this.buyOrgFormId = buyOrgFormId;
     }
 
-    public String getBuyorgforminfo() {
-        return buyorgforminfo;
+    public String getBuyOrgFormInfo() {
+        return buyOrgFormInfo;
     }
 
-    public void setBuyorgforminfo(String buyorgforminfo) {
-        this.buyorgforminfo = buyorgforminfo == null ? null : buyorgforminfo.trim();
+    public void setBuyOrgFormInfo(String buyOrgFormInfo) {
+        this.buyOrgFormInfo = buyOrgFormInfo == null ? null : buyOrgFormInfo.trim();
     }
 
-    public Integer getVersionid() {
-        return versionid;
+    public Integer getVersionId() {
+        return versionId;
     }
 
-    public void setVersionid(Integer versionid) {
-        this.versionid = versionid;
+    public void setVersionId(Integer versionId) {
+        this.versionId = versionId;
     }
 }
