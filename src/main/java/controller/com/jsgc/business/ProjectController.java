@@ -22,4 +22,11 @@ public class ProjectController {
       return   projectService.searchByConditions(rp,psc);
     }
 
+
+    @RequestMapping("getProjectDetail")
+    @ResponseBody
+    public String getProjectDetail(int projectID){
+        return   projectService.getProjectDetail(projectID);
+    }
+
 }

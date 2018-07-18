@@ -19,7 +19,6 @@ public class RedisTest {
         jedis.set("key2","hello jedis one");
         //回收ShardedJedis实例
         jedis.close();
-
     }
 
     @Test
