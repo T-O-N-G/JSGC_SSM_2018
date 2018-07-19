@@ -1,26 +1,26 @@
 package pojo.com.jsgc.admin;
 
 public class BuyMethod {
-    private Integer buyMethodId;
+    private Integer departmentId;
 
-    private String buyMethodInfo;
+    private String departmentName;
 
     private Integer versionId;
 
-    public Integer getBuyMethodId() {
-        return buyMethodId;
+    public Integer getDepartmentId() {
+        return departmentId;
     }
 
-    public void setBuyMethodId(Integer buyMethodId) {
-        this.buyMethodId = buyMethodId;
+    public void setDepartmentId(Integer departmentId) {
+        this.departmentId = departmentId;
     }
 
-    public String getBuyMethodInfo() {
-        return buyMethodInfo;
+    public String getDepartmentName() {
+        return departmentName;
     }
 
-    public void setBuyMethodInfo(String buyMethodInfo) {
-        this.buyMethodInfo = buyMethodInfo == null ? null : buyMethodInfo.trim();
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName == null ? null : departmentName.trim();
     }
 
     public Integer getVersionId() {

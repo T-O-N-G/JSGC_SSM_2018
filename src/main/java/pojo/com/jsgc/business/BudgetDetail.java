@@ -3,7 +3,7 @@ package pojo.com.jsgc.business;
 public class BudgetDetail {
     private Integer budgetId;
 
-    private String budgetserial;
+    private String budgetSerial;
 
     private Integer projectBudgetSum;
 
@@ -17,6 +17,7 @@ public class BudgetDetail {
 
     private Integer projectId;
 
+
     public Integer getBudgetId() {
         return budgetId;
     }
@@ -25,12 +26,12 @@ public class BudgetDetail {
         this.budgetId = budgetId;
     }
 
-    public String getBudgetserial() {
-        return budgetserial;
+    public String getBudgetSerial() {
+        return budgetSerial;
     }
 
-    public void setBudgetserial(String budgetserial) {
-        this.budgetserial = budgetserial == null ? null : budgetserial.trim();
+    public void setBudgetSerial(String budgetSerial) {
+        this.budgetSerial = budgetSerial;
     }
 
     public Integer getProjectBudgetSum() {
@@ -41,12 +42,12 @@ public class BudgetDetail {
         this.projectBudgetSum = projectBudgetSum;
     }
 
-    public Integer getProjectcontractssum() {
+    public Integer getProjectContractsSum() {
         return projectContractsSum;
     }
 
-    public void setProjectcontractssum(Integer projectcontractssum) {
-        this.projectContractsSum = projectcontractssum;
+    public void setProjectContractsSum(Integer projectContractsSum) {
+        this.projectContractsSum = projectContractsSum;
     }
 
     public Integer getProjectContractsPayed() {
@@ -57,12 +58,12 @@ public class BudgetDetail {
         this.projectContractsPayed = projectContractsPayed;
     }
 
-    public Integer getProjectcontractsnotpayed() {
+    public Integer getProjectContractsNotPayed() {
         return projectContractsNotPayed;
     }
 
-    public void setProjectcontractsnotpayed(Integer projectcontractsnotpayed) {
-        this.projectContractsNotPayed = projectcontractsnotpayed;
+    public void setProjectContractsNotPayed(Integer projectContractsNotPayed) {
+        this.projectContractsNotPayed = projectContractsNotPayed;
     }
 
     public Integer getProjectBudgetLeft() {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mapper.com.jsgc.business.DocumentMapper" >
-  <resultMap id="BaseResultMap" type="com.jsgc.business.Document" >
-    <id column="documentID" property="documentId" jdbcType="INTEGER" />
+  <resultMap id="BaseResultMap" type="pojo.com.jsgc.business.Document" >
+    <id column="documentId" property="documentId" jdbcType="INTEGER" />
     <result column="documentSerial" property="documentSerial" jdbcType="VARCHAR" />
     <result column="documentName" property="documentName" jdbcType="VARCHAR" />
     <result column="documentUploadTime" property="documentUploadTime" jdbcType="DATE" />
@@ -11,38 +11,38 @@
     <result column="documentUrl" property="documentUrl" jdbcType="VARCHAR" />
     <result column="documentType" property="documentType" jdbcType="INTEGER" />
     <result column="documentDelete" property="documentDelete" jdbcType="INTEGER" />
-    <result column="projectID" property="projectId" jdbcType="INTEGER" />
-    <result column="contractID" property="contractId" jdbcType="INTEGER" />
+    <result column="projectId" property="projectId" jdbcType="INTEGER" />
+    <result column="contractId" property="contractId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    documentID, documentSerial, documentName, documentUploadTime, documentOwner, documentComment, 
-    documentUrl, documentType, documentDelete, projectID, contractID
+    documentId, documentSerial, documentName, documentUploadTime, documentOwner, documentComment, 
+    documentUrl, documentType, documentDelete, projectId, contractId
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from document
-    where documentID = #{documentId,jdbcType=INTEGER}
+    where documentId = #{documentId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from document
-    where documentID = #{documentId,jdbcType=INTEGER}
+    where documentId = #{documentId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.jsgc.business.Document" >
-    insert into document (documentID, documentSerial, documentName, 
+  <insert id="insert" parameterType="pojo.com.jsgc.business.Document" >
+    insert into document (documentId, documentSerial, documentName, 
       documentUploadTime, documentOwner, documentComment, 
       documentUrl, documentType, documentDelete, 
-      projectID, contractID)
-    values (#{documentId,jdbcType=INTEGER}, #{documentSerial,jdbcType=VARCHAR}, #{documentName,jdbcType=VARCHAR},
-      #{documentUploadTime,jdbcType=DATE}, #{documentOwner,jdbcType=VARCHAR}, #{documentComment,jdbcType=VARCHAR},
-      #{documentUrl,jdbcType=VARCHAR}, #{documentType,jdbcType=INTEGER}, #{documentDelete,jdbcType=INTEGER},
+      projectId, contractId)
+    values (#{documentId,jdbcType=INTEGER}, #{documentSerial,jdbcType=VARCHAR}, #{documentName,jdbcType=VARCHAR}, 
+      #{documentUploadTime,jdbcType=DATE}, #{documentOwner,jdbcType=VARCHAR}, #{documentComment,jdbcType=VARCHAR}, 
+      #{documentUrl,jdbcType=VARCHAR}, #{documentType,jdbcType=INTEGER}, #{documentDelete,jdbcType=INTEGER}, 
       #{projectId,jdbcType=INTEGER}, #{contractId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.jsgc.business.Document" >
+  <insert id="insertSelective" parameterType="pojo.com.jsgc.business.Document" >
     insert into document
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="documentId != null" >
-        documentID,
+        documentId,
       </if>
       <if test="documentSerial != null" >
         documentSerial,
@@ -69,10 +69,10 @@
         documentDelete,
       </if>
       <if test="projectId != null" >
-        projectID,
+        projectId,
       </if>
       <if test="contractId != null" >
-        contractID,
+        contractId,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -111,7 +111,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jsgc.business.Document" >
+  <update id="updateByPrimaryKeySelective" parameterType="pojo.com.jsgc.business.Document" >
     update document
     <set >
       <if test="documentSerial != null" >
@@ -139,15 +139,15 @@
         documentDelete = #{documentDelete,jdbcType=INTEGER},
       </if>
       <if test="projectId != null" >
-        projectID = #{projectId,jdbcType=INTEGER},
+        projectId = #{projectId,jdbcType=INTEGER},
       </if>
       <if test="contractId != null" >
-        contractID = #{contractId,jdbcType=INTEGER},
+        contractId = #{contractId,jdbcType=INTEGER},
       </if>
     </set>
-    where documentID = #{documentId,jdbcType=INTEGER}
+    where documentId = #{documentId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jsgc.business.Document" >
+  <update id="updateByPrimaryKey" parameterType="pojo.com.jsgc.business.Document" >
     update document
     set documentSerial = #{documentSerial,jdbcType=VARCHAR},
       documentName = #{documentName,jdbcType=VARCHAR},
@@ -157,8 +157,8 @@
       documentUrl = #{documentUrl,jdbcType=VARCHAR},
       documentType = #{documentType,jdbcType=INTEGER},
       documentDelete = #{documentDelete,jdbcType=INTEGER},
-      projectID = #{projectId,jdbcType=INTEGER},
-      contractID = #{contractId,jdbcType=INTEGER}
-    where documentID = #{documentId,jdbcType=INTEGER}
+      projectId = #{projectId,jdbcType=INTEGER},
+      contractId = #{contractId,jdbcType=INTEGER}
+    where documentId = #{documentId,jdbcType=INTEGER}
   </update>
 </mapper>

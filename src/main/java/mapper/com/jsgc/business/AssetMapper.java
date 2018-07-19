@@ -1,16 +1,15 @@
 package mapper.com.jsgc.business;
 
-
 import pojo.com.jsgc.business.Asset;
 
 public interface AssetMapper {
-    int deleteByPrimaryKey(Integer assetid);
+    int deleteByPrimaryKey(Integer assetId);
 
     int insert(Asset record);
 
     int insertSelective(Asset record);
 
-    Asset selectByPrimaryKey(Integer assetid);
+    Asset selectByPrimaryKey(Integer assetId);
 
     int updateByPrimaryKeySelective(Asset record);
 

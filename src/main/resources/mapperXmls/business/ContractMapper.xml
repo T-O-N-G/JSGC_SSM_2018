@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mapper.com.jsgc.business.ContractMapper" >
-  <resultMap id="BaseResultMap" type="com.jsgc.business.Contract" >
-    <id column="contractID" property="contractId" jdbcType="INTEGER" />
+  <resultMap id="BaseResultMap" type="pojo.com.jsgc.business.Contract" >
+    <id column="contractId" property="contractId" jdbcType="INTEGER" />
     <result column="contractSerial" property="contractSerial" jdbcType="VARCHAR" />
     <result column="contractName" property="contractName" jdbcType="VARCHAR" />
     <result column="contractOwner" property="contractOwner" jdbcType="VARCHAR" />
@@ -12,37 +12,37 @@
     <result column="contractContent" property="contractContent" jdbcType="VARCHAR" />
     <result column="contractComment" property="contractComment" jdbcType="VARCHAR" />
     <result column="contractDelete" property="contractDelete" jdbcType="INTEGER" />
-    <result column="projectID" property="projectId" jdbcType="INTEGER" />
+    <result column="projectId" property="projectId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    contractID, contractSerial, contractName, contractOwner, contractPartner, contractSignedTime, 
-    contractMoney, contractContent, contractComment, contractDelete, projectID
+    contractId, contractSerial, contractName, contractOwner, contractPartner, contractSignedTime, 
+    contractMoney, contractContent, contractComment, contractDelete, projectId
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from contract
-    where contractID = #{contractId,jdbcType=INTEGER}
+    where contractId = #{contractId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from contract
-    where contractID = #{contractId,jdbcType=INTEGER}
+    where contractId = #{contractId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.jsgc.business.Contract" >
-    insert into contract (contractID, contractSerial, contractName, 
+  <insert id="insert" parameterType="pojo.com.jsgc.business.Contract" >
+    insert into contract (contractId, contractSerial, contractName, 
       contractOwner, contractPartner, contractSignedTime, 
       contractMoney, contractContent, contractComment, 
-      contractDelete, projectID)
-    values (#{contractId,jdbcType=INTEGER}, #{contractSerial,jdbcType=VARCHAR}, #{contractName,jdbcType=VARCHAR},
-      #{contractOwner,jdbcType=VARCHAR}, #{contractPartner,jdbcType=VARCHAR}, #{contractSignedTime,jdbcType=DATE},
-      #{contractMoney,jdbcType=INTEGER}, #{contractContent,jdbcType=VARCHAR}, #{contractComment,jdbcType=VARCHAR},
+      contractDelete, projectId)
+    values (#{contractId,jdbcType=INTEGER}, #{contractSerial,jdbcType=VARCHAR}, #{contractName,jdbcType=VARCHAR}, 
+      #{contractOwner,jdbcType=VARCHAR}, #{contractPartner,jdbcType=VARCHAR}, #{contractSignedTime,jdbcType=DATE}, 
+      #{contractMoney,jdbcType=INTEGER}, #{contractContent,jdbcType=VARCHAR}, #{contractComment,jdbcType=VARCHAR}, 
       #{contractDelete,jdbcType=INTEGER}, #{projectId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.jsgc.business.Contract" >
+  <insert id="insertSelective" parameterType="pojo.com.jsgc.business.Contract" >
     insert into contract
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="contractId != null" >
-        contractID,
+        contractId,
       </if>
       <if test="contractSerial != null" >
         contractSerial,
@@ -72,7 +72,7 @@
         contractDelete,
       </if>
       <if test="projectId != null" >
-        projectID,
+        projectId,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -111,7 +111,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jsgc.business.Contract" >
+  <update id="updateByPrimaryKeySelective" parameterType="pojo.com.jsgc.business.Contract" >
     update contract
     <set >
       <if test="contractSerial != null" >
@@ -142,12 +142,12 @@
         contractDelete = #{contractDelete,jdbcType=INTEGER},
       </if>
       <if test="projectId != null" >
-        projectID = #{projectId,jdbcType=INTEGER},
+        projectId = #{projectId,jdbcType=INTEGER},
       </if>
     </set>
-    where contractID = #{contractId,jdbcType=INTEGER}
+    where contractId = #{contractId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jsgc.business.Contract" >
+  <update id="updateByPrimaryKey" parameterType="pojo.com.jsgc.business.Contract" >
     update contract
     set contractSerial = #{contractSerial,jdbcType=VARCHAR},
       contractName = #{contractName,jdbcType=VARCHAR},
@@ -158,7 +158,7 @@
       contractContent = #{contractContent,jdbcType=VARCHAR},
       contractComment = #{contractComment,jdbcType=VARCHAR},
       contractDelete = #{contractDelete,jdbcType=INTEGER},
-      projectID = #{projectId,jdbcType=INTEGER}
-    where contractID = #{contractId,jdbcType=INTEGER}
+      projectId = #{projectId,jdbcType=INTEGER}
+    where contractId = #{contractId,jdbcType=INTEGER}
   </update>
 </mapper>
