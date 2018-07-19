@@ -17,7 +17,6 @@ public class BudgetDetail {
 
     private Integer projectId;
 
-
     public Integer getBudgetId() {
         return budgetId;
     }

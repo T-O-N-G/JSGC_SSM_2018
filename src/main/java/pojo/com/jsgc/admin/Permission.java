@@ -22,7 +22,7 @@ public class Permission {
     }
 
     public void setUrl(String url) {
-        this.url = url == null ? null : url.trim();
+        this.url = url;
     }
 
     public Integer getLevel() {
@@ -38,6 +38,6 @@ public class Permission {
     }
 
     public void setPermissionComment(String permissionComment) {
-        this.permissionComment = permissionComment == null ? null : permissionComment.trim();
+        this.permissionComment = permissionComment;
     }
 }

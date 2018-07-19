@@ -1,9 +1,7 @@
 package pojo.com.jsgc.admin;
 
 public class Accountant {
-    private Integer accountantId;
-
-    private String accountantSerial;
+    private String accountantId;
 
     private String accountantName;
 
@@ -11,43 +9,35 @@ public class Accountant {
 
     private Integer versionId;
 
-    public Integer getaccountantId() {
+    public String getAccountantId() {
         return accountantId;
     }
 
-    public void setaccountantId(Integer accountantId) {
+    public void setAccountantId(String accountantId) {
         this.accountantId = accountantId;
     }
 
-    public String getaccountantSerial() {
-        return accountantSerial;
-    }
-
-    public void setaccountantSerial(String accountantSerial) {
-        this.accountantSerial = accountantSerial == null ? null : accountantSerial.trim();
-    }
-
-    public String getaccountantName() {
+    public String getAccountantName() {
         return accountantName;
     }
 
-    public void setaccountantName(String accountantName) {
-        this.accountantName = accountantName == null ? null : accountantName.trim();
+    public void setAccountantName(String accountantName) {
+        this.accountantName = accountantName;
     }
 
-    public Integer getaccountantType() {
+    public Integer getAccountantType() {
         return accountantType;
     }
 
-    public void setaccountantType(Integer accountantType) {
+    public void setAccountantType(Integer accountantType) {
         this.accountantType = accountantType;
     }
 
-    public Integer getversionId() {
+    public Integer getVersionId() {
         return versionId;
     }
 
-    public void setversionId(Integer versionId) {
+    public void setVersionId(Integer versionId) {
         this.versionId = versionId;
     }
 }

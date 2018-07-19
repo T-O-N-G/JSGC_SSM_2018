@@ -4,7 +4,8 @@ import com.alibaba.fastjson.JSON;
 //import mapper.com.jsgc.admin.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pojo.com.jsgc.Login.Login;
+//import pojo.com.jsgc.Login.Login;
+import pojo.com.jsgc.login.Login;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import util.JwtUtil;
@@ -15,7 +16,7 @@ import java.util.Map;
 
 @Service
 public class LoginService {
-    @Resource
+//    @Resource
 //    private UserMapper userMapper;
 
     @Autowired
@@ -33,9 +34,7 @@ public class LoginService {
         //校验
         int resultAuth = 0;
         if (resultAuth == 0) {
-            login.setUsername("wang");
-            login.setUserID(2);
-            login.setLevel(1);
+
             //生成 Token
             Map<String, String> payloads = new HashMap<>();
             payloads.put("userID", String.valueOf(login.getUserID()));

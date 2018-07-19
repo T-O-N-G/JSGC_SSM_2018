@@ -1,4 +1,4 @@
-package pojo.com.jsgc.Login;
+package pojo.com.jsgc.login;
 
 public class Login {
     String username;

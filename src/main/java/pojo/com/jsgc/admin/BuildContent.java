@@ -1,17 +1,17 @@
 package pojo.com.jsgc.admin;
 
 public class BuildContent {
-    private Integer buildContentId;
+    private String buildContentId;
 
     private Integer versionId;
 
     private String buildInfo;
 
-    public Integer getBuildContentId() {
+    public String getBuildContentId() {
         return buildContentId;
     }
 
-    public void setBuildContentId(Integer buildContentId) {
+    public void setBuildContentId(String buildContentId) {
         this.buildContentId = buildContentId;
     }
 
@@ -28,6 +28,6 @@ public class BuildContent {
     }
 
     public void setBuildInfo(String buildInfo) {
-        this.buildInfo = buildInfo == null ? null : buildInfo.trim();
+        this.buildInfo = buildInfo;
     }
 }

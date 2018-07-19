@@ -2,27 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mapper.com.jsgc.admin.BudgetReplyMapper" >
   <resultMap id="BaseResultMap" type="pojo.com.jsgc.admin.BudgetReply" >
-    <id column="budgetReplyId" property="budgetReplyId" jdbcType="INTEGER" />
+    <id column="budgetReplyId" property="budgetReplyId" jdbcType="VARCHAR" />
     <result column="budgetReplyInfo" property="budgetReplyInfo" jdbcType="VARCHAR" />
     <result column="versionId" property="versionId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     budgetReplyId, budgetReplyInfo, versionId
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from budgetreply
-    where budgetReplyId = #{budgetReplyId,jdbcType=INTEGER}
+    where budgetReplyId = #{budgetReplyId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from budgetreply
-    where budgetReplyId = #{budgetReplyId,jdbcType=INTEGER}
+    where budgetReplyId = #{budgetReplyId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="pojo.com.jsgc.admin.BudgetReply" >
     insert into budgetreply (budgetReplyId, budgetReplyInfo, versionId
       )
-    values (#{budgetReplyId,jdbcType=INTEGER}, #{budgetReplyInfo,jdbcType=VARCHAR}, #{versionId,jdbcType=INTEGER}
+    values (#{budgetReplyId,jdbcType=VARCHAR}, #{budgetReplyInfo,jdbcType=VARCHAR}, #{versionId,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="pojo.com.jsgc.admin.BudgetReply" >
@@ -40,7 +40,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="budgetReplyId != null" >
-        #{budgetReplyId,jdbcType=INTEGER},
+        #{budgetReplyId,jdbcType=VARCHAR},
       </if>
       <if test="budgetReplyInfo != null" >
         #{budgetReplyInfo,jdbcType=VARCHAR},
@@ -60,12 +60,12 @@
         versionId = #{versionId,jdbcType=INTEGER},
       </if>
     </set>
-    where budgetReplyId = #{budgetReplyId,jdbcType=INTEGER}
+    where budgetReplyId = #{budgetReplyId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="pojo.com.jsgc.admin.BudgetReply" >
     update budgetreply
     set budgetReplyInfo = #{budgetReplyInfo,jdbcType=VARCHAR},
       versionId = #{versionId,jdbcType=INTEGER}
-    where budgetReplyId = #{budgetReplyId,jdbcType=INTEGER}
+    where budgetReplyId = #{budgetReplyId,jdbcType=VARCHAR}
   </update>
 </mapper>

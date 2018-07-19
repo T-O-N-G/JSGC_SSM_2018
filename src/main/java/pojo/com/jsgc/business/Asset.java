@@ -23,13 +23,13 @@ public class Asset {
 
     private String assetComment;
 
-    private Integer assetDelete;
-
     private Integer assetStatus;
 
-    private Integer projectId;
+    private Integer assetDelete;
 
-    private Integer assetDepId;
+    private String assetDepId;
+
+    private Integer projectId;
 
     public Integer getAssetId() {
         return assetId;
@@ -44,7 +44,7 @@ public class Asset {
     }
 
     public void setAssetSerial(String assetSerial) {
-        this.assetSerial = assetSerial == null ? null : assetSerial.trim();
+        this.assetSerial = assetSerial;
     }
 
     public String getAssetName() {
@@ -52,7 +52,7 @@ public class Asset {
     }
 
     public void setAssetName(String assetName) {
-        this.assetName = assetName == null ? null : assetName.trim();
+        this.assetName = assetName;
     }
 
     public String getAssetSpec() {
@@ -60,7 +60,7 @@ public class Asset {
     }
 
     public void setAssetSpec(String assetSpec) {
-        this.assetSpec = assetSpec == null ? null : assetSpec.trim();
+        this.assetSpec = assetSpec;
     }
 
     public String getAssetModel() {
@@ -68,7 +68,7 @@ public class Asset {
     }
 
     public void setAssetModel(String assetModel) {
-        this.assetModel = assetModel == null ? null : assetModel.trim();
+        this.assetModel = assetModel;
     }
 
     public Integer getAssetAmount() {
@@ -100,7 +100,7 @@ public class Asset {
     }
 
     public void setAssetOwner(String assetOwner) {
-        this.assetOwner = assetOwner == null ? null : assetOwner.trim();
+        this.assetOwner = assetOwner;
     }
 
     public String getAssetComment() {
@@ -108,15 +108,7 @@ public class Asset {
     }
 
     public void setAssetComment(String assetComment) {
-        this.assetComment = assetComment == null ? null : assetComment.trim();
-    }
-
-    public Integer getAssetDelete() {
-        return assetDelete;
-    }
-
-    public void setAssetDelete(Integer assetDelete) {
-        this.assetDelete = assetDelete;
+        this.assetComment = assetComment;
     }
 
     public Integer getAssetStatus() {
@@ -127,19 +119,27 @@ public class Asset {
         this.assetStatus = assetStatus;
     }
 
+    public Integer getAssetDelete() {
+        return assetDelete;
+    }
+
+    public void setAssetDelete(Integer assetDelete) {
+        this.assetDelete = assetDelete;
+    }
+
+    public String getAssetDepId() {
+        return assetDepId;
+    }
+
+    public void setAssetDepId(String assetDepId) {
+        this.assetDepId = assetDepId;
+    }
+
     public Integer getProjectId() {
         return projectId;
     }
 
     public void setProjectId(Integer projectId) {
         this.projectId = projectId;
-    }
-
-    public Integer getAssetDepId() {
-        return assetDepId;
-    }
-
-    public void setAssetDepId(Integer assetDepId) {
-        this.assetDepId = assetDepId;
     }
 }

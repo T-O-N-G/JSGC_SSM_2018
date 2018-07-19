@@ -1,17 +1,17 @@
 package pojo.com.jsgc.admin;
 
 public class BuyOrgForm {
-    private Integer buyOrgFormId;
+    private String buyOrgFormId;
 
     private String buyOrgFormInfo;
 
     private Integer versionId;
 
-    public Integer getBuyOrgFormId() {
+    public String getBuyOrgFormId() {
         return buyOrgFormId;
     }
 
-    public void setBuyOrgFormId(Integer buyOrgFormId) {
+    public void setBuyOrgFormId(String buyOrgFormId) {
         this.buyOrgFormId = buyOrgFormId;
     }
 
@@ -20,7 +20,7 @@ public class BuyOrgForm {
     }
 
     public void setBuyOrgFormInfo(String buyOrgFormInfo) {
-        this.buyOrgFormInfo = buyOrgFormInfo == null ? null : buyOrgFormInfo.trim();
+        this.buyOrgFormInfo = buyOrgFormInfo;
     }
 
     public Integer getVersionId() {

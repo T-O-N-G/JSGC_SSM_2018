@@ -2,39 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mapper.com.jsgc.admin.AccountantMapper" >
   <resultMap id="BaseResultMap" type="pojo.com.jsgc.admin.Accountant" >
-    <id column="accountantId" property="accountantId" jdbcType="INTEGER" />
-    <result column="accountantSerial" property="accountantSerial" jdbcType="VARCHAR" />
+    <id column="accountantId" property="accountantId" jdbcType="VARCHAR" />
     <result column="accountantName" property="accountantName" jdbcType="VARCHAR" />
     <result column="accountantType" property="accountantType" jdbcType="INTEGER" />
     <result column="versionId" property="versionId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    accountantId, accountantSerial, accountantName, accountantType, versionId
+    accountantId, accountantName, accountantType, versionId
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from accountant
-    where accountantId = #{accountantId,jdbcType=INTEGER}
+    where accountantId = #{accountantId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from accountant
-    where accountantId = #{accountantId,jdbcType=INTEGER}
+    where accountantId = #{accountantId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="pojo.com.jsgc.admin.Accountant" >
-    insert into accountant (accountantId, accountantSerial, accountantName, 
-      accountantType, versionId)
-    values (#{accountantId,jdbcType=INTEGER}, #{accountantSerial,jdbcType=VARCHAR}, #{accountantName,jdbcType=VARCHAR}, 
-      #{accountantType,jdbcType=INTEGER}, #{versionId,jdbcType=INTEGER})
+    insert into accountant (accountantId, accountantName, accountantType, 
+      versionId)
+    values (#{accountantId,jdbcType=VARCHAR}, #{accountantName,jdbcType=VARCHAR}, #{accountantType,jdbcType=INTEGER}, 
+      #{versionId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="pojo.com.jsgc.admin.Accountant" >
     insert into accountant
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="accountantId != null" >
         accountantId,
-      </if>
-      <if test="accountantSerial != null" >
-        accountantSerial,
       </if>
       <if test="accountantName != null" >
         accountantName,
@@ -48,10 +44,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="accountantId != null" >
-        #{accountantId,jdbcType=INTEGER},
-      </if>
-      <if test="accountantSerial != null" >
-        #{accountantSerial,jdbcType=VARCHAR},
+        #{accountantId,jdbcType=VARCHAR},
       </if>
       <if test="accountantName != null" >
         #{accountantName,jdbcType=VARCHAR},
@@ -67,9 +60,6 @@
   <update id="updateByPrimaryKeySelective" parameterType="pojo.com.jsgc.admin.Accountant" >
     update accountant
     <set >
-      <if test="accountantSerial != null" >
-        accountantSerial = #{accountantSerial,jdbcType=VARCHAR},
-      </if>
       <if test="accountantName != null" >
         accountantName = #{accountantName,jdbcType=VARCHAR},
       </if>
@@ -80,14 +70,13 @@
         versionId = #{versionId,jdbcType=INTEGER},
       </if>
     </set>
-    where accountantId = #{accountantId,jdbcType=INTEGER}
+    where accountantId = #{accountantId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="pojo.com.jsgc.admin.Accountant" >
     update accountant
-    set accountantSerial = #{accountantSerial,jdbcType=VARCHAR},
-      accountantName = #{accountantName,jdbcType=VARCHAR},
+    set accountantName = #{accountantName,jdbcType=VARCHAR},
       accountantType = #{accountantType,jdbcType=INTEGER},
       versionId = #{versionId,jdbcType=INTEGER}
-    where accountantId = #{accountantId,jdbcType=INTEGER}
+    where accountantId = #{accountantId,jdbcType=VARCHAR}
   </update>
 </mapper>
