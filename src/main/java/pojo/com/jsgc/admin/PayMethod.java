@@ -1,17 +1,17 @@
 package pojo.com.jsgc.admin;
 
 public class PayMethod {
-    private Integer payMethodId;
+    private String payMethodId;
 
     private String payMethodInfo;
 
     private Integer versionId;
 
-    public Integer getPayMethodId() {
+    public String getPayMethodId() {
         return payMethodId;
     }
 
-    public void setPayMethodId(Integer payMethodId) {
+    public void setPayMethodId(String payMethodId) {
         this.payMethodId = payMethodId;
     }
 
@@ -20,7 +20,7 @@ public class PayMethod {
     }
 
     public void setPayMethodInfo(String payMethodInfo) {
-        this.payMethodInfo = payMethodInfo == null ? null : payMethodInfo.trim();
+        this.payMethodInfo = payMethodInfo;
     }
 
     public Integer getVersionId() {

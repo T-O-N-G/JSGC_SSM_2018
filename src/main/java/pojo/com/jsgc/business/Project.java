@@ -21,6 +21,8 @@ public class Project {
 
     private Integer projectDelete;
 
+    private String projectDepartmentId;
+
     private Integer budgetId;
 
     private Integer projectChargerId;
@@ -95,6 +97,14 @@ public class Project {
 
     public void setProjectDelete(Integer projectDelete) {
         this.projectDelete = projectDelete;
+    }
+
+    public String getProjectDepartmentId() {
+        return projectDepartmentId;
+    }
+
+    public void setProjectDepartmentId(String projectDepartmentId) {
+        this.projectDepartmentId = projectDepartmentId;
     }
 
     public Integer getBudgetId() {

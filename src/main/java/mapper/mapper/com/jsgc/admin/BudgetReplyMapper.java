@@ -1,15 +1,15 @@
-package mapper.com.jsgc.admin;
+package mapper.mapper.com.jsgc.admin;
 
 import pojo.com.jsgc.admin.BudgetReply;
 
 public interface BudgetReplyMapper {
-    int deleteByPrimaryKey(Integer budgetReplyId);
+    int deleteByPrimaryKey(String budgetReplyId);
 
     int insert(BudgetReply record);
 
     int insertSelective(BudgetReply record);
 
-    BudgetReply selectByPrimaryKey(Integer budgetReplyId);
+    BudgetReply selectByPrimaryKey(String budgetReplyId);
 
     int updateByPrimaryKeySelective(BudgetReply record);
 

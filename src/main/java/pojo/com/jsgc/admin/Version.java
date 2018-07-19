@@ -30,6 +30,6 @@ public class Version {
     }
 
     public void setVersionBuildNum(String versionBuildNum) {
-        this.versionBuildNum = versionBuildNum == null ? null : versionBuildNum.trim();
+        this.versionBuildNum = versionBuildNum;
     }
 }

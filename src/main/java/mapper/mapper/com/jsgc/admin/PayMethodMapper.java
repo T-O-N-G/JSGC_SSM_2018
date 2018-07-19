@@ -1,15 +1,15 @@
-package mapper.com.jsgc.admin;
+package mapper.mapper.com.jsgc.admin;
 
 import pojo.com.jsgc.admin.PayMethod;
 
 public interface PayMethodMapper {
-    int deleteByPrimaryKey(Integer payMethodId);
+    int deleteByPrimaryKey(String payMethodId);
 
     int insert(PayMethod record);
 
     int insertSelective(PayMethod record);
 
-    PayMethod selectByPrimaryKey(Integer payMethodId);
+    PayMethod selectByPrimaryKey(String payMethodId);
 
     int updateByPrimaryKeySelective(PayMethod record);
 

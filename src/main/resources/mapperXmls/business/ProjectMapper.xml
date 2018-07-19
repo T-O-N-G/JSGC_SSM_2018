@@ -5,18 +5,19 @@
     <id column="projectId" property="projectId" jdbcType="INTEGER" />
     <result column="projectSerial" property="projectSerial" jdbcType="VARCHAR" />
     <result column="projectName" property="projectName" jdbcType="VARCHAR" />
-    <result column="projectBudgetSum" property="projectBudgetSum" jdbcType="INTEGER" />
+    <result column="projectBudgetNum" property="projectBudgetNum" jdbcType="INTEGER" />
     <result column="projectStartTime" property="projectStartTime" jdbcType="DATE" />
     <result column="projectEndTime" property="projectEndTime" jdbcType="DATE" />
     <result column="projectStatus" property="projectStatus" jdbcType="INTEGER" />
     <result column="projectComment" property="projectComment" jdbcType="VARCHAR" />
     <result column="projectDelete" property="projectDelete" jdbcType="INTEGER" />
+    <result column="projectDepartmentId" property="projectDepartmentId" jdbcType="VARCHAR" />
     <result column="budgetId" property="budgetId" jdbcType="INTEGER" />
     <result column="projectChargerId" property="projectChargerId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    projectId, projectSerial, projectName, projectBudgetSum, projectStartTime, projectEndTime, 
-    projectStatus, projectComment, projectDelete, budgetId, projectChargerId
+    projectId, projectSerial, projectName, projectBudgetNum, projectStartTime, projectEndTime, 
+    projectStatus, projectComment, projectDelete, projectDepartmentId, budgetId, projectChargerId
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -30,13 +31,15 @@
   </delete>
   <insert id="insert" parameterType="pojo.com.jsgc.business.Project" >
     insert into project (projectId, projectSerial, projectName, 
-      projectBudgetSum, projectStartTime, projectEndTime, 
+      projectBudgetNum, projectStartTime, projectEndTime, 
       projectStatus, projectComment, projectDelete, 
-      budgetId, projectChargerId)
+      projectDepartmentId, budgetId, projectChargerId
+      )
     values (#{projectId,jdbcType=INTEGER}, #{projectSerial,jdbcType=VARCHAR}, #{projectName,jdbcType=VARCHAR}, 
-      #{projectBudgetSum,jdbcType=INTEGER}, #{projectStartTime,jdbcType=DATE}, #{projectEndTime,jdbcType=DATE}, 
+      #{projectBudgetNum,jdbcType=INTEGER}, #{projectStartTime,jdbcType=DATE}, #{projectEndTime,jdbcType=DATE}, 
       #{projectStatus,jdbcType=INTEGER}, #{projectComment,jdbcType=VARCHAR}, #{projectDelete,jdbcType=INTEGER}, 
-      #{budgetId,jdbcType=INTEGER}, #{projectChargerId,jdbcType=INTEGER})
+      #{projectDepartmentId,jdbcType=VARCHAR}, #{budgetId,jdbcType=INTEGER}, #{projectChargerId,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="pojo.com.jsgc.business.Project" >
     insert into project
@@ -50,8 +53,8 @@
       <if test="projectName != null" >
         projectName,
       </if>
-      <if test="projectBudgetSum != null" >
-        projectBudgetSum,
+      <if test="projectBudgetNum != null" >
+        projectBudgetNum,
       </if>
       <if test="projectStartTime != null" >
         projectStartTime,
@@ -67,6 +70,9 @@
       </if>
       <if test="projectDelete != null" >
         projectDelete,
+      </if>
+      <if test="projectDepartmentId != null" >
+        projectDepartmentId,
       </if>
       <if test="budgetId != null" >
         budgetId,
@@ -85,8 +91,8 @@
       <if test="projectName != null" >
         #{projectName,jdbcType=VARCHAR},
       </if>
-      <if test="projectBudgetSum != null" >
-        #{projectBudgetSum,jdbcType=INTEGER},
+      <if test="projectBudgetNum != null" >
+        #{projectBudgetNum,jdbcType=INTEGER},
       </if>
       <if test="projectStartTime != null" >
         #{projectStartTime,jdbcType=DATE},
@@ -102,6 +108,9 @@
       </if>
       <if test="projectDelete != null" >
         #{projectDelete,jdbcType=INTEGER},
+      </if>
+      <if test="projectDepartmentId != null" >
+        #{projectDepartmentId,jdbcType=VARCHAR},
       </if>
       <if test="budgetId != null" >
         #{budgetId,jdbcType=INTEGER},
@@ -120,8 +129,8 @@
       <if test="projectName != null" >
         projectName = #{projectName,jdbcType=VARCHAR},
       </if>
-      <if test="projectBudgetSum != null" >
-        projectBudgetSum = #{projectBudgetSum,jdbcType=INTEGER},
+      <if test="projectBudgetNum != null" >
+        projectBudgetNum = #{projectBudgetNum,jdbcType=INTEGER},
       </if>
       <if test="projectStartTime != null" >
         projectStartTime = #{projectStartTime,jdbcType=DATE},
@@ -138,6 +147,9 @@
       <if test="projectDelete != null" >
         projectDelete = #{projectDelete,jdbcType=INTEGER},
       </if>
+      <if test="projectDepartmentId != null" >
+        projectDepartmentId = #{projectDepartmentId,jdbcType=VARCHAR},
+      </if>
       <if test="budgetId != null" >
         budgetId = #{budgetId,jdbcType=INTEGER},
       </if>
@@ -151,12 +163,13 @@
     update project
     set projectSerial = #{projectSerial,jdbcType=VARCHAR},
       projectName = #{projectName,jdbcType=VARCHAR},
-      projectBudgetSum = #{projectBudgetSum,jdbcType=INTEGER},
+      projectBudgetNum = #{projectBudgetNum,jdbcType=INTEGER},
       projectStartTime = #{projectStartTime,jdbcType=DATE},
       projectEndTime = #{projectEndTime,jdbcType=DATE},
       projectStatus = #{projectStatus,jdbcType=INTEGER},
       projectComment = #{projectComment,jdbcType=VARCHAR},
       projectDelete = #{projectDelete,jdbcType=INTEGER},
+      projectDepartmentId = #{projectDepartmentId,jdbcType=VARCHAR},
       budgetId = #{budgetId,jdbcType=INTEGER},
       projectChargerId = #{projectChargerId,jdbcType=INTEGER}
     where projectId = #{projectId,jdbcType=INTEGER}

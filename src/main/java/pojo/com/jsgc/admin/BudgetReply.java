@@ -1,17 +1,17 @@
 package pojo.com.jsgc.admin;
 
 public class BudgetReply {
-    private Integer budgetReplyId;
+    private String budgetReplyId;
 
     private String budgetReplyInfo;
 
     private Integer versionId;
 
-    public Integer getBudgetReplyId() {
+    public String getBudgetReplyId() {
         return budgetReplyId;
     }
 
-    public void setBudgetReplyId(Integer budgetReplyId) {
+    public void setBudgetReplyId(String budgetReplyId) {
         this.budgetReplyId = budgetReplyId;
     }
 
@@ -20,7 +20,7 @@ public class BudgetReply {
     }
 
     public void setBudgetReplyInfo(String budgetReplyInfo) {
-        this.budgetReplyInfo = budgetReplyInfo == null ? null : budgetReplyInfo.trim();
+        this.budgetReplyInfo = budgetReplyInfo;
     }
 
     public Integer getVersionId() {

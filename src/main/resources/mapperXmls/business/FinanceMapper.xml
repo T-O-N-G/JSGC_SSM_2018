@@ -9,18 +9,18 @@
     <result column="financeMoney" property="financeMoney" jdbcType="INTEGER" />
     <result column="financeStatus" property="financeStatus" jdbcType="INTEGER" />
     <result column="financeDelete" property="financeDelete" jdbcType="INTEGER" />
-    <result column="financeBorrowerId" property="financeBorrowerId" jdbcType="INTEGER" />
-    <result column="financeLenderId" property="financeLenderId" jdbcType="INTEGER" />
-    <result column="financeBuyorgId" property="financeBuyorgId" jdbcType="INTEGER" />
-    <result column="financeBuyMethodId" property="financeBuyMethodId" jdbcType="INTEGER" />
-    <result column="financeTypeId" property="financeTypeId" jdbcType="INTEGER" />
-    <result column="payMethodId" property="payMethodId" jdbcType="INTEGER" />
+    <result column="financeBorrowerId" property="financeBorrowerId" jdbcType="VARCHAR" />
+    <result column="financeLenderId" property="financeLenderId" jdbcType="VARCHAR" />
+    <result column="financeBuyOrgId" property="financeBuyOrgId" jdbcType="VARCHAR" />
+    <result column="financeBuyMethodId" property="financeBuyMethodId" jdbcType="VARCHAR" />
+    <result column="financeTypeId" property="financeTypeId" jdbcType="VARCHAR" />
+    <result column="payMethodId" property="payMethodId" jdbcType="VARCHAR" />
     <result column="projectId" property="projectId" jdbcType="INTEGER" />
     <result column="contractId" property="contractId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     financeId, financeSerials, financeDate, financeName, financeMoney, financeStatus, 
-    financeDelete, financeBorrowerId, financeLenderId, financeBuyorgId, financeBuyMethodId, 
+    financeDelete, financeBorrowerId, financeLenderId, financeBuyOrgId, financeBuyMethodId, 
     financeTypeId, payMethodId, projectId, contractId
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -37,14 +37,14 @@
     insert into finance (financeId, financeSerials, financeDate, 
       financeName, financeMoney, financeStatus, 
       financeDelete, financeBorrowerId, financeLenderId, 
-      financeBuyorgId, financeBuyMethodId, financeTypeId, 
+      financeBuyOrgId, financeBuyMethodId, financeTypeId, 
       payMethodId, projectId, contractId
       )
     values (#{financeId,jdbcType=INTEGER}, #{financeSerials,jdbcType=VARCHAR}, #{financeDate,jdbcType=DATE}, 
       #{financeName,jdbcType=VARCHAR}, #{financeMoney,jdbcType=INTEGER}, #{financeStatus,jdbcType=INTEGER}, 
-      #{financeDelete,jdbcType=INTEGER}, #{financeBorrowerId,jdbcType=INTEGER}, #{financeLenderId,jdbcType=INTEGER}, 
-      #{financeBuyorgId,jdbcType=INTEGER}, #{financeBuyMethodId,jdbcType=INTEGER}, #{financeTypeId,jdbcType=INTEGER}, 
-      #{payMethodId,jdbcType=INTEGER}, #{projectId,jdbcType=INTEGER}, #{contractId,jdbcType=INTEGER}
+      #{financeDelete,jdbcType=INTEGER}, #{financeBorrowerId,jdbcType=VARCHAR}, #{financeLenderId,jdbcType=VARCHAR}, 
+      #{financeBuyOrgId,jdbcType=VARCHAR}, #{financeBuyMethodId,jdbcType=VARCHAR}, #{financeTypeId,jdbcType=VARCHAR}, 
+      #{payMethodId,jdbcType=VARCHAR}, #{projectId,jdbcType=INTEGER}, #{contractId,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="pojo.com.jsgc.business.Finance" >
@@ -77,8 +77,8 @@
       <if test="financeLenderId != null" >
         financeLenderId,
       </if>
-      <if test="financeBuyorgId != null" >
-        financeBuyorgId,
+      <if test="financeBuyOrgId != null" >
+        financeBuyOrgId,
       </if>
       <if test="financeBuyMethodId != null" >
         financeBuyMethodId,
@@ -119,22 +119,22 @@
         #{financeDelete,jdbcType=INTEGER},
       </if>
       <if test="financeBorrowerId != null" >
-        #{financeBorrowerId,jdbcType=INTEGER},
+        #{financeBorrowerId,jdbcType=VARCHAR},
       </if>
       <if test="financeLenderId != null" >
-        #{financeLenderId,jdbcType=INTEGER},
+        #{financeLenderId,jdbcType=VARCHAR},
       </if>
-      <if test="financeBuyorgId != null" >
-        #{financeBuyorgId,jdbcType=INTEGER},
+      <if test="financeBuyOrgId != null" >
+        #{financeBuyOrgId,jdbcType=VARCHAR},
       </if>
       <if test="financeBuyMethodId != null" >
-        #{financeBuyMethodId,jdbcType=INTEGER},
+        #{financeBuyMethodId,jdbcType=VARCHAR},
       </if>
       <if test="financeTypeId != null" >
-        #{financeTypeId,jdbcType=INTEGER},
+        #{financeTypeId,jdbcType=VARCHAR},
       </if>
       <if test="payMethodId != null" >
-        #{payMethodId,jdbcType=INTEGER},
+        #{payMethodId,jdbcType=VARCHAR},
       </if>
       <if test="projectId != null" >
         #{projectId,jdbcType=INTEGER},
@@ -166,22 +166,22 @@
         financeDelete = #{financeDelete,jdbcType=INTEGER},
       </if>
       <if test="financeBorrowerId != null" >
-        financeBorrowerId = #{financeBorrowerId,jdbcType=INTEGER},
+        financeBorrowerId = #{financeBorrowerId,jdbcType=VARCHAR},
       </if>
       <if test="financeLenderId != null" >
-        financeLenderId = #{financeLenderId,jdbcType=INTEGER},
+        financeLenderId = #{financeLenderId,jdbcType=VARCHAR},
       </if>
-      <if test="financeBuyorgId != null" >
-        financeBuyorgId = #{financeBuyorgId,jdbcType=INTEGER},
+      <if test="financeBuyOrgId != null" >
+        financeBuyOrgId = #{financeBuyOrgId,jdbcType=VARCHAR},
       </if>
       <if test="financeBuyMethodId != null" >
-        financeBuyMethodId = #{financeBuyMethodId,jdbcType=INTEGER},
+        financeBuyMethodId = #{financeBuyMethodId,jdbcType=VARCHAR},
       </if>
       <if test="financeTypeId != null" >
-        financeTypeId = #{financeTypeId,jdbcType=INTEGER},
+        financeTypeId = #{financeTypeId,jdbcType=VARCHAR},
       </if>
       <if test="payMethodId != null" >
-        payMethodId = #{payMethodId,jdbcType=INTEGER},
+        payMethodId = #{payMethodId,jdbcType=VARCHAR},
       </if>
       <if test="projectId != null" >
         projectId = #{projectId,jdbcType=INTEGER},
@@ -200,12 +200,12 @@
       financeMoney = #{financeMoney,jdbcType=INTEGER},
       financeStatus = #{financeStatus,jdbcType=INTEGER},
       financeDelete = #{financeDelete,jdbcType=INTEGER},
-      financeBorrowerId = #{financeBorrowerId,jdbcType=INTEGER},
-      financeLenderId = #{financeLenderId,jdbcType=INTEGER},
-      financeBuyorgId = #{financeBuyorgId,jdbcType=INTEGER},
-      financeBuyMethodId = #{financeBuyMethodId,jdbcType=INTEGER},
-      financeTypeId = #{financeTypeId,jdbcType=INTEGER},
-      payMethodId = #{payMethodId,jdbcType=INTEGER},
+      financeBorrowerId = #{financeBorrowerId,jdbcType=VARCHAR},
+      financeLenderId = #{financeLenderId,jdbcType=VARCHAR},
+      financeBuyOrgId = #{financeBuyOrgId,jdbcType=VARCHAR},
+      financeBuyMethodId = #{financeBuyMethodId,jdbcType=VARCHAR},
+      financeTypeId = #{financeTypeId,jdbcType=VARCHAR},
+      payMethodId = #{payMethodId,jdbcType=VARCHAR},
       projectId = #{projectId,jdbcType=INTEGER},
       contractId = #{contractId,jdbcType=INTEGER}
     where financeId = #{financeId,jdbcType=INTEGER}

@@ -25,7 +25,6 @@ public class Document {
 
     private Integer contractId;
 
-
     public Integer getDocumentId() {
         return documentId;
     }

@@ -1,4 +1,4 @@
-package mapper.com.jsgc.admin;
+package mapper.mapper.com.jsgc.admin;
 
 import pojo.com.jsgc.admin.Permission;
 

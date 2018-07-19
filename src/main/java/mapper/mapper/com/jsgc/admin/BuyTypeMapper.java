@@ -1,15 +1,15 @@
-package mapper.com.jsgc.admin;
+package mapper.mapper.com.jsgc.admin;
 
 import pojo.com.jsgc.admin.BuyType;
 
 public interface BuyTypeMapper {
-    int deleteByPrimaryKey(Integer buyTypeId);
+    int deleteByPrimaryKey(String buyTypeId);
 
     int insert(BuyType record);
 
     int insertSelective(BuyType record);
 
-    BuyType selectByPrimaryKey(Integer buyTypeId);
+    BuyType selectByPrimaryKey(String buyTypeId);
 
     int updateByPrimaryKeySelective(BuyType record);
 
