@@ -1,16 +1,15 @@
 package mapper.com.jsgc.business;
 
-
 import pojo.com.jsgc.business.Contract;
 
 public interface ContractMapper {
-    int deleteByPrimaryKey(Integer contractid);
+    int deleteByPrimaryKey(Integer contractId);
 
     int insert(Contract record);
 
     int insertSelective(Contract record);
 
-    Contract selectByPrimaryKey(Integer contractid);
+    Contract selectByPrimaryKey(Integer contractId);
 
     int updateByPrimaryKeySelective(Contract record);
 

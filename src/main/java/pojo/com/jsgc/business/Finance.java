@@ -29,7 +29,7 @@ public class Finance {
 
     private Integer payMethodId;
 
-    private Integer projectId;
+    private Integer projectIid;
 
     private Integer contractId;
 
@@ -46,7 +46,7 @@ public class Finance {
     }
 
     public void setFinanceSerials(String financeSerials) {
-        this.financeSerials = financeSerials == null ? null : financeSerials.trim();
+        this.financeSerials = financeSerials;
     }
 
     public Date getFinanceDate() {
@@ -62,7 +62,7 @@ public class Finance {
     }
 
     public void setFinanceName(String financeName) {
-        this.financeName = financeName == null ? null : financeName.trim();
+        this.financeName = financeName;
     }
 
     public Integer getFinanceMoney() {
@@ -137,12 +137,12 @@ public class Finance {
         this.payMethodId = payMethodId;
     }
 
-    public Integer getProjectId() {
-        return projectId;
+    public Integer getProjectIid() {
+        return projectIid;
     }
 
-    public void setProjectId(Integer projectId) {
-        this.projectId = projectId;
+    public void setProjectIid(Integer projectIid) {
+        this.projectIid = projectIid;
     }
 
     public Integer getContractId() {

@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mapper.com.jsgc.admin.PermissionMapper" >
-  <resultMap id="BaseResultMap" type="com.jsgc.admin.Permission" >
-    <id column="permissionID" property="permissionId" jdbcType="INTEGER" />
+  <resultMap id="BaseResultMap" type="pojo.com.jsgc.admin.Permission" >
+    <id column="permissionId" property="permissionId" jdbcType="INTEGER" />
     <result column="url" property="url" jdbcType="VARCHAR" />
     <result column="level" property="level" jdbcType="INTEGER" />
     <result column="permissionComment" property="permissionComment" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    permissionID, url, level, permissionComment
+    permissionId, url, level, permissionComment
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from permission
-    where permissionID = #{permissionId,jdbcType=INTEGER}
+    where permissionId = #{permissionId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from permission
-    where permissionID = #{permissionId,jdbcType=INTEGER}
+    where permissionId = #{permissionId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.jsgc.admin.Permission" >
-    insert into permission (permissionID, url, level, 
+  <insert id="insert" parameterType="pojo.com.jsgc.admin.Permission" >
+    insert into permission (permissionId, url, level, 
       permissionComment)
-    values (#{permissionId,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER},
+    values (#{permissionId,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, 
       #{permissionComment,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.jsgc.admin.Permission" >
+  <insert id="insertSelective" parameterType="pojo.com.jsgc.admin.Permission" >
     insert into permission
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="permissionId != null" >
-        permissionID,
+        permissionId,
       </if>
       <if test="url != null" >
         url,
@@ -57,7 +57,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jsgc.admin.Permission" >
+  <update id="updateByPrimaryKeySelective" parameterType="pojo.com.jsgc.admin.Permission" >
     update permission
     <set >
       <if test="url != null" >
@@ -70,13 +70,13 @@
         permissionComment = #{permissionComment,jdbcType=VARCHAR},
       </if>
     </set>
-    where permissionID = #{permissionId,jdbcType=INTEGER}
+    where permissionId = #{permissionId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jsgc.admin.Permission" >
+  <update id="updateByPrimaryKey" parameterType="pojo.com.jsgc.admin.Permission" >
     update permission
     set url = #{url,jdbcType=VARCHAR},
       level = #{level,jdbcType=INTEGER},
       permissionComment = #{permissionComment,jdbcType=VARCHAR}
-    where permissionID = #{permissionId,jdbcType=INTEGER}
+    where permissionId = #{permissionId,jdbcType=INTEGER}
   </update>
 </mapper>

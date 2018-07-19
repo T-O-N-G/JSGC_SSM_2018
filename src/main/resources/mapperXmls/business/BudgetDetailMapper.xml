@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mapper.com.jsgc.business.BudgetDetailMapper" >
-  <resultMap id="BaseResultMap" type="com.jsgc.business.BudgetDetail" >
-    <id column="budgetID" property="budgetId" jdbcType="INTEGER" />
+  <resultMap id="BaseResultMap" type="pojo.com.jsgc.business.BudgetDetail" >
+    <id column="budgetId" property="budgetId" jdbcType="INTEGER" />
     <result column="budgetSerial" property="budgetSerial" jdbcType="VARCHAR" />
     <result column="projectBudgetSum" property="projectBudgetSum" jdbcType="INTEGER" />
     <result column="projectContractsSum" property="projectContractsSum" jdbcType="INTEGER" />
     <result column="projectContractsPayed" property="projectContractsPayed" jdbcType="INTEGER" />
     <result column="projectContractsNotPayed" property="projectContractsNotPayed" jdbcType="INTEGER" />
     <result column="projectBudgetLeft" property="projectBudgetLeft" jdbcType="INTEGER" />
-    <result column="projectID" property="projectId" jdbcType="INTEGER" />
+    <result column="projectId" property="projectId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    budgetID, budgetSerial, projectBudgetSum, projectContractsSum, projectContractsPayed, 
-    projectContractsNotPayed, projectBudgetLeft, projectID
+    budgetId, budgetSerial, projectBudgetSum, projectContractsSum, projectContractsPayed, 
+    projectContractsNotPayed, projectBudgetLeft, projectId
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from budgetdetail
-    where budgetID = #{budgetId,jdbcType=INTEGER}
+    where budgetId = #{budgetId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from budgetdetail
-    where budgetID = #{budgetId,jdbcType=INTEGER}
+    where budgetId = #{budgetId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.jsgc.business.BudgetDetail" >
-    insert into budgetdetail (budgetID, budgetSerial, projectBudgetSum, 
+  <insert id="insert" parameterType="pojo.com.jsgc.business.BudgetDetail" >
+    insert into budgetdetail (budgetId, budgetSerial, projectBudgetSum, 
       projectContractsSum, projectContractsPayed, 
       projectContractsNotPayed, projectBudgetLeft, 
-      projectID)
-    values (#{budgetId,jdbcType=INTEGER}, #{budgetSerial,jdbcType=VARCHAR}, #{projectBudgetSum,jdbcType=INTEGER},
-      #{projectContractsSum,jdbcType=INTEGER}, #{projectContractsPayed,jdbcType=INTEGER},
-      #{projectContractsNotPayed,jdbcType=INTEGER}, #{projectBudgetLeft,jdbcType=INTEGER},
+      projectId)
+    values (#{budgetId,jdbcType=INTEGER}, #{budgetSerial,jdbcType=VARCHAR}, #{projectBudgetSum,jdbcType=INTEGER}, 
+      #{projectContractsSum,jdbcType=INTEGER}, #{projectContractsPayed,jdbcType=INTEGER}, 
+      #{projectContractsNotPayed,jdbcType=INTEGER}, #{projectBudgetLeft,jdbcType=INTEGER}, 
       #{projectId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.jsgc.business.BudgetDetail" >
+  <insert id="insertSelective" parameterType="pojo.com.jsgc.business.BudgetDetail" >
     insert into budgetdetail
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="budgetId != null" >
-        budgetID,
+        budgetId,
       </if>
       <if test="budgetSerial != null" >
         budgetSerial,
@@ -60,7 +60,7 @@
         projectBudgetLeft,
       </if>
       <if test="projectId != null" >
-        projectID,
+        projectId,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -90,7 +90,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jsgc.business.BudgetDetail" >
+  <update id="updateByPrimaryKeySelective" parameterType="pojo.com.jsgc.business.BudgetDetail" >
     update budgetdetail
     <set >
       <if test="budgetSerial != null" >
@@ -112,12 +112,12 @@
         projectBudgetLeft = #{projectBudgetLeft,jdbcType=INTEGER},
       </if>
       <if test="projectId != null" >
-        projectID = #{projectId,jdbcType=INTEGER},
+        projectId = #{projectId,jdbcType=INTEGER},
       </if>
     </set>
-    where budgetID = #{budgetId,jdbcType=INTEGER}
+    where budgetId = #{budgetId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jsgc.business.BudgetDetail" >
+  <update id="updateByPrimaryKey" parameterType="pojo.com.jsgc.business.BudgetDetail" >
     update budgetdetail
     set budgetSerial = #{budgetSerial,jdbcType=VARCHAR},
       projectBudgetSum = #{projectBudgetSum,jdbcType=INTEGER},
@@ -125,7 +125,7 @@
       projectContractsPayed = #{projectContractsPayed,jdbcType=INTEGER},
       projectContractsNotPayed = #{projectContractsNotPayed,jdbcType=INTEGER},
       projectBudgetLeft = #{projectBudgetLeft,jdbcType=INTEGER},
-      projectID = #{projectId,jdbcType=INTEGER}
-    where budgetID = #{budgetId,jdbcType=INTEGER}
+      projectId = #{projectId,jdbcType=INTEGER}
+    where budgetId = #{budgetId,jdbcType=INTEGER}
   </update>
 </mapper>

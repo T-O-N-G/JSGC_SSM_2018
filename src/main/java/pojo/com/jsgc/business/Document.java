@@ -25,6 +25,7 @@ public class Document {
 
     private Integer contractId;
 
+
     public Integer getDocumentId() {
         return documentId;
     }
@@ -38,7 +39,7 @@ public class Document {
     }
 
     public void setDocumentSerial(String documentSerial) {
-        this.documentSerial = documentSerial == null ? null : documentSerial.trim();
+        this.documentSerial = documentSerial;
     }
 
     public String getDocumentName() {
@@ -46,7 +47,7 @@ public class Document {
     }
 
     public void setDocumentName(String documentName) {
-        this.documentName = documentName == null ? null : documentName.trim();
+        this.documentName = documentName;
     }
 
     public Date getDocumentUploadTime() {
@@ -62,7 +63,7 @@ public class Document {
     }
 
     public void setDocumentOwner(String documentOwner) {
-        this.documentOwner = documentOwner == null ? null : documentOwner.trim();
+        this.documentOwner = documentOwner;
     }
 
     public String getDocumentComment() {
@@ -70,7 +71,7 @@ public class Document {
     }
 
     public void setDocumentComment(String documentComment) {
-        this.documentComment = documentComment == null ? null : documentComment.trim();
+        this.documentComment = documentComment;
     }
 
     public String getDocumentUrl() {
@@ -78,7 +79,7 @@ public class Document {
     }
 
     public void setDocumentUrl(String documentUrl) {
-        this.documentUrl = documentUrl == null ? null : documentUrl.trim();
+        this.documentUrl = documentUrl;
     }
 
     public Integer getDocumentType() {

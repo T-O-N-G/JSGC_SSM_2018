@@ -29,7 +29,7 @@ public class Asset {
 
     private Integer projectId;
 
-    private Integer assetdepId;
+    private Integer assetDepId;
 
     public Integer getAssetId() {
         return assetId;
@@ -135,11 +135,11 @@ public class Asset {
         this.projectId = projectId;
     }
 
-    public Integer getAssetdepId() {
-        return assetdepId;
+    public Integer getAssetDepId() {
+        return assetDepId;
     }
 
-    public void setAssetdepId(Integer assetdepId) {
-        this.assetdepId = assetdepId;
+    public void setAssetDepId(Integer assetDepId) {
+        this.assetDepId = assetDepId;
     }
 }
