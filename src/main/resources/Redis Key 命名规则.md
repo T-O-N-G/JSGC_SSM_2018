@@ -104,4 +104,16 @@ Key 存在就意味着有权限
 
 getProjectList:3				level3 用户可以访问 getProjectList 接口
 
-## 
+## 总数
+
+1. Sum
+2. Project
+
+
+
+示例
+
+getProjectList:3				level3 用户可以访问 getProjectList 接口
+
+
+

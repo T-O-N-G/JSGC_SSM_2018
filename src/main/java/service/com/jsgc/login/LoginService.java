@@ -1,7 +1,7 @@
 package service.com.jsgc.login;
 
 import com.alibaba.fastjson.JSON;
-import mapper.com.jsgc.admin.UserMapper;
+//import mapper.com.jsgc.admin.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pojo.com.jsgc.Login.Login;
@@ -16,7 +16,7 @@ import java.util.Map;
 @Service
 public class LoginService {
     @Resource
-    private UserMapper userMapper;
+//    private UserMapper userMapper;
 
     @Autowired
     public JedisPool jedisPool;
@@ -40,9 +40,9 @@ public class LoginService {
             Map<String, String> payloads = new HashMap<>();
             payloads.put("userID", String.valueOf(login.getUserID()));
             payloads.put("level", String.valueOf(login.getLevel()));
-            String payload = JSON.toJSONString(payloads);
-            login.setToken(jwtUtil.createJWT("jwt", payload, 6000000));
-//        System.out.println(login.getToken());
+//            String payload = JSON.toJSONString(payloads);
+            login.setToken(jwtUtil.createJWT("jwt", "tong", 6000000, String.valueOf(login.getUserID()), String.valueOf(login.getLevel())));
+            System.out.println(login.getToken());
 
             //Token 放入 Redis
             Jedis jedis = jedisPool.getResource();
