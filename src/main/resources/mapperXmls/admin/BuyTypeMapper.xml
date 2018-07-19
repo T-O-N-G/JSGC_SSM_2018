@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.com.jsgc.admin.BuyTypeMapper" >
+  <resultMap id="BaseResultMap" type="pojo.com.jsgc.admin.BuyType" >
+    <id column="buyTypeId" property="buyTypeId" jdbcType="INTEGER" />
+    <result column="buyTypeInfo" property="buyTypeInfo" jdbcType="VARCHAR" />
+    <result column="versionId" property="versionId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    buyTypeId, buyTypeInfo, versionId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from buytype
+    where buyTypeId = #{buyTypeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from buytype
+    where buyTypeId = #{buyTypeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="pojo.com.jsgc.admin.BuyType" >
+    insert into buytype (buyTypeId, buyTypeInfo, versionId
+      )
+    values (#{buyTypeId,jdbcType=INTEGER}, #{buyTypeInfo,jdbcType=VARCHAR}, #{versionId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="pojo.com.jsgc.admin.BuyType" >
+    insert into buytype
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="buyTypeId != null" >
+        buyTypeId,
+      </if>
+      <if test="buyTypeInfo != null" >
+        buyTypeInfo,
+      </if>
+      <if test="versionId != null" >
+        versionId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="buyTypeId != null" >
+        #{buyTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="buyTypeInfo != null" >
+        #{buyTypeInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="versionId != null" >
+        #{versionId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pojo.com.jsgc.admin.BuyType" >
+    update buytype
+    <set >
+      <if test="buyTypeInfo != null" >
+        buyTypeInfo = #{buyTypeInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="versionId != null" >
+        versionId = #{versionId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where buyTypeId = #{buyTypeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pojo.com.jsgc.admin.BuyType" >
+    update buytype
+    set buyTypeInfo = #{buyTypeInfo,jdbcType=VARCHAR},
+      versionId = #{versionId,jdbcType=INTEGER}
+    where buyTypeId = #{buyTypeId,jdbcType=INTEGER}
+  </update>
+</mapper>

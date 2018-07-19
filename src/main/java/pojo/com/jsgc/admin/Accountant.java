@@ -11,43 +11,43 @@ public class Accountant {
 
     private Integer versionId;
 
-    public Integer getAccountantId() {
+    public Integer getaccountantId() {
         return accountantId;
     }
 
-    public void setAccountantId(Integer accountantId) {
+    public void setaccountantId(Integer accountantId) {
         this.accountantId = accountantId;
     }
 
-    public String getAccountantSerial() {
+    public String getaccountantSerial() {
         return accountantSerial;
     }
 
-    public void setAccountantSerial(String accountantSerial) {
+    public void setaccountantSerial(String accountantSerial) {
         this.accountantSerial = accountantSerial == null ? null : accountantSerial.trim();
     }
 
-    public String getAccountantName() {
+    public String getaccountantName() {
         return accountantName;
     }
 
-    public void setAccountantName(String accountantName) {
+    public void setaccountantName(String accountantName) {
         this.accountantName = accountantName == null ? null : accountantName.trim();
     }
 
-    public Integer getAccountantType() {
+    public Integer getaccountantType() {
         return accountantType;
     }
 
-    public void setAccountantType(Integer accountantType) {
+    public void setaccountantType(Integer accountantType) {
         this.accountantType = accountantType;
     }
 
-    public Integer getVersionId() {
+    public Integer getversionId() {
         return versionId;
     }
 
-    public void setVersionid(Integer versionId) {
+    public void setversionId(Integer versionId) {
         this.versionId = versionId;
     }
 }

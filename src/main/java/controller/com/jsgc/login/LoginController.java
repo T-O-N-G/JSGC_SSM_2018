@@ -37,6 +37,16 @@ public class LoginController {
 
     }
 
+    @RequestMapping("/loginTest")
+    @ResponseBody
+    public void loginTest(@RequestBody Map<String,String> map, HttpServletRequest request, HttpServletResponse response) throws Exception {
+//        return loginService.loginAuth();
+        System.out.println("UserID: "+request.getAttribute("userID"));
+        System.out.println("level: "+request.getAttribute("level"));
 
+        response.getWriter().write("sss");
+//        response.sendRedirect("login.html");
+
+    }
 
 }

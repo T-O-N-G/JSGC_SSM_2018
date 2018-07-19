@@ -48,7 +48,7 @@ public class Contract {
     }
 
     public void setContractSerial(String contractSerial) {
-        this.contractSerial = contractSerial == null ? null : contractSerial.trim();
+        this.contractSerial = contractSerial;
     }
 
     public String getContractName() {
@@ -56,7 +56,7 @@ public class Contract {
     }
 
     public void setContractName(String contractName) {
-        this.contractName = contractName == null ? null : contractName.trim();
+        this.contractName = contractName;
     }
 
     public String getContractOwner() {
@@ -64,7 +64,7 @@ public class Contract {
     }
 
     public void setContractOwner(String contractOwner) {
-        this.contractOwner = contractOwner == null ? null : contractOwner.trim();
+        this.contractOwner = contractOwner;
     }
 
     public String getContractPartner() {
@@ -72,7 +72,7 @@ public class Contract {
     }
 
     public void setContractPartner(String contractPartner) {
-        this.contractPartner = contractPartner == null ? null : contractPartner.trim();
+        this.contractPartner = contractPartner;
     }
 
     public Date getContractSignedTime() {
@@ -96,7 +96,7 @@ public class Contract {
     }
 
     public void setContractContent(String contractContent) {
-        this.contractContent = contractContent == null ? null : contractContent.trim();
+        this.contractContent = contractContent;
     }
 
     public String getContractComment() {
@@ -104,7 +104,7 @@ public class Contract {
     }
 
     public void setContractComment(String contractComment) {
-        this.contractComment = contractComment == null ? null : contractComment.trim();
+        this.contractComment = contractComment;
     }
 
     public Integer getContractDelete() {

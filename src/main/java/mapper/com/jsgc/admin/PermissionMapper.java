@@ -1,6 +1,5 @@
 package mapper.com.jsgc.admin;
 
-
 import pojo.com.jsgc.admin.Permission;
 
 public interface PermissionMapper {

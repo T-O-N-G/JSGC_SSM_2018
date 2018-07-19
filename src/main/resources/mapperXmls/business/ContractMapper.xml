@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.com.jsgc.business.ContractMapper" >
+  <resultMap id="BaseResultMap" type="pojo.com.jsgc.business.Contract" >
+    <id column="contractId" property="contractId" jdbcType="INTEGER" />
+    <result column="contractSerial" property="contractSerial" jdbcType="VARCHAR" />
+    <result column="contractName" property="contractName" jdbcType="VARCHAR" />
+    <result column="contractOwner" property="contractOwner" jdbcType="VARCHAR" />
+    <result column="contractPartner" property="contractPartner" jdbcType="VARCHAR" />
+    <result column="contractSignedTime" property="contractSignedTime" jdbcType="DATE" />
+    <result column="contractMoney" property="contractMoney" jdbcType="INTEGER" />
+    <result column="contractContent" property="contractContent" jdbcType="VARCHAR" />
+    <result column="contractComment" property="contractComment" jdbcType="VARCHAR" />
+    <result column="contractDelete" property="contractDelete" jdbcType="INTEGER" />
+    <result column="projectId" property="projectId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    contractId, contractSerial, contractName, contractOwner, contractPartner, contractSignedTime, 
+    contractMoney, contractContent, contractComment, contractDelete, projectId
+  </sql>
+  <select id="getContractIDBySerial" parameterType="java.lang.String">
+    SELECT contractID
+    from contract
+    where contractSerial = #{contractSerial,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from contract
+    where contractId = #{contractId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from contract
+    where contractId = #{contractId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="pojo.com.jsgc.business.Contract" >
+    insert into contract (contractId, contractSerial, contractName, 
+      contractOwner, contractPartner, contractSignedTime, 
+      contractMoney, contractContent, contractComment, 
+      contractDelete, projectId)
+    values (#{contractId,jdbcType=INTEGER}, #{contractSerial,jdbcType=VARCHAR}, #{contractName,jdbcType=VARCHAR}, 
+      #{contractOwner,jdbcType=VARCHAR}, #{contractPartner,jdbcType=VARCHAR}, #{contractSignedTime,jdbcType=DATE}, 
+      #{contractMoney,jdbcType=INTEGER}, #{contractContent,jdbcType=VARCHAR}, #{contractComment,jdbcType=VARCHAR}, 
+      #{contractDelete,jdbcType=INTEGER}, #{projectId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="pojo.com.jsgc.business.Contract" >
+    insert into contract
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="contractId != null" >
+        contractId,
+      </if>
+      <if test="contractSerial != null" >
+        contractSerial,
+      </if>
+      <if test="contractName != null" >
+        contractName,
+      </if>
+      <if test="contractOwner != null" >
+        contractOwner,
+      </if>
+      <if test="contractPartner != null" >
+        contractPartner,
+      </if>
+      <if test="contractSignedTime != null" >
+        contractSignedTime,
+      </if>
+      <if test="contractMoney != null" >
+        contractMoney,
+      </if>
+      <if test="contractContent != null" >
+        contractContent,
+      </if>
+      <if test="contractComment != null" >
+        contractComment,
+      </if>
+      <if test="contractDelete != null" >
+        contractDelete,
+      </if>
+      <if test="projectId != null" >
+        projectId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="contractId != null" >
+        #{contractId,jdbcType=INTEGER},
+      </if>
+      <if test="contractSerial != null" >
+        #{contractSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="contractName != null" >
+        #{contractName,jdbcType=VARCHAR},
+      </if>
+      <if test="contractOwner != null" >
+        #{contractOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPartner != null" >
+        #{contractPartner,jdbcType=VARCHAR},
+      </if>
+      <if test="contractSignedTime != null" >
+        #{contractSignedTime,jdbcType=DATE},
+      </if>
+      <if test="contractMoney != null" >
+        #{contractMoney,jdbcType=INTEGER},
+      </if>
+      <if test="contractContent != null" >
+        #{contractContent,jdbcType=VARCHAR},
+      </if>
+      <if test="contractComment != null" >
+        #{contractComment,jdbcType=VARCHAR},
+      </if>
+      <if test="contractDelete != null" >
+        #{contractDelete,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pojo.com.jsgc.business.Contract" >
+    update contract
+    <set >
+      <if test="contractSerial != null" >
+        contractSerial = #{contractSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="contractName != null" >
+        contractName = #{contractName,jdbcType=VARCHAR},
+      </if>
+      <if test="contractOwner != null" >
+        contractOwner = #{contractOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPartner != null" >
+        contractPartner = #{contractPartner,jdbcType=VARCHAR},
+      </if>
+      <if test="contractSignedTime != null" >
+        contractSignedTime = #{contractSignedTime,jdbcType=DATE},
+      </if>
+      <if test="contractMoney != null" >
+        contractMoney = #{contractMoney,jdbcType=INTEGER},
+      </if>
+      <if test="contractContent != null" >
+        contractContent = #{contractContent,jdbcType=VARCHAR},
+      </if>
+      <if test="contractComment != null" >
+        contractComment = #{contractComment,jdbcType=VARCHAR},
+      </if>
+      <if test="contractDelete != null" >
+        contractDelete = #{contractDelete,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null" >
+        projectId = #{projectId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where contractId = #{contractId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pojo.com.jsgc.business.Contract" >
+    update contract
+    set contractSerial = #{contractSerial,jdbcType=VARCHAR},
+      contractName = #{contractName,jdbcType=VARCHAR},
+      contractOwner = #{contractOwner,jdbcType=VARCHAR},
+      contractPartner = #{contractPartner,jdbcType=VARCHAR},
+      contractSignedTime = #{contractSignedTime,jdbcType=DATE},
+      contractMoney = #{contractMoney,jdbcType=INTEGER},
+      contractContent = #{contractContent,jdbcType=VARCHAR},
+      contractComment = #{contractComment,jdbcType=VARCHAR},
+      contractDelete = #{contractDelete,jdbcType=INTEGER},
+      projectId = #{projectId,jdbcType=INTEGER}
+    where contractId = #{contractId,jdbcType=INTEGER}
+  </update>
+</mapper>

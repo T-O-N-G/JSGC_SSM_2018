@@ -3,7 +3,7 @@ package pojo.com.jsgc.admin;
 public class BuyType {
     private Integer buyTypeId;
 
-    private String buytypeinfo;
+    private String buyTypeInfo;
 
     private Integer versionId;
 
@@ -15,12 +15,12 @@ public class BuyType {
         this.buyTypeId = buyTypeId;
     }
 
-    public String getBuytypeinfo() {
-        return buytypeinfo;
+    public String getBuyTypeInfo() {
+        return buyTypeInfo;
     }
 
-    public void setBuytypeinfo(String buytypeinfo) {
-        this.buytypeinfo = buytypeinfo == null ? null : buytypeinfo.trim();
+    public void setBuyTypeInfo(String buyTypeInfo) {
+        this.buyTypeInfo = buyTypeInfo == null ? null : buyTypeInfo.trim();
     }
 
     public Integer getVersionId() {

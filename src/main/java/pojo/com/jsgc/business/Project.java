@@ -1,7 +1,6 @@
 package pojo.com.jsgc.business;
 
 import java.util.Date;
-import java.util.List;
 
 public class Project {
     private Integer projectId;
@@ -25,12 +24,6 @@ public class Project {
     private Integer budgetId;
 
     private Integer projectChargerId;
-    private Integer projectDepartmentId;
-
-    private List<Contract> contractList;
-
-    private BudgetDetail budgetDetail;
-
 
     public Integer getProjectId() {
         return projectId;
@@ -45,7 +38,7 @@ public class Project {
     }
 
     public void setProjectSerial(String projectSerial) {
-        this.projectSerial = projectSerial == null ? null : projectSerial.trim();
+        this.projectSerial = projectSerial;
     }
 
     public String getProjectName() {
@@ -53,7 +46,7 @@ public class Project {
     }
 
     public void setProjectName(String projectName) {
-        this.projectName = projectName == null ? null : projectName.trim();
+        this.projectName = projectName;
     }
 
     public Integer getProjectBudgetSum() {
@@ -93,7 +86,7 @@ public class Project {
     }
 
     public void setProjectComment(String projectComment) {
-        this.projectComment = projectComment == null ? null : projectComment.trim();
+        this.projectComment = projectComment;
     }
 
     public Integer getProjectDelete() {
@@ -118,13 +111,5 @@ public class Project {
 
     public void setProjectChargerId(Integer projectChargerId) {
         this.projectChargerId = projectChargerId;
-    }
-
-    public Integer getProjectDepartmentId() {
-        return projectDepartmentId;
-    }
-
-    public void setProjectDepartmentId(Integer projectDepartmentId) {
-        this.projectDepartmentId = projectDepartmentId;
     }
 }

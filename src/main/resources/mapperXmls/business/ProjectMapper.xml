@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.com.jsgc.business.ProjectMapper" >
+  <resultMap id="BaseResultMap" type="pojo.com.jsgc.business.Project" >
+    <id column="projectId" property="projectId" jdbcType="INTEGER" />
+    <result column="projectSerial" property="projectSerial" jdbcType="VARCHAR" />
+    <result column="projectName" property="projectName" jdbcType="VARCHAR" />
+    <result column="projectBudgetSum" property="projectBudgetSum" jdbcType="INTEGER" />
+    <result column="projectStartTime" property="projectStartTime" jdbcType="DATE" />
+    <result column="projectEndTime" property="projectEndTime" jdbcType="DATE" />
+    <result column="projectStatus" property="projectStatus" jdbcType="INTEGER" />
+    <result column="projectComment" property="projectComment" jdbcType="VARCHAR" />
+    <result column="projectDelete" property="projectDelete" jdbcType="INTEGER" />
+    <result column="budgetId" property="budgetId" jdbcType="INTEGER" />
+    <result column="projectChargerId" property="projectChargerId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    projectId, projectSerial, projectName, projectBudgetSum, projectStartTime, projectEndTime, 
+    projectStatus, projectComment, projectDelete, budgetId, projectChargerId
+  </sql>
+  <select id="getProjectIDBySerial" parameterType="java.lang.String">
+    SELECT projectID
+    from project
+    where projectSerial = #{projectSerial,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from project
+    where projectId = #{projectId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from project
+    where projectId = #{projectId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="pojo.com.jsgc.business.Project" >
+    insert into project (projectId, projectSerial, projectName, 
+      projectBudgetSum, projectStartTime, projectEndTime, 
+      projectStatus, projectComment, projectDelete, 
+      budgetId, projectChargerId)
+    values (#{projectId,jdbcType=INTEGER}, #{projectSerial,jdbcType=VARCHAR}, #{projectName,jdbcType=VARCHAR}, 
+      #{projectBudgetSum,jdbcType=INTEGER}, #{projectStartTime,jdbcType=DATE}, #{projectEndTime,jdbcType=DATE}, 
+      #{projectStatus,jdbcType=INTEGER}, #{projectComment,jdbcType=VARCHAR}, #{projectDelete,jdbcType=INTEGER}, 
+      #{budgetId,jdbcType=INTEGER}, #{projectChargerId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="pojo.com.jsgc.business.Project" >
+    insert into project
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="projectId != null" >
+        projectId,
+      </if>
+      <if test="projectSerial != null" >
+        projectSerial,
+      </if>
+      <if test="projectName != null" >
+        projectName,
+      </if>
+      <if test="projectBudgetSum != null" >
+        projectBudgetSum,
+      </if>
+      <if test="projectStartTime != null" >
+        projectStartTime,
+      </if>
+      <if test="projectEndTime != null" >
+        projectEndTime,
+      </if>
+      <if test="projectStatus != null" >
+        projectStatus,
+      </if>
+      <if test="projectComment != null" >
+        projectComment,
+      </if>
+      <if test="projectDelete != null" >
+        projectDelete,
+      </if>
+      <if test="budgetId != null" >
+        budgetId,
+      </if>
+      <if test="projectChargerId != null" >
+        projectChargerId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="projectId != null" >
+        #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="projectSerial != null" >
+        #{projectSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectBudgetSum != null" >
+        #{projectBudgetSum,jdbcType=INTEGER},
+      </if>
+      <if test="projectStartTime != null" >
+        #{projectStartTime,jdbcType=DATE},
+      </if>
+      <if test="projectEndTime != null" >
+        #{projectEndTime,jdbcType=DATE},
+      </if>
+      <if test="projectStatus != null" >
+        #{projectStatus,jdbcType=INTEGER},
+      </if>
+      <if test="projectComment != null" >
+        #{projectComment,jdbcType=VARCHAR},
+      </if>
+      <if test="projectDelete != null" >
+        #{projectDelete,jdbcType=INTEGER},
+      </if>
+      <if test="budgetId != null" >
+        #{budgetId,jdbcType=INTEGER},
+      </if>
+      <if test="projectChargerId != null" >
+        #{projectChargerId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pojo.com.jsgc.business.Project" >
+    update project
+    <set >
+      <if test="projectSerial != null" >
+        projectSerial = #{projectSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        projectName = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectBudgetSum != null" >
+        projectBudgetSum = #{projectBudgetSum,jdbcType=INTEGER},
+      </if>
+      <if test="projectStartTime != null" >
+        projectStartTime = #{projectStartTime,jdbcType=DATE},
+      </if>
+      <if test="projectEndTime != null" >
+        projectEndTime = #{projectEndTime,jdbcType=DATE},
+      </if>
+      <if test="projectStatus != null" >
+        projectStatus = #{projectStatus,jdbcType=INTEGER},
+      </if>
+      <if test="projectComment != null" >
+        projectComment = #{projectComment,jdbcType=VARCHAR},
+      </if>
+      <if test="projectDelete != null" >
+        projectDelete = #{projectDelete,jdbcType=INTEGER},
+      </if>
+      <if test="budgetId != null" >
+        budgetId = #{budgetId,jdbcType=INTEGER},
+      </if>
+      <if test="projectChargerId != null" >
+        projectChargerId = #{projectChargerId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where projectId = #{projectId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pojo.com.jsgc.business.Project" >
+    update project
+    set projectSerial = #{projectSerial,jdbcType=VARCHAR},
+      projectName = #{projectName,jdbcType=VARCHAR},
+      projectBudgetSum = #{projectBudgetSum,jdbcType=INTEGER},
+      projectStartTime = #{projectStartTime,jdbcType=DATE},
+      projectEndTime = #{projectEndTime,jdbcType=DATE},
+      projectStatus = #{projectStatus,jdbcType=INTEGER},
+      projectComment = #{projectComment,jdbcType=VARCHAR},
+      projectDelete = #{projectDelete,jdbcType=INTEGER},
+      budgetId = #{budgetId,jdbcType=INTEGER},
+      projectChargerId = #{projectChargerId,jdbcType=INTEGER}
+    where projectId = #{projectId,jdbcType=INTEGER}
+  </update>
+</mapper>

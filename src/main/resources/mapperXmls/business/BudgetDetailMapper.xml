@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.com.jsgc.business.BudgetDetailMapper" >
+  <resultMap id="BaseResultMap" type="pojo.com.jsgc.business.BudgetDetail" >
+    <id column="budgetId" property="budgetId" jdbcType="INTEGER" />
+    <result column="budgetSerial" property="budgetSerial" jdbcType="VARCHAR" />
+    <result column="projectBudgetSum" property="projectBudgetSum" jdbcType="INTEGER" />
+    <result column="projectContractsSum" property="projectContractsSum" jdbcType="INTEGER" />
+    <result column="projectContractsPayed" property="projectContractsPayed" jdbcType="INTEGER" />
+    <result column="projectContractsNotPayed" property="projectContractsNotPayed" jdbcType="INTEGER" />
+    <result column="projectBudgetLeft" property="projectBudgetLeft" jdbcType="INTEGER" />
+    <result column="projectId" property="projectId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    budgetId, budgetSerial, projectBudgetSum, projectContractsSum, projectContractsPayed, 
+    projectContractsNotPayed, projectBudgetLeft, projectId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from budgetdetail
+    where budgetId = #{budgetId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from budgetdetail
+    where budgetId = #{budgetId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="pojo.com.jsgc.business.BudgetDetail" >
+    insert into budgetdetail (budgetId, budgetSerial, projectBudgetSum, 
+      projectContractsSum, projectContractsPayed, 
+      projectContractsNotPayed, projectBudgetLeft, 
+      projectId)
+    values (#{budgetId,jdbcType=INTEGER}, #{budgetSerial,jdbcType=VARCHAR}, #{projectBudgetSum,jdbcType=INTEGER}, 
+      #{projectContractsSum,jdbcType=INTEGER}, #{projectContractsPayed,jdbcType=INTEGER}, 
+      #{projectContractsNotPayed,jdbcType=INTEGER}, #{projectBudgetLeft,jdbcType=INTEGER}, 
+      #{projectId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="pojo.com.jsgc.business.BudgetDetail" >
+    insert into budgetdetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="budgetId != null" >
+        budgetId,
+      </if>
+      <if test="budgetSerial != null" >
+        budgetSerial,
+      </if>
+      <if test="projectBudgetSum != null" >
+        projectBudgetSum,
+      </if>
+      <if test="projectContractsSum != null" >
+        projectContractsSum,
+      </if>
+      <if test="projectContractsPayed != null" >
+        projectContractsPayed,
+      </if>
+      <if test="projectContractsNotPayed != null" >
+        projectContractsNotPayed,
+      </if>
+      <if test="projectBudgetLeft != null" >
+        projectBudgetLeft,
+      </if>
+      <if test="projectId != null" >
+        projectId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="budgetId != null" >
+        #{budgetId,jdbcType=INTEGER},
+      </if>
+      <if test="budgetSerial != null" >
+        #{budgetSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="projectBudgetSum != null" >
+        #{projectBudgetSum,jdbcType=INTEGER},
+      </if>
+      <if test="projectContractsSum != null" >
+        #{projectContractsSum,jdbcType=INTEGER},
+      </if>
+      <if test="projectContractsPayed != null" >
+        #{projectContractsPayed,jdbcType=INTEGER},
+      </if>
+      <if test="projectContractsNotPayed != null" >
+        #{projectContractsNotPayed,jdbcType=INTEGER},
+      </if>
+      <if test="projectBudgetLeft != null" >
+        #{projectBudgetLeft,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pojo.com.jsgc.business.BudgetDetail" >
+    update budgetdetail
+    <set >
+      <if test="budgetSerial != null" >
+        budgetSerial = #{budgetSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="projectBudgetSum != null" >
+        projectBudgetSum = #{projectBudgetSum,jdbcType=INTEGER},
+      </if>
+      <if test="projectContractsSum != null" >
+        projectContractsSum = #{projectContractsSum,jdbcType=INTEGER},
+      </if>
+      <if test="projectContractsPayed != null" >
+        projectContractsPayed = #{projectContractsPayed,jdbcType=INTEGER},
+      </if>
+      <if test="projectContractsNotPayed != null" >
+        projectContractsNotPayed = #{projectContractsNotPayed,jdbcType=INTEGER},
+      </if>
+      <if test="projectBudgetLeft != null" >
+        projectBudgetLeft = #{projectBudgetLeft,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null" >
+        projectId = #{projectId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where budgetId = #{budgetId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pojo.com.jsgc.business.BudgetDetail" >
+    update budgetdetail
+    set budgetSerial = #{budgetSerial,jdbcType=VARCHAR},
+      projectBudgetSum = #{projectBudgetSum,jdbcType=INTEGER},
+      projectContractsSum = #{projectContractsSum,jdbcType=INTEGER},
+      projectContractsPayed = #{projectContractsPayed,jdbcType=INTEGER},
+      projectContractsNotPayed = #{projectContractsNotPayed,jdbcType=INTEGER},
+      projectBudgetLeft = #{projectBudgetLeft,jdbcType=INTEGER},
+      projectId = #{projectId,jdbcType=INTEGER}
+    where budgetId = #{budgetId,jdbcType=INTEGER}
+  </update>
+</mapper>

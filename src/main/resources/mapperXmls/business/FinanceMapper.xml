@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.com.jsgc.business.FinanceMapper" >
+  <resultMap id="BaseResultMap" type="pojo.com.jsgc.business.Finance" >
+    <id column="financeId" property="financeId" jdbcType="INTEGER" />
+    <result column="financeSerials" property="financeSerials" jdbcType="VARCHAR" />
+    <result column="financeDate" property="financeDate" jdbcType="DATE" />
+    <result column="financeName" property="financeName" jdbcType="VARCHAR" />
+    <result column="financeMoney" property="financeMoney" jdbcType="INTEGER" />
+    <result column="financeStatus" property="financeStatus" jdbcType="INTEGER" />
+    <result column="financeDelete" property="financeDelete" jdbcType="INTEGER" />
+    <result column="financeBorrowerId" property="financeBorrowerId" jdbcType="INTEGER" />
+    <result column="financeLenderId" property="financeLenderId" jdbcType="INTEGER" />
+    <result column="financeBuyorgId" property="financeBuyorgId" jdbcType="INTEGER" />
+    <result column="financeBuyMethodId" property="financeBuyMethodId" jdbcType="INTEGER" />
+    <result column="financeTypeId" property="financeTypeId" jdbcType="INTEGER" />
+    <result column="payMethodId" property="payMethodId" jdbcType="INTEGER" />
+    <result column="projectId" property="projectId" jdbcType="INTEGER" />
+    <result column="contractId" property="contractId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    financeId, financeSerials, financeDate, financeName, financeMoney, financeStatus, 
+    financeDelete, financeBorrowerId, financeLenderId, financeBuyorgId, financeBuyMethodId, 
+    financeTypeId, payMethodId, projectId, contractId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from finance
+    where financeId = #{financeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from finance
+    where financeId = #{financeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="pojo.com.jsgc.business.Finance" >
+    insert into finance (financeId, financeSerials, financeDate, 
+      financeName, financeMoney, financeStatus, 
+      financeDelete, financeBorrowerId, financeLenderId, 
+      financeBuyorgId, financeBuyMethodId, financeTypeId, 
+      payMethodId, projectId, contractId
+      )
+    values (#{financeId,jdbcType=INTEGER}, #{financeSerials,jdbcType=VARCHAR}, #{financeDate,jdbcType=DATE}, 
+      #{financeName,jdbcType=VARCHAR}, #{financeMoney,jdbcType=INTEGER}, #{financeStatus,jdbcType=INTEGER}, 
+      #{financeDelete,jdbcType=INTEGER}, #{financeBorrowerId,jdbcType=INTEGER}, #{financeLenderId,jdbcType=INTEGER}, 
+      #{financeBuyorgId,jdbcType=INTEGER}, #{financeBuyMethodId,jdbcType=INTEGER}, #{financeTypeId,jdbcType=INTEGER}, 
+      #{payMethodId,jdbcType=INTEGER}, #{projectId,jdbcType=INTEGER}, #{contractId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="pojo.com.jsgc.business.Finance" >
+    insert into finance
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="financeId != null" >
+        financeId,
+      </if>
+      <if test="financeSerials != null" >
+        financeSerials,
+      </if>
+      <if test="financeDate != null" >
+        financeDate,
+      </if>
+      <if test="financeName != null" >
+        financeName,
+      </if>
+      <if test="financeMoney != null" >
+        financeMoney,
+      </if>
+      <if test="financeStatus != null" >
+        financeStatus,
+      </if>
+      <if test="financeDelete != null" >
+        financeDelete,
+      </if>
+      <if test="financeBorrowerId != null" >
+        financeBorrowerId,
+      </if>
+      <if test="financeLenderId != null" >
+        financeLenderId,
+      </if>
+      <if test="financeBuyorgId != null" >
+        financeBuyorgId,
+      </if>
+      <if test="financeBuyMethodId != null" >
+        financeBuyMethodId,
+      </if>
+      <if test="financeTypeId != null" >
+        financeTypeId,
+      </if>
+      <if test="payMethodId != null" >
+        payMethodId,
+      </if>
+      <if test="projectId != null" >
+        projectId,
+      </if>
+      <if test="contractId != null" >
+        contractId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="financeId != null" >
+        #{financeId,jdbcType=INTEGER},
+      </if>
+      <if test="financeSerials != null" >
+        #{financeSerials,jdbcType=VARCHAR},
+      </if>
+      <if test="financeDate != null" >
+        #{financeDate,jdbcType=DATE},
+      </if>
+      <if test="financeName != null" >
+        #{financeName,jdbcType=VARCHAR},
+      </if>
+      <if test="financeMoney != null" >
+        #{financeMoney,jdbcType=INTEGER},
+      </if>
+      <if test="financeStatus != null" >
+        #{financeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="financeDelete != null" >
+        #{financeDelete,jdbcType=INTEGER},
+      </if>
+      <if test="financeBorrowerId != null" >
+        #{financeBorrowerId,jdbcType=INTEGER},
+      </if>
+      <if test="financeLenderId != null" >
+        #{financeLenderId,jdbcType=INTEGER},
+      </if>
+      <if test="financeBuyorgId != null" >
+        #{financeBuyorgId,jdbcType=INTEGER},
+      </if>
+      <if test="financeBuyMethodId != null" >
+        #{financeBuyMethodId,jdbcType=INTEGER},
+      </if>
+      <if test="financeTypeId != null" >
+        #{financeTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="payMethodId != null" >
+        #{payMethodId,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="contractId != null" >
+        #{contractId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pojo.com.jsgc.business.Finance" >
+    update finance
+    <set >
+      <if test="financeSerials != null" >
+        financeSerials = #{financeSerials,jdbcType=VARCHAR},
+      </if>
+      <if test="financeDate != null" >
+        financeDate = #{financeDate,jdbcType=DATE},
+      </if>
+      <if test="financeName != null" >
+        financeName = #{financeName,jdbcType=VARCHAR},
+      </if>
+      <if test="financeMoney != null" >
+        financeMoney = #{financeMoney,jdbcType=INTEGER},
+      </if>
+      <if test="financeStatus != null" >
+        financeStatus = #{financeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="financeDelete != null" >
+        financeDelete = #{financeDelete,jdbcType=INTEGER},
+      </if>
+      <if test="financeBorrowerId != null" >
+        financeBorrowerId = #{financeBorrowerId,jdbcType=INTEGER},
+      </if>
+      <if test="financeLenderId != null" >
+        financeLenderId = #{financeLenderId,jdbcType=INTEGER},
+      </if>
+      <if test="financeBuyorgId != null" >
+        financeBuyorgId = #{financeBuyorgId,jdbcType=INTEGER},
+      </if>
+      <if test="financeBuyMethodId != null" >
+        financeBuyMethodId = #{financeBuyMethodId,jdbcType=INTEGER},
+      </if>
+      <if test="financeTypeId != null" >
+        financeTypeId = #{financeTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="payMethodId != null" >
+        payMethodId = #{payMethodId,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null" >
+        projectId = #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="contractId != null" >
+        contractId = #{contractId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where financeId = #{financeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pojo.com.jsgc.business.Finance" >
+    update finance
+    set financeSerials = #{financeSerials,jdbcType=VARCHAR},
+      financeDate = #{financeDate,jdbcType=DATE},
+      financeName = #{financeName,jdbcType=VARCHAR},
+      financeMoney = #{financeMoney,jdbcType=INTEGER},
+      financeStatus = #{financeStatus,jdbcType=INTEGER},
+      financeDelete = #{financeDelete,jdbcType=INTEGER},
+      financeBorrowerId = #{financeBorrowerId,jdbcType=INTEGER},
+      financeLenderId = #{financeLenderId,jdbcType=INTEGER},
+      financeBuyorgId = #{financeBuyorgId,jdbcType=INTEGER},
+      financeBuyMethodId = #{financeBuyMethodId,jdbcType=INTEGER},
+      financeTypeId = #{financeTypeId,jdbcType=INTEGER},
+      payMethodId = #{payMethodId,jdbcType=INTEGER},
+      projectId = #{projectId,jdbcType=INTEGER},
+      contractId = #{contractId,jdbcType=INTEGER}
+    where financeId = #{financeId,jdbcType=INTEGER}
+  </update>
+</mapper>

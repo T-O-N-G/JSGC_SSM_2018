@@ -30,6 +30,20 @@
     <!--静态页面, 如html, css, js, image等-->
     <mvc:default-servlet-handler />
 
+    <mvc:interceptors>
+        <!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->
+        <!-- <bean class="com.bybo.aca.web.interceptor.Login"/> -->
+        <mvc:interceptor>
+            <!-- 进行拦截：/**表示拦截所有controller -->
+            <mvc:mapping path="/**" />
+            <!-- 不进行拦截 -->
+            <mvc:exclude-mapping path="/login" />
+            <bean class="interceptor.JWTInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
+
     <!--把视图约定在 /WEB-INF/page/*.jsp 这个位置-->
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
