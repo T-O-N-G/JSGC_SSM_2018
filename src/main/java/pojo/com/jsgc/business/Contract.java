@@ -25,6 +25,16 @@ public class Contract {
 
     private Integer projectId;
 
+    private String projectSerial;
+
+    public String getProjectSerial() {
+        return projectSerial;
+    }
+
+    public void setProjectSerial(String projectSerial) {
+        this.projectSerial = projectSerial;
+    }
+
     public Integer getContractId() {
         return contractId;
     }

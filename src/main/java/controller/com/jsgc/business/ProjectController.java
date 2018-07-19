@@ -9,6 +9,7 @@ import util.com.jsgc.RequestPage;
 import util.com.jsgc.searchCondition.ProjectSearchConditions;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -28,5 +29,24 @@ public class ProjectController {
     public String getProjectDetail(int projectID){
         return   projectService.getProjectDetail(projectID);
     }
+
+    @RequestMapping("updateProjectDetail")
+    @ResponseBody
+    public int updateProjectDetail(Project project){
+        return   projectService.updateProjectDetail(project);
+    }
+
+    @RequestMapping("addProject")
+    @ResponseBody
+    public int addProject(Project project){
+        return   projectService.insertProject(project);
+    }
+
+    @RequestMapping("deleteProject")
+    @ResponseBody
+    public int deleteProject(int projectID){
+        return   projectService.deleteProject(projectID);
+    }
+
 
 }

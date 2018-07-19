@@ -43,4 +43,15 @@ public class ProjectService {
         return result;
     }
 
+    public int updateProjectDetail(Project project) {
+        return projectMapper.updateByPrimaryKeySelective(project);
+    }
+
+    public int insertProject(Project project){
+        return projectMapper.insertSelective(project);
+    }
+
+    public int deleteProject(int projectID){
+        return projectMapper.deleteByPrimaryKey(projectID);
+    }
 }

@@ -31,7 +31,27 @@ public class Finance {
 
     private Integer projectId;
 
+    private String projectSerial;
+
     private Integer contractId;
+
+    private String contractSerial;
+
+    public String getProjectSerial() {
+        return projectSerial;
+    }
+
+    public void setProjectSerial(String projectSerial) {
+        this.projectSerial = projectSerial;
+    }
+
+    public String getContractSerial() {
+        return contractSerial;
+    }
+
+    public void setContractSerial(String contractSerial) {
+        this.contractSerial = contractSerial;
+    }
 
     public Integer getFinanceId() {
         return financeId;

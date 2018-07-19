@@ -19,6 +19,11 @@
     projectID, projectSerial, projectName, projectBudgetSum, projectStartTime, projectEndTime, 
     projectStatus, projectComment, projectDelete, budgetID, projectChargerID,projectDepartmentID
   </sql>
+  <select id="getProjectIDBySerial" parameterType="java.lang.String">
+    SELECT projectID
+    from project
+    where projectSerial = #{projectSerial,jdbcType=VARCHAR}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
