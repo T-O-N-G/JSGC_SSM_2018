@@ -1,4 +1,4 @@
-package mapper.mapper.com.jsgc.business;
+package mapper.com.jsgc.business;
 
 import pojo.com.jsgc.business.Asset;
 

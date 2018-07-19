@@ -4,7 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import pojo.com.jsgc.Login.Login;
+//import pojo.com.jsgc.Login.Login;
+import pojo.com.jsgc.login.Login;
 import service.com.jsgc.login.LoginService;
 //import sun.rmi.runtime.Log;
 
