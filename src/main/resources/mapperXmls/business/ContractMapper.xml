@@ -18,7 +18,7 @@
     contractId, contractSerial, contractName, contractOwner, contractPartner, contractSignedTime, 
     contractMoney, contractContent, contractComment, contractDelete, projectId
   </sql>
-  <select id="getContractIDBySerial" parameterType="java.lang.String" resultType="java.lang.Integer>
+  <select id="getContractIDBySerial" parameterType="java.lang.String" resultType="java.lang.Integer">
     SELECT contractID
     from contract
     where contractSerial = #{contractSerial,jdbcType=VARCHAR}
