@@ -1,8 +1,12 @@
 package controller.com.jsgc.business;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import pojo.com.jsgc.business.Contract;
 import pojo.com.jsgc.business.Project;
 import service.com.jsgc.business.ProjectService;
 import util.com.jsgc.RequestPage;
@@ -32,20 +36,22 @@ public class ProjectController {
 
     @RequestMapping("updateProjectDetail")
     @ResponseBody
-    public int updateProjectDetail(Project project){
+    public int updateProjectDetail(@RequestBody String params){
+        Project project = JSON.parseObject(params , new TypeReference<Project>() {});
         return   projectService.updateProjectDetail(project);
     }
 
     @RequestMapping("addProject")
     @ResponseBody
-    public int addProject(Project project){
+    public int addProject(@RequestBody String params){
+        Project project = JSON.parseObject(params , new TypeReference<Project>() {});
         return   projectService.insertProject(project);
     }
 
     @RequestMapping("deleteProject")
     @ResponseBody
     public int deleteProject(int projectID){
-        return   projectService.deleteProject(projectID);
+        return  projectService.deleteProject(projectID);
     }
 
 

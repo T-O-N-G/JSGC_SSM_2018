@@ -41,5 +41,15 @@ public class ContractService {
         return contractMapper.updateByPrimaryKeySelective(contract);
     }
 
+    public int insertContract(Contract contract){
+        int projectID = projectMapper.getProjectIDBySerial(contract.getProjectSerial());
+        contract.setProjectId(projectID);
+        return contractMapper.insertSelective(contract);
+    }
+
+    public int deleteContract(int contractID){
+        return contractMapper.deleteByPrimaryKey(contractID);
+    }
+
 
 }

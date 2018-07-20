@@ -44,4 +44,16 @@ public class FinanceService {
         finance.setContractId(contractID);
         return financeMapper.updateByPrimaryKeySelective(finance);
     }
+
+    public int insertFinance(Finance finance){
+        int projectID = projectMapper.getProjectIDBySerial(finance.getProjectSerial());
+        finance.setProjectId(projectID);
+        int contractID = contractMapper.getContractIDBySerial(finance.getContractSerial());
+        finance.setContractId(contractID);
+        return financeMapper.insertSelective(finance);
+    }
+
+    public int deleteFinance(int financeID){
+        return financeMapper.deleteByPrimaryKey(financeID);
+    }
 }

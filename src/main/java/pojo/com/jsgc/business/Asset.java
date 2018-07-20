@@ -12,7 +12,6 @@ public class Asset {
     private String assetSpec;
 
     private String assetModel;
-
     private Integer assetAmount;
 
     private Integer assetMoney;

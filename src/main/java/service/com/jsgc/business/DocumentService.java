@@ -36,4 +36,12 @@ public class DocumentService {
     public int updateDocumentDetail(Document document) {
         return documentMapper.updateByPrimaryKeySelective(document);
     }
+
+    public int insertDocument(Document document) {
+        return documentMapper.insertSelective(document);
+    }
+
+    public int deleteDocument(int documentID) {
+        return documentMapper.deleteByPrimaryKey(documentID);
+    }
 }

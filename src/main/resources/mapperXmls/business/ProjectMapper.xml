@@ -19,7 +19,7 @@
     projectId, projectSerial, projectName, projectBudgetNum, projectStartTime, projectEndTime, 
     projectStatus, projectComment, projectDelete, projectDepartmentId, budgetId, projectChargerId
   </sql>
-  <select id="getProjectIDBySerial" parameterType="java.lang.String">
+  <select id="getProjectIDBySerial" parameterType="java.lang.String" resultType="java.lang.Integer">
     SELECT projectID
     from project
     where projectSerial = #{projectSerial,jdbcType=VARCHAR}

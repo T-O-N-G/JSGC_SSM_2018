@@ -37,4 +37,12 @@ public class AssetService {
     public int updateAssetDetail(Asset asset) {
         return assetMapper.updateByPrimaryKeySelective(asset);
     }
+
+    public int insertAsset(Asset asset) {
+        return assetMapper.insertSelective(asset);
+    }
+
+    public int deleteAsset(int assetID) {
+        return assetMapper.deleteByPrimaryKey(assetID);
+    }
 }
