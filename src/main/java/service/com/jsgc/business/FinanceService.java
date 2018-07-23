@@ -54,6 +54,6 @@ public class FinanceService {
     }
 
     public int deleteFinance(int financeID){
-        return financeMapper.deleteByPrimaryKey(financeID);
+        return financeMapper.deleteFakeByPrimaryKey(financeID);
     }
 }

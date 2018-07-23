@@ -15,9 +15,10 @@ import util.com.jsgc.searchCondition.ProjectSearchConditions;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 @Controller
-@RequestMapping("/business/project/")
+//@RequestMapping("/business/project/")
 public class ProjectController {
     @Resource
     private ProjectService projectService;
@@ -51,6 +52,7 @@ public class ProjectController {
     @RequestMapping("deleteProject")
     @ResponseBody
     public int deleteProject(int projectID){
+
         return  projectService.deleteProject(projectID);
     }
 

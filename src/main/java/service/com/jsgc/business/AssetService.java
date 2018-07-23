@@ -43,6 +43,6 @@ public class AssetService {
     }
 
     public int deleteAsset(int assetID) {
-        return assetMapper.deleteByPrimaryKey(assetID);
+        return assetMapper.deleteFakeByPrimaryKey(assetID);
     }
 }

@@ -28,6 +28,11 @@
     delete from document
     where documentId = #{documentId,jdbcType=INTEGER}
   </delete>
+  <update id="deleteFakeByPrimaryKey" parameterType="java.lang.Integer">
+    UPDATE document
+    SET documentDelete=0
+    WHERE documentID = #{documentId,jdbcType=INTEGER}
+  </update>
   <insert id="insert" parameterType="pojo.com.jsgc.business.Document" >
     insert into document (documentId, documentSerial, documentName, 
       documentUploadTime, documentOwner, documentComment, 

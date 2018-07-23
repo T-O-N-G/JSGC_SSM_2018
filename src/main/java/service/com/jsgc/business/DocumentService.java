@@ -42,6 +42,6 @@ public class DocumentService {
     }
 
     public int deleteDocument(int documentID) {
-        return documentMapper.deleteByPrimaryKey(documentID);
+        return documentMapper.deleteFakeByPrimaryKey(documentID);
     }
 }

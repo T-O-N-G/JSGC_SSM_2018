@@ -4,6 +4,7 @@ import pojo.com.jsgc.business.Asset;
 
 public interface AssetMapper {
     int deleteByPrimaryKey(Integer assetId);
+    int deleteFakeByPrimaryKey(Integer assetId);
 
     int insert(Asset record);
 

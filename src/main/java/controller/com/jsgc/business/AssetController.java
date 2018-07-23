@@ -36,10 +36,10 @@ public class AssetController {
         return  assetService.insertAsset(asset);
     }
 
-//    @RequestMapping("deleteAsset")
-//    @ResponseBody
-//    public int deleteAsset(int ){
-//        Asset asset = JSON.parseObject(params , new TypeReference<Asset>() {});
-//        return  assetService.insertAsset(asset);
-//    }
+    @RequestMapping("deleteAsset")
+    @ResponseBody
+    public int deleteAsset(Integer assetID){
+//        Integer assetID = JSON.parseObject(params,new TypeReference<Integer>() {});
+        return  assetService.deleteAsset(assetID);
+    }
 }

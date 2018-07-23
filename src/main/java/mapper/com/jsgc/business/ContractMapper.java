@@ -5,6 +5,8 @@ import pojo.com.jsgc.business.Contract;
 public interface ContractMapper {
     int deleteByPrimaryKey(Integer contractId);
 
+    int deleteFakeByPrimaryKey(Integer contractId);
+
     int insert(Contract record);
 
     int insertSelective(Contract record);

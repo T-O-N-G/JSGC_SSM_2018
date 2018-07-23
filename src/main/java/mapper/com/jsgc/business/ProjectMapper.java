@@ -5,6 +5,8 @@ import pojo.com.jsgc.business.Project;
 public interface ProjectMapper {
     int deleteByPrimaryKey(Integer projectId);
 
+    int deleteFakeByPrimaryKey(Integer projectId);
+
     int insert(Project record);
 
     int insertSelective(Project record);

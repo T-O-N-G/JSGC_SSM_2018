@@ -33,6 +33,11 @@
     delete from finance
     where financeId = #{financeId,jdbcType=INTEGER}
   </delete>
+  <update id="deleteFakeByPrimaryKey" parameterType="java.lang.Integer">
+    UPDATE finance
+    SET financeDelete=0
+    WHERE financeID = #{financeId,jdbcType=INTEGER}
+  </update>
   <insert id="insert" parameterType="pojo.com.jsgc.business.Finance" >
     insert into finance (financeId, financeSerials, financeDate, 
       financeName, financeMoney, financeStatus, 

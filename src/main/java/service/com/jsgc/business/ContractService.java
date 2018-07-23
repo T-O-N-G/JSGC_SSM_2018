@@ -48,7 +48,7 @@ public class ContractService {
     }
 
     public int deleteContract(int contractID){
-        return contractMapper.deleteByPrimaryKey(contractID);
+        return contractMapper.deleteFakeByPrimaryKey(contractID);
     }
 
 

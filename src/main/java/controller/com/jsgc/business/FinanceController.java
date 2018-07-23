@@ -43,6 +43,7 @@ public class FinanceController {
     @RequestMapping("deleteFinance")
     @ResponseBody
     public int deleteFinance(int financeID){
+//        Integer financeID = JSON.parseObject(params,new TypeReference<Integer>() {});
         return  financeService.deleteFinance(financeID);
     }
 }
