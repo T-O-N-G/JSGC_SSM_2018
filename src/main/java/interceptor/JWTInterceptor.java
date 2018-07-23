@@ -38,9 +38,9 @@ public class JWTInterceptor implements HandlerInterceptor {
         String jwt = request.getHeader("Authorization");
 
         try {
-            if (jwt == null) {
+            if (jwt == null || jwt == "") {
                 System.out.println("用户未登录，验证失败");
-                response.setStatus(403);
+                response.setStatus(401);
 
             } else {
                 Jedis jedis = jedisPool.getResource();
@@ -53,7 +53,7 @@ public class JWTInterceptor implements HandlerInterceptor {
                     request.setAttribute("userID", c.get("userID"));
                     request.setAttribute("level", c.get("level"));
                 }else {
-                    response.setStatus(403);
+                    response.setStatus(401);
                 }
                 jedis.close();
 
@@ -62,12 +62,12 @@ public class JWTInterceptor implements HandlerInterceptor {
 
             System.out.println("token解析错误，验证失败");
 //            response.getWriter().write("未登录，请重新登录后操作");;
-            response.setStatus(403);
+            response.setStatus(401);
         } catch (Exception e) {
 
             // TODO Auto-generated catch block
             e.printStackTrace();
-            response.setStatus(502);
+            response.setStatus(401);
 
         }
         return false;

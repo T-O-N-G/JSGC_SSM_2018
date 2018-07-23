@@ -31,8 +31,10 @@ public class LoginService {
 
 
     public String loginAuth(Login login) throws Exception {
-        //校验
+        //校验,从库里查
         int resultAuth = 0;
+        String username = "tong";
+        int userID =3;
         if (resultAuth == 0) {
 
             //生成 Token
@@ -42,7 +44,8 @@ public class LoginService {
 //            String payload = JSON.toJSONString(payloads);
             login.setToken(jwtUtil.createJWT("jwt", "tong", 259200000, String.valueOf(login.getUserID()), String.valueOf(login.getLevel())));
             System.out.println(login.getToken());
-
+            login.setUsername(username);
+            login.setUserID(userID);
             //Token 放入 Redis
             Jedis jedis = jedisPool.getResource();
             String key = "Token:" + String.valueOf(login.getUserID());
