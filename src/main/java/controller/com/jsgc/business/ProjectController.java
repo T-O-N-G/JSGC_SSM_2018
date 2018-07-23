@@ -31,7 +31,8 @@ public class ProjectController {
 
     @RequestMapping("getProjectDetail")
     @ResponseBody
-    public String getProjectDetail(int projectID){
+    public String getProjectDetail(Integer projectID){
+//        Project project = JSON.parseObject(params , new TypeReference<Project>() {});
         return   projectService.getProjectDetail(projectID);
     }
 
