@@ -55,4 +55,8 @@ public class ProjectService {
     public int deleteProject(int projectID){
         return projectMapper.deleteByPrimaryKey(projectID);
     }
+
+    public List<String> getSerials(){
+        return  projectMapper.getSerials();
+    }
 }
