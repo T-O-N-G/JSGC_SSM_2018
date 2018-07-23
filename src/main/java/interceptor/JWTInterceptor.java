@@ -38,7 +38,7 @@ public class JWTInterceptor implements HandlerInterceptor {
         String jwt = request.getHeader("Authorization");
 
         try {
-            if (jwt == null || jwt == "") {
+            if (jwt == null || jwt.equals("")) {
                 System.out.println("用户未登录，验证失败");
                 response.setStatus(401);
 
