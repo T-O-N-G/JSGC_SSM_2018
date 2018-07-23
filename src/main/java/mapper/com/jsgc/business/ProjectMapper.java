@@ -2,6 +2,8 @@ package mapper.com.jsgc.business;
 
 import pojo.com.jsgc.business.Project;
 
+import java.util.List;
+
 public interface ProjectMapper {
     int deleteByPrimaryKey(Integer projectId);
 
@@ -15,4 +17,5 @@ public interface ProjectMapper {
 
     int updateByPrimaryKey(Project record);
     int getProjectIDBySerial(String projectSerial);
+    List<String> getSerials();
 }

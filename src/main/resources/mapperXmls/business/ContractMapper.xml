@@ -166,4 +166,22 @@
       projectId = #{projectId,jdbcType=INTEGER}
     where contractId = #{contractId,jdbcType=INTEGER}
   </update>
+
+  <!--lzq，导入Excel，获取所有的编号-->
+  <select id="getSerialList" resultType="java.lang.String">
+    select contractSerial
+    from contract
+  </select>
+  <!--lzq，导入Excel，批量导入-->
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into contract( contractID,contractSerial, contractName,
+      contractOwner, contractPartner, contractSignedTime,
+      contractMoney, contractContent, contractComment, projectId)values
+      <foreach collection="list" item="item" index="index" separator=",">
+        ( #{item.contractId,jdbcType=INTEGER},#{item.contractSerial,jdbcType=VARCHAR}, #{item.contractName,jdbcType=VARCHAR},
+        #{item.contractOwner,jdbcType=VARCHAR}, #{item.contractPartner,jdbcType=VARCHAR}, #{item.contractSignedTime,jdbcType=DATE},
+        #{item.contractMoney,jdbcType=INTEGER}, #{item.contractContent,jdbcType=VARCHAR}, #{item.contractComment,jdbcType=VARCHAR}
+        , #{item.projectId,jdbcType=INTEGER})
+      </foreach>
+  </insert>
 </mapper>

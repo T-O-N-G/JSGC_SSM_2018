@@ -54,68 +54,67 @@ public class BatchUploadContraller {
             ImportParams params = new ImportParams();
             params.setHeadRows(1);
             List<Contract> results = ExcelImportUtil.importExcel(newFile, Contract.class, params);
+            int total=results.size();
             //标记行号
             HashMap<Integer,Contract> row_Contract=new HashMap<>();
+
             int i=2;
             for(Contract c:results){
                 row_Contract.put(i,c);
                 i++;
             }
-            //数据编号重复处理
-            Set<String>serials=new HashSet<String>();//存放去重的编号列
+            //数据不合法处理
+            List<Integer> row_ToRemove=new ArrayList<>();//要移除的行号
+            Set<String>serials=new HashSet<String>();//存放内部编号
             List<Integer> rowNumsRepeatInner=new ArrayList<Integer>();//存放内部冗余编号的行号
-            for(Map.Entry<Integer,Contract> entry:row_Contract.entrySet()){
-                Contract temp=entry.getValue();
-                String tempSerial=temp.getContractSerial();
-                if(!serials.contains(tempSerial)&&tempSerial!=null&&tempSerial!=""){
-                    serials.add(temp.getContractSerial());
-                }else{
-                    rowNumsRepeatInner.add(entry.getKey());
-                    row_Contract.remove(entry.getKey());
-                }
-            }
-            System.out.println("rowNumsRepeatInner:");
-            System.out.println(rowNumsRepeatInner);
-            //与数据库编号重复处理
-            List<String> serialsInDB=contractService.getSerialList();
+            List<String> serialsInDB=contractService.getSerialList();//数据库编号
             List<Integer> rowNumsRepeatDB=new ArrayList<>();//存放与数据库编号冗余的行号
-            for(Map.Entry<Integer,Contract> entry:row_Contract.entrySet()){
-                Contract temp=entry.getValue();
-                String tempSerial=temp.getContractSerial();
-                if (serialsInDB.contains(tempSerial)){
-                    rowNumsRepeatDB.add(entry.getKey());
-                    row_Contract.remove(entry.getKey());
-                }
-            }
-            System.out.println("rowNumsRepeatDB:");
-            System.out.println(rowNumsRepeatDB);
-
-            //外键不存在处理
-            List<String> projectSerialsInDB=projectService.getSerials();
+            List<String> projectSerialsInDB=projectService.getSerials();//数据库（外键）编号
             List<Integer> rowNumsOutJoinNotExist=new ArrayList<>();//存放外键不存在的行号
             for(Map.Entry<Integer,Contract> entry:row_Contract.entrySet()){
                 Contract temp=entry.getValue();
-                String tempProjectSerial =temp.getProjectSerial();
-                if(!projectSerialsInDB.contains(tempProjectSerial)){
-                    rowNumsOutJoinNotExist.add(entry.getKey());
-                    row_Contract.remove(entry.getKey());
+                String tempSerial=temp.getContractSerial();
+                if(!serials.contains(tempSerial)&&tempSerial!=null&&tempSerial!=""){//如果项目编号不为空且excel内部不重复
+                    serials.add(temp.getContractSerial());
+                    if(serialsInDB.contains(tempSerial)){
+                        rowNumsRepeatDB.add(entry.getKey());
+                        row_ToRemove.add(entry.getKey());
+                    }else{//判断与数据库内编号是否重复,若不重复
+                        String tempProjectSerial =temp.getProjectSerial();
+                        if(!projectSerialsInDB.contains(tempProjectSerial)){
+                            rowNumsOutJoinNotExist.add(entry.getKey());
+                            row_ToRemove.add(entry.getKey());
+                        }else{//判断外键是否存在，若存在.
+                            //根据所属项目编号，查询projectId
+                            int projectId=projectService.getProjectIDBySerial(tempProjectSerial);
+                            temp.setProjectId(projectId);
+                        }
+                    }
+                }else{
+                    rowNumsRepeatInner.add(entry.getKey());
+                    row_ToRemove.add(entry.getKey());
                 }
             }
-            System.out.println("rowNumsOutJoinNotExist:");
-            System.out.println(rowNumsOutJoinNotExist);
-            System.out.println("row_Contract:");
-            System.out.println(row_Contract);
-
-
-
-
-
-
+            //把<行号，实体>非法的行剔除
+            for(int rowDelete:row_ToRemove){
+                row_Contract.remove(rowDelete);
+            }
+            //取出entry的value加入List,mybatis批量导入
+            List<Contract> readyToInsert=new ArrayList<>();
+            for(Map.Entry<Integer,Contract> entry:row_Contract.entrySet()){
+                readyToInsert.add(entry.getValue());
+            }
+            contractService.batchInsert(readyToInsert);
+            int left=readyToInsert.size();
+            int defeatSize=total-left;
 
             // 将新图片名称返回到前端
             Map<String, Object> map = new HashMap<String, Object>();
-            map.put("success", "成功啦");
-            map.put("url", newFileName);
+            map.put("successSize", left);
+            map.put("defeatSize", defeatSize);
+            map.put("rowNumsRepeatInner",rowNumsRepeatInner);
+            map.put("rowNumsRepeatDB",rowNumsRepeatDB);
+            map.put("rowNumsOutJoinNotExist",rowNumsOutJoinNotExist);
             return map;
         } else {
             Map<String, Object> map = new HashMap<String, Object>();

@@ -2,6 +2,8 @@ package mapper.com.jsgc.business;
 
 import pojo.com.jsgc.business.Contract;
 
+import java.util.List;
+
 public interface ContractMapper {
     int deleteByPrimaryKey(Integer contractId);
 
@@ -17,5 +19,7 @@ public interface ContractMapper {
 
     int getContractIDBySerial(String contractSerial);
 
+    List<String> getSerialList();
 
+    void batchInsert(List<Contract> contracts);
 }

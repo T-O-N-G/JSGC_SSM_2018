@@ -10,6 +10,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 @Service
@@ -51,5 +52,10 @@ public class ContractService {
         return contractMapper.deleteByPrimaryKey(contractID);
     }
 
-
+    public List<String> getSerialList(){
+        return contractMapper.getSerialList();
+    }
+    public  void batchInsert(List<Contract> contracts){
+        contractMapper.batchInsert(contracts);
+    }
 }

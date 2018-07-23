@@ -1,8 +1,12 @@
 package pojo.com.jsgc.admin;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
+import cn.afterturn.easypoi.excel.annotation.ExcelTarget;
+
+@ExcelTarget("departmentEntity")
 public class Department {
     private String departmentId;
-
+    @Excel(name = "部门名称")
     private String departmentName;
 
     private Integer versionId;

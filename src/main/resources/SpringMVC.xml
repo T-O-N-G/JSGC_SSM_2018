@@ -30,17 +30,17 @@
     <!--静态页面, 如html, css, js, image等-->
     <mvc:default-servlet-handler />
 
-    <mvc:interceptors>
-        <!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->
-        <!-- <bean class="com.bybo.aca.web.interceptor.Login"/> -->
-        <mvc:interceptor>
-            <!-- 进行拦截：/**表示拦截所有controller -->
-            <mvc:mapping path="/**" />
-            <!-- 不进行拦截 -->
-            <mvc:exclude-mapping path="/login" />
-            <bean class="interceptor.JWTInterceptor" />
-        </mvc:interceptor>
-    </mvc:interceptors>
+    <!--<mvc:interceptors>-->
+        <!--&lt;!&ndash; 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 &ndash;&gt;-->
+        <!--&lt;!&ndash; <bean class="com.bybo.aca.web.interceptor.Login"/> &ndash;&gt;-->
+        <!--<mvc:interceptor>-->
+            <!--&lt;!&ndash; 进行拦截：/**表示拦截所有controller &ndash;&gt;-->
+            <!--<mvc:mapping path="/**" />-->
+            <!--&lt;!&ndash; 不进行拦截 &ndash;&gt;-->
+            <!--<mvc:exclude-mapping path="/login" />-->
+            <!--<bean class="interceptor.JWTInterceptor" />-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
 
 
 
@@ -50,7 +50,17 @@
         <property name="prefix" value="/WEB-INF/page/" />
         <property name="suffix" value=".jsp" />
     </bean>
-
+    <!--lzq,上传文件解析器-->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- set the max upload size100MB -->
+        <property name="maxUploadSize">
+            <value>104857600</value>
+        </property>
+        <property name="maxInMemorySize">
+            <value>4096</value>
+        </property>
+    </bean>
     <!-- 接口跨域配置 -->
     <!--<mvc:cors>-->
         <!--<mvc:mapping path="/**"-->
