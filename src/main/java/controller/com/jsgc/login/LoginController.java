@@ -1,5 +1,6 @@
 package controller.com.jsgc.login;
 
+import com.alibaba.fastjson.JSON;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,8 +11,10 @@ import service.com.jsgc.login.LoginService;
 //import sun.rmi.runtime.Log;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -24,7 +27,7 @@ public class LoginController {
 
     @RequestMapping("/login")
     @ResponseBody
-    public void login(@RequestBody Map<String,String> map, HttpServletResponse response) throws Exception {
+    public String login(@RequestBody Map<String,String> map, HttpServletResponse response) throws Exception {
 //        return loginService.loginAuth();
         Login loginInfo = new Login();
         loginInfo.setEmail(map.get("email"));
@@ -32,8 +35,13 @@ public class LoginController {
 
         loginService.loginAuth(loginInfo);
         System.out.println(loginInfo.getToken());
-
-        response.setHeader("Token", loginInfo.getToken());
+        Map<String,String> resultMap = new HashMap<String,String>();
+        resultMap.put("Token", loginInfo.getToken());
+//        response.setHeader("Token", loginInfo.getToken());
+        response.setStatus(200);
+        Cookie cookie = new Cookie("Token",loginInfo.getToken());
+        response.addCookie(cookie);
+        return JSON.toJSONString(resultMap);
 //        response.sendRedirect("login.html");
 
     }
