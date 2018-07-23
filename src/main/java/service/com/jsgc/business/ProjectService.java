@@ -36,7 +36,7 @@ public class ProjectService {
 
     public String getProjectDetail(int projectID) {
         Jedis jedis = jedisPool.getResource();
-        String key = "Project:"+projectID;
+        String key = "Project:ID:"+projectID;
         System.out.println(key);
         String result = jedis.get(key);
         //回收ShardedJedis实例

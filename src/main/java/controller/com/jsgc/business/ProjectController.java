@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
-@RequestMapping("/business/project/")
+//@RequestMapping("/business/project/")
 public class ProjectController {
     @Resource
     private ProjectService projectService;
@@ -30,7 +30,8 @@ public class ProjectController {
 
     @RequestMapping("getProjectDetail")
     @ResponseBody
-    public String getProjectDetail(int projectID){
+    public String getProjectDetail(Integer projectID){
+//        Project project = JSON.parseObject(params , new TypeReference<Project>() {});
         return   projectService.getProjectDetail(projectID);
     }
 
