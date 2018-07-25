@@ -35,7 +35,7 @@ public class LoginController {
 //        return loginService.loginAuth();
         Login loginInfo = new Login();
         loginInfo.setEmail(map.get("email"));
-        loginInfo.setEmail(map.get("password"));
+        loginInfo.setPassword(map.get("password"));
 
         loginService.loginAuth(loginInfo);
         System.out.println(loginInfo.getToken());

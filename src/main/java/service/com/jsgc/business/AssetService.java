@@ -3,6 +3,7 @@ package service.com.jsgc.business;
 import mapper.com.jsgc.business.AssetMapper;
 import mapper.com.jsgc.business.ContractMapper;
 import mapper.com.jsgc.business.ProjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
@@ -18,15 +19,17 @@ public class AssetService {
     @Resource
     private AssetMapper assetMapper;
 
-    ApplicationContext ac = new ClassPathXmlApplicationContext("spring-jedis.xml");
-
-    public JedisPool jedisPool = (JedisPool) ac.getBean("jedisPool");//注入JedisPool
+//    ApplicationContext ac = new ClassPathXmlApplicationContext("spring-jedis.xml");
+//
+//    public JedisPool jedisPool = (JedisPool) ac.getBean("jedisPool");//注入JedisPool
+@Autowired
+public JedisPool jedisPool;//注入JedisPool
 
 
 
     public String getAssetDetail(int assetID) {
         Jedis jedis = jedisPool.getResource();
-        String key = "Asset:"+assetID;
+        String key = "Asset:ID:"+assetID;
         System.out.println(key);
         String result = jedis.get(key);
         //回收ShardedJedis实例
