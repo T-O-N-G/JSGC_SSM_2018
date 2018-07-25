@@ -1,8 +1,14 @@
 package pojo.com.jsgc.admin;
 
+
+import cn.afterturn.easypoi.excel.annotation.Excel;
+import cn.afterturn.easypoi.excel.annotation.ExcelTarget;
+
+@ExcelTarget("userEntity")
 public class User {
     private Integer userId;
 
+    @Excel(name = "负责人")
     private String username;
 
     private String password;

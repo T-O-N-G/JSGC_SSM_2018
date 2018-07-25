@@ -171,4 +171,69 @@
       projectId = #{projectId,jdbcType=INTEGER}
     where contractId = #{contractId,jdbcType=INTEGER}
   </update>
+
+  <!--lzq，导入Excel，获取所有的编号-->
+  <select id="getSerialList" resultType="java.lang.String">
+    select contractSerial
+    from contract
+  </select>
+  <!--lzq，导入Excel，批量导入-->
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into contract( contractID,contractSerial, contractName,
+      contractOwner, contractPartner, contractSignedTime,
+      contractMoney, contractContent, contractComment, projectID) VALUES
+      <foreach collection="list" item="item" index="index" separator=",">
+        ( #{item.contractId,jdbcType=INTEGER},#{item.contractSerial,jdbcType=VARCHAR}, #{item.contractName,jdbcType=VARCHAR},
+        #{item.contractOwner,jdbcType=VARCHAR}, #{item.contractPartner,jdbcType=VARCHAR}, #{item.contractSignedTime,jdbcType=DATE},
+        #{item.contractMoney,jdbcType=INTEGER}, #{item.contractContent,jdbcType=VARCHAR}, #{item.contractComment,jdbcType=VARCHAR}
+        , #{item.projectId,jdbcType=INTEGER})
+      </foreach>
+  </insert>
+  <!--lzq,根据搜索条件查询-->
+   <resultMap id="ContractWithAssociation" type="pojo.com.jsgc.business.Contract">
+       <id column="contractID" property="contractId" jdbcType="INTEGER" />
+       <result column="contractSerial" property="contractSerial" jdbcType="VARCHAR" />
+       <result column="contractName" property="contractName" jdbcType="VARCHAR" />
+       <result column="contractOwner" property="contractOwner" jdbcType="VARCHAR" />
+       <result column="contractPartner" property="contractPartner" jdbcType="VARCHAR" />
+       <result column="contractSignedTime" property="contractSignedTime" jdbcType="DATE" />
+       <result column="contractMoney" property="contractMoney" jdbcType="INTEGER" />
+       <result column="contractContent" property="contractContent" jdbcType="VARCHAR" />
+       <result column="contractComment" property="contractComment" jdbcType="VARCHAR" />
+       <result column="contractDelete" property="contractDelete" jdbcType="INTEGER" />
+       <result column="projectID" property="projectId" jdbcType="INTEGER" />
+       <result column="projectSerial" property="projectSerial"></result>
+       <association property="project" javaType="pojo.com.jsgc.business.Project">
+           <id column="projectID" property="projectId"></id>
+           <result column="projectName" property="projectName"></result>
+       </association>
+   </resultMap>
+  <select id="selectByConditions" parameterType="util.com.jsgc.searchCondition.ContractSearchConditions" resultMap="ContractWithAssociation">
+     SELECT c.*,p.projectName,p.projectSerial
+     FROM contract c,project p
+--       ,buildContent b
+     WHERE c.contractDelete=0 AND
+      c.projectID=p.projectID
+--       AND c.buildContentID=b.buildContentID
+     <if test="contractSerial!=null">
+        AND c.contractSerial=#{contractSerial}
+     </if>
+     <if test="contractName!=null">
+        AND c.contractName LIKE CONCAT('%',#{contractName},'%' )
+     </if>
+     <if test='contractTimeMax!=null and contractTimeMin!=null'>
+        AND c.contractSignedTime>= #{contractTimeMin}
+        AND  #{contractTimeMax}>= c.contractSignedTime
+     </if>
+     <if test="projectSerial!=null">
+        AND p.projectSerial=#{projectSerial}
+     </if>
+     <if test="projectName!=null">
+        AND p.projectName  LIKE  CONCAT('%',#{projectName},'%' )
+     </if>
+     <!--<if>建设内容下拉框</if>-->
+     <if test='realOrder!=null and descOrNot!=null'>
+         ORDER BY ${realOrder} ${descOrNot}
+     </if>
+  </select>
 </mapper>

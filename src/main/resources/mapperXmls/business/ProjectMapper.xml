@@ -19,6 +19,11 @@
     projectId, projectSerial, projectName, projectBudgetNum, projectStartTime, projectEndTime, 
     projectStatus, projectComment, projectDelete, projectDepartmentId, budgetId, projectChargerId
   </sql>
+  <!--lzq,获取所有的projectSerial-->
+  <select id="getSerials" resultType="java.lang.String">
+    SELECT projectSerial
+    from project
+  </select>
   <select id="getProjectIDBySerial" parameterType="java.lang.String" resultType="java.lang.Integer">
     SELECT projectID
     from project

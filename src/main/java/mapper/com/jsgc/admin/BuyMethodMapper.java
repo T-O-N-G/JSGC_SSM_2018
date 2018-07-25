@@ -2,6 +2,8 @@ package mapper.com.jsgc.admin;
 
 import pojo.com.jsgc.admin.BuyMethod;
 
+import java.util.List;
+
 public interface BuyMethodMapper {
     int deleteByPrimaryKey(String buyMethodId);
 
@@ -14,4 +16,5 @@ public interface BuyMethodMapper {
     int updateByPrimaryKeySelective(BuyMethod record);
 
     int updateByPrimaryKey(BuyMethod record);
+    public List<String> getBuyMethodSerials();
 }

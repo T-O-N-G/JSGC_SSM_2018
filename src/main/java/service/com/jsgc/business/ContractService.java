@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import pojo.com.jsgc.business.Contract;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import util.com.jsgc.searchCondition.ContractSearchConditions;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 @Service
@@ -54,5 +56,14 @@ public JedisPool jedisPool;//注入JedisPool
         return contractMapper.deleteFakeByPrimaryKey(contractID);
     }
 
+    public List<String> getSerialList(){
+        return contractMapper.getSerialList();
+    }
+    public  void batchInsert(List<Contract> contracts){
+        contractMapper.batchInsert(contracts);
+    }
 
+    public List<Contract> selectByConditions(ContractSearchConditions cs){
+        return contractMapper.selectByConditions(cs);
+    }
 }
