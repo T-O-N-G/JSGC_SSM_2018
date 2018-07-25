@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import pojo.com.jsgc.business.Contract;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import util.com.jsgc.searchCondition.ContractSearchConditions;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -57,5 +58,9 @@ public class ContractService {
     }
     public  void batchInsert(List<Contract> contracts){
         contractMapper.batchInsert(contracts);
+    }
+
+    public List<Contract> selectByConditions(ContractSearchConditions cs){
+        return contractMapper.selectByConditions(cs);
     }
 }

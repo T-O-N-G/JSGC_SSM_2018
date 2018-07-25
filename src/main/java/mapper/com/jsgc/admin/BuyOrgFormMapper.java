@@ -2,6 +2,8 @@ package mapper.com.jsgc.admin;
 
 import pojo.com.jsgc.admin.BuyOrgForm;
 
+import java.util.List;
+
 public interface BuyOrgFormMapper {
     int deleteByPrimaryKey(String buyOrgFormId);
 
@@ -14,4 +16,5 @@ public interface BuyOrgFormMapper {
     int updateByPrimaryKeySelective(BuyOrgForm record);
 
     int updateByPrimaryKey(BuyOrgForm record);
+    public List<String> getBuyOrgFormSerials();
 }

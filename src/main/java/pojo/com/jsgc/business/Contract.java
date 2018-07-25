@@ -32,7 +32,9 @@ public class Contract {
     private Integer projectId;
     @Excel(name="项目编号")
     private String projectSerial;
-
+    //lzq,所属项目
+    private Project project;
+    //lzq,建设内容
     @Override
     public String toString() {
         return "Contract{" +
@@ -48,8 +50,18 @@ public class Contract {
                 ", contractDelete=" + contractDelete +
                 ", projectId=" + projectId +
                 ", projectSerial='" + projectSerial + '\'' +
+                ", project=" + project +
                 '}';
     }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
 
     public String getProjectSerial() {
         return projectSerial;

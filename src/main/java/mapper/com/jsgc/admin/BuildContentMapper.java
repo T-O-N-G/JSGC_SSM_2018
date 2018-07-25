@@ -2,6 +2,8 @@ package mapper.com.jsgc.admin;
 
 import pojo.com.jsgc.admin.BuildContent;
 
+import java.util.List;
+
 public interface BuildContentMapper {
     int deleteByPrimaryKey(String buildContentId);
 
@@ -14,4 +16,5 @@ public interface BuildContentMapper {
     int updateByPrimaryKeySelective(BuildContent record);
 
     int updateByPrimaryKey(BuildContent record);
+    public List<String> getBuildContentSerials();
 }

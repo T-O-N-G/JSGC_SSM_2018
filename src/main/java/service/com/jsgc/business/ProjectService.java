@@ -59,6 +59,7 @@ public class ProjectService {
     public List<String> getSerials(){
         return  projectMapper.getSerials();
     }
+
     public int getProjectIDBySerial(String projectSerial){
         return projectMapper.getProjectIDBySerial(projectSerial);
     }

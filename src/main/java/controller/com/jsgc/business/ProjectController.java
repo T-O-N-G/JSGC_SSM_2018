@@ -14,6 +14,7 @@ import util.com.jsgc.searchCondition.ProjectSearchConditions;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -23,8 +24,25 @@ public class ProjectController {
     private ProjectService projectService;
     @RequestMapping("getProjectList")
     @ResponseBody
-    public List<Project> searchByConditons(RequestPage rp, ProjectSearchConditions psc){
-      return   projectService.searchByConditions(rp,psc);
+    public String searchByConditons(HttpServletRequest request){
+        //分页条件
+        int limit=Integer.parseInt(request.getParameter("limit"));
+        int start=Integer.parseInt(request.getParameter("start"));
+        System.out.println(limit+" "+start);
+        RequestPage requestPage=new RequestPage(limit,start);
+        //搜索条件
+        String projectSerial=request.getParameter("projectSerial");
+        String projectName=request.getParameter("projectName");
+        String projectDepartment=request.getParameter("projectDepartment");//承包部门编号
+        String projectOwner=request.getParameter("projectOwner");//项目负责人姓名
+        int projectBudgetDown=Integer.parseInt(request.getParameter("projectBudgetDown"));
+        int projectBudgetUp=Integer.parseInt(request.getParameter("projectBudgetUp"));
+        String order=request.getParameter("order");
+        System.out.println(projectSerial+" "+projectName+" "+projectDepartment+" "+projectOwner+" "+projectBudgetDown+" "+order);
+        HashMap searchConditionMaps=new HashMap();
+        //searchConditionMaps.put("projectSerial")
+
+        return "ok";
     }
 
 

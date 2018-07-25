@@ -3,7 +3,6 @@ package util.com.jsgc;
 public class RequestPage {
     private int limit; //每页多少条
     private int start;//第几条开始
-    private int page;//第几页
 
     public int getLimit() {
         return limit;
@@ -21,11 +20,9 @@ public class RequestPage {
         this.start = start;
     }
 
-    public int getPage() {
-        return page;
+    public RequestPage(int limit, int start) {
+        this.limit = limit;
+        this.start = start;
     }
 
-    public void setPage(int page) {
-        this.page = page;
-    }
 }

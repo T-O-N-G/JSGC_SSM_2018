@@ -133,4 +133,10 @@ public class testExcel {
             e.printStackTrace();
         }
     }
+    @Test
+    public void testNullToString(){
+        String a=null;
+        System.out.println(a);
+        System.out.println(a==null);
+    }
 }
