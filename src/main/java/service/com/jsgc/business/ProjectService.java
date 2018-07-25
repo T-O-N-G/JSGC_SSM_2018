@@ -2,6 +2,7 @@ package service.com.jsgc.business;
 
 //import mapper.com.jsgc.business.ProjectMapper;
 import mapper.com.jsgc.business.ProjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
@@ -20,9 +21,9 @@ public class ProjectService {
     @Resource
     private ProjectMapper projectMapper;
 
-    ApplicationContext ac = new ClassPathXmlApplicationContext("spring-jedis.xml");
-
-    public JedisPool jedisPool = (JedisPool) ac.getBean("jedisPool");//注入JedisPool
+//    ApplicationContext ac = new ClassPathXmlApplicationContext("spring-jedis.xml");
+@Autowired
+    public JedisPool jedisPool;//注入JedisPool
 
     public List<Project> searchByConditions(RequestPage rp, ProjectSearchConditions psc){
 //        projectMapper.searchByConditions();

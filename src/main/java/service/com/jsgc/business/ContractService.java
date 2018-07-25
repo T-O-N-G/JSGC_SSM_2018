@@ -2,6 +2,7 @@ package service.com.jsgc.business;
 
 import mapper.com.jsgc.business.ContractMapper;
 import mapper.com.jsgc.business.ProjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
@@ -21,15 +22,17 @@ public class ContractService {
     @Resource
     private ProjectMapper projectMapper;
 
-    ApplicationContext ac = new ClassPathXmlApplicationContext("spring-jedis.xml");
-
-    public JedisPool jedisPool = (JedisPool) ac.getBean("jedisPool");//注入JedisPool
+//    ApplicationContext ac = new ClassPathXmlApplicationContext("spring-jedis.xml");
+//
+//    public JedisPool jedisPool = (JedisPool) ac.getBean("jedisPool");//注入JedisPool
+@Autowired
+public JedisPool jedisPool;//注入JedisPool
 
 
 
     public String getContractDetail(int contractID) {
         Jedis jedis = jedisPool.getResource();
-        String key = "Contract:"+contractID;
+        String key = "Contract:ID:"+contractID;
         System.out.println(key);
         String result = jedis.get(key);
         //回收ShardedJedis实例
