@@ -5,6 +5,8 @@ import pojo.com.jsgc.business.Finance;
 public interface FinanceMapper {
     int deleteByPrimaryKey(Integer financeId);
 
+    int deleteFakeByPrimaryKey(Integer financeId);
+
     int insert(Finance record);
 
     int insertSelective(Finance record);

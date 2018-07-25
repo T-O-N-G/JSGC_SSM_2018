@@ -7,6 +7,8 @@ import java.util.List;
 public interface ProjectMapper {
     int deleteByPrimaryKey(Integer projectId);
 
+    int deleteFakeByPrimaryKey(Integer projectId);
+
     int insert(Project record);
 
     int insertSelective(Project record);

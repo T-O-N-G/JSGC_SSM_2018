@@ -17,13 +17,14 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 //@RequestMapping("/business/project/")
 public class ProjectController {
     @Resource
     private ProjectService projectService;
-    @RequestMapping("getProjectList")
+    @RequestMapping("/getProjectList")
     @ResponseBody
     public String searchByConditons(@RequestBody String params){
         System.out.println(params);
@@ -77,6 +78,7 @@ public class ProjectController {
     @RequestMapping("deleteProject")
     @ResponseBody
     public int deleteProject(int projectID){
+
         return  projectService.deleteProject(projectID);
     }
 

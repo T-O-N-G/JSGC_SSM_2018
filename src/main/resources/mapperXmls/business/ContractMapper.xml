@@ -33,6 +33,11 @@
     delete from contract
     where contractId = #{contractId,jdbcType=INTEGER}
   </delete>
+  <update id="deleteFakeByPrimaryKey" parameterType="java.lang.Integer">
+    UPDATE contract
+    SET contractDelete=0
+    WHERE contractID = #{contractId,jdbcType=INTEGER}
+  </update>
   <insert id="insert" parameterType="pojo.com.jsgc.business.Contract" >
     insert into contract (contractId, contractSerial, contractName, 
       contractOwner, contractPartner, contractSignedTime, 

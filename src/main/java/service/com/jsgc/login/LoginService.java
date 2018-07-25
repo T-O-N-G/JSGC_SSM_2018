@@ -47,18 +47,21 @@ public class LoginService {
 
             //生成 Token
             Map<String, String> payloads = new HashMap<>();
-            payloads.put("userID", String.valueOf(login.getUserID()));
-            payloads.put("level", String.valueOf(login.getLevel()));
+            payloads.put("userID", String.valueOf(user.getUserId()));
+            payloads.put("level", String.valueOf(user.getPermissionLevel()));
 //            String payload = JSON.toJSONString(payloads);
-            login.setToken(jwtUtil.createJWT("jwt", "tong", 259200000, String.valueOf(login.getUserID()), String.valueOf(login.getLevel())));
+            login.setToken(jwtUtil.createJWT("jwt", "tong", 259200000, String.valueOf(user.getUserId()), String.valueOf(user.getPermissionLevel())));
             System.out.println(login.getToken());
 //            login.setUsername(username);
 //            login.setUserID(userID);
             //Token 放入 Redis
             Jedis jedis = jedisPool.getResource();
-            String key = "Token:" + String.valueOf(login.getUserID());
+            String key = "Token:" + String.valueOf(user.getUserId());
             jedis.setex(key, 259200,login.getToken());
             jedis.close();
+            login.setUsername(user.getUsername());
+            login.setLevel(user.getPermissionLevel());
+            login.setUserID(user.getUserId());
             return "success";
         } else {
             return "error";
