@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.ZParams;
+import util.DateUtil;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -19,18 +20,51 @@ public class NotificationService {
     @Autowired
     public JedisPool jedisPool;
 
-    public String getUserNotification(Integer userID) throws Exception {
+    public String getUserNotification(String userID) throws Exception {
         Jedis jedis = jedisPool.getResource();
         ZParams zParams = new ZParams();
         zParams.aggregate(ZParams.Aggregate.MAX);
-        jedis.zunionstore("tmp:Notify:" + String.valueOf(userID), zParams, "Notify:User:"+String.valueOf(userID), "Notify:All");
-        Set<String> result = jedis.zrevrange("tmp:Notify:" + String.valueOf(userID), 0,5);
-        jedis.del("tmp:Notify:" + String.valueOf(userID));
+        jedis.zunionstore("tmp:Notify:" + userID, zParams, "Notify:User:"+userID, "Notify:All");
+        Set<String> result = jedis.zrevrange("tmp:Notify:" + userID, 0,5);
+        jedis.del("tmp:Notify:" + userID);
         jedis.close();
-        String notificationResult = JSON.toJSONString(result);
+        String notificationResult = "[";
+        for (String item: result
+             ) {
+            notificationResult+=item;
+            notificationResult+=",";
+        }
+        notificationResult = notificationResult.substring(0,notificationResult.length() - 1);
+        notificationResult += "]";
+
         System.out.println(notificationResult);
         return notificationResult;
 //        response.sendRedirect("login.html");
+    }
+
+
+    public int addNotification(String userID, String message, String title){
+        Jedis jedis = jedisPool.getResource();
+        String time = DateUtil.timeStamp();
+        HashMap<String,String> item = new HashMap<String, String>();
+        item.put("NoTitle", title);
+        item.put("NoTime", DateUtil.timeStamp2Date(time, "yyyy-MM-dd"));
+        item.put("NoContent", message);
+        jedis.zadd("Notify:User:"+userID, Double.parseDouble(time), JSON.toJSONString(item));
+        jedis.close();
+        return 0;
+    }
+
+    public int addPublicNotification(String message, String title){
+        Jedis jedis = jedisPool.getResource();
+        String time = DateUtil.timeStamp();
+        HashMap<String,String> item = new HashMap<String, String>();
+        item.put("NoTitle", title);
+        item.put("NoTime", DateUtil.timeStamp2Date(time, "yyyy-MM-dd"));
+        item.put("NoContent", message);
+        jedis.zadd("Notify:All", Double.parseDouble(time), JSON.toJSONString(item));
+        jedis.close();
+        return 0;
     }
 
 
