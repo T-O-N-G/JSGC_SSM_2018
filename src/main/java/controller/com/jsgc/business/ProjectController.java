@@ -22,7 +22,7 @@ import java.util.List;
 public class ProjectController {
     @Resource
     private ProjectService projectService;
-    @RequestMapping("getProjectList")
+    @RequestMapping("/getProjectList")
     @ResponseBody
     public String searchByConditons(HttpServletRequest request){
         //分页条件
