@@ -25,8 +25,18 @@ public class NotificationController {
     @RequestMapping("/getNotification")
     @ResponseBody
     public String getNotification(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        return notificationService.getUserNotification((Integer) request.getAttribute("userID"));
+        return notificationService.getUserNotification((String) request.getAttribute("userID"));
 
     }
+//
+//    @RequestMapping("/addNotification")
+//    @ResponseBody
+//    public String addNotification(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//
+//        notificationService.addNotification((String) request.getAttribute("userID"), "测试通知","测试通知标题");
+//        notificationService.addPublicNotification("测试公告","测试通知标题");
+//        return "OK";
+//
+//    }
 
 }
