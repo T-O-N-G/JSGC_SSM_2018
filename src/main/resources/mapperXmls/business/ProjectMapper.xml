@@ -39,6 +39,11 @@
     delete from project
     where projectId = #{projectId,jdbcType=INTEGER}
   </delete>
+  <update id="deleteFakeByPrimaryKey" parameterType="java.lang.Integer">
+    UPDATE project
+    SET projectDelete=0
+    WHERE projectID = #{projectId,jdbcType=INTEGER}
+  </update>
   <insert id="insert" parameterType="pojo.com.jsgc.business.Project" >
     insert into project (projectId, projectSerial, projectName, 
       projectBudgetNum, projectStartTime, projectEndTime, 

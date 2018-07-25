@@ -49,7 +49,8 @@ public class ContractController {
 
     @RequestMapping("deleteContract")
     @ResponseBody
-    public int deleteContract(int contractID){
+    public int deleteContract(Integer contractID){
+//        Integer contractID = JSON.parseObject(params,new TypeReference<Integer>() {});
         return  contractService.deleteContract(contractID);
     }
 

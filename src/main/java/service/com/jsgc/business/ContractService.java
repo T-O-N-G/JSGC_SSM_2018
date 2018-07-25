@@ -53,7 +53,7 @@ public JedisPool jedisPool;//注入JedisPool
     }
 
     public int deleteContract(int contractID){
-        return contractMapper.deleteByPrimaryKey(contractID);
+        return contractMapper.deleteFakeByPrimaryKey(contractID);
     }
 
     public List<String> getSerialList(){

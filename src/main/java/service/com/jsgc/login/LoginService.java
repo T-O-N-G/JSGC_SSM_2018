@@ -59,6 +59,9 @@ public class LoginService {
             String key = "Token:" + String.valueOf(login.getUserID());
             jedis.setex(key, 259200,login.getToken());
             jedis.close();
+            login.setUsername(user.getUsername());
+            login.setLevel(user.getPermissionLevel());
+            login.setUserID(user.getUserId());
             return "success";
         } else {
             return "error";

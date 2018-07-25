@@ -4,6 +4,7 @@ import pojo.com.jsgc.business.Document;
 
 public interface DocumentMapper {
     int deleteByPrimaryKey(Integer documentId);
+    int deleteFakeByPrimaryKey(Integer documentId);
 
     int insert(Document record);
 

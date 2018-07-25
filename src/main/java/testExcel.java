@@ -45,7 +45,7 @@ public class testExcel {
         a.setProjectEndTime(new Date());
         a.setProjectName("hehe");
         a.setProjectStatus(0);
-        User auser=new User(); auser.setUserName("呵呵");
+        User auser=new User(); auser.setUsername("呵呵");
        // a.setProjectCharger(auser);
         Project b=new Project();
         b.setProjectSerial("1002");

@@ -45,6 +45,6 @@ public JedisPool jedisPool;//注入JedisPool
     }
 
     public int deleteDocument(int documentID) {
-        return documentMapper.deleteByPrimaryKey(documentID);
+        return documentMapper.deleteFakeByPrimaryKey(documentID);
     }
 }

@@ -43,6 +43,7 @@ public class DocumentController {
     @RequestMapping("deleteDocument")
     @ResponseBody
     public int deleteDocument(int documentID){
+//        Integer documentID = JSON.parseObject(params,new TypeReference<Integer>() {});
         return documentService.deleteDocument(documentID);
     }
 }
