@@ -18,4 +18,6 @@ public interface ProjectMapper {
     int updateByPrimaryKey(Project record);
     int getProjectIDBySerial(String projectSerial);
     List<String> getSerials();
+    //分页测试
+    List<Project> selectAll();
 }

@@ -9,8 +9,27 @@ public class ProjectSearchConditions {
     private String projectDepartment;//传的是部门id
     private String projectOwner;
     private int projectBudgetDown;
-    private int getProjectBudgetUp;
+    private int projectBudgetUp;
 
+    private int start;
+
+    private int limit;
+
+    @Override
+    public String toString() {
+        return "ProjectSearchConditions{" +
+                "realOrder='" + realOrder + '\'' +
+                ", descOrNot='" + descOrNot + '\'' +
+                ", projectSerial='" + projectSerial + '\'' +
+                ", projectName='" + projectName + '\'' +
+                ", projectDepartment='" + projectDepartment + '\'' +
+                ", projectOwner='" + projectOwner + '\'' +
+                ", projectBudgetDown=" + projectBudgetDown +
+                ", projectBudgetUp=" + projectBudgetUp +
+                ", start=" + start +
+                ", limit=" + limit +
+                '}';
+    }
 
     public void parseOrder(){
         if(this.order!=null){
@@ -42,6 +61,22 @@ public class ProjectSearchConditions {
                     throw new RuntimeException("列号非法");
             }
         }
+    }
+
+    public int getStart() {
+        return start;
+    }
+
+    public void setStart(int start) {
+        this.start = start;
+    }
+
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
     }
 
     public String getOrder() {
@@ -108,11 +143,11 @@ public class ProjectSearchConditions {
         this.projectBudgetDown = projectBudgetDown;
     }
 
-    public int getGetProjectBudgetUp() {
-        return getProjectBudgetUp;
+    public int getProjectBudgetUp() {
+        return projectBudgetUp;
     }
 
-    public void setGetProjectBudgetUp(int getProjectBudgetUp) {
-        this.getProjectBudgetUp = getProjectBudgetUp;
+    public void setProjectBudgetUp(int projectBudgetUp) {
+        this.projectBudgetUp = projectBudgetUp;
     }
 }

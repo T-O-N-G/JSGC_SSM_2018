@@ -1,6 +1,9 @@
 package service.com.jsgc.business;
 
 //import mapper.com.jsgc.business.ProjectMapper;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import mapper.com.jsgc.business.ProjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -25,14 +28,14 @@ public class ProjectService {
 @Autowired
     public JedisPool jedisPool;//注入JedisPool
 
-    public List<Project> searchByConditions(RequestPage rp, ProjectSearchConditions psc){
+    public List<Project> searchByConditions(ProjectSearchConditions ps){
 //        projectMapper.searchByConditions();
-        List<Project> ls=new ArrayList<Project>();
-        Project a=new Project();
-        Project b=new Project();
-        ls.add(a);
-        ls.add(b);
-        return(ls);
+        Page page= PageHelper.startPage(ps.getStart(),ps.getLimit(),true);
+        List<Project> projects=projectMapper.selectAll();
+        System.out.println(page.getTotal());
+        System.out.println("分页数据:");
+        System.out.println(projects);
+        return projects;
     }
 
     public String getProjectDetail(int projectID) {
