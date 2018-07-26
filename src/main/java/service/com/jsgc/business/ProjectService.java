@@ -35,7 +35,7 @@ public class ProjectService {
         System.out.println(ps.getStart()+" "+ps.getLimit());
 
         Page page= PageHelper.startPage(ps.getPage(),ps.getLimit(),true);
-        List<Project> projects=projectMapper.selectAll();
+        List<Project> projects=projectMapper.selectByConditions(ps);
 
         System.out.println(page.getTotal());
         System.out.println("分页数据:");
@@ -46,7 +46,6 @@ public class ProjectService {
         HashMap map=new HashMap();
         map.put("total",page.getTotal());
         map.put("data",projects);
-
         return JSON.toJSONString(map);
 
     }

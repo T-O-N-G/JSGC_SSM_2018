@@ -22,6 +22,7 @@ import java.util.Map;
 
 @Controller
 //@RequestMapping("/business/project/")
+@RequestMapping(produces = {"application/json; charset=UTF-8"})
 public class ProjectController {
     @Resource
     private ProjectService projectService;
@@ -33,7 +34,7 @@ public class ProjectController {
         System.out.println(ps);
         ps.parseOrder();
         System.out.println(ps);
-        String gbk = new String(projectService.searchByConditions(ps).getBytes(), "utf-8");
+        return projectService.searchByConditions(ps);
 //        //分页条件
 //        int limit=Integer.parseInt(request.getParameter("limit"));
 //        int start=Integer.parseInt(request.getParameter("start"));
@@ -51,7 +52,6 @@ public class ProjectController {
 //        HashMap searchConditionMaps=new HashMap();
 //        //searchConditionMaps.put("projectSerial")
 //
-        return gbk;
     }
 
 

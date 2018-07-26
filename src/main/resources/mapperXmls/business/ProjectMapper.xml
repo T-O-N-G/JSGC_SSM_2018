@@ -24,6 +24,57 @@
     select *
     from project
   </select>
+  <!--lzq,条件查询-->
+  <resultMap id="projectWithAssociation" type="pojo.com.jsgc.business.Project">
+    <id column="projectId" property="projectId" jdbcType="INTEGER" />
+    <result column="projectSerial" property="projectSerial" jdbcType="VARCHAR" />
+    <result column="projectName" property="projectName" jdbcType="VARCHAR" />
+    <result column="projectBudgetSum" property="projectBudgetSum" jdbcType="INTEGER" />
+    <result column="projectStartTime" property="projectStartTime" jdbcType="DATE" />
+    <result column="projectEndTime" property="projectEndTime" jdbcType="DATE" />
+    <result column="projectStatus" property="projectStatus" jdbcType="INTEGER" />
+    <result column="projectComment" property="projectComment" jdbcType="VARCHAR" />
+    <result column="projectDelete" property="projectDelete" jdbcType="INTEGER" />
+    <result column="projectDepartmentId" property="projectDepartmentId" jdbcType="VARCHAR" />
+    <result column="budgetId" property="budgetId" jdbcType="INTEGER" />
+    <result column="projectChargerId" property="projectChargerId" jdbcType="INTEGER" />
+    <association property="projectDepartment" javaType="pojo.com.jsgc.admin.Department" >
+      <result column="departmentName" property="departmentName"></result>
+    </association>
+    <association property="projectCharger" javaType="pojo.com.jsgc.admin.User">
+      <result column="username" property="username"></result>
+    </association>
+  </resultMap>
+  <!--lzq,多条件搜索-->
+  <select id="selectByConditions" parameterType="util.com.jsgc.searchCondition.ProjectSearchConditions" resultMap="projectWithAssociation">
+    select p.*,u.username,d.departmentName
+    from project p LEFT OUTER JOIN user u
+    on  p.projectChargerID=u.userID
+    LEFT OUTER JOIN department d
+    on p.projectDepartmentID=d.departmentID
+    where p.projectDelete=0
+    <if test="projectSerial!=null and projectSerial!=''" >
+      and p.projectSerial=#{projectSerial}
+    </if>
+    <if test="projectName!=null and projectName!=''">
+      and p.projectName LIKE CONCAT('%',#{projectName},'%' )
+    </if>
+    <if test="projectDepartment!=null and projectDepartment!=''">
+      and d.departmentID=#{projectDepartment}
+    </if>
+    <if test="projectOwner!=null and projectOwner!=''">
+      and u.username=#{projectOwner}
+    </if>
+    <if test="projectBudgetDown!=null and projectBudgetDown!=0" >
+      and p.projectBudgetSum>=#{projectBudgetDown}
+    </if>
+    <if test="projectBudgetUp!=null and projectBudgetUp!=0">
+      and #{projectBudgetUp}>=p.projectBudgetSum
+    </if>
+    <if test="realOrder!=null and realOrder!=''">
+      ORDER BY ${realOrder} ${descOrNot}
+    </if>
+  </select>
   <!--lzq,获取所有的projectSerial-->
   <select id="getSerials" resultType="java.lang.String">
     SELECT projectSerial
@@ -46,8 +97,8 @@
   </delete>
   <update id="deleteFakeByPrimaryKey" parameterType="java.lang.Integer">
     UPDATE project
-    SET projectDelete=0
-    WHERE projectID = #{projectId,jdbcType=INTEGER}
+    SET projectDelete=1
+    WHERE projectID = #{projectId,jdbcType=INTEGER}``
   </update>
   <insert id="insert" parameterType="pojo.com.jsgc.business.Project" >
     insert into project (projectId, projectSerial, projectName, 
