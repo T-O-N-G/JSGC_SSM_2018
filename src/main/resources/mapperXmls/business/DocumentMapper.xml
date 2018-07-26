@@ -24,6 +24,32 @@
     from document
     where documentId = #{documentId,jdbcType=INTEGER}
   </select>
+  <select id="selectAll" resultType="pojo.com.jsgc.business.Document">
+    select *
+    from document d inner join project p
+    on d.projectID = p.projectID
+    inner join contract ct
+    on d.contractID = ct.contractID
+    where 1 = 1
+    <if test="documentSerial!=null and documentSerial!=''">
+      and d.documentSerial = #{documentSerial,jdbcType=VARCHAR}
+    </if>
+    <if test="documentName!=null and documentName!=''">
+      and d.documentName like '%${documentName}%'
+    </if>
+    <if test="documentType!=null and documentType!='' and documentType!=0">
+      and d.documentType = #{documentType,jdbcType=INTEGER}
+    </if>
+    <if test="documentOwner!=null and documentOwner!=''">
+      and d.documentOwner like '%${documentOwner}%'
+    </if>
+    <if test="docUploadTimeRange!=null and docUploadTimeRange!=''">
+      and d.documentUploadTime = #{docUploadTimeRange,jdbcType=VARCHAR}
+    </if>
+    <if test='realOrder!=null and descOrNot!=null'>
+      ORDER BY ${realOrder} ${descOrNot}
+    </if>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from document
     where documentId = #{documentId,jdbcType=INTEGER}

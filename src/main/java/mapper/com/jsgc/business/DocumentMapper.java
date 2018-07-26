@@ -1,6 +1,9 @@
 package mapper.com.jsgc.business;
 
 import pojo.com.jsgc.business.Document;
+import util.com.jsgc.searchCondition.DocumentSearchConditions;
+
+import java.util.List;
 
 public interface DocumentMapper {
     int deleteByPrimaryKey(Integer documentId);
@@ -15,4 +18,7 @@ public interface DocumentMapper {
     int updateByPrimaryKeySelective(Document record);
 
     int updateByPrimaryKey(Document record);
+
+
+    List<Document> selectAll(DocumentSearchConditions ps);
 }
