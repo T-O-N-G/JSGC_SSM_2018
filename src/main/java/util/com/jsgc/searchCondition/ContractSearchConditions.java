@@ -116,13 +116,13 @@ public class ContractSearchConditions {
     }
 
     public void parseDateRange() throws ParseException {
-        if(this.contractSignedTime!=null){
+        if(this.contractSignedTime!=null&&this.contractSignedTime!=""){
             this.contractTimeMin= this.contractSignedTime.substring(0,10);
             this.contractTimeMax=this.contractSignedTime.substring(13,23);
         }
     }
     public void parseOrder(){
-        if(this.order!=null){
+        if(this.order!=null&&this.order!=""&&this.order!="[]"){
             String[]ss=this.order.split(",");
             String []former= ss[0].split(":");
             String []later=ss[1].split(":");

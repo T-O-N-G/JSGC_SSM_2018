@@ -25,6 +25,26 @@ public class Document {
 
     private Integer contractId;
 
+    private String projectName;
+
+    private String contractName;
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public String getContractName() {
+        return contractName;
+    }
+
+    public void setContractName(String contractName) {
+        this.contractName = contractName;
+    }
+
     public Integer getDocumentId() {
         return documentId;
     }

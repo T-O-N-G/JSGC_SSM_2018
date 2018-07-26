@@ -11,8 +11,10 @@ import pojo.com.jsgc.business.Document;
 import pojo.com.jsgc.business.Finance;
 import service.com.jsgc.business.DocumentService;
 import service.com.jsgc.business.FinanceService;
+import util.com.jsgc.searchCondition.DocumentSearchConditions;
 
 import javax.annotation.Resource;
+import java.io.UnsupportedEncodingException;
 
 @Controller
 //@RequestMapping("/bussiness/document/")
@@ -20,6 +22,18 @@ import javax.annotation.Resource;
 public class DocumentController {
     @Resource
     private DocumentService documentService;
+
+    @RequestMapping("/getDocList")
+    @ResponseBody
+    public String searchByConditons(@RequestBody String params) throws UnsupportedEncodingException {
+        System.out.println(params);
+        DocumentSearchConditions ps = JSON.parseObject(params , new TypeReference<DocumentSearchConditions>() {});
+        System.out.println(ps);
+        ps.parseOrder();
+        System.out.println(ps);
+        return documentService.searchByConditions(ps);
+    }
+
 
     @RequestMapping("getDocumentDetail")
     @ResponseBody
