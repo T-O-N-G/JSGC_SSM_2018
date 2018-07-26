@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-//@RequestMapping("/business/project/")
+@RequestMapping("/business/project/")
 public class ProjectController {
     @Resource
     private ProjectService projectService;

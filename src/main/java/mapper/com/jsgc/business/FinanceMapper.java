@@ -2,6 +2,8 @@ package mapper.com.jsgc.business;
 
 import pojo.com.jsgc.business.Finance;
 
+import java.util.List;
+
 public interface FinanceMapper {
     int deleteByPrimaryKey(Integer financeId);
 
@@ -16,4 +18,6 @@ public interface FinanceMapper {
     int updateByPrimaryKeySelective(Finance record);
 
     int updateByPrimaryKey(Finance record);
+
+    List<Finance> selectAll();
 }

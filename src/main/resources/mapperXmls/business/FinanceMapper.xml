@@ -29,6 +29,13 @@
     from finance
     where financeId = #{financeId,jdbcType=INTEGER}
   </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from finance
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from finance
     where financeId = #{financeId,jdbcType=INTEGER}
