@@ -12,6 +12,8 @@ import javax.annotation.Resource;
 
 @Controller
 //@RequestMapping("/bussiness/asset/")
+@RequestMapping(produces = {"application/json; charset=UTF-8"})
+
 public class AssetController {
     @Resource
     private AssetService assetService;

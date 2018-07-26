@@ -23,6 +23,8 @@ import java.util.List;
 
 @Controller
 //@RequestMapping("/bussiness/contract/")
+@RequestMapping(produces = {"application/json; charset=UTF-8"})
+
 public class ContractController {
     @Resource
     private ContractService contractService;

@@ -15,7 +15,8 @@ import service.com.jsgc.business.FinanceService;
 import javax.annotation.Resource;
 
 @Controller
-@RequestMapping("/bussiness/document/")
+//@RequestMapping("/bussiness/document/")
+@RequestMapping(produces = {"application/json; charset=UTF-8"})
 public class DocumentController {
     @Resource
     private DocumentService documentService;
