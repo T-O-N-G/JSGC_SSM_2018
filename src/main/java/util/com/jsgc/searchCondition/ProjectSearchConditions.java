@@ -12,13 +12,14 @@ public class ProjectSearchConditions {
     private int projectBudgetUp;
 
     private int start;
-
+    private int page;
     private int limit;
 
     @Override
     public String toString() {
         return "ProjectSearchConditions{" +
-                "realOrder='" + realOrder + '\'' +
+                "order='" + order + '\'' +
+                ", realOrder='" + realOrder + '\'' +
                 ", descOrNot='" + descOrNot + '\'' +
                 ", projectSerial='" + projectSerial + '\'' +
                 ", projectName='" + projectName + '\'' +
@@ -32,7 +33,7 @@ public class ProjectSearchConditions {
     }
 
     public void parseOrder(){
-        if(this.order!=null){
+        if(this.order!=null&&!this.order.equals("[]")){
             String[]ss=this.order.split(",");
             String []former= ss[0].split(":");
             String []later=ss[1].split(":");
@@ -61,6 +62,14 @@ public class ProjectSearchConditions {
                     throw new RuntimeException("列号非法");
             }
         }
+    }
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
     }
 
     public int getStart() {

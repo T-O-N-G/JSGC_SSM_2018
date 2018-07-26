@@ -1,6 +1,7 @@
 package service.com.jsgc.business;
 
 //import mapper.com.jsgc.business.ProjectMapper;
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -17,6 +18,7 @@ import util.com.jsgc.searchCondition.ProjectSearchConditions;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -28,14 +30,25 @@ public class ProjectService {
 @Autowired
     public JedisPool jedisPool;//注入JedisPool
 
-    public List<Project> searchByConditions(ProjectSearchConditions ps){
+    public String searchByConditions(ProjectSearchConditions ps ){
 //        projectMapper.searchByConditions();
-        Page page= PageHelper.startPage(ps.getStart(),ps.getLimit(),true);
+        System.out.println(ps.getStart()+" "+ps.getLimit());
+
+        Page page= PageHelper.startPage(ps.getPage(),ps.getLimit(),true);
         List<Project> projects=projectMapper.selectAll();
+
         System.out.println(page.getTotal());
         System.out.println("分页数据:");
+        PageInfo<Project> pageInfo=new PageInfo<>(projects);
+        System.out.println(pageInfo.getList());
         System.out.println(projects);
-        return projects;
+
+        HashMap map=new HashMap();
+        map.put("total",page.getTotal());
+        map.put("data",projects);
+
+        return JSON.toJSONString(map);
+
     }
 
     public String getProjectDetail(int projectID) {

@@ -20,7 +20,7 @@
     projectStatus, projectComment, projectDelete, projectDepartmentId, budgetId, projectChargerId
   </sql>
   <!--lzq,分页测试-->
-  <select id="selectAll" resultMap="pojo.com.jsgc.business.Project">
+  <select id="selectAll" resultType="pojo.com.jsgc.business.Project">
     select *
     from project
   </select>

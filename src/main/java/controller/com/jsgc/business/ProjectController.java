@@ -15,6 +15,7 @@ import util.com.jsgc.searchCondition.ProjectSearchConditions;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,13 +27,13 @@ public class ProjectController {
     private ProjectService projectService;
     @RequestMapping("/getProjectList")
     @ResponseBody
-    public String searchByConditons(@RequestBody String params){
+    public String searchByConditons(@RequestBody String params) throws UnsupportedEncodingException {
         System.out.println(params);
         ProjectSearchConditions ps = JSON.parseObject(params , new TypeReference<ProjectSearchConditions>() {});
+        System.out.println(ps);
         ps.parseOrder();
         System.out.println(ps);
-        projectService.searchByConditions(ps);
-
+        String gbk = new String(projectService.searchByConditions(ps).getBytes(), "utf-8");
 //        //分页条件
 //        int limit=Integer.parseInt(request.getParameter("limit"));
 //        int start=Integer.parseInt(request.getParameter("start"));
@@ -50,7 +51,7 @@ public class ProjectController {
 //        HashMap searchConditionMaps=new HashMap();
 //        //searchConditionMaps.put("projectSerial")
 //
-        return "ok";
+        return gbk;
     }
 
 
