@@ -44,7 +44,6 @@ public class LoginService {
             resultAuth = 0;
         }
         if (resultAuth == 0) {
-
             //生成 Token
             Map<String, String> payloads = new HashMap<>();
             payloads.put("userID", String.valueOf(user.getUserId()));
