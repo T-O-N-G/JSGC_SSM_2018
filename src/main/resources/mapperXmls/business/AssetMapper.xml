@@ -27,6 +27,35 @@
     from asset
     where assetID = #{assetid,jdbcType=INTEGER}
   </select>
+  <select id="selectAll" resultType="pojo.com.jsgc.business.Asset">
+    select *
+    from asset a inner join department d
+    on a.assetDepID = d.departmentID
+    inner join project p
+    on a.projectID = p.projectID
+    where 1 = 1
+    <if test="assetName!=null and assetName!=''">
+      and a.assetName like '%${assetName}%'
+    </if>
+    <if test="assetDate!=null and assetDate!=''">
+      and a.assetDate=#{assetDate,jdbcType=DATE}
+    </if>
+    <if test="assetStatus!=null and assetStatus!=''">
+      and a.assetStatus=#{assetStatus,jdbcType=INTEGER}
+    </if>
+    <if test="departmentName!=null and departmentName!=''">
+      and d.departmentName=#{departmentName,jdbcType=VARCHAR}
+    </if>
+    <if test="projectName!=null and projectName!=''">
+      and p.projectName=#{projectName,jdbcType=VARCHAR}
+    </if>
+    <if test="projectSerial!=null and projectSerial!=''">
+      and p.projectSerial=#{projectSerial,jdbcType=VARCHAR}
+    </if>
+    <if test='realOrder!=null and descOrNot!=null'>
+      ORDER BY ${realOrder} ${descOrNot}
+    </if>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from asset
     where assetID = #{assetid,jdbcType=INTEGER}
