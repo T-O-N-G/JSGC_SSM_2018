@@ -1,6 +1,7 @@
 package mapper.com.jsgc.business;
 
 import pojo.com.jsgc.business.Project;
+import util.com.jsgc.searchCondition.ProjectSearchConditions;
 
 import java.util.List;
 
@@ -22,4 +23,5 @@ public interface ProjectMapper {
     List<String> getSerials();
     //分页测试
     List<Project> selectAll();
+    List<Project> selectByConditions(ProjectSearchConditions ps);
 }
