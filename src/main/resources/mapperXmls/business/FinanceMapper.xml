@@ -29,13 +29,20 @@
     from finance
     where financeId = #{financeId,jdbcType=INTEGER}
   </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from finance
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from finance
     where financeId = #{financeId,jdbcType=INTEGER}
   </delete>
   <update id="deleteFakeByPrimaryKey" parameterType="java.lang.Integer">
     UPDATE finance
-    SET financeDelete=0
+    SET financeDelete=1
     WHERE financeID = #{financeId,jdbcType=INTEGER}
   </update>
   <insert id="insert" parameterType="pojo.com.jsgc.business.Finance" >
@@ -215,4 +222,108 @@
       contractId = #{contractId,jdbcType=INTEGER}
     where financeId = #{financeId,jdbcType=INTEGER}
   </update>
+
+  <resultMap id="financeWithAssociation" type="pojo.com.jsgc.business.Finance">
+    <id column="financeId" property="financeId" jdbcType="INTEGER" />
+    <result column="financeSerials" property="financeSerials" jdbcType="VARCHAR" />
+    <result column="financeDate" property="financeDate" jdbcType="DATE" />
+    <result column="financeName" property="financeName" jdbcType="VARCHAR" />
+    <result column="financeMoney" property="financeMoney" jdbcType="INTEGER" />
+    <result column="financeStatus" property="financeStatus" jdbcType="INTEGER" />
+    <result column="financeDelete" property="financeDelete" jdbcType="INTEGER" />
+    <result column="financeBorrowerId" property="financeBorrowerId" jdbcType="VARCHAR" />
+    <result column="financeLenderId" property="financeLenderId" jdbcType="VARCHAR" />
+    <result column="financeBuyOrgId" property="financeBuyOrgId" jdbcType="VARCHAR" />
+    <result column="financeBuyMethodId" property="financeBuyMethodId" jdbcType="VARCHAR" />
+    <result column="financeTypeId" property="financeTypeId" jdbcType="VARCHAR" />
+    <!--<result column="payMethodId" property="payMethodId" jdbcType="VARCHAR" />-->
+    <result column="projectID" property="projectId" jdbcType="INTEGER" />
+    <result column="contractID" property="contractId" jdbcType="INTEGER" />
+    <association property="project" javaType="pojo.com.jsgc.business.Project" >
+      <result column="projectName" property="projectName"></result>
+    </association>
+    <association property="contract" javaType="pojo.com.jsgc.business.Contract" >
+      <result column="contractName" property="contractName"></result>
+    </association>
+
+    <association property="payMethod" javaType="pojo.com.jsgc.admin.PayMethod">
+      <result column="payMethodInfo" property="payMethodInfo"></result>
+    </association>
+    <association property="buyMethod" javaType="pojo.com.jsgc.admin.BuyMethod">
+      <result column="buyMethodInfo" property="buyMethodInfo"></result>
+    </association>
+    <association property="buyOrgForm" javaType="pojo.com.jsgc.admin.BuyOrgForm">
+      <result column="buyOrgFormInfo" property="buyOrgFormInfo"></result>
+    </association>
+    <association property="buyType" javaType="pojo.com.jsgc.admin.BuyType">
+      <result column="buyTypeInfo" property="buyTypeInfo"></result>
+    </association>
+    <association property="lender" javaType="pojo.com.jsgc.admin.Accountant">
+      <result column="lendName" property="accountantName"></result>
+    </association>
+    <association property="borrower" javaType="pojo.com.jsgc.admin.Accountant">
+      <result column="borrowName" property="accountantName"></result>
+    </association>
+  </resultMap>
+  <select id="selectByConditions" parameterType="util.com.jsgc.searchCondition.FinanceSearchConditions" resultMap="financeWithAssociation">
+    SELECT finance.projectID,finance.contractID,financeID,financeSerials,financeDate,financeName,financeMoney,financeStatus,financeDelete,financeBorrowerID,borrowName,financeLenderID,lendName,buyOrgFormInfo,financeBuyOrgID,financeBuyMethodID,buyMethodInfo,financeTypeID,buyTypeInfo,payMethodInfo,projectSerial,contractSerial,projectName,contractName,financeDate
+    FROM finance
+    INNER JOIN (SELECT accountantID,accountantName AS borrowName FROM accountant ) AS borrow ON financeBorrowerID = borrow.accountantID
+    INNER JOIN (SELECT accountantID,accountantName AS lendName FROM accountant ) AS lend ON financeLenderID = lend.accountantID
+    INNER JOIN buyorgform ON financeBuyOrgID = buyOrgFormID
+    INNER JOIN buymethod ON financeBuyMethodID = buyMethodID
+    INNER JOIN buytype ON financeTypeID = buyTypeID
+    INNER JOIN paymethod ON finance.payMethodID = paymethod.`payMethodID`
+    INNER JOIN project ON finance.`projectID` = project.`projectID`
+    INNER JOIN contract ON finance.`contractID` = contract.`contractID`
+    WHERE finance.`financeDelete`=0
+    <if test="financeSerials!=null and financeSerials!=''" >
+      and financeSerials=#{financeSerials}
+    </if>
+    <if test="projectSerial!=null and projectSerial!=''" >
+      and projectSerial=#{projectSerial}
+    </if>
+    <if test="projectName!=null and projectName!=''">
+      and projectName LIKE CONCAT('%',#{projectName},'%' )
+    </if>
+    <if test="contractSerial!=null and contractSerial!=''" >
+      and contractSerial=#{contractSerial}
+    </if>
+    <if test="contractName!=null and contractName!=''">
+      and contractName LIKE CONCAT('%',#{contractName},'%' )
+    </if>
+    <if test="financeDate!=null and financeDate!=''" >
+      and financeDate=#{financeDate}
+    </if>
+    <if test="financePaid!=2 or financePaid==0">
+      and financeStatus=#{financePaid}
+    </if>
+    <if test="financeBorrowerID!=null and financeBorrowerID!=''">
+      and financeBorrowerID=#{financeBorrowerID}
+    </if>
+    <if test="financeLenderID!=null and financeLenderID!=''">
+      and financeLenderID=#{financeLenderID}
+    </if>
+    <if test="payMethodID!=null and payMethodID!=''">
+      and payMethodID=#{payMethodID}
+    </if>
+    <if test="financeBuyMethodID!=null and financeBuyMethodID!=''">
+      and financeBuyMethodID=#{financeBuyMethodID}
+    </if>
+    <if test="fianceOrgID!=null and fianceOrgID!=''">
+      and financeBuyOrgID=#{fianceOrgID}
+    </if>
+    <if test="financeTypeID!=null and financeTypeID!=''">
+      and financeTypeID=#{financeTypeID}
+    </if>
+    <if test="financeMoneyMin!=null and financeMoneyMin!=0" >
+      and financeMoney>=#{financeMoneyMin}
+    </if>
+    <if test="financeMoneyMax!=null and financeMoneyMax!=0">
+      and #{financeMoneyMax}>=financeMoney
+    </if>
+    <if test="realOrder!=null and realOrder!=''">
+      ORDER BY ${realOrder} ${descOrNot}
+    </if>
+  </select>
 </mapper>

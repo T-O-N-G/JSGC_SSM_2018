@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+//@RequestMapping("/business/project/")
 
 //@RequestMapping("/business/project/")
 
@@ -62,9 +63,9 @@ public class ProjectController {
 
     @RequestMapping("getProjectDetail")
     @ResponseBody
-    public String getProjectDetail(@RequestBody String params){
-        Project project = JSON.parseObject(params , new TypeReference<Project>() {});
-        return   projectService.getProjectDetail(project.getProjectId());
+    public String getProjectDetail(int projectID){
+       // Project project = JSON.parseObject(params , new TypeReference<Project>() {});
+        return   projectService.getProjectDetail(projectID);
     }
 
     @RequestMapping("updateProjectDetail")

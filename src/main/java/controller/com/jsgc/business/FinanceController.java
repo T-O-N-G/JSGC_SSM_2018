@@ -11,8 +11,11 @@ import pojo.com.jsgc.business.Finance;
 import pojo.com.jsgc.business.Project;
 import service.com.jsgc.business.ContractService;
 import service.com.jsgc.business.FinanceService;
+import util.com.jsgc.searchCondition.FinanceSearchConditions;
+import util.com.jsgc.searchCondition.ProjectSearchConditions;
 
 import javax.annotation.Resource;
+import java.io.UnsupportedEncodingException;
 
 @Controller
 //@RequestMapping("/bussiness/finance/")
@@ -21,6 +24,17 @@ import javax.annotation.Resource;
 public class FinanceController {
     @Resource
     private FinanceService financeService;
+
+    @RequestMapping("/getFinanceList")
+    @ResponseBody
+    public String searchByConditons(@RequestBody String params) throws UnsupportedEncodingException {
+        System.out.println(params);
+        FinanceSearchConditions fs = JSON.parseObject(params , new TypeReference<FinanceSearchConditions>() {});
+        System.out.println(fs);
+        fs.parseOrder();
+        System.out.println(fs);
+        return financeService.searchByConditions(fs);
+    }
 
     @RequestMapping("getFinanceDetail")
     @ResponseBody
@@ -46,6 +60,7 @@ public class FinanceController {
     @ResponseBody
     public int deleteFinance(int financeID){
 //        Integer financeID = JSON.parseObject(params,new TypeReference<Integer>() {});
+        System.out.println(financeID);
         return  financeService.deleteFinance(financeID);
     }
 }
