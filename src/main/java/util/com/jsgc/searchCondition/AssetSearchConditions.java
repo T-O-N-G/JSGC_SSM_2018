@@ -12,6 +12,7 @@ public class AssetSearchConditions {
     private String projectStatus;
     private String assetStatus;
 
+
     public String getAssetStatus() {
         return assetStatus;
     }

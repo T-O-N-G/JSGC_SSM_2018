@@ -98,7 +98,7 @@
   <update id="deleteFakeByPrimaryKey" parameterType="java.lang.Integer">
     UPDATE project
     SET projectDelete=1
-    WHERE projectID = #{projectId,jdbcType=INTEGER}``
+    WHERE projectID = #{projectId,jdbcType=INTEGER}
   </update>
   <insert id="insert" parameterType="pojo.com.jsgc.business.Project" >
     insert into project (projectId, projectSerial, projectName, 
