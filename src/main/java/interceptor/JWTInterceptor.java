@@ -64,7 +64,6 @@ public class JWTInterceptor implements HandlerInterceptor {
 //            response.getWriter().write("未登录，请重新登录后操作");;
             response.setStatus(401);
         } catch (Exception e) {
-
             // TODO Auto-generated catch block
             e.printStackTrace();
             response.setStatus(401);
