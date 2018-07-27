@@ -1,6 +1,7 @@
 package mapper.com.jsgc.business;
 
 import pojo.com.jsgc.business.Finance;
+import util.com.jsgc.searchCondition.FinanceSearchConditions;
 
 import java.util.List;
 
@@ -20,4 +21,8 @@ public interface FinanceMapper {
     int updateByPrimaryKey(Finance record);
 
     List<Finance> selectAll();
+
+    List<Finance> selectByConditions(FinanceSearchConditions fs);
+
+
 }

@@ -41,10 +41,10 @@ public class FinanceService {
 
     public String searchByConditions(FinanceSearchConditions fs ){
 //        projectMapper.searchByConditions();
-        System.out.println(fs.getLimit());
+    //    System.out.println(fs.getStart()+" "+ps.getLimit());
 
         Page page= PageHelper.startPage(fs.getPage(),fs.getLimit(),true);
-        List<Finance> finances=financeMapper.selectAll();
+        List<Finance> finances=financeMapper.selectByConditions(fs);
 
         System.out.println(page.getTotal());
         System.out.println("分页数据:");
@@ -55,7 +55,6 @@ public class FinanceService {
         HashMap map=new HashMap();
         map.put("total",page.getTotal());
         map.put("data",finances);
-
         return JSON.toJSONString(map);
 
     }

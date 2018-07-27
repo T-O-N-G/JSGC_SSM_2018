@@ -1,5 +1,7 @@
 package pojo.com.jsgc.business;
 
+import pojo.com.jsgc.admin.*;
+
 import java.util.Date;
 
 public class Finance {
@@ -36,6 +38,34 @@ public class Finance {
     private Integer contractId;
 
     private String contractSerial;
+
+    private Project project;
+    private Contract contract;
+
+   // private Accountant accountant;
+    private PayMethod payMethod;
+    private BuyMethod buyMethod;
+    private BuyOrgForm buyOrgForm;
+    private BuyType buyType;
+
+    private Accountant lender;
+    private Accountant borrower;
+
+    public Accountant getLender() {
+        return lender;
+    }
+
+    public void setLender(Accountant lender) {
+        this.lender = lender;
+    }
+
+    public Accountant getBorrower() {
+        return borrower;
+    }
+
+    public void setBorrower(Accountant borrower) {
+        this.borrower = borrower;
+    }
 
     public String getProjectSerial() {
         return projectSerial;
@@ -171,5 +201,55 @@ public class Finance {
 
     public void setContractId(Integer contractId) {
         this.contractId = contractId;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public Contract getContract() {
+        return contract;
+    }
+
+    public void setContract(Contract contract) {
+        this.contract = contract;
+    }
+
+
+
+    public PayMethod getPayMethod() {
+        return payMethod;
+    }
+
+    public void setPayMethod(PayMethod payMethod) {
+        this.payMethod = payMethod;
+    }
+
+    public BuyMethod getBuyMethod() {
+        return buyMethod;
+    }
+
+    public void setBuyMethod(BuyMethod buyMethod) {
+        this.buyMethod = buyMethod;
+    }
+
+    public BuyOrgForm getBuyOrgForm() {
+        return buyOrgForm;
+    }
+
+    public void setBuyOrgForm(BuyOrgForm buyOrgForm) {
+        this.buyOrgForm = buyOrgForm;
+    }
+
+    public BuyType getBuyType() {
+        return buyType;
+    }
+
+    public void setBuyType(BuyType buyType) {
+        this.buyType = buyType;
     }
 }

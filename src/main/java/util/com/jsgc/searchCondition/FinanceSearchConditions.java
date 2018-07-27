@@ -21,8 +21,16 @@ public class FinanceSearchConditions {
     private String financeBuyMethodID;//传的是部门id
     private String fianceOrgID;//传的是部门id
     private String financeTypeID;//传的是部门id
+    //lzq
+    private int financeStatus;
+    public int getFinanceStatus() {
+        return financeStatus;
+    }
+    public void setFinanceStatus(int financeStatus) {
+        this.financeStatus = financeStatus;
+    }
 
-
+    //lzq
     //private int start;
     private int page;
     private int limit;

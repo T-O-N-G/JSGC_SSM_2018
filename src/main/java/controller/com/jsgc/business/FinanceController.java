@@ -19,6 +19,7 @@ import java.io.UnsupportedEncodingException;
 
 @Controller
 //@RequestMapping("/bussiness/finance/")
+@RequestMapping(produces = {"application/json; charset=UTF-8"})
 public class FinanceController {
     @Resource
     private FinanceService financeService;
@@ -31,7 +32,6 @@ public class FinanceController {
         System.out.println(fs);
         fs.parseOrder();
         System.out.println(fs);
-//        String gbk = new String(financeService.searchByConditions(fs).getBytes(), "utf-8");
         return financeService.searchByConditions(fs);
     }
 
