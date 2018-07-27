@@ -25,6 +25,23 @@
     from user
     where email = #{email,jdbcType=VARCHAR}
   </select>
+  <select id="selectAll" resultType="pojo.com.jsgc.admin.User">
+    select *
+    from user
+    where userDelete=0
+    <if test="username!=null and username!=''">
+      and username like '%${username}%'
+    </if>
+    <if test="email!=null and email!=''">
+      and email = #{email,jdbcType=VARCHAR}
+    </if>
+    <if test="phoneNumber!=null and phoneNumber!=''">
+      and phone = #{phoneNumber,jdbcType=INTEGER}
+    </if>
+    <if test="level!=null and level!='' and level!=0">
+      and permissionLevel = #{level,jdbcType=INTEGER}
+    </if>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user
     where userId = #{userId,jdbcType=INTEGER}
@@ -89,22 +106,22 @@
   <update id="updateByPrimaryKeySelective" parameterType="pojo.com.jsgc.admin.User" >
     update user
     <set >
-      <if test="username != null" >
+      <if test="username != null and username!=''" >
         username = #{username,jdbcType=VARCHAR},
       </if>
-      <if test="password != null" >
+      <if test="password != null and password!=''" >
         password = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="email != null" >
+      <if test="email != null and email!=''" >
         email = #{email,jdbcType=VARCHAR},
       </if>
-      <if test="phone != null" >
+      <if test="phone != null and phone!=''" >
         phone = #{phone,jdbcType=INTEGER},
       </if>
-      <if test="permissionLevel != null" >
+      <if test="permissionLevel != null and permissionLevel!='' and permissionLevel!=0" >
         permissionLevel = #{permissionLevel,jdbcType=INTEGER},
       </if>
-      <if test="userDelete != null" >
+      <if test="userDelete != null and userDelete!=''" >
         userDelete = #{userDelete,jdbcType=INTEGER},
       </if>
     </set>
@@ -119,5 +136,10 @@
       permissionLevel = #{permissionLevel,jdbcType=INTEGER},
       userDelete = #{userDelete,jdbcType=INTEGER}
     where userId = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="deleteFakeByPrimaryKey" parameterType="java.lang.Integer">
+    UPDATE user
+    SET userDelete=1
+    WHERE userID = #{userId,jdbcType=INTEGER}
   </update>
 </mapper>

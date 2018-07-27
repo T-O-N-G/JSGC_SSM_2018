@@ -1,6 +1,9 @@
 package mapper.com.jsgc.admin;
 
 import pojo.com.jsgc.admin.User;
+import util.com.jsgc.searchCondition.UserSearchConditions;
+
+import java.util.List;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer userId);
@@ -18,4 +21,7 @@ public interface UserMapper {
 
     User selectByEmail(String email);
 
+    List<User> selectAll(UserSearchConditions ps);
+
+    int deleteFakeByPrimaryKey(int userID);
 }
