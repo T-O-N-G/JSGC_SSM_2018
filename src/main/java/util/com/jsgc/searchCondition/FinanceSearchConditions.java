@@ -11,7 +11,7 @@ public class FinanceSearchConditions {
     private String projectName;//模糊匹配
     private String contractSerial;
     private String contractName;//模糊匹配
-    private Date financeDate;
+    private String financeDate;
     private int financePaid;
     private int financeMoneyMin;
     private int financeMoneyMax;
@@ -177,11 +177,11 @@ public class FinanceSearchConditions {
         this.contractName = contractName;
     }
 
-    public Date getFinanceDate() {
+    public String getFinanceDate() {
         return financeDate;
     }
 
-    public void setFinanceDate(Date financeDate) {
+    public void setFinanceDate(String financeDate) {
         this.financeDate = financeDate;
     }
 

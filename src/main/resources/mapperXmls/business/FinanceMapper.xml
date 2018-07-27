@@ -42,7 +42,7 @@
   </delete>
   <update id="deleteFakeByPrimaryKey" parameterType="java.lang.Integer">
     UPDATE finance
-    SET financeDelete=0
+    SET financeDelete=1
     WHERE financeID = #{financeId,jdbcType=INTEGER}
   </update>
   <insert id="insert" parameterType="pojo.com.jsgc.business.Finance" >
