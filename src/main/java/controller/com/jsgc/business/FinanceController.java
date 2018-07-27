@@ -60,6 +60,7 @@ public class FinanceController {
     @ResponseBody
     public int deleteFinance(int financeID){
 //        Integer financeID = JSON.parseObject(params,new TypeReference<Integer>() {});
+        System.out.println(financeID);
         return  financeService.deleteFinance(financeID);
     }
 }
