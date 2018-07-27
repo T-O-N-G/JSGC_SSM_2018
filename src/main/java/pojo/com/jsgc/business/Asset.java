@@ -30,6 +30,26 @@ public class Asset {
 
     private Integer projectId;
 
+    private String departmentName;
+
+    private String projectName;
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
     public Integer getAssetId() {
         return assetId;
     }

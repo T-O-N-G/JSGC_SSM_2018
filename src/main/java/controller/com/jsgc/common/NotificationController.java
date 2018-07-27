@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @Controller
+@RequestMapping(produces = {"application/json; charset=UTF-8"})
+
 public class NotificationController {
     @Resource
     private NotificationService notificationService;
