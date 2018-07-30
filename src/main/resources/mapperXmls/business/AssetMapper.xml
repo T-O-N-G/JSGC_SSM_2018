@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mapper.com.jsgc.business.AssetMapper" >
   <resultMap id="BaseResultMap" type="pojo.com.jsgc.business.Asset" >
-    <id column="assetID" property="assetid" jdbcType="INTEGER" />
+    <id column="assetId" property="assetId" jdbcType="INTEGER" />
     <result column="assetSerial" property="assetSerial" jdbcType="VARCHAR" />
     <result column="assetName" property="assetName" jdbcType="VARCHAR" />
     <result column="assetSpec" property="assetSpec" jdbcType="VARCHAR" />
@@ -18,14 +18,14 @@
     <result column="projectId" property="projectId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    assetID, assetSerial, assetName, assetSpec, assetModel, assetAmount, assetMoney, 
+    assetId, assetSerial, assetName, assetSpec, assetModel, assetAmount, assetMoney, 
     assetDate, assetOwner, assetComment, assetStatus, assetDelete, assetDepId, projectId
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from asset
-    where assetID = #{assetid,jdbcType=INTEGER}
+    where assetId = #{assetId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultType="pojo.com.jsgc.business.Asset">
     select *
@@ -60,20 +60,20 @@
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from asset
-    where assetID = #{assetid,jdbcType=INTEGER}
+    where assetId = #{assetId,jdbcType=INTEGER}
   </delete>
   <update id="deleteFakeByPrimaryKey" parameterType="java.lang.Integer">
     UPDATE asset
     SET assetDelete=1
-    WHERE assetID = #{assetId,jdbcType=INTEGER}
+    WHERE assetId = #{assetId,jdbcType=INTEGER}
   </update>
   <insert id="insert" parameterType="pojo.com.jsgc.business.Asset" >
-    insert into asset (assetID, assetSerial, assetName, 
+    insert into asset (assetId, assetSerial, assetName, 
       assetSpec, assetModel, assetAmount, 
       assetMoney, assetDate, assetOwner, 
       assetComment, assetStatus, assetDelete, 
       assetDepId, projectId)
-    values (#{assetid,jdbcType=INTEGER}, #{assetSerial,jdbcType=VARCHAR}, #{assetName,jdbcType=VARCHAR}, 
+    values (#{assetId,jdbcType=INTEGER}, #{assetSerial,jdbcType=VARCHAR}, #{assetName,jdbcType=VARCHAR}, 
       #{assetSpec,jdbcType=VARCHAR}, #{assetModel,jdbcType=VARCHAR}, #{assetAmount,jdbcType=INTEGER}, 
       #{assetMoney,jdbcType=INTEGER}, #{assetDate,jdbcType=DATE}, #{assetOwner,jdbcType=VARCHAR}, 
       #{assetComment,jdbcType=VARCHAR}, #{assetStatus,jdbcType=INTEGER}, #{assetDelete,jdbcType=INTEGER}, 
@@ -82,8 +82,8 @@
   <insert id="insertSelective" parameterType="pojo.com.jsgc.business.Asset" >
     insert into asset
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="assetid != null" >
-        assetID,
+      <if test="assetId != null" >
+        assetId,
       </if>
       <if test="assetSerial != null" >
         assetSerial,
@@ -126,8 +126,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="assetid != null" >
-        #{assetid,jdbcType=INTEGER},
+      <if test="assetId != null" >
+        #{assetId,jdbcType=INTEGER},
       </if>
       <if test="assetSerial != null" >
         #{assetSerial,jdbcType=VARCHAR},
@@ -213,7 +213,7 @@
         projectId = #{projectId,jdbcType=INTEGER},
       </if>
     </set>
-    where assetID = #{assetid,jdbcType=INTEGER}
+    where assetId = #{assetId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="pojo.com.jsgc.business.Asset" >
     update asset
@@ -230,6 +230,6 @@
       assetDelete = #{assetDelete,jdbcType=INTEGER},
       assetDepId = #{assetDepId,jdbcType=VARCHAR},
       projectId = #{projectId,jdbcType=INTEGER}
-    where assetID = #{assetid,jdbcType=INTEGER}
+    where assetId = #{assetId,jdbcType=INTEGER}
   </update>
 </mapper>
