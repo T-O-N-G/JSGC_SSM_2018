@@ -128,4 +128,19 @@
       projectId = #{projectId,jdbcType=INTEGER}
     where budgetId = #{budgetId,jdbcType=INTEGER}
   </update>
+  <select id="selectAll" resultType="pojo.com.jsgc.business.BudgetDetail">
+    select *
+    from budgetdetail b inner join project p
+    on b.projectID = p.projectID
+    where 1 = 1
+    <if test="projectSerial!=null and projectSerial!=''">
+      and p.projectSerial = #{projectSerial}
+    </if>
+    <if test="projectName!=null and projectName!=''">
+      and p.projectName = #{projectName}
+    </if>
+    <if test="projectStartTime!=null and projectStartTime!=''">
+      and p.projectStartTime = #{projectStartTime}
+    </if>
+  </select>
 </mapper>

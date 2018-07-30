@@ -1,6 +1,9 @@
 package mapper.com.jsgc.business;
 
 import pojo.com.jsgc.business.BudgetDetail;
+import util.com.jsgc.searchCondition.BudgetSearchConditions;
+
+import java.util.List;
 
 public interface BudgetDetailMapper {
     int deleteByPrimaryKey(Integer budgetId);
@@ -14,4 +17,6 @@ public interface BudgetDetailMapper {
     int updateByPrimaryKeySelective(BudgetDetail record);
 
     int updateByPrimaryKey(BudgetDetail record);
+
+    List<BudgetDetail> selectAll(BudgetSearchConditions ps);
 }
