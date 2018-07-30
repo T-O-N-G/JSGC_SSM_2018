@@ -17,38 +17,40 @@ import java.util.HashMap;
 import java.util.List;
 
 @Service
-public class BudgetService{
+public class BudgetService {
 
-        @Resource
-        BudgetDetailMapper budgetDetailMapper;
+    @Resource
+    BudgetDetailMapper budgetDetailMapper;
 
     @Autowired
     private JedisPool jedisPool;//注入JedisPool
+
     public String searchByConditions(BudgetSearchConditions ps) {
 
+//        System.out.println(ps.getStart() + " " + ps.getLimit());
+        Jedis jedis = jedisPool.getResource();
+        Page page = PageHelper.startPage(ps.getPage(), ps.getLimit(), true);
+        List<BudgetDetail> budgets = budgetDetailMapper.selectAll(ps);
+        for (BudgetDetail budget: budgets
+             ) {
+//            budget.setProjectContractsPayed(Integer.valueOf(jedis.get("Contract:ID:")));
+        }
+//        System.out.println(page.getTotal());
+//        System.out.println("分页数据:");
+        PageInfo<BudgetDetail> pageInfo = new PageInfo<>(budgets);
+//        System.out.println(pageInfo.getList());
+//        System.out.println(projects);
 
-
-        System.out.println(ps.getStart()+" "+ps.getLimit());
-
-        Page page= PageHelper.startPage(ps.getPage(),ps.getLimit(),true);
-        List<BudgetDetail> projects=budgetDetailMapper.selectAll(ps);
-
-        System.out.println(page.getTotal());
-        System.out.println("分页数据:");
-        PageInfo<BudgetDetail> pageInfo=new PageInfo<>(projects);
-        System.out.println(pageInfo.getList());
-        System.out.println(projects);
-
-        HashMap map=new HashMap();
-        map.put("total",page.getTotal());
-        map.put("data",projects);
+        HashMap map = new HashMap();
+        map.put("total", page.getTotal());
+        map.put("data", budgets);
 
         return JSON.toJSONString(map);
     }
 
     public String getBudgetDetail(int budgetID) {
         Jedis jedis = jedisPool.getResource();
-        String key = "Budget:ID:"+budgetID;
+        String key = "Budget:ID:" + budgetID;
         System.out.println(key);
         String result = jedis.get(key);
         //回收ShardedJedis实例
