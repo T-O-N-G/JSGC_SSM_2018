@@ -33,7 +33,7 @@
     on a.assetDepID = d.departmentID
     inner join project p
     on a.projectID = p.projectID
-    where 1 = 1
+    where a.assetDelete= 0
     <if test="assetName!=null and assetName!=''">
       and a.assetName like '%${assetName}%'
     </if>
@@ -44,10 +44,10 @@
       and a.assetStatus=#{assetStatus,jdbcType=INTEGER}
     </if>
     <if test="departmentName!=null and departmentName!=''">
-      and d.departmentName=#{departmentName,jdbcType=VARCHAR}
+      and a.assetDepID=#{departmentName,jdbcType=VARCHAR}
     </if>
     <if test="projectName!=null and projectName!=''">
-      and p.projectName=#{projectName,jdbcType=VARCHAR}
+      and p.projectName like '%${projectName}%'
     </if>
     <if test="projectSerial!=null and projectSerial!=''">
       and p.projectSerial=#{projectSerial,jdbcType=VARCHAR}

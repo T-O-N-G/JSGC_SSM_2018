@@ -12,7 +12,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import pojo.com.jsgc.business.Contract;
 import service.com.jsgc.business.ContractService;
-import util.com.jsgc.RequestPage;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
