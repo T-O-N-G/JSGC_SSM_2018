@@ -15,7 +15,7 @@ import pojo.com.jsgc.admin.Department;
 import pojo.com.jsgc.admin.User;
 import pojo.com.jsgc.business.Contract;
 import pojo.com.jsgc.business.Project;
-import util.com.jsgc.VerifyHandler.contractsVerify;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -115,7 +115,6 @@ public class testExcel {
         try {
             ImportParams params = new ImportParams();
             params.setNeedVerfiy(true);
-            params.setVerifyHandler(new contractsVerify());
             //params.setVerfiyGroup(new Class[]{ViliGroupOne.class});
             ExcelImportResult<Contract> result = ExcelImportUtil.importExcelMore(
                     new File("E://contracts.xls"),

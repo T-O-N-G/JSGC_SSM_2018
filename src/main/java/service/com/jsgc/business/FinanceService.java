@@ -67,6 +67,7 @@ public class FinanceService {
         String result = jedis.get(key);
         //回收ShardedJedis实例
         jedis.close();
+        System.out.println(result);
         return result;
     }
 
