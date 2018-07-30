@@ -31,9 +31,9 @@
     select *
     from asset a inner join department d
     on a.assetDepID = d.departmentID
-    inner join project p
+    left join project p
     on a.projectID = p.projectID
-    where 1 = 1
+    where a.assetDelete=0
     <if test="assetName!=null and assetName!=''">
       and a.assetName like '%${assetName}%'
     </if>

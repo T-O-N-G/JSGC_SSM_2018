@@ -38,7 +38,7 @@ public class AssetController {
         return assetService.getAssetDetail(assetID);
     }
 
-    @RequestMapping("updateAssetDetial")
+    @RequestMapping("updateAssetDetail")
     @ResponseBody
     public int updateAssetDetial(@RequestBody String params){
         Asset asset = JSON.parseObject(params , new TypeReference<Asset>() {});

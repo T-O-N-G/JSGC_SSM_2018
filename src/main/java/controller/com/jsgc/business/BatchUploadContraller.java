@@ -37,8 +37,9 @@ public class BatchUploadContraller {
     @ResponseBody
     public Map<String, Object> batchUploadContracts(HttpServletRequest request,@RequestParam("file") MultipartFile myfile) throws IOException {
         // 原始名称
+        String userID= request.getParameter("userID");
+        System.out.println("userID:"+userID);
         String oldFileName = myfile.getOriginalFilename(); // 获取上传文件的原名
-        System.out.println(oldFileName);
         String path=request.getSession().getServletContext().getRealPath("/upload/batchUploadContracts");
         File dir=new File(path);
         if(!dir.exists()){
@@ -58,7 +59,6 @@ public class BatchUploadContraller {
             int total=results.size();
             //标记行号
             HashMap<Integer,Contract> row_Contract=new HashMap<>();
-
             int i=2;
             for(Contract c:results){
                 row_Contract.put(i,c);
