@@ -17,7 +17,7 @@ import pojo.com.jsgc.business.Project;
 import service.com.jsgc.business.ContractService;
 import service.com.jsgc.business.ProjectService;
 import util.FileUtil;
-import util.com.jsgc.VerifyHandler.contractsVerify;
+
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;

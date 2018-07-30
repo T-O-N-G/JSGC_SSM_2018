@@ -2,9 +2,10 @@ package service.com.jsgc.business;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-
+@Service
 public class UserVerifyService {
     @Autowired
     private JedisPool jedisPool;
