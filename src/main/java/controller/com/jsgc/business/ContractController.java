@@ -13,11 +13,13 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import pojo.com.jsgc.business.Contract;
 import service.com.jsgc.business.ContractService;
 import util.com.jsgc.RequestPage;
+import util.com.jsgc.searchCondition.ContractSearchConditions;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -29,7 +31,7 @@ public class ContractController {
     @Resource
     private ContractService contractService;
 
-    @RequestMapping("getContractDetail")
+    @RequestMapping("/getContractDetail")
     @ResponseBody
     public String getContractDetail(int contractID){
         return contractService.getContractDetail(contractID);
@@ -42,20 +44,30 @@ public class ContractController {
         return   contractService.updateContractDetail(contract);
     }
 
-    @RequestMapping("addContract")
+    @RequestMapping("/addContract")
     @ResponseBody
     public int addContract(@RequestBody String params){
         Contract contract = JSON.parseObject(params , new TypeReference<Contract>() {});
         return   contractService.insertContract(contract);
     }
 
-    @RequestMapping("deleteContract")
+    @RequestMapping("/deleteContract")
     @ResponseBody
     public int deleteContract(Integer contractID){
 //        Integer contractID = JSON.parseObject(params,new TypeReference<Integer>() {});
         return  contractService.deleteContract(contractID);
     }
 
+    @RequestMapping("/getContractList")
+    @ResponseBody
+    public String searchByConditons(@RequestBody String params) throws UnsupportedEncodingException {
+        System.out.println(params);
+        ContractSearchConditions ps = JSON.parseObject(params , new TypeReference<ContractSearchConditions>() {});
+        System.out.println(ps);
+        ps.parseOrder();
+        System.out.println(ps);
+        return contractService.searchByConditions(ps);
+    }
 
 
 //    @RequestMapping("batchUploadContracts")
