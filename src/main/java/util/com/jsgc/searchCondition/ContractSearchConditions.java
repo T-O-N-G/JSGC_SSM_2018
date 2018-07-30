@@ -16,6 +16,34 @@ public class ContractSearchConditions {
     String contractTimeMax;
     String projectSerial;
     String projectName;
+    String allFinancePayed;
+    private int start;
+    private int page;
+    private int limit;
+
+    public int getStart() {
+        return start;
+    }
+
+    public void setStart(int start) {
+        this.start = start;
+    }
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
 
     public String getOrder() {
         return order;
@@ -121,8 +149,9 @@ public class ContractSearchConditions {
             this.contractTimeMax=this.contractSignedTime.substring(13,23);
         }
     }
+
     public void parseOrder(){
-        if(this.order!=null&&this.order!=""&&this.order!="[]"){
+        if(this.order!=null&&!this.order.equals("[]")){
             String[]ss=this.order.split(",");
             String []former= ss[0].split(":");
             String []later=ss[1].split(":");

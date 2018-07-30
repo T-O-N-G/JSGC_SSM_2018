@@ -27,4 +27,6 @@ public interface ContractMapper {
     void batchInsert(List<Contract> contracts);
 
     List<Contract> selectByConditions(ContractSearchConditions cs);
+
+    List<Contract> selectAll(ContractSearchConditions ps);
 }
