@@ -47,6 +47,7 @@
             <!--<mvc:mapping path="/**" />-->
             <!--&lt;!&ndash; 不进行拦截 &ndash;&gt;-->
             <!--<mvc:exclude-mapping path="/login" />-->
+            <!--<mvc:exclude-mapping path="/batch*" />-->
             <!--<bean class="interceptor.PermissionInterceptor" />-->
         <!--</mvc:interceptor>-->
     </mvc:interceptors>
