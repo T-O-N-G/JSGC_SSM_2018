@@ -51,7 +51,7 @@
   <insert id="insertSelective" parameterType="pojo.com.jsgc.business.Contract" >
     insert into contract
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="contractId != null" >
+      <if test="contractId != null and contractId != ''" >
         contractId,
       </if>
       <if test="contractSerial != null" >
@@ -86,7 +86,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="contractId != null" >
+      <if test="contractId != null and contractId != ''" >
         #{contractId,jdbcType=INTEGER},
       </if>
       <if test="contractSerial != null" >
@@ -236,5 +236,24 @@
          ORDER BY ${realOrder} ${descOrNot}
      </if>
 
+  </select>
+  <select id="selectAll" resultType="pojo.com.jsgc.business.Contract">
+    select *
+    from contract ct inner join project p
+    on ct.projectID = p.projectID
+    where ct.contractDelete = 0
+    <if test="contractSerial!=null and contractSerial!=''">
+      and ct.contractSerial = #{contractSerial,jdbcType=VARCHAR}
+    </if>
+    <if test="contractName!=null and contractName!=''">
+      and ct.contractName=#{contractName,jdbcType=VARCHAR}
+    </if>
+
+    <if test="projectSerial!=null and projectSerial!=''">
+      and p.projectSerial=#{projectSerial,jdbcType=VARCHAR}
+    </if>
+    <if test="projectName!=null and projectName!=''">
+      and p.projectName = #{projectName,jdbcType=VARCHAR}
+    </if>
   </select>
 </mapper>

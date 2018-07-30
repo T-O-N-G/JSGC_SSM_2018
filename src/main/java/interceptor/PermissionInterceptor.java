@@ -18,8 +18,14 @@ public class PermissionInterceptor implements HandlerInterceptor {
         Jedis jedis = jedisPool.getResource();
         String url = httpServletRequest.getRequestURI();
         String level = (String) httpServletRequest.getAttribute("level");
-        String key = url+":"+level;
-        return jedis.exists(key);
+        String value = url + ":" + level;
+        if(jedis.sismember("permission", value)){
+            return true;
+        }else {
+            httpServletResponse.setStatus(405);
+            return false;
+        }
+//        return true;
     }
 
     @Override

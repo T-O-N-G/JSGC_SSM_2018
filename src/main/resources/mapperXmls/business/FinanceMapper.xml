@@ -307,7 +307,7 @@
       and financeLenderID=#{financeLenderID}
     </if>
     <if test="payMethodID!=null and payMethodID!=''">
-      and payMethodID=#{payMethodID}
+      and finance.payMethodID=#{payMethodID}
     </if>
     <if test="financeBuyMethodID!=null and financeBuyMethodID!=''">
       and financeBuyMethodID=#{financeBuyMethodID}
