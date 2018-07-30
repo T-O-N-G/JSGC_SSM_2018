@@ -34,6 +34,16 @@ public class Asset {
 
     private String projectName;
 
+    private String projectSerial;
+
+    public String getProjectSerial() {
+        return projectSerial;
+    }
+
+    public void setProjectSerial(String projectSerial) {
+        this.projectSerial = projectSerial;
+    }
+
     public String getProjectName() {
         return projectName;
     }

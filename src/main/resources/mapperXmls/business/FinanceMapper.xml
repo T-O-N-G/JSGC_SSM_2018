@@ -238,6 +238,8 @@
     <result column="financeTypeId" property="financeTypeId" jdbcType="VARCHAR" />
     <!--<result column="payMethodId" property="payMethodId" jdbcType="VARCHAR" />-->
     <result column="projectID" property="projectId" jdbcType="INTEGER" />
+    <result column="projectSerial" property="projectSerial" ></result>
+    <result column="contractSerial" property="contractSerial"/>
     <result column="contractID" property="contractId" jdbcType="INTEGER" />
     <association property="project" javaType="pojo.com.jsgc.business.Project" >
       <result column="projectName" property="projectName"></result>
@@ -266,7 +268,7 @@
     </association>
   </resultMap>
   <select id="selectByConditions" parameterType="util.com.jsgc.searchCondition.FinanceSearchConditions" resultMap="financeWithAssociation">
-    SELECT finance.projectID,finance.contractID,financeID,financeSerials,financeDate,financeName,financeMoney,financeStatus,financeDelete,financeBorrowerID,borrowName,financeLenderID,lendName,buyOrgFormInfo,financeBuyOrgID,financeBuyMethodID,buyMethodInfo,financeTypeID,buyTypeInfo,payMethodInfo,projectSerial,contractSerial,projectName,contractName,financeDate
+    SELECT project.projectSerial,contract.contractSerial, finance.projectID,finance.contractID,financeID,financeSerials,financeDate,financeName,financeMoney,financeStatus,financeDelete,financeBorrowerID,borrowName,financeLenderID,lendName,buyOrgFormInfo,financeBuyOrgID,financeBuyMethodID,buyMethodInfo,financeTypeID,buyTypeInfo,payMethodInfo,projectSerial,contractSerial,projectName,contractName,financeDate
     FROM finance
     INNER JOIN (SELECT accountantID,accountantName AS borrowName FROM accountant ) AS borrow ON financeBorrowerID = borrow.accountantID
     INNER JOIN (SELECT accountantID,accountantName AS lendName FROM accountant ) AS lend ON financeLenderID = lend.accountantID
