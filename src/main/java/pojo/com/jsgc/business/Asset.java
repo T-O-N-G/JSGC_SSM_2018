@@ -34,6 +34,7 @@ public class Asset {
 
     private String projectName;
 
+
     public String getProjectName() {
         return projectName;
     }
