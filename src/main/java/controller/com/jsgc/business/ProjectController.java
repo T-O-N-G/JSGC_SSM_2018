@@ -33,11 +33,13 @@ public class ProjectController {
     private ProjectService projectService;
     @Resource
     private UserService userService;
+
     @RequestMapping("/getProjectList")
     @ResponseBody
     public String searchByConditons(@RequestBody String params) throws UnsupportedEncodingException {
         System.out.println(params);
-        ProjectSearchConditions ps = JSON.parseObject(params , new TypeReference<ProjectSearchConditions>() {});
+        ProjectSearchConditions ps = JSON.parseObject(params, new TypeReference<ProjectSearchConditions>() {
+        });
         System.out.println(ps);
         ps.parseOrder();
         System.out.println(ps);
@@ -67,41 +69,47 @@ public class ProjectController {
 
     @RequestMapping("getProjectDetail")
     @ResponseBody
-    public String getProjectDetail(int projectID){
-       // Project project = JSON.parseObject(params , new TypeReference<Project>() {});
-        return   projectService.getProjectDetail(projectID);
+    public String getProjectDetail(int projectID) {
+        // Project project = JSON.parseObject(params , new TypeReference<Project>() {});
+        return projectService.getProjectDetail(projectID);
     }
 
     @RequestMapping("updateProjectDetail")
     @ResponseBody
-    public int updateProjectDetail(@RequestBody String params){
-        Project project = JSON.parseObject(params , new TypeReference<Project>() {});
+    public int updateProjectDetail(@RequestBody String params, HttpServletRequest request) {
+        Project project = JSON.parseObject(params, new TypeReference<Project>() {
+        });
+//<<<<<<< HEAD
+//        return   projectService.updateProjectDetail(project, request);
+//=======
 
         try {
-            if(projectService.ifSerialExistUpdt(project)!=0)
+            if (projectService.ifSerialExistUpdt(project) != 0)
                 return 99;
             //下面这句会抛出异常
-            int chargerId= userService.getUidbyUname(project.getUsername());
+            int chargerId = userService.getUidbyUname(project.getUsername());
             project.setProjectChargerId(chargerId);
-            int successNum= projectService.updateProjectDetail(project);
+            int successNum = projectService.updateProjectDetail(project);
             return successNum;
-        }catch (org.apache.ibatis.binding.BindingException e){
+        } catch (org.apache.ibatis.binding.BindingException e) {
             System.out.println("负责人id不存在");
             return 100;
         }
+//>>>>>>> master
     }
 
     @RequestMapping("addProject")
     @ResponseBody
-    public int addProject(@RequestBody String params){
-        Project project = JSON.parseObject(params , new TypeReference<Project>() {});
+    public int addProject(@RequestBody String params) {
+        Project project = JSON.parseObject(params, new TypeReference<Project>() {
+        });
         try {
-            if(projectService.ifSerialExistAdd(project.getProjectSerial())!=0)
+            if (projectService.ifSerialExistAdd(project.getProjectSerial()) != 0)
                 return 99;
-            int chargerId= userService.getUidbyUname(project.getUsername());
+            int chargerId = userService.getUidbyUname(project.getUsername());
             project.setProjectChargerId(chargerId);
-            return   projectService.insertProject(project);
-        }catch (org.apache.ibatis.binding.BindingException e){
+            return projectService.insertProject(project);
+        } catch (org.apache.ibatis.binding.BindingException e) {
             System.out.println("负责人id不存在");
             return 100;
         }
@@ -109,9 +117,9 @@ public class ProjectController {
 
     @RequestMapping("deleteProject")
     @ResponseBody
-    public int deleteProject(int projectID){
+    public int deleteProject(int projectID) {
 
-        return  projectService.deleteProject(projectID);
+        return projectService.deleteProject(projectID);
     }
 
 
