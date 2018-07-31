@@ -24,13 +24,23 @@
     from document
     where documentId = #{documentId,jdbcType=INTEGER}
   </select>
+  <select id="ifSerialExistAdd" parameterType="java.lang.String" resultType="java.lang.Integer" >
+    SELECT  count(*)
+    from document
+    where documentSerial=#{0} and documentDelete=0
+  </select>
+  <select id="ifSerialExistUpdt" parameterType="pojo.com.jsgc.business.Document" resultType="java.lang.Integer">
+    SELECT count(*)
+    from document
+    where documentSerial=#{documentSerial} and documentID!=#{documentId} and documentDelete=0
+  </select>
   <select id="selectAll" resultType="pojo.com.jsgc.business.Document">
     select *
     from document d inner join project p
     on d.projectID = p.projectID
-    inner join contract ct
+    left join contract ct
     on d.contractID = ct.contractID
-    where 1 = 1
+    where d.documentDelete = 0
     <if test="documentSerial!=null and documentSerial!=''">
       and d.documentSerial = #{documentSerial,jdbcType=VARCHAR}
     </if>
@@ -174,6 +184,9 @@
       </if>
       <if test="contractId != null" >
         contractId = #{contractId,jdbcType=INTEGER},
+      </if>
+      <if test="contractId == -1" >
+        contractId = null ,
       </if>
     </set>
     where documentId = #{documentId,jdbcType=INTEGER}
