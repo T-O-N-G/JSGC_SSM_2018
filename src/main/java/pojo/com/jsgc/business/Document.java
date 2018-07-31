@@ -29,6 +29,26 @@ public class Document {
 
     private String contractName;
 
+    private String projectSerial;
+
+    private String contractSerial;
+
+    public String getProjectSerial() {
+        return projectSerial;
+    }
+
+    public void setProjectSerial(String projectSerial) {
+        this.projectSerial = projectSerial;
+    }
+
+    public String getContractSerial() {
+        return contractSerial;
+    }
+
+    public void setContractSerial(String contractSerial) {
+        this.contractSerial = contractSerial;
+    }
+
     public String getProjectName() {
         return projectName;
     }

@@ -16,10 +16,18 @@ public class ContractSearchConditions {
     String contractTimeMax;
     String projectSerial;
     String projectName;
-    String allFinancePayed;
+    String buildContentId;
     private int start;
     private int page;
     private int limit;
+
+    public String getBuildContentId() {
+        return buildContentId;
+    }
+
+    public void setBuildContentId(String buildContentId) {
+        this.buildContentId = buildContentId;
+    }
 
     public int getStart() {
         return start;
@@ -144,7 +152,7 @@ public class ContractSearchConditions {
     }
 
     public void parseDateRange() throws ParseException {
-        if(this.contractSignedTime!=null&&this.contractSignedTime!=""){
+        if(this.contractSignedTime!=null&&!this.contractSignedTime.equals("")){
             this.contractTimeMin= this.contractSignedTime.substring(0,10);
             this.contractTimeMax=this.contractSignedTime.substring(13,23);
         }

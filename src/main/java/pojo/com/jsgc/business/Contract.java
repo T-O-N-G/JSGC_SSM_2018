@@ -29,13 +29,16 @@ public class Contract {
     private String contractComment;
 
     private Integer contractDelete;
-
+    private String buildContentId;
+    private String buildInfo;
     private Integer projectId;
     @Excel(name="项目编号")
     private String projectSerial;
     //lzq,所属项目
     private Project project;
     //lzq,建设内容
+
+
     @Override
     public String toString() {
         return "Contract{" +
@@ -49,11 +52,30 @@ public class Contract {
                 ", contractContent='" + contractContent + '\'' +
                 ", contractComment='" + contractComment + '\'' +
                 ", contractDelete=" + contractDelete +
+                ", buildContentId='" + buildContentId + '\'' +
+                ", buildInfo='" + buildInfo + '\'' +
                 ", projectId=" + projectId +
                 ", projectSerial='" + projectSerial + '\'' +
                 ", project=" + project +
                 '}';
     }
+
+    public String getBuildContentId() {
+        return buildContentId;
+    }
+
+    public void setBuildContentId(String buildContentId) {
+        this.buildContentId = buildContentId;
+    }
+
+    public String getBuildInfo() {
+        return buildInfo;
+    }
+
+    public void setBuildInfo(String buildInfo) {
+        this.buildInfo = buildInfo;
+    }
+
 
     public Project getProject() {
         return project;

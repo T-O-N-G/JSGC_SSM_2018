@@ -72,19 +72,56 @@ public class FinanceService {
     }
 
     public int updateFinanceDetail(Finance finance) {
-        int projectID = projectMapper.getProjectIDBySerial(finance.getProjectSerial());
-        finance.setProjectId(projectID);
-        int contractID = contractMapper.getContractIDBySerial(finance.getContractSerial());
-        finance.setContractId(contractID);
-        return financeMapper.updateByPrimaryKeySelective(finance);
+        try {
+            if(financeMapper.ifSerialExistUpdt(finance)!=0)
+                return 99;
+            //下面这句会抛出异常
+
+            int contractId = contractMapper.getContractIDBySerial(finance.getContractSerial());
+            finance.setContractId(contractId);
+            Contract contract = contractMapper.selectByPrimaryKey(contractId);
+            int projectId = contract.getProjectId();
+            Project project = projectMapper.selectByPrimaryKey(projectId);
+            String projectSerial = project.getProjectSerial();
+            finance.setProjectId(projectId);
+            finance.setProjectSerial(projectSerial);
+            finance.setProject(project);
+            int successNum= financeMapper.updateByPrimaryKeySelective(finance);
+            return successNum;
+        }catch (org.apache.ibatis.binding.BindingException e){
+            System.out.println("合同编号不存在");
+            return 100;
+        }
     }
 
     public int insertFinance(Finance finance){
-        int projectID = projectMapper.getProjectIDBySerial(finance.getProjectSerial());
-        finance.setProjectId(projectID);
-        int contractID = contractMapper.getContractIDBySerial(finance.getContractSerial());
-        finance.setContractId(contractID);
-        return financeMapper.insertSelective(finance);
+//        int projectID = projectMapper.getProjectIDBySerial(finance.getProjectSerial());
+//        finance.setProjectId(projectID);
+//        int contractID = contractMapper.getContractIDBySerial(finance.getContractSerial());
+//        finance.setContractId(contractID);
+//        return financeMapper.insertSelective(finance);
+
+        try {
+            if(financeMapper.ifSerialExistAdd(finance.getFinanceSerials())!=0)
+                return 99;
+            //下面这句会抛出异常
+
+            int contractId = contractMapper.getContractIDBySerial(finance.getContractSerial());
+            finance.setContractId(contractId);
+            Contract contract = contractMapper.selectByPrimaryKey(contractId);
+            int projectId = contract.getProjectId();
+            Project project = projectMapper.selectByPrimaryKey(projectId);
+            String projectSerial = project.getProjectSerial();
+            finance.setProjectId(projectId);
+            finance.setProjectSerial(projectSerial);
+            finance.setProject(project);
+            finance.setContract(contract);
+            int successNum= financeMapper.insertSelective(finance);
+            return successNum;
+        }catch (org.apache.ibatis.binding.BindingException e){
+            System.out.println("合同编号不存在");
+            return 100;
+        }
     }
 
     public int deleteFinance(int financeID){

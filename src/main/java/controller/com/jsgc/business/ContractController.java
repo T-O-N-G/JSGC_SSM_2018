@@ -20,6 +20,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -28,6 +33,7 @@ import java.util.List;
 @RequestMapping(produces = {"application/json; charset=UTF-8"})
 
 public class ContractController {
+
     @Resource
     private ContractService contractService;
 
@@ -60,11 +66,12 @@ public class ContractController {
 
     @RequestMapping("/getContractList")
     @ResponseBody
-    public String searchByConditons(@RequestBody String params) throws UnsupportedEncodingException {
+    public String searchByConditons(@RequestBody String params) throws UnsupportedEncodingException, ParseException {
         System.out.println(params);
         ContractSearchConditions ps = JSON.parseObject(params , new TypeReference<ContractSearchConditions>() {});
         System.out.println(ps);
         ps.parseOrder();
+        ps.parseDateRange();
         System.out.println(ps);
         return contractService.searchByConditions(ps);
     }
