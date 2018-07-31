@@ -24,4 +24,6 @@ public interface UserMapper {
     List<User> selectAll(UserSearchConditions ps);
 
     int deleteFakeByPrimaryKey(int userID);
+
+    int getUidbyUname(String uname);
 }

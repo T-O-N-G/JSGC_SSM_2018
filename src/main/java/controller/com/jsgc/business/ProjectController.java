@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pojo.com.jsgc.business.Contract;
 import pojo.com.jsgc.business.Project;
+import service.com.jsgc.admin.UserService;
 import service.com.jsgc.business.ProjectService;
 //import util.com.jsgc.RequestPage;
 import util.com.jsgc.searchCondition.ProjectSearchConditions;
@@ -16,6 +17,7 @@ import util.com.jsgc.searchCondition.ProjectSearchConditions;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +31,8 @@ import java.util.Map;
 public class ProjectController {
     @Resource
     private ProjectService projectService;
+    @Resource
+    private UserService userService;
     @RequestMapping("/getProjectList")
     @ResponseBody
     public String searchByConditons(@RequestBody String params) throws UnsupportedEncodingException {
@@ -72,14 +76,34 @@ public class ProjectController {
     @ResponseBody
     public int updateProjectDetail(@RequestBody String params){
         Project project = JSON.parseObject(params , new TypeReference<Project>() {});
-        return   projectService.updateProjectDetail(project);
+        try {
+            if(projectService.ifSerialExistUpdt(project)!=0)
+                return 99;
+            //下面这句会抛出异常
+            int chargerId= userService.getUidbyUname(project.getUsername());
+            project.setProjectChargerId(chargerId);
+            int successNum= projectService.updateProjectDetail(project);
+            return successNum;
+        }catch (org.apache.ibatis.binding.BindingException e){
+            System.out.println("负责人id不存在");
+            return 100;
+        }
     }
 
     @RequestMapping("addProject")
     @ResponseBody
     public int addProject(@RequestBody String params){
         Project project = JSON.parseObject(params , new TypeReference<Project>() {});
-        return   projectService.insertProject(project);
+        try {
+            if(projectService.ifSerialExistAdd(project.getProjectSerial())!=0)
+                return 99;
+            int chargerId= userService.getUidbyUname(project.getUsername());
+            project.setProjectChargerId(chargerId);
+            return   projectService.insertProject(project);
+        }catch (org.apache.ibatis.binding.BindingException e){
+            System.out.println("负责人id不存在");
+            return 100;
+        }
     }
 
     @RequestMapping("deleteProject")

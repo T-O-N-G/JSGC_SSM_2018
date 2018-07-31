@@ -66,4 +66,5 @@ public class UserService {
         jedis.close();
         return result;
     }
+    public int getUidbyUname(String name){return userMapper.getUidbyUname(name);}
 }
