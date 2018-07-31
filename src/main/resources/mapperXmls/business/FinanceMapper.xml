@@ -23,11 +23,21 @@
     financeDelete, financeBorrowerId, financeLenderId, financeBuyOrgId, financeBuyMethodId, 
     financeTypeId, payMethodId, projectId, contractId
   </sql>
+  <select id="ifSerialExistAdd" parameterType="java.lang.String" resultType="java.lang.Integer" >
+    SELECT  count(*)
+    from finance
+    where financeSerials=#{0} and financeDelete=0
+  </select>
+  <select id="ifSerialExistUpdt" parameterType="pojo.com.jsgc.business.Finance" resultType="java.lang.Integer">
+    SELECT count(*)
+    from finance
+    where financeSerials=#{financeSerials} and financeId!=#{financeId} and financeDelete=0
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from finance
-    where financeId = #{financeId,jdbcType=INTEGER}
+    where financeId = #{financeId,jdbcType=INTEGER} and financeDelete=0
   </select>
 
   <select id="selectAll" resultMap="BaseResultMap">

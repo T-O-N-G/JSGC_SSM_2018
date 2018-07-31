@@ -24,5 +24,8 @@ public interface FinanceMapper {
 
     List<Finance> selectByConditions(FinanceSearchConditions fs);
 
+    int ifSerialExistAdd(String financeSerial);
+
+    int ifSerialExistUpdt(Finance finance);
 
 }

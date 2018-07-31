@@ -29,4 +29,8 @@ public interface ContractMapper {
     List<Contract> selectByConditions(ContractSearchConditions cs);
 
     List<Contract> selectAll(ContractSearchConditions ps);
+
+    int ifSerialExistAdd(String contractSerial);
+
+    int ifSerialExistUpdt(Contract contract);
 }
