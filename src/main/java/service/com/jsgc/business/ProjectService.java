@@ -69,7 +69,7 @@ public class ProjectService {
     }
 
 
-    public int updateProjectDetail(Project project, HttpServletRequest request) {
+    public int updateProjectDetail(Project project) {
         Project project2 = projectMapper.selectByPrimaryKey(project.getProjectId());
 
         int result = projectMapper.updateByPrimaryKeySelective(project);

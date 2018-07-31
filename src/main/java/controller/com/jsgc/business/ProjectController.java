@@ -89,7 +89,7 @@ public class ProjectController {
             //下面这句会抛出异常
             int chargerId = userService.getUidbyUname(project.getUsername());
             project.setProjectChargerId(chargerId);
-            int successNum = projectService.updateProjectDetail(project, request);
+            int successNum = projectService.updateProjectDetail(project);
             return successNum;
         } catch (org.apache.ibatis.binding.BindingException e) {
             System.out.println("负责人id不存在");
