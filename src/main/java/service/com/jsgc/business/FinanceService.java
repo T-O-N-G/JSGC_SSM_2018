@@ -20,11 +20,14 @@ import util.com.jsgc.searchCondition.FinanceSearchConditions;
 import util.com.jsgc.searchCondition.ProjectSearchConditions;
 
 import javax.annotation.Resource;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 
 @Service
 public class FinanceService {
+    Calendar calendar=new GregorianCalendar();
     @Resource
     private FinanceMapper financeMapper;
     @Resource
@@ -72,6 +75,9 @@ public class FinanceService {
     }
 
     public int updateFinanceDetail(Finance finance) {
+        calendar.setTime(finance.getFinanceDate());
+        calendar.add(calendar.DATE,1);
+        finance.setFinanceDate(calendar.getTime());
         try {
             if(financeMapper.ifSerialExistUpdt(finance)!=0)
                 return 99;
@@ -100,7 +106,9 @@ public class FinanceService {
 //        int contractID = contractMapper.getContractIDBySerial(finance.getContractSerial());
 //        finance.setContractId(contractID);
 //        return financeMapper.insertSelective(finance);
-
+        calendar.setTime(finance.getFinanceDate());
+        calendar.add(calendar.DATE,1);
+        finance.setFinanceDate(calendar.getTime());
         try {
             if(financeMapper.ifSerialExistAdd(finance.getFinanceSerials())!=0)
                 return 99;
