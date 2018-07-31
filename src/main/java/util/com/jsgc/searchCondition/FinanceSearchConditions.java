@@ -69,7 +69,7 @@ public class FinanceSearchConditions {
             this.descOrNot=later[1].substring(1,later[1].length()-3);
             switch (column){
                 case 0:
-                    this.realOrder="financeSerial";
+                    this.realOrder="financeSerials";
                     break;
                 case 1:
                     this.realOrder="financeDate";

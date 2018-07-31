@@ -16,12 +16,15 @@ import redis.clients.jedis.JedisPool;
 import util.com.jsgc.searchCondition.ContractSearchConditions;
 
 import javax.annotation.Resource;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 
 
 @Service
 public class ContractService {
+    Calendar calendar=new GregorianCalendar();
     @Resource
     private ContractMapper contractMapper;
     @Resource
@@ -46,14 +49,17 @@ public JedisPool jedisPool;//注入JedisPool
     }
 
     public int updateContractDetail(Contract contract) {
-        int projectID = projectMapper.getProjectIDBySerial(contract.getProjectSerial());
-        contract.setProjectId(projectID);
+        calendar.setTime(contract.getContractSignedTime());
+        calendar.add(calendar.DATE,1);
+        contract.setContractSignedTime(calendar.getTime());
         return contractMapper.updateByPrimaryKeySelective(contract);
     }
 
     public int insertContract(Contract contract){
-        int projectID = projectMapper.getProjectIDBySerial(contract.getProjectSerial());
-        contract.setProjectId(projectID);
+        calendar.setTime(contract.getContractSignedTime());
+        calendar.add(calendar.DATE,1);
+        contract.setContractSignedTime(calendar.getTime());
+        System.out.println(contract.getBuildContentId());
         return contractMapper.insertSelective(contract);
     }
 

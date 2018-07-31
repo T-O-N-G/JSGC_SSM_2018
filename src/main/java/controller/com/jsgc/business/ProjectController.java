@@ -76,6 +76,7 @@ public class ProjectController {
     @ResponseBody
     public int updateProjectDetail(@RequestBody String params){
         Project project = JSON.parseObject(params , new TypeReference<Project>() {});
+
         try {
             if(projectService.ifSerialExistUpdt(project)!=0)
                 return 99;
