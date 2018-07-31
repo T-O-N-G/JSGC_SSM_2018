@@ -24,6 +24,6 @@ public interface ProjectMapper {
     //分页测试
     List<Project> selectAll();
     List<Project> selectByConditions(ProjectSearchConditions ps);
-    public int ifSerialExistAdd(String projectSerial);
-    public int ifSerialExistUpdt(Project project);
+    int ifSerialExistAdd(String projectSerial);
+    int ifSerialExistUpdt(Project project);
 }

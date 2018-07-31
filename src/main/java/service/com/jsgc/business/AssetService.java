@@ -13,6 +13,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 import pojo.com.jsgc.business.Asset;
 import pojo.com.jsgc.business.Contract;
+import pojo.com.jsgc.business.Project;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import util.com.jsgc.searchCondition.AssetSearchConditions;
@@ -25,6 +26,9 @@ import java.util.List;
 public class AssetService {
     @Resource
     private AssetMapper assetMapper;
+
+    @Resource
+    private ProjectMapper projectMapper;
 
 //    ApplicationContext ac = new ClassPathXmlApplicationContext("spring-jedis.xml");
 //
@@ -43,11 +47,33 @@ private JedisPool jedisPool;//注入JedisPool
     }
 
     public int updateAssetDetail(Asset asset) {
-        return assetMapper.updateByPrimaryKeySelective(asset);
+        try {
+            if(assetMapper.ifSerialExistUpdt(asset)!=0)
+                return 99;
+            //下面这句会抛出异常
+            int projectId = projectMapper.getProjectIDBySerial(asset.getProjectSerial());
+            asset.setProjectId(projectId);
+            int successNum= assetMapper.updateByPrimaryKeySelective(asset);
+            return successNum;
+        }catch (org.apache.ibatis.binding.BindingException e){
+            System.out.println("项目编号不存在");
+            return 100;
+        }
     }
 
     public int insertAsset(Asset asset) {
-        return assetMapper.insertSelective(asset);
+        try {
+            if(assetMapper.ifSerialExistAdd(asset.getAssetSerial())!=0)
+                return 99;
+            //下面这句会抛出异常
+            int projectId = projectMapper.getProjectIDBySerial(asset.getProjectSerial());
+            asset.setProjectId(projectId);
+            int successNum= assetMapper.insertSelective(asset);
+            return successNum;
+        }catch (org.apache.ibatis.binding.BindingException e){
+            System.out.println("项目编号不存在");
+            return 100;
+        }
     }
 
     public int deleteAsset(int assetID) {

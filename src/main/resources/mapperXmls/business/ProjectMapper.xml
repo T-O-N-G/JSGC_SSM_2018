@@ -23,18 +23,18 @@
   <select id="ifSerialExistAdd" parameterType="java.lang.String" resultType="java.lang.Integer" >
     SELECT  count(*)
     from project
-    where projectSerial=#{0}
+    where projectSerial=#{0} and projectDelete=0
   </select>
   <!--lzq,更新判断主键序号是否存在-->
   <select id="ifSerialExistUpdt" parameterType="pojo.com.jsgc.business.Project" resultType="java.lang.Integer">
     SELECT count(*)
     from project
-    where projectSerial=#{projectSerial} and projectId!=#{projectId}
+    where projectSerial=#{projectSerial} and projectId!=#{projectId} and projectDelete=0
   </select>
   <!--lzq,分页测试-->
   <select id="selectAll" resultType="pojo.com.jsgc.business.Project">
     select *
-    from project
+    from project and projectDelete=0
   </select>
   <!--lzq,条件查询-->
   <resultMap id="projectWithAssociation" type="pojo.com.jsgc.business.Project">
@@ -95,7 +95,7 @@
   <select id="getProjectIDBySerial" parameterType="java.lang.String" resultType="java.lang.Integer">
     SELECT projectID
     from project
-    where projectSerial = #{projectSerial,jdbcType=VARCHAR}
+    where projectSerial = #{projectSerial,jdbcType=VARCHAR} and projectDelete=0
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

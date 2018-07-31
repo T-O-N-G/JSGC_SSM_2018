@@ -20,4 +20,8 @@ public interface AssetMapper {
     int updateByPrimaryKey(Asset record);
 
     List<Asset> selectAll(AssetSearchConditions ps);
+
+    int ifSerialExistAdd(String assetSerial);
+
+    int ifSerialExistUpdt(Asset asset);
 }

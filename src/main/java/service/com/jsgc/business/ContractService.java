@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 import pojo.com.jsgc.business.Contract;
+import pojo.com.jsgc.business.Project;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import util.com.jsgc.searchCondition.ContractSearchConditions;
@@ -35,9 +36,6 @@ public class ContractService {
 //    public JedisPool jedisPool = (JedisPool) ac.getBean("jedisPool");//注入JedisPool
 @Autowired
 public JedisPool jedisPool;//注入JedisPool
-
-
-
     public String getContractDetail(int contractID) {
         Jedis jedis = jedisPool.getResource();
         String key = "Contract:ID:"+contractID;
@@ -49,18 +47,53 @@ public JedisPool jedisPool;//注入JedisPool
     }
 
     public int updateContractDetail(Contract contract) {
+
         calendar.setTime(contract.getContractSignedTime());
         calendar.add(calendar.DATE,1);
         contract.setContractSignedTime(calendar.getTime());
-        return contractMapper.updateByPrimaryKeySelective(contract);
+        //return contractMapper.updateByPrimaryKeySelective(contract);
+//        int projectID = projectMapper.getProjectIDBySerial(contract.getProjectSerial());
+//        contract.setProjectId(projectID);
+//        return contractMapper.updateByPrimaryKeySelective(contract);
+        try {
+            if(contractMapper.ifSerialExistUpdt(contract)!=0)
+                return 99;
+            //下面这句会抛出异常
+            int projectId = projectMapper.getProjectIDBySerial(contract.getProjectSerial());
+            contract.setProjectId(projectId);
+            Project project = projectMapper.selectByPrimaryKey(projectId);
+            contract.setProject(project);
+            int successNum= contractMapper.updateByPrimaryKeySelective(contract);
+            return successNum;
+        }catch (org.apache.ibatis.binding.BindingException e){
+            System.out.println("项目编号不存在");
+            return 100;
+        }
     }
 
     public int insertContract(Contract contract){
+//        int projectID = projectMapper.getProjectIDBySerial(contract.getProjectSerial());
+//        contract.setProjectId(projectID);
+//        return contractMapper.insertSelective(contract);
         calendar.setTime(contract.getContractSignedTime());
         calendar.add(calendar.DATE,1);
         contract.setContractSignedTime(calendar.getTime());
         System.out.println(contract.getBuildContentId());
-        return contractMapper.insertSelective(contract);
+        try {
+            if(contractMapper.ifSerialExistAdd(contract.getContractSerial())!=0)
+                return 99;
+            //下面这句会抛出异常
+            int projectId = projectMapper.getProjectIDBySerial(contract.getProjectSerial());
+            contract.setProjectId(projectId);
+            Project project = projectMapper.selectByPrimaryKey(projectId);
+            contract.setProject(project);
+            int successNum= contractMapper.insertSelective(contract);
+            return successNum;
+        }catch (org.apache.ibatis.binding.BindingException e){
+            System.out.println("项目编号不存在");
+            return 100;
+        }
+
     }
 
     public int deleteContract(int contractID){
@@ -96,4 +129,5 @@ public JedisPool jedisPool;//注入JedisPool
 
         return JSON.toJSONString(map);
     }
+
 }

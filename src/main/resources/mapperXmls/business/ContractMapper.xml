@@ -18,16 +18,26 @@
     contractId, contractSerial, contractName, contractOwner, contractPartner, contractSignedTime, 
     contractMoney, contractContent, contractComment, contractDelete, projectId
   </sql>
+  <select id="ifSerialExistAdd" parameterType="java.lang.String" resultType="java.lang.Integer" >
+    SELECT  count(*)
+    from contract
+    where contractSerial=#{0} and contractDelete=0
+  </select>
+  <select id="ifSerialExistUpdt" parameterType="pojo.com.jsgc.business.Contract" resultType="java.lang.Integer">
+    SELECT count(*)
+    from contract
+    where contractSerial=#{contractSerial} and contractId!=#{contractId} and contractDelete=0
+  </select>
   <select id="getContractIDBySerial" parameterType="java.lang.String" resultType="java.lang.Integer">
     SELECT contractID
     from contract
-    where contractSerial = #{contractSerial,jdbcType=VARCHAR}
+    where contractSerial = #{contractSerial,jdbcType=VARCHAR} and contractDelete=0
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from contract
-    where contractId = #{contractId,jdbcType=INTEGER}
+    where contractId = #{contractId,jdbcType=INTEGER} and contractDelete=0
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from contract
