@@ -21,4 +21,8 @@ public interface DocumentMapper {
 
 
     List<Document> selectAll(DocumentSearchConditions ps);
+
+    int ifSerialExistAdd(String documentSerial);
+
+    int ifSerialExistUpdt(Document document);
 }

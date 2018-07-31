@@ -31,9 +31,16 @@ public class BudgetService {
         Jedis jedis = jedisPool.getResource();
         Page page = PageHelper.startPage(ps.getPage(), ps.getLimit(), true);
         List<BudgetDetail> budgets = budgetDetailMapper.selectAll(ps);
-        for (BudgetDetail budget: budgets
-             ) {
-//            budget.setProjectContractsPayed(Integer.valueOf(jedis.get("Contract:ID:")));
+        for (BudgetDetail budget : budgets
+        ) {
+            try {
+                budget.setProjectContractsPayed(Integer.valueOf(jedis.get("Project:" + budget.getProjectId() + ":Contract:PaySum")));
+                budget.setProjectContractsSum(Integer.valueOf(jedis.get("Project:" + budget.getProjectId() + ":Contract:Sum")));
+                budget.setProjectContractsNotPayed(Integer.valueOf(jedis.get("Project:" + budget.getProjectId() + ":Contract:UnPay")));
+            }catch (java.lang.NumberFormatException e){
+                System.out.println("fuck");
+            }
+
         }
 //        System.out.println(page.getTotal());
 //        System.out.println("分页数据:");

@@ -101,11 +101,6 @@ public class FinanceService {
     }
 
     public int insertFinance(Finance finance){
-//        int projectID = projectMapper.getProjectIDBySerial(finance.getProjectSerial());
-//        finance.setProjectId(projectID);
-//        int contractID = contractMapper.getContractIDBySerial(finance.getContractSerial());
-//        finance.setContractId(contractID);
-//        return financeMapper.insertSelective(finance);
         calendar.setTime(finance.getFinanceDate());
         calendar.add(calendar.DATE,1);
         finance.setFinanceDate(calendar.getTime());

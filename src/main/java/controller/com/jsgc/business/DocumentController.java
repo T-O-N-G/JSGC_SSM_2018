@@ -37,8 +37,8 @@ public class DocumentController {
 
     @RequestMapping("getDocumentDetail")
     @ResponseBody
-    public String getDocumentDetail(int documentID){
-        return documentService.getDocumentDetail(documentID);
+    public String getDocumentDetail(int documentId){
+        return documentService.getDocumentDetail(documentId);
     }
 
     @RequestMapping("updateDocumentDetail")
