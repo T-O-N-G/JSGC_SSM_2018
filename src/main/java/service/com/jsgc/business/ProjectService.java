@@ -79,4 +79,6 @@ public class ProjectService {
     public int getProjectIDBySerial(String projectSerial){
         return projectMapper.getProjectIDBySerial(projectSerial);
     }
+    public int ifSerialExistAdd(String projectSerial){return projectMapper.ifSerialExistAdd(projectSerial);}
+    public int ifSerialExistUpdt(Project project){return projectMapper.ifSerialExistUpdt(project);}
 }

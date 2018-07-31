@@ -32,12 +32,21 @@ public class Project {
     private Integer budgetId;
 
     private Integer projectChargerId;
+    private String username;
     //添加对象用于导出
     @ExcelEntity(id="departmentEntity")
     private Department projectDepartment;
     //添加对象用于导出
     @ExcelEntity(id="userEntity")
     private User projectCharger;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public Department getProjectDepartment() {
         return projectDepartment;

@@ -19,6 +19,18 @@
     projectId, projectSerial, projectName, projectBudgetSum, projectStartTime, projectEndTime, 
     projectStatus, projectComment, projectDelete, projectDepartmentId, budgetId, projectChargerId
   </sql>
+  <!--lzq,插入判断主键序号是否存在-->
+  <select id="ifSerialExistAdd" parameterType="java.lang.String" resultType="java.lang.Integer" >
+    SELECT  count(*)
+    from project
+    where projectSerial=#{0}
+  </select>
+  <!--lzq,更新判断主键序号是否存在-->
+  <select id="ifSerialExistUpdt" parameterType="pojo.com.jsgc.business.Project" resultType="java.lang.Integer">
+    SELECT count(*)
+    from project
+    where projectSerial=#{projectSerial} and projectId!=#{projectId}
+  </select>
   <!--lzq,分页测试-->
   <select id="selectAll" resultType="pojo.com.jsgc.business.Project">
     select *
