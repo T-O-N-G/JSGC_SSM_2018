@@ -70,9 +70,9 @@ public class ProjectController {
 
     @RequestMapping("updateProjectDetail")
     @ResponseBody
-    public int updateProjectDetail(@RequestBody String params){
+    public int updateProjectDetail(@RequestBody String params, HttpServletRequest request){
         Project project = JSON.parseObject(params , new TypeReference<Project>() {});
-        return   projectService.updateProjectDetail(project);
+        return   projectService.updateProjectDetail(project, request);
     }
 
     @RequestMapping("addProject")
