@@ -23,7 +23,7 @@ public class UserService {
     private UserMapper userMapper;
 
     @Autowired
-    public JedisPool jedisPool;//注入JedisPool
+    private JedisPool jedisPool;//注入JedisPool
 
     public String searchByConditions(UserSearchConditions ps) {
 

@@ -44,26 +44,7 @@ public class ProjectController {
         ps.parseOrder();
         System.out.println(ps);
         return projectService.searchByConditions(ps);
-//        String gbk = new String(projectService.searchByConditions(ps).getBytes(), "utf-8");
-//        //分页条件
-//        int limit=Integer.parseInt(request.getParameter("limit"));
-//        int start=Integer.parseInt(request.getParameter("start"));
-//        System.out.println(limit+" "+start);
-//        RequestPage requestPage=new RequestPage(limit,start);
-//        //搜索条件
-//        String projectSerial=request.getParameter("projectSerial");
-//        String projectName=request.getParameter("projectName");
-//        String projectDepartment=request.getParameter("projectDepartment");//承包部门编号
-//        String projectOwner=request.getParameter("projectOwner");//项目负责人姓名
-//        int projectBudgetDown=Integer.parseInt(request.getParameter("projectBudgetDown"));
-//        int projectBudgetUp=Integer.parseInt(request.getParameter("projectBudgetUp"));
-//        String order=request.getParameter("order");
-//        System.out.println(projectSerial+" "+projectName+" "+projectDepartment+" "+projectOwner+" "+projectBudgetDown+" "+order);
-//        HashMap searchConditionMaps=new HashMap();
-//        //searchConditionMaps.put("projectSerial")
-//
 
-//        return projectService.searchByConditions(ps);
     }
 
 
@@ -79,10 +60,6 @@ public class ProjectController {
     public int updateProjectDetail(@RequestBody String params, HttpServletRequest request) {
         Project project = JSON.parseObject(params, new TypeReference<Project>() {
         });
-//<<<<<<< HEAD
-//        return   projectService.updateProjectDetail(project, request);
-//=======
-
         try {
             if (projectService.ifSerialExistUpdt(project) != 0)
                 return 99;
@@ -95,7 +72,6 @@ public class ProjectController {
             System.out.println("负责人id不存在");
             return 100;
         }
-//>>>>>>> master
     }
 
     @RequestMapping("addProject")
