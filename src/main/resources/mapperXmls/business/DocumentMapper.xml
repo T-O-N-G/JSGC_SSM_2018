@@ -40,6 +40,7 @@
     on d.projectID = p.projectID
     left join contract ct
     on d.contractID = ct.contractID
+
     where d.documentDelete = 0
     <if test="documentSerial!=null and documentSerial!=''">
       and d.documentSerial = #{documentSerial,jdbcType=VARCHAR}

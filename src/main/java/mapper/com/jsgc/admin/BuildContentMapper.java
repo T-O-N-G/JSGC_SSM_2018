@@ -1,5 +1,6 @@
 package mapper.com.jsgc.admin;
 
+import pojo.com.jsgc.admin.BudgetReply;
 import pojo.com.jsgc.admin.BuildContent;
 
 import java.util.List;
@@ -17,4 +18,6 @@ public interface BuildContentMapper {
 
     int updateByPrimaryKey(BuildContent record);
     public List<String> getBuildContentSerials();
+
+    List<BuildContent> selectByVersionID(String versionId);
 }

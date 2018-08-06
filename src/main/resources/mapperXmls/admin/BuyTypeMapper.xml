@@ -10,10 +10,16 @@
     buyTypeId, buyTypeInfo, versionId
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from buytype
     where buyTypeId = #{buyTypeId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByVersionID" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from buytype
+    where versionId = #{0,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from buytype

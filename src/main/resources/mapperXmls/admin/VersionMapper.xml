@@ -15,6 +15,11 @@
     from version
     where verisionId = #{verisionId,jdbcType=INTEGER}
   </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from version
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from version
     where verisionId = #{verisionId,jdbcType=INTEGER}

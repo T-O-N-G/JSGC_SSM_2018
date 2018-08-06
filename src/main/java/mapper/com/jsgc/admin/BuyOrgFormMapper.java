@@ -1,5 +1,6 @@
 package mapper.com.jsgc.admin;
 
+import pojo.com.jsgc.admin.BudgetReply;
 import pojo.com.jsgc.admin.BuyOrgForm;
 
 import java.util.List;
@@ -17,4 +18,6 @@ public interface BuyOrgFormMapper {
 
     int updateByPrimaryKey(BuyOrgForm record);
     public List<String> getBuyOrgFormSerials();
+
+    List<BuyOrgForm> selectByVersionID(String versionId);
 }

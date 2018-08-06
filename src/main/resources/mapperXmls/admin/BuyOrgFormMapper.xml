@@ -15,6 +15,12 @@
     from buyorgform
     where buyOrgFormId = #{buyOrgFormId,jdbcType=VARCHAR}
   </select>
+  <select id="selectByVersionID" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from buyorgform
+    where versionId = #{0,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from buyorgform
     where buyOrgFormId = #{buyOrgFormId,jdbcType=VARCHAR}

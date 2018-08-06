@@ -24,8 +24,6 @@ public class PermissionService {
     @Resource
     private PermissionMapper permissionMapper;
 
-    @Autowired
-    private JedisPool jedisPool;
 
     public int updatePermission(String param) {
         JSONObject jsonObject = JSONObject.parseObject(param);
