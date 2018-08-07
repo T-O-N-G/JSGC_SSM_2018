@@ -66,14 +66,23 @@ public class ContractController {
 
     @RequestMapping("/getContractList")
     @ResponseBody
-    public String searchByConditons(@RequestBody String params) throws UnsupportedEncodingException, ParseException {
+    public String searchByConditons(HttpServletRequest request,@RequestBody String params) throws UnsupportedEncodingException, ParseException {
+        String userLevel=(String)request.getAttribute("level");
+        String userID= (String) request.getAttribute("userID");
+        System.out.println("userlevel:"+userLevel+" &&& userID:"+userID);
         System.out.println(params);
         ContractSearchConditions ps = JSON.parseObject(params , new TypeReference<ContractSearchConditions>() {});
-        System.out.println(ps);
+        ps.setUserID(userID);ps.setUserLevel(userLevel);
+        ps.parseUserID();
         ps.parseOrder();
         ps.parseDateRange();
         System.out.println(ps);
         return contractService.searchByConditions(ps);
+    }
+    @RequestMapping("/getContractUseMoney")
+    @ResponseBody
+    public String getContractUseMoney(Integer projectID ){
+        return contractService.getContractUseMoney(projectID);
     }
 
 

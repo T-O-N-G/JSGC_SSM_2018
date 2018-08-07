@@ -26,8 +26,8 @@
   </select>
   <select id="ifSerialExistAdd" parameterType="java.lang.String" resultType="java.lang.Integer" >
     SELECT  count(*)
-    from document
-    where documentSerial=#{0} and documentDelete=0
+    from document d
+    documentSerial=#{0} and documentDelete=0
   </select>
   <select id="ifSerialExistUpdt" parameterType="pojo.com.jsgc.business.Document" resultType="java.lang.Integer">
     SELECT count(*)
@@ -55,6 +55,9 @@
     </if>
     <if test="docUploadTimeRange!=null and docUploadTimeRange!=''">
       and d.documentUploadTime = #{docUploadTimeRange,jdbcType=VARCHAR}
+    </if>
+    <if test="userID!=null and userID!=''">
+      and p.projectChargerID=#{userID,jdbcType=INTEGER}
     </if>
     <if test='realOrder!=null and descOrNot!=null'>
       ORDER BY ${realOrder} ${descOrNot}

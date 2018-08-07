@@ -25,6 +25,51 @@ public class AssetSearchConditions {
     private int page;
     private int limit;
 
+    //  lzq,可访问范围
+    private String userLevel;
+    private String userID;
+
+    public void parseUserID(){
+        if(!userLevel.equals("2")) this.userID=null;
+    }
+
+    public String getUserLevel() {
+        return userLevel;
+    }
+
+    public void setUserLevel(String userLevel) {
+        this.userLevel = userLevel;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    @Override
+    public String toString() {
+        return "AssetSearchConditions{" +
+                "order='" + order + '\'' +
+                ", realOrder='" + realOrder + '\'' +
+                ", descOrNot='" + descOrNot + '\'' +
+                ", assetName='" + assetName + '\'' +
+                ", assetDate='" + assetDate + '\'' +
+                ", departmentName='" + departmentName + '\'' +
+                ", projectSerial='" + projectSerial + '\'' +
+                ", projectName='" + projectName + '\'' +
+                ", projectStatus='" + projectStatus + '\'' +
+                ", assetStatus='" + assetStatus + '\'' +
+                ", start=" + start +
+                ", page=" + page +
+                ", limit=" + limit +
+                ", userLevel='" + userLevel + '\'' +
+                ", userID='" + userID + '\'' +
+                '}';
+    }
+
     public void parseOrder(){
         if(this.order!=null&&!this.order.equals("[]")){
             String[]ss=this.order.split(",");

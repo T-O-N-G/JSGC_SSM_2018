@@ -20,6 +20,51 @@ public class ContractSearchConditions {
     private int start;
     private int page;
     private int limit;
+    //  lzq,可访问范围
+    private String userLevel;
+    private String userID;
+
+    public void parseUserID(){
+        if(!userLevel.equals("2")) this.userID=null;
+    }
+
+    public String getUserLevel() {
+        return userLevel;
+    }
+
+    public void setUserLevel(String userLevel) {
+        this.userLevel = userLevel;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    @Override
+    public String toString() {
+        return "ContractSearchConditions{" +
+                "order='" + order + '\'' +
+                ", realOrder='" + realOrder + '\'' +
+                ", descOrNot='" + descOrNot + '\'' +
+                ", contractSerial='" + contractSerial + '\'' +
+                ", contractName='" + contractName + '\'' +
+                ", contractSignedTime='" + contractSignedTime + '\'' +
+                ", contractTimeMin='" + contractTimeMin + '\'' +
+                ", contractTimeMax='" + contractTimeMax + '\'' +
+                ", projectSerial='" + projectSerial + '\'' +
+                ", projectName='" + projectName + '\'' +
+                ", buildContentId='" + buildContentId + '\'' +
+                ", start=" + start +
+                ", page=" + page +
+                ", limit=" + limit +
+                ", userLevel='" + userLevel + '\'' +
+                ", userID='" + userID + '\'' +
+                '}';
+    }
 
     public String getBuildContentId() {
         return buildContentId;
@@ -135,21 +180,7 @@ public class ContractSearchConditions {
     public ContractSearchConditions(){
 
     }
-    @Override
-    public String toString() {
-        return "ContractSearchConditions{" +
-                "order='" + order + '\'' +
-                ", realOrder='" + realOrder + '\'' +
-                ", descOrNot='" + descOrNot + '\'' +
-                ", contractSerial='" + contractSerial + '\'' +
-                ", contractName='" + contractName + '\'' +
-                ", contractSignedTime='" + contractSignedTime + '\'' +
-                ", contractTimeMin=" + contractTimeMin +
-                ", contractTimeMax=" + contractTimeMax +
-                ", projectSerial='" + projectSerial + '\'' +
-                ", projectName='" + projectName + '\'' +
-                '}';
-    }
+
 
     public void parseDateRange() throws ParseException {
         if(this.contractSignedTime!=null&&!this.contractSignedTime.equals("")){

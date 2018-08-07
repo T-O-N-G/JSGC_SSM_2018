@@ -23,6 +23,7 @@ import java.util.Map;
 
 @Controller
 //@RequestMapping("/business/project/")
+@RequestMapping(produces = {"application/json; charset=UTF-8"})
 public class LoginController {
     @Resource
     private LoginService loginService;
@@ -43,6 +44,7 @@ public class LoginController {
         resultMap.put("Token", loginInfo.getToken());
         resultMap.put("username", loginInfo.getUsername());
         resultMap.put("userID", String.valueOf(loginInfo.getUserID()));
+        resultMap.put("level", String.valueOf(loginInfo.getLevel()));
 
         //        response.setHeader("Token", loginInfo.getToken());
         response.setStatus(200);

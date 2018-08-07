@@ -15,6 +15,7 @@ import pojo.com.jsgc.admin.Department;
 import pojo.com.jsgc.admin.User;
 import pojo.com.jsgc.business.Contract;
 import pojo.com.jsgc.business.Project;
+import util.HdfsUtil;
 
 
 import java.io.File;
@@ -26,6 +27,11 @@ import java.util.Date;
 import java.util.List;
 
 public class testExcel {
+    @Test
+    public void allTextSearch(){
+        List<HdfsUtil.DisplayAndRealPath> a= HdfsUtil.searchIndex("奥迪");
+        System.out.println(a);
+    }
     public static void main(String[] args) throws FileNotFoundException {
 //        List<Category> categories=new ArrayList<Category>() ;
 //        categories.add(new Category(1,"a"));

@@ -29,7 +29,7 @@ public interface ContractMapper {
     List<Contract> selectByConditions(ContractSearchConditions cs);
 
     List<Contract> selectAll(ContractSearchConditions ps);
-
+    List<Contract> selectByProjectID(Integer projectID);
     int ifSerialExistAdd(String contractSerial);
 
     int ifSerialExistUpdt(Contract contract);
