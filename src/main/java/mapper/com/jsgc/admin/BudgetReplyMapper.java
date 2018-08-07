@@ -18,4 +18,6 @@ public interface BudgetReplyMapper {
     int updateByPrimaryKey(BudgetReply record);
 
     public List<String> getBudgetReplySerials();
+
+    List<BudgetReply> selectByVersionID(String versionId);
 }

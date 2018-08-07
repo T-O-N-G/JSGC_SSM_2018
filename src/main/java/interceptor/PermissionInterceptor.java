@@ -17,9 +17,11 @@ public class PermissionInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         Jedis jedis = jedisPool.getResource();
         String url = httpServletRequest.getRequestURI();
+
         String level = (String) httpServletRequest.getAttribute("level");
         String value = url + ":" + level;
-        if(jedis.sismember("permission", value)){
+        System.out.println(value);
+        if(jedis.sismember("Permission", value)){
             return true;
         }else {
             httpServletResponse.setStatus(405);

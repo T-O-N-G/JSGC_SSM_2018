@@ -1,5 +1,6 @@
 package mapper.com.jsgc.admin;
 
+import pojo.com.jsgc.admin.BudgetReply;
 import pojo.com.jsgc.admin.PayMethod;
 
 import java.util.List;
@@ -17,4 +18,6 @@ public interface PayMethodMapper {
 
     int updateByPrimaryKey(PayMethod record);
     public List<String> getPayMethodSerials();
+
+    List<PayMethod> selectByVersionID(String versionId);
 }

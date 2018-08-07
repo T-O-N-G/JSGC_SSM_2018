@@ -36,12 +36,13 @@ public class ProjectController {
 
     @RequestMapping("/getProjectList")
     @ResponseBody
-    public String searchByConditons(HttpServletRequest request,@RequestBody String params) throws UnsupportedEncodingException {
-        String userLevel=(String)request.getAttribute("level");
-        String userID= (String) request.getAttribute("userID");
-        System.out.println("userlevel:"+userLevel+"&&& userID:"+userID);
+    public String searchByConditons(HttpServletRequest request, @RequestBody String params) throws UnsupportedEncodingException {
+        String userLevel = (String) request.getAttribute("level");
+        String userID = (String) request.getAttribute("userID");
+        System.out.println("userlevel:" + userLevel + "&&& userID:" + userID);
         System.out.println(params);
-        ProjectSearchConditions ps = JSON.parseObject(params, new TypeReference<ProjectSearchConditions>() {});
+        ProjectSearchConditions ps = JSON.parseObject(params, new TypeReference<ProjectSearchConditions>() {
+        });
         ps.setUserID(userID);
         ps.setUserLevel(userLevel);
         ps.parseUserID();
@@ -63,10 +64,6 @@ public class ProjectController {
     public int updateProjectDetail(@RequestBody String params, HttpServletRequest request) {
         Project project = JSON.parseObject(params, new TypeReference<Project>() {
         });
-//<<<<<<< HEAD
-//        return   projectService.updateProjectDetail(project, request);
-//=======
-
         try {
             if (projectService.ifSerialExistUpdt(project) != 0)
                 return 99;
@@ -79,7 +76,6 @@ public class ProjectController {
             System.out.println("负责人id不存在");
             return 100;
         }
-//>>>>>>> master
     }
 
     @RequestMapping("addProject")

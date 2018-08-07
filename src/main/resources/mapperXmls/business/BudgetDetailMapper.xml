@@ -132,7 +132,7 @@
     select *
     from budgetdetail b inner join project p
     on b.projectID = p.projectID
-    where 1 = 1
+    where p.projectDelete = 0
     <if test="projectSerial!=null and projectSerial!=''">
       and p.projectSerial = #{projectSerial}
     </if>

@@ -76,24 +76,41 @@ public class ProjectService {
 //        Jedis jedis = jedisPool.getResource();
 //        String key = "Project:ID:" + project.getProjectId();
 //        jedis.set(key, JSON.toJSONString(project));
-        if(project2.getProjectSerial().equals(project.getProjectSerial())){
-            String url = "http://127.0.0.1:8002/updateProjectDetail";
-            String param = "projectID=" + project.getProjectId();
+//        if(project2.getProjectSerial().equals(project.getProjectSerial())){
+//            String url = "http://127.0.0.1:8002/updateProject";
+//            String param = "projectID=" + project.getProjectId();
+//            HttpRequestMethod.sendGet(url, param);
+//        }else {
+//            String url = "http://127.0.0.1:8002/updateProject";
+//            String param = "projectID=" + project.getProjectId();
+//            HttpRequestMethod.sendGet(url, param);
+//        }
+        new Thread(() -> {
+            String url = "http://127.0.0.1:8002/updateProject";
+            String param = "projectID=" + 0;
             HttpRequestMethod.sendGet(url, param);
-        }else {
-            String url = "http://127.0.0.1:8002/updateProjectDetailWithSerial";
-            String param = "projectID=" + project.getProjectId();
-            HttpRequestMethod.sendGet(url, param);
-        }
+        }).start();
         return result;
     }
 
     public int insertProject(Project project) {
-        return projectMapper.insertSelective(project);
+        int result= projectMapper.insertSelective(project);
+        new Thread(() -> {
+            String url = "http://127.0.0.1:8002/updateProject";
+            String param = "projectID=" + 0;
+            HttpRequestMethod.sendGet(url, param);
+        }).start();
+        return result;
     }
 
     public int deleteProject(int projectID) {
-        return projectMapper.deleteFakeByPrimaryKey(projectID);
+        int result = projectMapper.deleteFakeByPrimaryKey(projectID);
+        new Thread(() -> {
+            String url = "http://127.0.0.1:8002/updateProject";
+            String param = "projectID=" + 0;
+            HttpRequestMethod.sendGet(url, param);
+        }).start();
+        return result;
     }
 
     public List<String> getSerials() {

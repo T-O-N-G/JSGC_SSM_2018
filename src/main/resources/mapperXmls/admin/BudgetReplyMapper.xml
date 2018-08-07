@@ -15,6 +15,12 @@
     from budgetreply
     where budgetReplyId = #{budgetReplyId,jdbcType=VARCHAR}
   </select>
+  <select id="selectByVersionID" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from budgetreply
+    where versionId = #{0,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from budgetreply
     where budgetReplyId = #{budgetReplyId,jdbcType=VARCHAR}

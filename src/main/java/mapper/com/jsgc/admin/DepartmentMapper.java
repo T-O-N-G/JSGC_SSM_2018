@@ -1,5 +1,6 @@
 package mapper.com.jsgc.admin;
 
+import pojo.com.jsgc.admin.BudgetReply;
 import pojo.com.jsgc.admin.Department;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface DepartmentMapper {
     int updateByPrimaryKey(Department record);
 
     public List<String> getDepartmentSerials();
+
+    List<Department> selectByVersionID(String versionId);
 }
