@@ -26,8 +26,8 @@
   </select>
   <select id="ifSerialExistAdd" parameterType="java.lang.String" resultType="java.lang.Integer" >
     SELECT  count(*)
-    from document d
-    documentSerial=#{0} and documentDelete=0
+    from document
+    WHERE documentSerial=#{0} and documentDelete=0
   </select>
   <select id="ifSerialExistUpdt" parameterType="pojo.com.jsgc.business.Document" resultType="java.lang.Integer">
     SELECT count(*)
