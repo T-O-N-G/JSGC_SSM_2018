@@ -24,6 +24,7 @@ import java.util.Map;
 @Controller
 //@RequestMapping("/business/project/")
 @RequestMapping(produces = {"application/json; charset=UTF-8"})
+
 public class LoginController {
     @Resource
     private LoginService loginService;
@@ -41,10 +42,14 @@ public class LoginController {
         loginService.loginAuth(loginInfo);
         System.out.println(loginInfo.getToken());
         Map<String,String> resultMap = new HashMap<String,String>();
-        resultMap.put("Token", loginInfo.getToken());
-        resultMap.put("username", loginInfo.getUsername());
-        resultMap.put("userID", String.valueOf(loginInfo.getUserID()));
-        resultMap.put("level", String.valueOf(loginInfo.getLevel()));
+        if(loginInfo.getErrorMsg()==null){
+            resultMap.put("Token", loginInfo.getToken());
+            resultMap.put("username", loginInfo.getUsername());
+            resultMap.put("level", String.valueOf(loginInfo.getLevel()));
+            resultMap.put("userID", String.valueOf(loginInfo.getUserID()));
+        }else {
+            resultMap.put("loginMsg", loginInfo.getErrorMsg());
+        }
 
         //        response.setHeader("Token", loginInfo.getToken());
         response.setStatus(200);

@@ -38,10 +38,17 @@ public class LoginService {
 //        login.setUsername("tong");
 //        login.setUserID(3);
         User user = userMapper.selectByEmail(login.getEmail());
+        if(user==null){
+            login.setErrorMsg("未找到此用户");
+            return "error";
+        }
         String realPassword = user.getPassword();
         String fakePassword = login.getPassword();
+
         if(fakePassword.equals(realPassword)){
             resultAuth = 0;
+        }else {
+            login.setErrorMsg("密码错误");
         }
         if (resultAuth == 0) {
             //生成 Token

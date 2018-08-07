@@ -58,12 +58,13 @@ public class UserService {
     }
 
     public String getUserDetail(Integer userId) {
-        Jedis jedis = jedisPool.getResource();
-        String key = "User:ID:"+userId;
-        System.out.println(key);
-        String result = jedis.get(key);
-        //回收ShardedJedis实例
-        jedis.close();
+//        Jedis jedis = jedisPool.getResource();
+//        String key = "User:ID:"+userId;
+//        System.out.println(key);
+//        String result = jedis.get(key);
+//        //回收ShardedJedis实例
+//        jedis.close();
+        String result = JSON.toJSONString(userMapper.selectByPrimaryKey(userId));
         return result;
     }
     public int getUidbyUname(String name){return userMapper.getUidbyUname(name);}
