@@ -83,9 +83,13 @@
     <if test="projectBudgetUp!=null and projectBudgetUp!=0">
       and #{projectBudgetUp}>=p.projectBudgetSum
     </if>
+    <if test="userID!=null and userID!=''">
+      and p.projectChargerID=#{userID}
+    </if>
     <if test="realOrder!=null and realOrder!=''">
       ORDER BY ${realOrder} ${descOrNot}
     </if>
+
   </select>
   <!--lzq,获取所有的projectSerial-->
   <select id="getSerials" resultType="java.lang.String">

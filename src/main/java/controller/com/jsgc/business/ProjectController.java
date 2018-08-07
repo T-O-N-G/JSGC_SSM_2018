@@ -36,15 +36,19 @@ public class ProjectController {
 
     @RequestMapping("/getProjectList")
     @ResponseBody
-    public String searchByConditons(@RequestBody String params) throws UnsupportedEncodingException {
+    public String searchByConditons(HttpServletRequest request, @RequestBody String params) throws UnsupportedEncodingException {
+        String userLevel = (String) request.getAttribute("level");
+        String userID = (String) request.getAttribute("userID");
+        System.out.println("userlevel:" + userLevel + "&&& userID:" + userID);
         System.out.println(params);
         ProjectSearchConditions ps = JSON.parseObject(params, new TypeReference<ProjectSearchConditions>() {
         });
-        System.out.println(ps);
+        ps.setUserID(userID);
+        ps.setUserLevel(userLevel);
+        ps.parseUserID();
         ps.parseOrder();
         System.out.println(ps);
         return projectService.searchByConditions(ps);
-
     }
 
 

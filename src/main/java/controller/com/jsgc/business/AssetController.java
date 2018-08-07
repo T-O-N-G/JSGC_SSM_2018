@@ -11,6 +11,7 @@ import service.com.jsgc.business.AssetService;
 import util.com.jsgc.searchCondition.AssetSearchConditions;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 
 @Controller
@@ -23,10 +24,14 @@ public class AssetController {
 
     @RequestMapping("/getAssetList")
     @ResponseBody
-    public String searchByConditons(@RequestBody String params) throws UnsupportedEncodingException {
+    public String searchByConditons(HttpServletRequest request,@RequestBody String params) throws UnsupportedEncodingException {
+        String userLevel=(String)request.getAttribute("level");
+        String userID= (String) request.getAttribute("userID");
+        System.out.println("userlevel:"+userLevel+" &&& userID:"+userID);
         System.out.println(params);
         AssetSearchConditions ps = JSON.parseObject(params , new TypeReference<AssetSearchConditions>() {});
-        System.out.println(ps);
+        ps.setUserID(userID);ps.setUserLevel(userLevel);
+        ps.parseUserID();
         ps.parseOrder();
         System.out.println(ps);
         return assetService.searchByConditions(ps);

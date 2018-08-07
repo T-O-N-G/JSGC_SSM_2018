@@ -81,8 +81,6 @@ private JedisPool jedisPool;//注入JedisPool
     }
 
     public String searchByConditions(AssetSearchConditions ps) {
-        System.out.println(ps.getStart()+" "+ps.getLimit());
-
         Page page= PageHelper.startPage(ps.getPage(),ps.getLimit(),true);
         List<Asset> projects=assetMapper.selectAll(ps);
 

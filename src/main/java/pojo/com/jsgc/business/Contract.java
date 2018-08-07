@@ -38,6 +38,24 @@ public class Contract {
     private Project project;
     //lzq,建设内容
 
+    private int allFinancesPaid;
+    private int allFinancesNotPaid;
+
+    public int getAllFinancesPaid() {
+        return allFinancesPaid;
+    }
+
+    public void setAllFinancesPaid(int allFinancesPaid) {
+        this.allFinancesPaid = allFinancesPaid;
+    }
+
+    public int getAllFinancesNotPaid() {
+        return allFinancesNotPaid;
+    }
+
+    public void setAllFinancesNotPaid(int allFinancesNotPaid) {
+        this.allFinancesNotPaid = allFinancesNotPaid;
+    }
 
     @Override
     public String toString() {

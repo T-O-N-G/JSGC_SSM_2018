@@ -116,4 +116,6 @@ public JedisPool jedisPool;//注入JedisPool
 
         return JSON.toJSONString(map);
     }
+
+    public int ifSerialExistAdd(String serial){return documentMapper.ifSerialExistAdd(serial);}
 }

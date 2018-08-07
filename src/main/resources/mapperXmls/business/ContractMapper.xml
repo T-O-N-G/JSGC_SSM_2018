@@ -283,8 +283,16 @@
     <if test="buildContentId!=null and buildContentId!=''">
       AND b.buildContentId=#{buildContentId,jdbcType=INTEGER}
     </if>
+    <if test="userID!=null and userID!=''">
+      and p.projectChargerID=#{userID}
+    </if>
     <if test='realOrder!=null and descOrNot!=null'>
       ORDER BY ${realOrder} ${descOrNot}
     </if>
+  </select>
+  <select id="selectByProjectID" parameterType="java.lang.Integer" resultType="pojo.com.jsgc.business.Contract">
+    SELECT *
+    from contract
+    WHERE contract.projectID=#{0};
   </select>
 </mapper>

@@ -33,6 +33,27 @@ public class Document {
 
     private String contractSerial;
 
+    @Override
+    public String toString() {
+        return "Document{" +
+                "documentId=" + documentId +
+                ", documentSerial='" + documentSerial + '\'' +
+                ", documentName='" + documentName + '\'' +
+                ", documentUploadTime=" + documentUploadTime +
+                ", documentOwner='" + documentOwner + '\'' +
+                ", documentComment='" + documentComment + '\'' +
+                ", documentUrl='" + documentUrl + '\'' +
+                ", documentType=" + documentType +
+                ", documentDelete=" + documentDelete +
+                ", projectId=" + projectId +
+                ", contractId=" + contractId +
+                ", projectName='" + projectName + '\'' +
+                ", contractName='" + contractName + '\'' +
+                ", projectSerial='" + projectSerial + '\'' +
+                ", contractSerial='" + contractSerial + '\'' +
+                '}';
+    }
+
     public String getProjectSerial() {
         return projectSerial;
     }

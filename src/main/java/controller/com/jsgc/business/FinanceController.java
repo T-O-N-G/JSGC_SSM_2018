@@ -15,6 +15,7 @@ import util.com.jsgc.searchCondition.FinanceSearchConditions;
 import util.com.jsgc.searchCondition.ProjectSearchConditions;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 
 @Controller
@@ -27,10 +28,14 @@ public class FinanceController {
 
     @RequestMapping("/getFinanceList")
     @ResponseBody
-    public String searchByConditons(@RequestBody String params) throws UnsupportedEncodingException {
+    public String searchByConditons(HttpServletRequest request, @RequestBody String params) throws UnsupportedEncodingException {
+        String userLevel=(String)request.getAttribute("level");
+        String userID= (String) request.getAttribute("userID");
+        System.out.println("userlevel:"+userLevel+" &&& userID:"+userID);
         System.out.println(params);
         FinanceSearchConditions fs = JSON.parseObject(params , new TypeReference<FinanceSearchConditions>() {});
-        System.out.println(fs);
+        fs.setUserLevel(userLevel);fs.setUserID(userID);
+        fs.parseUserID();
         fs.parseOrder();
         System.out.println(fs);
         return financeService.searchByConditions(fs);

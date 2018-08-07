@@ -6,11 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import pojo.com.jsgc.business.BudgetDetail;
 import service.com.jsgc.business.BudgetService;
 import util.com.jsgc.searchCondition.BudgetSearchConditions;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
 
 @Controller
 @RequestMapping(produces = {"application/json; charset=UTF-8"})
@@ -21,18 +24,23 @@ public class BudgetController {
 
     @RequestMapping("/getBudgetList")
     @ResponseBody
-    public String searchByConditons(@RequestBody String params) throws UnsupportedEncodingException {
-            System.out.println(params);
+    public String searchByConditons(HttpServletRequest request,@RequestBody String params) throws UnsupportedEncodingException, ParseException {
+        String userLevel=(String)request.getAttribute("level");
+        String userID= (String) request.getAttribute("userID");
+        System.out.println("userlevel:"+userLevel+" &&& userID:"+userID);
+        System.out.println(params);
         BudgetSearchConditions ps = JSON.parseObject(params , new TypeReference<BudgetSearchConditions>() {});
-        System.out.println(ps);
+        ps.setUserID(userID);ps.setUserLevel(userLevel);
+        ps.parseUserID();
+        ps.parseDateRange();
         ps.parseOrder();
         System.out.println(ps);
-        return budgetService.searchByConditions(ps);
+        return budgetService.searchByConditionsNew(ps);
     }
 
     @RequestMapping("/getBudgetDetail")
     @ResponseBody
-    public String getBudgetDetail(int budgetId){
-        return budgetService.getBudgetDetail(budgetId);
+    public BudgetDetail getBudgetDetail(int budgetID){
+        return budgetService.getBudgetDetail(budgetID);
     }
 }

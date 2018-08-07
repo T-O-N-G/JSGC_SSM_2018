@@ -334,6 +334,9 @@
     <if test="financeMoneyMax!=null and financeMoneyMax!=0">
       and #{financeMoneyMax}>=financeMoney
     </if>
+    <if test="userID!=null and userID!=''">
+      and project.projectChargerID=#{userID}
+    </if>
     <if test="realOrder!=null and realOrder!=''">
       ORDER BY ${realOrder} ${descOrNot}
     </if>

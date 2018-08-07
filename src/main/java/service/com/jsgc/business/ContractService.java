@@ -129,5 +129,16 @@ public JedisPool jedisPool;//注入JedisPool
 
         return JSON.toJSONString(map);
     }
+    public String getContractUseMoney(Integer projectID ) {
+        List<Contract> getContractUseMoney= contractMapper.selectByProjectID(projectID);
+        HashMap map=new HashMap();
+        map.put("total",getContractUseMoney.size());
+        map.put("data",getContractUseMoney);
 
+        return JSON.toJSONString(map);
+    }
+    public int ifSerialExistAdd(String contractSerial){return  contractMapper.ifSerialExistAdd(contractSerial); };
+
+    public int ifSerialExistUpdt(Contract contract){return contractMapper.ifSerialExistUpdt(contract);}
+    public int getContractIDBySerial(String contractSerial){return contractMapper.getContractIDBySerial(contractSerial);};
 }

@@ -15,11 +15,11 @@
     budgetId, budgetSerial, projectBudgetSum, projectContractsSum, projectContractsPayed, 
     projectContractsNotPayed, projectBudgetLeft, projectId
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from budgetdetail
-    where budgetId = #{budgetId,jdbcType=INTEGER}
+  <select id="selectByPrimaryKey" resultType="pojo.com.jsgc.business.BudgetDetail" parameterType="java.lang.Integer" >
+    select *
+    from budgetdetail b inner join project p
+    on b.projectID = p.projectID
+    where b.budgetID = #{budgetId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from budgetdetail
@@ -140,7 +140,14 @@
       and p.projectName = #{projectName}
     </if>
     <if test="projectStartTime!=null and projectStartTime!=''">
-      and p.projectStartTime = #{projectStartTime}
+      AND p.projectStartTime>= #{projectTimeMin}
+      AND  #{projectTimeMax}>= p.projectStartTime
+    </if>
+    <if test="userID!=null and userID!=''">
+      and p.projectChargerID=#{userID,jdbcType=INTEGER}
+    </if>
+    <if test='realOrder!=null and descOrNot!=null'>
+      ORDER BY ${realOrder} ${descOrNot}
     </if>
   </select>
 </mapper>

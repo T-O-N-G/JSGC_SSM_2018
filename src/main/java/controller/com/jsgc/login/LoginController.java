@@ -45,11 +45,11 @@ public class LoginController {
         if(loginInfo.getErrorMsg()==null){
             resultMap.put("Token", loginInfo.getToken());
             resultMap.put("username", loginInfo.getUsername());
+            resultMap.put("level", String.valueOf(loginInfo.getLevel()));
             resultMap.put("userID", String.valueOf(loginInfo.getUserID()));
         }else {
             resultMap.put("loginMsg", loginInfo.getErrorMsg());
         }
-
 
         //        response.setHeader("Token", loginInfo.getToken());
         response.setStatus(200);
