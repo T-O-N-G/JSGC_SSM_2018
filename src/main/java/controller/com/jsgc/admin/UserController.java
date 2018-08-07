@@ -53,7 +53,12 @@ public class UserController {
         User user = JSON.parseObject(params , new TypeReference<User>() {});
         return   userService.updateUserDetail(user);
     }
-
+    @RequestMapping("/updateUserInfo")
+    @ResponseBody
+    public int updateUser(@RequestBody String params){
+        User user = JSON.parseObject(params , new TypeReference<User>() {});
+        return   userService.updateUserDetail(user);
+    }
     @RequestMapping("/initUserUpdate")
     @ResponseBody
     public String getUserDetail(@RequestBody String params){

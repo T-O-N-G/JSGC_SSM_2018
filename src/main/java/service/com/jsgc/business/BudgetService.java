@@ -31,22 +31,22 @@ public class BudgetService {
         Jedis jedis = jedisPool.getResource();
         Page page = PageHelper.startPage(ps.getPage(), ps.getLimit(), true);
         List<BudgetDetail> budgets = budgetDetailMapper.selectAll(ps);
-        for (BudgetDetail budget : budgets ) {
-
-            try {
-                budget.setProjectContractsPayed(Integer.valueOf(jedis.get("Project:ID:" + budget.getProjectId() + ":Contract:PaySum")));
-            } catch (java.lang.NumberFormatException e) {
-                budget.setProjectContractsPayed(0);
-            }
-            try {
-                budget.setProjectContractsNotPayed(Integer.valueOf(jedis.get("Project:ID:" + budget.getProjectId() + ":Contract:UnPay")));
-            } catch (java.lang.NumberFormatException e) {
-                budget.setProjectContractsNotPayed(0);
-            }
-            budget.setProjectContractsSum(budget.getProjectContractsPayed() + budget.getProjectContractsNotPayed());
-            budget.setProjectBudgetLeft(budget.getProjectBudgetSum() - budget.getProjectContractsSum());
-
-        }
+//        for (BudgetDetail budget : budgets ) {
+//
+//            try {
+//                budget.setProjectContractsPayed(Integer.valueOf(jedis.get("Project:ID:" + budget.getProjectId() + ":Contract:PaySum")));
+//            } catch (java.lang.NumberFormatException e) {
+//                budget.setProjectContractsPayed(0);
+//            }
+//            try {
+//                budget.SETPROJECTCONTRACTSNOTPAYED(Integer.valueOf(jedis.get("Project:ID:" + budget.getProjectId() + ":Contract:UnPay")));
+//            } catch (java.lang.NumberFormatException e) {
+//                budget.setProjectContractsNotPayed(0);
+//            }
+//            budget.setProjectContractsSum(budget.getProjectContractsPayed() + budget.getProjectContractsNotPayed());
+//            budget.setProjectBudgetLeft(budget.getProjectBudgetSum() - budget.getProjectContractsSum());
+//
+//        }
 //        System.out.println(page.getTotal());
 //        System.out.println("分页数据:");
         PageInfo<BudgetDetail> pageInfo = new PageInfo<>(budgets);

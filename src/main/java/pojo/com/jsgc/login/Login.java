@@ -7,6 +7,15 @@ public class Login {
     int level;
     String email;
     int UserID;
+    String errorMsg;
+
+    public String getErrorMsg() {
+        return errorMsg;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
+    }
 
     public int getLevel() {
         return level;
