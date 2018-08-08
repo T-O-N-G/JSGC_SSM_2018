@@ -19,21 +19,29 @@ public class BaseDataController {
 
     @RequestMapping("/getVersionList")
     @ResponseBody
-    public String getVersionList(){
+    public String getVersionList() {
         return baseDataService.getVersionList();
     }
 
     @RequestMapping("/getBaseDataByVersion")
     @ResponseBody
-    public String getBaseDataByVersion(String versionId){
+    public String getBaseDataByVersion(String versionId) {
         return baseDataService.getBaseDataByVersion(versionId);
     }
 
 
     @RequestMapping("/getBaseDate")
     @ResponseBody
-    public String getBaseDate(@RequestBody String param){
+    public String getBaseDate(@RequestBody String param) {
         JSONObject jsonObject = JSON.parseObject(param);
         return baseDataService.getBaseDate(jsonObject.getString("baseDataType"));
+    }
+
+    @RequestMapping("/updateNewVersion")
+    @ResponseBody
+    public String updateNewVersion(@RequestBody String param) {
+
+        return baseDataService.updateNewVersion(param);
+
     }
 }

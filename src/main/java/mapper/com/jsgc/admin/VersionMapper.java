@@ -18,4 +18,6 @@ public interface VersionMapper {
     int updateByPrimaryKey(Version record);
 
     List<Version> selectAll();
+
+    Version selectByVersionName(String versionBuildNum);
 }

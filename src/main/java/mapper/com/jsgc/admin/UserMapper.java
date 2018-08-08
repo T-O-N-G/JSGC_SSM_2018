@@ -26,4 +26,5 @@ public interface UserMapper {
     int deleteFakeByPrimaryKey(int userID);
 
     int getUidbyUname(String uname);
+    String getUnamebyUid(String userID);
 }

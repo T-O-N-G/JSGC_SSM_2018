@@ -1,57 +1,62 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="mapper.com.jsgc.admin.UserMapper" >
-  <resultMap id="BaseResultMap" type="pojo.com.jsgc.admin.User" >
-    <id column="userId" property="userId" jdbcType="INTEGER" />
-    <result column="username" property="username" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="email" property="email" jdbcType="VARCHAR" />
-    <result column="phone" property="phone" jdbcType="INTEGER" />
-    <result column="permissionLevel" property="permissionLevel" jdbcType="INTEGER" />
-    <result column="userDelete" property="userDelete" jdbcType="INTEGER" />
-  </resultMap>
-  <sql id="Base_Column_List" >
+<mapper namespace="mapper.com.jsgc.admin.UserMapper">
+    <resultMap id="BaseResultMap" type="pojo.com.jsgc.admin.User">
+        <id column="userId" property="userId" jdbcType="INTEGER"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="INTEGER"/>
+        <result column="permissionLevel" property="permissionLevel" jdbcType="INTEGER"/>
+        <result column="userDelete" property="userDelete" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     userId, username, password, email, phone, permissionLevel, userDelete
   </sql>
-  <select id="getUidbyUname" parameterType="java.lang.String" resultType="java.lang.Integer">
+    <select id="getUidbyUname" parameterType="java.lang.String" resultType="java.lang.Integer">
     SELECT userID
     from user
     WHERE  username=#{0}
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
+    <select id="getUnamebyUid" parameterType="java.lang.String" resultType="java.lang.String">
+    SELECT username
     from user
-    where userId = #{userId,jdbcType=INTEGER}
+    WHERE  userID=#{0}
   </select>
-  <select id="selectByEmail" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select
-    <include refid="Base_Column_List" />
-    from user
-    where email = #{email,jdbcType=VARCHAR}
-  </select>
-  <select id="selectAll" resultType="pojo.com.jsgc.admin.User">
-    select *
-    from user
-    where userDelete=0
-    <if test="username!=null and username!=''">
-      and username like '%${username}%'
-    </if>
-    <if test="email!=null and email!=''">
-      and email = #{email,jdbcType=VARCHAR}
-    </if>
-    <if test="phoneNumber!=null and phoneNumber!=''">
-      and phone = #{phoneNumber,jdbcType=INTEGER}
-    </if>
-    <if test="level!=null and level!='' and level!=0">
-      and permissionLevel = #{level,jdbcType=INTEGER}
-    </if>
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where userId = #{userId,jdbcType=INTEGER}
+    </select>
+    <select id="selectByEmail" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where email = #{email,jdbcType=VARCHAR}
+    </select>
+    <select id="selectAll" resultType="pojo.com.jsgc.admin.User">
+        select *
+        from user
+        where userDelete=0
+        <if test="username!=null and username!=''">
+            and username like '%${username}%'
+        </if>
+        <if test="email!=null and email!=''">
+            and email = #{email,jdbcType=VARCHAR}
+        </if>
+        <if test="phoneNumber!=null and phoneNumber!=''">
+            and phone = #{phoneNumber,jdbcType=INTEGER}
+        </if>
+        <if test="level!=null and level!='' and level!=0">
+            and permissionLevel = #{level,jdbcType=INTEGER}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
     where userId = #{userId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="pojo.com.jsgc.admin.User" >
+    <insert id="insert" parameterType="pojo.com.jsgc.admin.User">
     insert into user (userId, username, password, 
       email, phone, permissionLevel, 
       userDelete)
@@ -59,80 +64,80 @@
       #{email,jdbcType=VARCHAR}, #{phone,jdbcType=INTEGER}, #{permissionLevel,jdbcType=INTEGER}, 
       #{userDelete,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="pojo.com.jsgc.admin.User" >
-    insert into user
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        userId,
-      </if>
-      <if test="username != null" >
-        username,
-      </if>
-      <if test="password != null" >
-        password,
-      </if>
-      <if test="email != null" >
-        email,
-      </if>
-      <if test="phone != null" >
-        phone,
-      </if>
-      <if test="permissionLevel != null" >
-        permissionLevel,
-      </if>
-      <if test="userDelete != null" >
-        userDelete,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="username != null" >
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null" >
-        #{phone,jdbcType=INTEGER},
-      </if>
-      <if test="permissionLevel != null" >
-        #{permissionLevel,jdbcType=INTEGER},
-      </if>
-      <if test="userDelete != null" >
-        #{userDelete,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="pojo.com.jsgc.admin.User" >
-    update user
-    <set >
-      <if test="username != null and username!=''" >
-        username = #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null and password!=''" >
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null and email!=''" >
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null and phone!=''" >
-        phone = #{phone,jdbcType=INTEGER},
-      </if>
-      <if test="permissionLevel != null and permissionLevel!='' and permissionLevel!=0" >
-        permissionLevel = #{permissionLevel,jdbcType=INTEGER},
-      </if>
-      <if test="userDelete != null and userDelete!=''" >
-        userDelete = #{userDelete,jdbcType=INTEGER},
-      </if>
-    </set>
-    where userId = #{userId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="pojo.com.jsgc.admin.User" >
+    <insert id="insertSelective" parameterType="pojo.com.jsgc.admin.User">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                userId,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="permissionLevel != null">
+                permissionLevel,
+            </if>
+            <if test="userDelete != null">
+                userDelete,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=INTEGER},
+            </if>
+            <if test="permissionLevel != null">
+                #{permissionLevel,jdbcType=INTEGER},
+            </if>
+            <if test="userDelete != null">
+                #{userDelete,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="pojo.com.jsgc.admin.User">
+        update user
+        <set>
+            <if test="username != null and username!=''">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null and password!=''">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null and email!=''">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null and phone!=''">
+                phone = #{phone,jdbcType=INTEGER},
+            </if>
+            <if test="permissionLevel != null and permissionLevel!='' and permissionLevel!=0">
+                permissionLevel = #{permissionLevel,jdbcType=INTEGER},
+            </if>
+            <if test="userDelete != null and userDelete!=''">
+                userDelete = #{userDelete,jdbcType=INTEGER},
+            </if>
+        </set>
+        where userId = #{userId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="pojo.com.jsgc.admin.User">
     update user
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
@@ -142,7 +147,7 @@
       userDelete = #{userDelete,jdbcType=INTEGER}
     where userId = #{userId,jdbcType=INTEGER}
   </update>
-  <update id="deleteFakeByPrimaryKey" parameterType="java.lang.Integer">
+    <update id="deleteFakeByPrimaryKey" parameterType="java.lang.Integer">
     UPDATE user
     SET userDelete=1
     WHERE userID = #{userId,jdbcType=INTEGER}
