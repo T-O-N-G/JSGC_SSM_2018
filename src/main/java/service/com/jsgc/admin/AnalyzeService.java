@@ -107,4 +107,11 @@ public class AnalyzeService {
         jedis.close();
         return JSON.toJSONString(resultJson);
     }
+
+    public String getNetGraph() {
+        Jedis jedis = jedisPool.getResource();
+        String result = jedis.get("NetGraph");
+        jedis.close();
+        return  result;
+    }
 }

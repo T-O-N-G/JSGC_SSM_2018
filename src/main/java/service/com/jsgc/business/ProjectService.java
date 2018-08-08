@@ -18,6 +18,7 @@ import redis.clients.jedis.JedisPool;
 //import util.com.jsgc.RequestPage;
 import util.HttpRequestMethod;
 import util.PostJson;
+import util.UpdateCache;
 import util.com.jsgc.searchCondition.ProjectSearchConditions;
 
 import javax.annotation.Resource;
@@ -85,31 +86,26 @@ public class ProjectService {
 //            String param = "projectID=" + project.getProjectId();
 //            HttpRequestMethod.sendGet(url, param);
 //        }
-        new Thread(() -> {
-            String url = "http://127.0.0.1:8002/updateProject";
-            String param = "projectID=" + 0;
-            HttpRequestMethod.sendGet(url, param);
-        }).start();
+//        new Thread(() -> {
+//            String url = "http://127.0.0.1:8002/updateProject";
+//            String param = "projectID=" + 0;
+//            HttpRequestMethod.sendGet(url, param);
+//        }).start();
+        UpdateCache.updateCache("updateProject");
         return result;
     }
 
     public int insertProject(Project project) {
         int result= projectMapper.insertSelective(project);
-        new Thread(() -> {
-            String url = "http://127.0.0.1:8002/updateProject";
-            String param = "projectID=" + 0;
-            HttpRequestMethod.sendGet(url, param);
-        }).start();
+        UpdateCache.updateCache("updateProject");
+
         return result;
     }
 
     public int deleteProject(int projectID) {
         int result = projectMapper.deleteFakeByPrimaryKey(projectID);
-        new Thread(() -> {
-            String url = "http://127.0.0.1:8002/updateProject";
-            String param = "projectID=" + 0;
-            HttpRequestMethod.sendGet(url, param);
-        }).start();
+        UpdateCache.updateCache("updateProject");
+
         return result;
     }
 

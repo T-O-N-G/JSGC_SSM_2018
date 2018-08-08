@@ -16,6 +16,7 @@ import pojo.com.jsgc.business.Contract;
 import pojo.com.jsgc.business.Project;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import util.UpdateCache;
 import util.com.jsgc.searchCondition.AssetSearchConditions;
 
 import javax.annotation.Resource;
@@ -30,15 +31,15 @@ public class AssetService {
     @Resource
     private ProjectMapper projectMapper;
 
-//    ApplicationContext ac = new ClassPathXmlApplicationContext("spring-jedis.xml");
+    //    ApplicationContext ac = new ClassPathXmlApplicationContext("spring-jedis.xml");
 //
 //    public JedisPool jedisPool = (JedisPool) ac.getBean("jedisPool");//注入JedisPool
-@Autowired
-private JedisPool jedisPool;//注入JedisPool
+    @Autowired
+    private JedisPool jedisPool;//注入JedisPool
 
     public String getAssetDetail(int assetID) {
         Jedis jedis = jedisPool.getResource();
-        String key = "Asset:ID:"+assetID;
+        String key = "Asset:ID:" + assetID;
         System.out.println(key);
         String result = jedis.get(key);
         //回收ShardedJedis实例
@@ -48,14 +49,16 @@ private JedisPool jedisPool;//注入JedisPool
 
     public int updateAssetDetail(Asset asset) {
         try {
-            if(assetMapper.ifSerialExistUpdt(asset)!=0)
+            if (assetMapper.ifSerialExistUpdt(asset) != 0)
                 return 99;
             //下面这句会抛出异常
             int projectId = projectMapper.getProjectIDBySerial(asset.getProjectSerial());
             asset.setProjectId(projectId);
-            int successNum= assetMapper.updateByPrimaryKeySelective(asset);
+            int successNum = assetMapper.updateByPrimaryKeySelective(asset);
+            UpdateCache.updateCache("updateAsset");
+
             return successNum;
-        }catch (org.apache.ibatis.binding.BindingException e){
+        } catch (org.apache.ibatis.binding.BindingException e) {
             System.out.println("项目编号不存在");
             return 100;
         }
@@ -63,14 +66,16 @@ private JedisPool jedisPool;//注入JedisPool
 
     public int insertAsset(Asset asset) {
         try {
-            if(assetMapper.ifSerialExistAdd(asset.getAssetSerial())!=0)
+            if (assetMapper.ifSerialExistAdd(asset.getAssetSerial()) != 0)
                 return 99;
             //下面这句会抛出异常
             int projectId = projectMapper.getProjectIDBySerial(asset.getProjectSerial());
             asset.setProjectId(projectId);
-            int successNum= assetMapper.insertSelective(asset);
+            int successNum = assetMapper.insertSelective(asset);
+            UpdateCache.updateCache("updateAsset");
+
             return successNum;
-        }catch (org.apache.ibatis.binding.BindingException e){
+        } catch (org.apache.ibatis.binding.BindingException e) {
             System.out.println("项目编号不存在");
             return 100;
         }
@@ -81,18 +86,18 @@ private JedisPool jedisPool;//注入JedisPool
     }
 
     public String searchByConditions(AssetSearchConditions ps) {
-        Page page= PageHelper.startPage(ps.getPage(),ps.getLimit(),true);
-        List<Asset> projects=assetMapper.selectAll(ps);
+        Page page = PageHelper.startPage(ps.getPage(), ps.getLimit(), true);
+        List<Asset> projects = assetMapper.selectAll(ps);
 
         System.out.println(page.getTotal());
         System.out.println("分页数据:");
-        PageInfo<Asset> pageInfo=new PageInfo<>(projects);
+        PageInfo<Asset> pageInfo = new PageInfo<>(projects);
         System.out.println(pageInfo.getList());
         System.out.println(projects);
 
-        HashMap map=new HashMap();
-        map.put("total",page.getTotal());
-        map.put("data",projects);
+        HashMap map = new HashMap();
+        map.put("total", page.getTotal());
+        map.put("data", projects);
 
         return JSON.toJSONString(map);
     }

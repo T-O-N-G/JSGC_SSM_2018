@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import pojo.com.jsgc.admin.*;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import util.UpdateCache;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -104,6 +105,7 @@ public class BaseDataService {
 ////            department.setDepartmentName(jsonObject.getString("studentName"));
 ////            System.out.println(jsonObject.getString("studentName") + ":" + jsonObject.getInteger("studentAge"));
 //        }
+        UpdateCache.updateCache("updateBaseData");
 
 
         return "";

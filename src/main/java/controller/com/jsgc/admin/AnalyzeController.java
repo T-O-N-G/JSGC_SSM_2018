@@ -32,4 +32,10 @@ public class AnalyzeController {
     public String getExpSum() {
         return analyzeService.getExpSum();
     }
+
+    @RequestMapping("/getNetGraph")
+    @ResponseBody
+    public String getNetGraph() {
+        return analyzeService.getNetGraph();
+    }
 }
