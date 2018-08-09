@@ -21,6 +21,43 @@ public class DocumentSearchConditions {
     private String userLevel;
     private String userID;
 
+    @Override
+    public String toString() {
+        return "DocumentSearchConditions{" +
+                "order='" + order + '\'' +
+                ", realOrder='" + realOrder + '\'' +
+                ", descOrNot='" + descOrNot + '\'' +
+                ", documentSerial='" + documentSerial + '\'' +
+                ", documentName='" + documentName + '\'' +
+                ", documentType='" + documentType + '\'' +
+                ", documentOwner='" + documentOwner + '\'' +
+                ", docUploadTimeRange='" + docUploadTimeRange + '\'' +
+                ", docUploadTimeMin='" + docUploadTimeMin + '\'' +
+                ", docUploadTimeMax='" + docUploadTimeMax + '\'' +
+                ", start=" + start +
+                ", page=" + page +
+                ", limit=" + limit +
+                ", userLevel='" + userLevel + '\'' +
+                ", userID='" + userID + '\'' +
+                '}';
+    }
+
+    public String getDocUploadTimeMin() {
+        return docUploadTimeMin;
+    }
+
+    public void setDocUploadTimeMin(String docUploadTimeMin) {
+        this.docUploadTimeMin = docUploadTimeMin;
+    }
+
+    public String getDocUploadTimeMax() {
+        return docUploadTimeMax;
+    }
+
+    public void setDocUploadTimeMax(String docUploadTimeMax) {
+        this.docUploadTimeMax = docUploadTimeMax;
+    }
+
     public void parseUserID(){
         if(!userLevel.equals("2")) this.userID=null;
     }

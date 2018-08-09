@@ -292,7 +292,7 @@
   <select id="selectByProjectID" parameterType="java.lang.Integer" resultType="pojo.com.jsgc.business.Contract">
     SELECT *
     from contract
-    WHERE contract.projectID=#{0};
+    WHERE contract.projectID=#{0} and contract.contractDelete=0
   </select>
   <select id="getProjectIDByPK" parameterType="java.lang.Integer" resultType="java.lang.Integer">
     select projectID

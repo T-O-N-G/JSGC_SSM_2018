@@ -115,9 +115,6 @@ public class DocumentService {
         System.out.println(page.getTotal());
         System.out.println("分页数据:");
         PageInfo<Document> pageInfo = new PageInfo<>(projects);
-        System.out.println(pageInfo.getList());
-        System.out.println(projects);
-
         HashMap map = new HashMap();
         map.put("total", page.getTotal());
         map.put("data", projects);

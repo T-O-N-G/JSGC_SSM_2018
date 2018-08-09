@@ -57,6 +57,7 @@
         <!-- 不进行拦截 -->
             <mvc:exclude-mapping path="/login"/>
             <mvc:exclude-mapping path="/batch*"/>
+            <mvc:exclude-mapping path="/upload*" />
         <bean class="interceptor.LogInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
