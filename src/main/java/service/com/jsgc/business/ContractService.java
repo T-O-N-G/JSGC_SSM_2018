@@ -16,6 +16,7 @@ import pojo.com.jsgc.business.Contract;
 import pojo.com.jsgc.business.Project;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import util.UpdateCache;
 import util.com.jsgc.searchCondition.ContractSearchConditions;
 
 import javax.annotation.Resource;
@@ -72,6 +73,9 @@ public JedisPool jedisPool;//注入JedisPool
             if((b.getProjectBudgetLeft()<contract.getContractMoney())&&(oldProjectId!=projectId)) {return -222;}
             contract.setProject(project);
             int successNum= contractMapper.updateByPrimaryKeySelective(contract);
+
+            UpdateCache.updateCache("updateContract");
+
             return successNum;
         }catch (org.apache.ibatis.binding.BindingException e){
             System.out.println("项目编号不存在");
@@ -97,6 +101,8 @@ public JedisPool jedisPool;//注入JedisPool
             if(project.getProjectChargerId()!=userId) return 100;
             contract.setProject(project);
             int successNum= contractMapper.insertSelective(contract);
+            UpdateCache.updateCache("updateContract");
+
             return successNum;
         }catch (org.apache.ibatis.binding.BindingException e){
             System.out.println("项目编号不存在");
@@ -106,7 +112,10 @@ public JedisPool jedisPool;//注入JedisPool
     }
 
     public int deleteContract(int contractID){
-        return contractMapper.deleteFakeByPrimaryKey(contractID);
+        int result = contractMapper.deleteFakeByPrimaryKey(contractID);
+        UpdateCache.updateCache("updateContract");
+
+        return result;
     }
 
     public List<String> getSerialList(){
@@ -114,6 +123,8 @@ public JedisPool jedisPool;//注入JedisPool
     }
     public  void batchInsert(List<Contract> contracts){
         contractMapper.batchInsert(contracts);
+        UpdateCache.updateCache("updateContract");
+
     }
 
     public List<Contract> selectByConditions(ContractSearchConditions cs){

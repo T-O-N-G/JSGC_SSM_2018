@@ -18,4 +18,10 @@ public interface AccountantMapper {
     int updateByPrimaryKey(Accountant record);
 
     public List<String> getAccountantSerials();
+
+    List<Accountant> selectByVersionID(String versionId);
+
+    List<Accountant> selectBorrowTypeByVersionID(String versionId);
+
+    List<Accountant> selectLendTypeByVersionID(String versionId);
 }

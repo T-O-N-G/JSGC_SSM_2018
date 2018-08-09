@@ -51,6 +51,14 @@
             <!--<mvc:exclude-mapping path="/batch*" />-->
             <!--<bean class="interceptor.PermissionInterceptor" />-->
         <!--</mvc:interceptor>-->
+        <mvc:interceptor>
+        <!-- 进行拦截：/**表示拦截所有controller -->
+        <mvc:mapping path="/**" />
+        <!-- 不进行拦截 -->
+            <mvc:exclude-mapping path="/login"/>
+            <mvc:exclude-mapping path="/batch*"/>
+        <bean class="interceptor.LogInterceptor" />
+        </mvc:interceptor>
     </mvc:interceptors>
 
 

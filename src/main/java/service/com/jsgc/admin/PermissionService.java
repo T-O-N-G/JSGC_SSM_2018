@@ -12,6 +12,7 @@ import pojo.com.jsgc.business.Document;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.ScanParams;
+import util.UpdateCache;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -36,11 +37,14 @@ public class PermissionService {
 //        }
         permissionMapper.deleteByLevel(level);
         permissionMapper.insertByLevelAll(permissions);
+
+        UpdateCache.updateCache("updatePermission");
+
         return 1;
     }
 
     public String searchByLevel(Integer level) {
-        List<Permission>   permissions = permissionMapper.searchByLevel(level);
+        List<Permission> permissions = permissionMapper.searchByLevel(level);
         return JSON.toJSONString(permissions);
     }
 }

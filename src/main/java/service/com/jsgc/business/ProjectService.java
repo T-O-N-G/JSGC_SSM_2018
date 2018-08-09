@@ -18,6 +18,7 @@ import redis.clients.jedis.JedisPool;
 //import util.com.jsgc.RequestPage;
 import util.HttpRequestMethod;
 import util.PostJson;
+import util.UpdateCache;
 import util.com.jsgc.searchCondition.ProjectSearchConditions;
 
 import javax.annotation.Resource;
@@ -38,9 +39,11 @@ public class ProjectService {
     //    ApplicationContext ac = new ClassPathXmlApplicationContext("spring-jedis.xml");
     @Autowired
     public JedisPool jedisPool;//注入JedisPool
-    public List<Project> batchChosenDownLoad(ProjectSearchConditions ps){
+
+    public List<Project> batchChosenDownLoad(ProjectSearchConditions ps) {
         return projectMapper.selectByConditions(ps);
     }
+
     public String searchByConditions(ProjectSearchConditions ps) {
         System.out.println(ps.getStart() + " " + ps.getLimit());
 
@@ -87,31 +90,26 @@ public class ProjectService {
 //            String param = "projectID=" + project.getProjectId();
 //            HttpRequestMethod.sendGet(url, param);
 //        }
-        new Thread(() -> {
-            String url = "http://127.0.0.1:8002/updateProject";
-            String param = "projectID=" + 0;
-            HttpRequestMethod.sendGet(url, param);
-        }).start();
+//        new Thread(() -> {
+//            String url = "http://127.0.0.1:8002/updateProject";
+//            String param = "projectID=" + 0;
+//            HttpRequestMethod.sendGet(url, param);
+//        }).start();
+        UpdateCache.updateCache("updateProject");
         return result;
     }
 
     public int insertProject(Project project) {
-        int result= projectMapper.insertSelective(project);
-        new Thread(() -> {
-            String url = "http://127.0.0.1:8002/updateProject";
-            String param = "projectID=" + 0;
-            HttpRequestMethod.sendGet(url, param);
-        }).start();
+        int result = projectMapper.insertSelective(project);
+        UpdateCache.updateCache("updateProject");
+
         return result;
     }
 
     public int deleteProject(int projectID) {
         int result = projectMapper.deleteFakeByPrimaryKey(projectID);
-        new Thread(() -> {
-            String url = "http://127.0.0.1:8002/updateProject";
-            String param = "projectID=" + 0;
-            HttpRequestMethod.sendGet(url, param);
-        }).start();
+        UpdateCache.updateCache("updateProject");
+
         return result;
     }
 
@@ -122,9 +120,18 @@ public class ProjectService {
     public int getProjectIDBySerial(String projectSerial) {
         return projectMapper.getProjectIDBySerial(projectSerial);
     }
-    public int ifSerialExistAdd(String projectSerial){return projectMapper.ifSerialExistAdd(projectSerial);}
-    public int ifSerialExistUpdt(Project project){return projectMapper.ifSerialExistUpdt(project);}
 
-    public void batchInsert(List<Project> projects){ projectMapper.batchInsert(projects);}
+    public int ifSerialExistAdd(String projectSerial) {
+        return projectMapper.ifSerialExistAdd(projectSerial);
+    }
+
+    public int ifSerialExistUpdt(Project project) {
+        return projectMapper.ifSerialExistUpdt(project);
+    }
+
+    public void batchInsert(List<Project> projects) {
+        projectMapper.batchInsert(projects);
+        UpdateCache.updateCache("updateProject");
+    }
 
 }

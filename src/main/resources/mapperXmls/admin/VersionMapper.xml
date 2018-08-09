@@ -15,6 +15,12 @@
     from version
     where verisionId = #{verisionId,jdbcType=INTEGER}
   </select>
+  <select id="selectByVersionName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from version
+    where versionBuildNum = #{0,jdbcType=INTEGER}
+  </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
