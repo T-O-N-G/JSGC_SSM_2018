@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.com.jsgc.admin.VerifyMapper">
+    <resultMap id="BaseResultMap" type="pojo.com.jsgc.admin.Verify">
+        <id column="verifyID" property="verifyID" jdbcType="INTEGER"/>
+        <result column="applyReason" property="applyReason" jdbcType="VARCHAR"/>
+        <result column="projectID" property="projectID" jdbcType="INTEGER"/>
+        <result column="applyMoney" property="applyMoney" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    verifyID, applyReason, projectID, applyMoney, status
+  </sql>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from verify
+    </select>
+
+    <select id="selectByKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from verify
+        where verifyID=#{0,jdbcType=INTEGER}
+    </select>
+
+    <delete id="passByPrimaryKey" parameterType="java.lang.Integer">
+        update verify
+        set status = 0
+    where verifyId = #{0,jdbcType=INTEGER}
+  </delete>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from verify
+    where verifyId = #{0,jdbcType=INTEGER}
+  </delete>
+    <insert id="addVerify" parameterType="pojo.com.jsgc.admin.Verify">
+    insert into verify (applyReason, projectID, applyMoney, status)
+    values (#{applyReason,jdbcType=VARCHAR}, #{projectID,jdbcType=INTEGER},
+      #{applyMoney,jdbcType=INTEGER}, 1)
+  </insert>
+
+    <!--<update id="updateByPrimaryKeySelective" parameterType="pojo.com.jsgc.admin.Verify">-->
+    <!--update permission-->
+    <!--<set>-->
+    <!--<if test="url != null">-->
+    <!--url = #{url,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="level != null">-->
+    <!--level = #{level,jdbcType=INTEGER},-->
+    <!--</if>-->
+    <!--<if test="permissionComment != null">-->
+    <!--permissionComment = #{permissionComment,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--</set>-->
+    <!--where permissionId = #{permissionId,jdbcType=INTEGER}-->
+    <!--</update>-->
+
+</mapper>
