@@ -29,15 +29,15 @@ public class NotificationController {
         return notificationService.getUserNotification((String) request.getAttribute("userID"));
 
     }
-//
-//    @RequestMapping("/addNotification")
-//    @ResponseBody
-//    public String addNotification(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//
+
+    @RequestMapping("/addNotification")
+    @ResponseBody
+    public String addNotification(String message, String title) throws Exception {
+
 //        notificationService.addNotification((String) request.getAttribute("userID"), "测试通知","测试通知标题");
-//        notificationService.addPublicNotification("测试公告","测试通知标题");
-//        return "OK";
-//
-//    }
+        notificationService.addPublicNotification(message,title);
+        return "OK";
+
+    }
 
 }

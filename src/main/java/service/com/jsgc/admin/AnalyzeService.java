@@ -101,9 +101,11 @@ public class AnalyzeService {
         }
 
         HashMap<String, Long> resultJson = new HashMap<>();
-        long exSum = jedis.scard("Exception");
-        resultJson.put("sum",sum);
-        resultJson.put("exSum",exSum);
+        long exSum = 0;
+        exSum = jedis.zcard("Exception");
+
+        resultJson.put("sum", sum);
+        resultJson.put("exSum", exSum);
         jedis.close();
         return JSON.toJSONString(resultJson);
     }
@@ -112,6 +114,6 @@ public class AnalyzeService {
         Jedis jedis = jedisPool.getResource();
         String result = jedis.get("NetGraph");
         jedis.close();
-        return  result;
+        return result;
     }
 }

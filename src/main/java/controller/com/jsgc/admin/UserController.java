@@ -15,7 +15,6 @@ import javax.annotation.Resource;
 import java.io.UnsupportedEncodingException;
 
 @Controller
-//@RequestMapping("/bussiness/finance/")
 @RequestMapping(produces = {"application/json; charset=UTF-8"})
 public class UserController {
 
