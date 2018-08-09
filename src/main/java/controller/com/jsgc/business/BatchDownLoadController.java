@@ -44,9 +44,14 @@ public class BatchDownLoadController {
     @RequestMapping("/batchDownloadContracts")
     @ResponseBody
     public ResponseEntity<byte[]>  batchDownloadContracts(HttpServletRequest request) throws ParseException {
+        String userLevel = request.getParameter("level");
+        String userID = request.getParameter("userID");
+        System.out.println("userlevel:" + userLevel + "&&& userID:" + userID);
         String param=request.getParameter("param");
         System.out.println(param);
         ContractSearchConditions cs = JSON.parseObject(param , new TypeReference<ContractSearchConditions>(){});
+        cs.setUserID(userID);cs.setUserLevel(userLevel);
+        cs.parseUserID();
         cs.parseDateRange();
         cs.parseOrder();
         System.out.println(cs);

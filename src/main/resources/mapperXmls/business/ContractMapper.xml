@@ -230,9 +230,9 @@
   <select id="selectByConditions" parameterType="util.com.jsgc.searchCondition.ContractSearchConditions" resultMap="ContractWithAssociation">
      SELECT c.*,p.projectName,p.projectSerial
      FROM contract c,project p
---       ,buildContent b
-     WHERE c.contractDelete=0 AND and p.projectDelete=0 AND c.projectID=p.projectID
---       AND c.buildContentID=b.buildContentID
+       ,buildContent b
+     WHERE c.contractDelete=0  and p.projectDelete=0 AND c.projectID=p.projectID
+      AND c.buildContentID=b.buildContentID
      <if test="contractSerial!=null">
         AND c.contractSerial=#{contractSerial}
      </if>
@@ -249,6 +249,12 @@
      <if test="projectName!=null">
         AND p.projectName  LIKE  CONCAT('%',#{projectName},'%' )
      </if>
+    <if test="buildContentId!=null and buildContentId!=''">
+      AND b.buildContentId=#{buildContentId,jdbcType=INTEGER}
+    </if>
+    <if test="userID!=null and userID!=''">
+      and p.projectChargerID=#{userID}
+    </if>
      <!--<if>建设内容下拉框</if>-->
      <if test='realOrder!=null and descOrNot!=null'>
          ORDER BY ${realOrder} ${descOrNot}

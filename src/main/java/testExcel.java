@@ -29,7 +29,7 @@ import java.util.List;
 public class testExcel {
     @Test
     public void allTextSearch(){
-        List<HdfsUtil.DisplayAndRealPath> a= HdfsUtil.searchIndex("大龙猫");
+        List<HdfsUtil.DisplayAndRealPath> a= HdfsUtil.searchIndex("大厦");
         System.out.println(a);
     }
     public static void main(String[] args) throws FileNotFoundException {
