@@ -16,22 +16,21 @@ public class Project {
     private String projectName;
     @Excel(name = "项目预算")
     private Integer projectBudgetSum;
-    @Excel(name = "项目开始时间")
+    @Excel(name="项目开始日期" ,databaseFormat = "yyyy-MM-dd", format = "yyyy/M/d")
     private Date projectStartTime;
-    @Excel(name = "项目截止时间",databaseFormat = "yyyy-MM-dd", format = "yyyy-MM-dd")
-    private Date projectEndTime;
-    @Excel(name = "项目状态", replace = { "未获批_0","未开工_1", "进行_2","完工_3"})
-    private Integer projectStatus;
+    private Date projectEndTime;//
+    private Integer projectStatus;//
     @Excel(name = "备注")
     private String projectComment;
 
     private Integer projectDelete;
-
+    @Excel(name = "部门编号")
     private String projectDepartmentId;
 
-    private Integer budgetId;
-
+    private Integer budgetId;//
+    @Excel(name = "负责人编号")
     private Integer projectChargerId;
+
     private String username;
     //添加对象用于导出
     @ExcelEntity(id="departmentEntity")

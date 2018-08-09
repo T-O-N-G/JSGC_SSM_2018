@@ -26,4 +26,5 @@ public interface ProjectMapper {
     List<Project> selectByConditions(ProjectSearchConditions ps);
     int ifSerialExistAdd(String projectSerial);
     int ifSerialExistUpdt(Project project);
+    public void batchInsert(List<Project> projects);
 }

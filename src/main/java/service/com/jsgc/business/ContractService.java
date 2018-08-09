@@ -4,12 +4,14 @@ import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import mapper.com.jsgc.business.BudgetDetailMapper;
 import mapper.com.jsgc.business.ContractMapper;
 import mapper.com.jsgc.business.ProjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
+import pojo.com.jsgc.business.BudgetDetail;
 import pojo.com.jsgc.business.Contract;
 import pojo.com.jsgc.business.Project;
 import redis.clients.jedis.Jedis;
@@ -30,6 +32,8 @@ public class ContractService {
     private ContractMapper contractMapper;
     @Resource
     private ProjectMapper projectMapper;
+    @Resource
+    private BudgetDetailMapper budgetDetailMapper;
 
 //    ApplicationContext ac = new ClassPathXmlApplicationContext("spring-jedis.xml");
 //
@@ -46,7 +50,7 @@ public JedisPool jedisPool;//注入JedisPool
         return result;
     }
 
-    public int updateContractDetail(Contract contract) {
+    public int updateContractDetail(Contract contract,int userId) {
 
         calendar.setTime(contract.getContractSignedTime());
         calendar.add(calendar.DATE,1);
@@ -58,10 +62,14 @@ public JedisPool jedisPool;//注入JedisPool
         try {
             if(contractMapper.ifSerialExistUpdt(contract)!=0)
                 return 99;
+            int oldProjectId=contractMapper.getProjectIDByPK(contract.getContractId());
             //下面这句会抛出异常
             int projectId = projectMapper.getProjectIDBySerial(contract.getProjectSerial());
             contract.setProjectId(projectId);
             Project project = projectMapper.selectByPrimaryKey(projectId);
+            if(project.getProjectChargerId()!=userId) return 100;
+            BudgetDetail b=budgetDetailMapper.selectByProjectID(projectId);
+            if((b.getProjectBudgetLeft()<contract.getContractMoney())&&(oldProjectId!=projectId)) {return -222;}
             contract.setProject(project);
             int successNum= contractMapper.updateByPrimaryKeySelective(contract);
             return successNum;
@@ -71,7 +79,7 @@ public JedisPool jedisPool;//注入JedisPool
         }
     }
 
-    public int insertContract(Contract contract){
+    public int insertContract(Contract contract,int userId){
 //        int projectID = projectMapper.getProjectIDBySerial(contract.getProjectSerial());
 //        contract.setProjectId(projectID);
 //        return contractMapper.insertSelective(contract);
@@ -81,11 +89,12 @@ public JedisPool jedisPool;//注入JedisPool
         System.out.println(contract.getBuildContentId());
         try {
             if(contractMapper.ifSerialExistAdd(contract.getContractSerial())!=0)
-                return 99;
+                return 99;//主键编号重复
             //下面这句会抛出异常
             int projectId = projectMapper.getProjectIDBySerial(contract.getProjectSerial());
             contract.setProjectId(projectId);
             Project project = projectMapper.selectByPrimaryKey(projectId);
+            if(project.getProjectChargerId()!=userId) return 100;
             contract.setProject(project);
             int successNum= contractMapper.insertSelective(contract);
             return successNum;
@@ -140,5 +149,6 @@ public JedisPool jedisPool;//注入JedisPool
     public int ifSerialExistAdd(String contractSerial){return  contractMapper.ifSerialExistAdd(contractSerial); };
 
     public int ifSerialExistUpdt(Contract contract){return contractMapper.ifSerialExistUpdt(contract);}
-    public int getContractIDBySerial(String contractSerial){return contractMapper.getContractIDBySerial(contractSerial);};
+    public int getContractIDBySerial(String contractSerial){return contractMapper.getContractIDBySerial(contractSerial);}
+    public Contract selectByPrimaryKey(Integer contractId){return contractMapper.selectByPrimaryKey(contractId);};
 }

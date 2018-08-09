@@ -150,4 +150,9 @@
       ORDER BY ${realOrder} ${descOrNot}
     </if>
   </select>
+  <select id="selectByProjectID" parameterType="java.lang.Integer" resultType="pojo.com.jsgc.business.BudgetDetail">
+    SELECT * FROM
+    budgetdetail
+    WHERE projectID=#{0}
+  </select>
 </mapper>

@@ -33,4 +33,5 @@ public interface ContractMapper {
     int ifSerialExistAdd(String contractSerial);
 
     int ifSerialExistUpdt(Contract contract);
+    int getProjectIDByPK(int pk);
 }

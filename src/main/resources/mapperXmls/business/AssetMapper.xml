@@ -45,7 +45,7 @@
     left join project p
     on a.projectID = p.projectID
 
-    where a.assetDelete= 0
+    where a.assetDelete= 0 and p.projectDelete=0
 
     <if test="assetName!=null and assetName!=''">
       and a.assetName like '%${assetName}%'

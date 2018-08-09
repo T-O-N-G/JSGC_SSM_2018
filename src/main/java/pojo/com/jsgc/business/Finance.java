@@ -1,42 +1,41 @@
 package pojo.com.jsgc.business;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import pojo.com.jsgc.admin.*;
 
 import java.util.Date;
 
 public class Finance {
     private Integer financeId;
-
+    @Excel(name="财务编号")
     private String financeSerials;
-
+    @Excel(name="日期" ,databaseFormat = "yyyy-MM-dd", format = "yyyy/M/d")
     private Date financeDate;
-
+    @Excel(name="摘要")
     private String financeName;
-
+    @Excel(name="金额")
     private Integer financeMoney;
-
+    @Excel(name="是否付款",replace = { "否_1", "是_0" })
     private Integer financeStatus;
-
     private Integer financeDelete;
-
+    @Excel(name="借方科目")
     private String financeBorrowerId;
-
+    @Excel(name="贷方科目")
     private String financeLenderId;
-
+    @Excel(name="采购组织形式")
     private String financeBuyOrgId;
-
+    @Excel(name="采购方式")
     private String financeBuyMethodId;
-
+    @Excel(name="采购项目类型")
     private String financeTypeId;
-
+    @Excel(name="支付方式")
     private String payMethodId;
-
     private Integer projectId;
-
+    @Excel(name="所属项目编号")
     private String projectSerial;
 
     private Integer contractId;
-
+    @Excel(name="所属合同编号")
     private String contractSerial;
 
     private Project project;

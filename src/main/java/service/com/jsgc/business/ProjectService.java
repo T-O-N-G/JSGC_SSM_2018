@@ -38,7 +38,9 @@ public class ProjectService {
     //    ApplicationContext ac = new ClassPathXmlApplicationContext("spring-jedis.xml");
     @Autowired
     public JedisPool jedisPool;//注入JedisPool
-
+    public List<Project> batchChosenDownLoad(ProjectSearchConditions ps){
+        return projectMapper.selectByConditions(ps);
+    }
     public String searchByConditions(ProjectSearchConditions ps) {
         System.out.println(ps.getStart() + " " + ps.getLimit());
 
@@ -123,5 +125,6 @@ public class ProjectService {
     public int ifSerialExistAdd(String projectSerial){return projectMapper.ifSerialExistAdd(projectSerial);}
     public int ifSerialExistUpdt(Project project){return projectMapper.ifSerialExistUpdt(project);}
 
+    public void batchInsert(List<Project> projects){ projectMapper.batchInsert(projects);}
 
 }

@@ -44,7 +44,7 @@ public class DocumentController {
     private ContractService contractService;
     @RequestMapping("/getDocList")
     @ResponseBody
-    public String searchByConditons(HttpServletRequest request,@RequestBody String params) throws UnsupportedEncodingException {
+    public String searchByConditons(HttpServletRequest request,@RequestBody String params) throws UnsupportedEncodingException, ParseException {
         String userLevel=(String)request.getAttribute("level");
         String userID= (String) request.getAttribute("userID");
         System.out.println("userlevel:"+userLevel+" &&& userID:"+userID);
@@ -53,6 +53,7 @@ public class DocumentController {
         ps.setUserID(userID);ps.setUserLevel(userLevel);
         ps.parseUserID();
         ps.parseOrder();
+        ps.parseDateRange();
         System.out.println(ps);
         return documentService.searchByConditions(ps);
     }

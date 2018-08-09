@@ -17,6 +17,6 @@ public interface BudgetDetailMapper {
     int updateByPrimaryKeySelective(BudgetDetail record);
 
     int updateByPrimaryKey(BudgetDetail record);
-
+    BudgetDetail selectByProjectID(Integer projectID);
     List<BudgetDetail> selectAll(BudgetSearchConditions ps);
 }

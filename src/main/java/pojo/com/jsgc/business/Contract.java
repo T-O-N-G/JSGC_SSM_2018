@@ -13,15 +13,12 @@ public class Contract {
     private String contractSerial;
     @Excel(name="合同名称")
     private String contractName;
-    @Excel(name="责任人")
+
     private String contractOwner;
     @Excel(name ="合同多方")
     private String contractPartner;
-    @Excel(name="签订日期" ,databaseFormat = "yyyy-MM-dd", format = "yyyy/M/D")
+    @Excel(name="签订日期" ,databaseFormat = "yyyy-MM-dd", format = "yyyy/M/d")
     private Date contractSignedTime;
-
-    @Excel(name="合同金额")
-    @Min(value = 0,message = "合同金额不能小于0")
     private Integer contractMoney;
     @Excel(name="合同内容")
     private String contractContent;
@@ -29,6 +26,7 @@ public class Contract {
     private String contractComment;
 
     private Integer contractDelete;
+    @Excel(name = "建设内容编号")
     private String buildContentId;
     private String buildInfo;
     private Integer projectId;

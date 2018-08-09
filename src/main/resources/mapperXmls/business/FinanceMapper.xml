@@ -288,7 +288,7 @@
     INNER JOIN paymethod ON finance.payMethodID = paymethod.`payMethodID`
     INNER JOIN project ON finance.`projectID` = project.`projectID`
     INNER JOIN contract ON finance.`contractID` = contract.`contractID`
-    WHERE finance.`financeDelete`=0
+    WHERE finance.`financeDelete`=0 and project.projectDelete=0 and contract.contractDelete=0
     <if test="financeSerials!=null and financeSerials!=''" >
       and financeSerials=#{financeSerials}
     </if>
@@ -340,5 +340,26 @@
     <if test="realOrder!=null and realOrder!=''">
       ORDER BY ${realOrder} ${descOrNot}
     </if>
+  </select>
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into finance (financeId, financeSerials, financeDate,
+    financeName, financeMoney, financeStatus,
+    financeBorrowerId, financeLenderId,
+    financeBuyOrgId, financeBuyMethodId, financeTypeId,
+    payMethodId, projectId, contractId
+    ) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.financeId,jdbcType=INTEGER}, #{item.financeSerials,jdbcType=VARCHAR}, #{item.financeDate,jdbcType=DATE},
+      #{item.financeName,jdbcType=VARCHAR}, #{item.financeMoney,jdbcType=INTEGER}, #{item.financeStatus,jdbcType=INTEGER},
+       #{item.financeBorrowerId,jdbcType=VARCHAR}, #{item.financeLenderId,jdbcType=VARCHAR},
+      #{item.financeBuyOrgId,jdbcType=VARCHAR}, #{item.financeBuyMethodId,jdbcType=VARCHAR}, #{item.financeTypeId,jdbcType=VARCHAR},
+      #{item.payMethodId,jdbcType=VARCHAR}, #{item.projectId,jdbcType=INTEGER}, #{item.contractId,jdbcType=INTEGER}
+      )
+    </foreach>
+  </insert>
+  <select id="getProjectIDbyPK" parameterType="java.lang.Integer" resultType="java.util.Map">
+      select projectID,financeMoney
+      from finance
+      WHERE financeID=#{0}
   </select>
 </mapper>

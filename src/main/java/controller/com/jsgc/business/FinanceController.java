@@ -43,22 +43,25 @@ public class FinanceController {
 
     @RequestMapping("getFinanceDetail")
     @ResponseBody
-    public String getFinanceDetail(int financeID){
+    public String getFinanceDetail(HttpServletRequest request,int financeID){
+
         return financeService.getFinanceDetail(financeID);
     }
 
     @RequestMapping("updateFinance")
     @ResponseBody
-    public int updateFinance(@RequestBody String params){
+    public int updateFinance(HttpServletRequest request,@RequestBody String params){
+        String userID= (String) request.getAttribute("userID");
         Finance finance = JSON.parseObject(params , new TypeReference<Finance>() {});
-        return  financeService.updateFinanceDetail(finance);
+        return  financeService.updateFinanceDetail(finance,Integer.parseInt(userID));
     }
 
     @RequestMapping("addFinance")
     @ResponseBody
-    public int addFinance(@RequestBody String params){
+    public String addFinance(HttpServletRequest request,@RequestBody String params){
+        String userID= (String) request.getAttribute("userID");
         Finance finance = JSON.parseObject(params , new TypeReference<Finance>() {});
-        return  financeService.insertFinance(finance);
+        return  financeService.insertFinance(finance,Integer.parseInt(userID));
     }
 
     @RequestMapping("deleteFinance")
