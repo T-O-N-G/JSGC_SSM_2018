@@ -49,7 +49,12 @@ public class VerifyService {
     }
 
     public int deleteByPrimaryKey(Integer verifyID) {
-        return verifyMapper.deleteByPrimaryKey(verifyID);
+        Verify verify = verifyMapper.selectByKey(verifyID);
+        Project project = projectMapper.selectByPrimaryKey(verify.getProjectID());
+        String message = project.getProjectName()+"的预算增加申请未通过";
+        notificationService.addNotification(String.valueOf(project.getProjectChargerId()),message,"预算申请未通过");
+        int result =  verifyMapper.deleteByPrimaryKey(verifyID);
+        return result;
     }
 
     public int passByPrimaryKey(Integer verifyID) {
