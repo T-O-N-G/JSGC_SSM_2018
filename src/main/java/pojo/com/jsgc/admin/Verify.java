@@ -6,6 +6,15 @@ public class Verify {
     int projectID;
     int applyMoney;
     int status;
+    String projectName;
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
 
     public String getApplyReason() {
         return applyReason;
