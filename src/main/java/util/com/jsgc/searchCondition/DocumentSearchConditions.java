@@ -1,5 +1,7 @@
 package util.com.jsgc.searchCondition;
 
+import java.text.ParseException;
+
 public class DocumentSearchConditions {
     String order;//解析一下
     String realOrder;
@@ -9,6 +11,8 @@ public class DocumentSearchConditions {
     private String documentType;
     private String documentOwner;
     private String docUploadTimeRange;
+    String docUploadTimeMin;
+    String docUploadTimeMax;
     private int start;
     private int page;
     private int limit;
@@ -32,7 +36,12 @@ public class DocumentSearchConditions {
     public void setUserID(String userID) {
         this.userID = userID;
     }
-
+    public void parseDateRange() throws ParseException {
+        if(this.docUploadTimeRange!=null&&!this.docUploadTimeRange.equals("")){
+            this.docUploadTimeMin= this.docUploadTimeRange.substring(0,10);
+            this.docUploadTimeMax=this.docUploadTimeRange.substring(13,23);
+        }
+    }
     public void parseOrder(){
         if(this.order!=null&&!this.order.equals("[]")){
             String[]ss=this.order.split(",");

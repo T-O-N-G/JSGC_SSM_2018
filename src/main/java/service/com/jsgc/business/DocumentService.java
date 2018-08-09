@@ -57,7 +57,6 @@ public class DocumentService {
             if (documentMapper.ifSerialExistUpdt(document) != 0) {
                 return 99;
             }
-
             //下面这句会抛出异常
             String contractSerial = document.getContractSerial();
             //属于合同

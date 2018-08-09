@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import mapper.com.jsgc.business.BudgetDetailMapper;
 import mapper.com.jsgc.business.ContractMapper;
 import mapper.com.jsgc.business.FinanceMapper;
 import mapper.com.jsgc.business.ProjectMapper;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
+import pojo.com.jsgc.business.BudgetDetail;
 import pojo.com.jsgc.business.Contract;
 import pojo.com.jsgc.business.Finance;
 import pojo.com.jsgc.business.Project;
@@ -35,6 +37,8 @@ public class FinanceService {
     private ContractMapper contractMapper;
     @Resource
     private ProjectMapper projectMapper;
+    @Resource
+    private BudgetDetailMapper budgetDetailMapper;
 
 //    ApplicationContext ac = new ClassPathXmlApplicationContext("spring-jedis.xml");
 //
@@ -43,7 +47,12 @@ public class FinanceService {
     @Autowired
     public JedisPool jedisPool;//注入JedisPool
 
+    public List<Finance> batchChosenDownLoad(FinanceSearchConditions fs) {
+        return financeMapper.selectByConditions(fs);
+    }
+
     public String searchByConditions(FinanceSearchConditions fs) {
+
 //        projectMapper.searchByConditions();
         //    System.out.println(fs.getStart()+" "+ps.getLimit());
 
@@ -75,20 +84,31 @@ public class FinanceService {
         return result;
     }
 
-    public int updateFinanceDetail(Finance finance) {
+    public int updateFinanceDetail(Finance finance, int userId) {
         calendar.setTime(finance.getFinanceDate());
         calendar.add(calendar.DATE, 1);
         finance.setFinanceDate(calendar.getTime());
         try {
             if (financeMapper.ifSerialExistUpdt(finance) != 0)
                 return 99;
-            //下面这句会抛出异常
-
+            int oldProjectId = (int) financeMapper.getProjectIDbyPK(finance.getFinanceId()).get("projectID");
+            int oldFinanceMoney = (int) financeMapper.getProjectIDbyPK(finance.getFinanceId()).get("financeMoney");
+            //下面这句会抛出异常**
             int contractId = contractMapper.getContractIDBySerial(finance.getContractSerial());
             finance.setContractId(contractId);
             Contract contract = contractMapper.selectByPrimaryKey(contractId);
             int projectId = contract.getProjectId();
             Project project = projectMapper.selectByPrimaryKey(projectId);
+            if (project.getProjectChargerId() != userId) return 100;
+            BudgetDetail b = budgetDetailMapper.selectByProjectID(projectId);
+            //更改所属项目判断钱够不够
+            if ((b.getProjectBudgetLeft() < finance.getFinanceMoney()) && (oldProjectId != projectId)) {
+                return -222;
+            }
+            //不更改所属项目判断钱够不够
+            if ((b.getProjectBudgetLeft() < (finance.getFinanceMoney() - oldFinanceMoney)) && (oldProjectId == projectId)) {
+                return -222;
+            }
             String projectSerial = project.getProjectSerial();
             finance.setProjectId(projectId);
             finance.setProjectSerial(projectSerial);
@@ -103,13 +123,16 @@ public class FinanceService {
         }
     }
 
-    public int insertFinance(Finance finance) {
+    public String insertFinance(Finance finance, int userId) {
+
         calendar.setTime(finance.getFinanceDate());
         calendar.add(calendar.DATE, 1);
         finance.setFinanceDate(calendar.getTime());
         try {
+
             if (financeMapper.ifSerialExistAdd(finance.getFinanceSerials()) != 0)
-                return 99;
+                return "99";
+
             //下面这句会抛出异常
 
             int contractId = contractMapper.getContractIDBySerial(finance.getContractSerial());
@@ -117,17 +140,24 @@ public class FinanceService {
             Contract contract = contractMapper.selectByPrimaryKey(contractId);
             int projectId = contract.getProjectId();
             Project project = projectMapper.selectByPrimaryKey(projectId);
+            if (project.getProjectChargerId() != userId) return "100";
+            BudgetDetail b = budgetDetailMapper.selectByProjectID(projectId);
+            if (b.getProjectBudgetLeft() < finance.getFinanceMoney()) {
+                return "-222" + b.getBudgetId().toString();
+            }
             String projectSerial = project.getProjectSerial();
             finance.setProjectId(projectId);
             finance.setProjectSerial(projectSerial);
             finance.setProject(project);
             finance.setContract(contract);
+
             int successNum = financeMapper.insertSelective(finance);
             UpdateCache.updateCache("updateFinance");
-            return successNum;
+
+            return Integer.toString(successNum);
         } catch (org.apache.ibatis.binding.BindingException e) {
-            System.out.println("合同编号不存在");
-            return 100;
+            System.out.println("所辖合同编号不存在");
+            return "100";
         }
     }
 
@@ -136,5 +166,10 @@ public class FinanceService {
         UpdateCache.updateCache("updateFinance");
 
         return result;
+    }
+
+    public void batchInsert(List<Finance> finances) {
+        financeMapper.batchInsert(finances);
+        UpdateCache.updateCache("updateFinance");
     }
 }

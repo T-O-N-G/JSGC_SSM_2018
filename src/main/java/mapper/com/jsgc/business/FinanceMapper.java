@@ -3,6 +3,7 @@ package mapper.com.jsgc.business;
 import pojo.com.jsgc.business.Finance;
 import util.com.jsgc.searchCondition.FinanceSearchConditions;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface FinanceMapper {
@@ -27,5 +28,6 @@ public interface FinanceMapper {
     int ifSerialExistAdd(String financeSerial);
 
     int ifSerialExistUpdt(Finance finance);
-
+    void batchInsert(List<Finance> finances);
+    HashMap getProjectIDbyPK(int pk);
 }

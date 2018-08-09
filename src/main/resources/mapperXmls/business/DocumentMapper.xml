@@ -41,7 +41,7 @@
     left join contract ct
     on d.contractID = ct.contractID
 
-    where d.documentDelete = 0
+    where d.documentDelete = 0 and p.projectDelete=0 and ct.contractDelete=0
     <if test="documentSerial!=null and documentSerial!=''">
       and d.documentSerial = #{documentSerial,jdbcType=VARCHAR}
     </if>
@@ -55,7 +55,8 @@
       and d.documentOwner like '%${documentOwner}%'
     </if>
     <if test="docUploadTimeRange!=null and docUploadTimeRange!=''">
-      and d.documentUploadTime = #{docUploadTimeRange,jdbcType=VARCHAR}
+      and d.documentUploadTime >= #{docUploadTimeMin,jdbcType=VARCHAR}
+      and #{docUploadTimeMax,jdbcType=VARCHAR}>=d.documentUploadTime
     </if>
     <if test="userID!=null and userID!=''">
       and p.projectChargerID=#{userID,jdbcType=INTEGER}

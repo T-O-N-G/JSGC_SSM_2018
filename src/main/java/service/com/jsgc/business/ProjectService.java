@@ -40,6 +40,10 @@ public class ProjectService {
     @Autowired
     public JedisPool jedisPool;//注入JedisPool
 
+    public List<Project> batchChosenDownLoad(ProjectSearchConditions ps) {
+        return projectMapper.selectByConditions(ps);
+    }
+
     public String searchByConditions(ProjectSearchConditions ps) {
         System.out.println(ps.getStart() + " " + ps.getLimit());
 
@@ -96,7 +100,7 @@ public class ProjectService {
     }
 
     public int insertProject(Project project) {
-        int result= projectMapper.insertSelective(project);
+        int result = projectMapper.insertSelective(project);
         UpdateCache.updateCache("updateProject");
 
         return result;
@@ -116,8 +120,18 @@ public class ProjectService {
     public int getProjectIDBySerial(String projectSerial) {
         return projectMapper.getProjectIDBySerial(projectSerial);
     }
-    public int ifSerialExistAdd(String projectSerial){return projectMapper.ifSerialExistAdd(projectSerial);}
-    public int ifSerialExistUpdt(Project project){return projectMapper.ifSerialExistUpdt(project);}
 
+    public int ifSerialExistAdd(String projectSerial) {
+        return projectMapper.ifSerialExistAdd(projectSerial);
+    }
+
+    public int ifSerialExistUpdt(Project project) {
+        return projectMapper.ifSerialExistUpdt(project);
+    }
+
+    public void batchInsert(List<Project> projects) {
+        projectMapper.batchInsert(projects);
+        UpdateCache.updateCache("updateProject");
+    }
 
 }

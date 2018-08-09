@@ -45,16 +45,18 @@ public class ContractController {
 
     @RequestMapping("updateContractDetail")
     @ResponseBody
-    public int updateContractDetail(@RequestBody String params){
+    public int updateContractDetail(HttpServletRequest request,@RequestBody String params){
+        String userID= (String) request.getAttribute("userID");
         Contract contract = JSON.parseObject(params , new TypeReference<Contract>() {});
-        return   contractService.updateContractDetail(contract);
+        return   contractService.updateContractDetail(contract,Integer.parseInt(userID));
     }
 
     @RequestMapping("/addContract")
     @ResponseBody
-    public int addContract(@RequestBody String params){
+    public int addContract(HttpServletRequest request,@RequestBody String params){
+        String userID= (String) request.getAttribute("userID");
         Contract contract = JSON.parseObject(params , new TypeReference<Contract>() {});
-        return   contractService.insertContract(contract);
+        return   contractService.insertContract(contract,Integer.parseInt(userID));
     }
 
     @RequestMapping("/deleteContract")
