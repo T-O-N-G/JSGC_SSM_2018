@@ -150,6 +150,14 @@ class UpdateUserHandler(tornado.web.RequestHandler):
             key = "User:All:Default"
             #     print (key+value)
             r.zadd(key, value, value)
+        sql = 'SELECT userID from user where permissionLevel =3 or permissionLevel =1'
+        result = db.query(sql)
+
+        for i in result:
+            value = str(i.get("userID"))
+            key = "User:Admin:Default"
+            #     print (key+value)
+            r.zadd(key, value, value)
         pipe.execute()
         # 设置用户信息缓存
 
@@ -180,12 +188,12 @@ class UpdateContractHandler(tornado.web.RequestHandler):
         pipe.execute()
 
         # 设置合同详情
-        sql = 'SELECT contractID,contractSerial,contractName,contractPartner,contractSignedTime,contractMoney,contractComment,projectSerial,contractDelete,contractOwner,contractContent FROM contract INNER JOIN project ON project.projectID = contract.projectID'
+        sql = 'SELECT contractID as contractId,contractSerial,contractName,contractPartner,contractSignedTime,contractMoney,contractComment,projectSerial,contractDelete,contractOwner,contractContent FROM contract INNER JOIN project ON project.projectID = contract.projectID'
         result = db.query(sql)
         pipe = r.pipeline(transaction=True)
         for i in result:
             value = json.dumps(i, default=date_handler)
-            key = "Contract:ID:" + str(i.get("contractID"))
+            key = "Contract:ID:" + str(i.get("contractId"))
             # print(key + value)
             pipe.set(key, value)
         pipe.execute()
@@ -231,7 +239,16 @@ class UpdateFinanceHandler(tornado.web.RequestHandler):
             # print(key + value)
             pipe.set(key, value)
         pipe.execute()
-
+		# 设置合同详情
+        sql = 'SELECT contractID as contractId,contractSerial,contractName,contractPartner,contractSignedTime,contractMoney,contractComment,projectSerial,contractDelete,contractOwner,contractContent FROM contract INNER JOIN project ON project.projectID = contract.projectID'
+        result = db.query(sql)
+        pipe = r.pipeline(transaction=True)
+        for i in result:
+            value = json.dumps(i, default=date_handler)
+            key = "Contract:ID:" + str(i.get("contractId"))
+            # print(key + value)
+            pipe.set(key, value)
+        pipe.execute()
 
 class UpdateBudgetHandler(tornado.web.RequestHandler):
     def get(self, *args, **kwargs):
