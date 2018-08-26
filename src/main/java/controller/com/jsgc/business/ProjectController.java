@@ -1,8 +1,11 @@
 package controller.com.jsgc.business;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.github.pagehelper.PageHelper;
+import jdk.nashorn.internal.runtime.JSONListAdapter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -83,6 +86,7 @@ public class ProjectController {
     public int addProject(@RequestBody String params) {
         Project project = JSON.parseObject(params, new TypeReference<Project>() {
         });
+
         try {
             if (projectService.ifSerialExistAdd(project.getProjectSerial()) != 0)
                 return 99;

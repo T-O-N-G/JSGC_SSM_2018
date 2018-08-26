@@ -15,8 +15,7 @@ def date_handler(obj):
     else:
         raise TypeError
 
-class UpdateUserHandler(tornado.web.RequestHandler):
-    def get(self, *args, **kwargs):
+
         # 所有用户列表
         sql = 'SELECT userID from user'
         result = db.query(sql)
@@ -46,9 +45,7 @@ class UpdateUserHandler(tornado.web.RequestHandler):
             pipe.set(key, value)
         pipe.execute()
 
-class UpdateProjectHandler(tornado.web.RequestHandler):
 
-    def get(self, *args, **kwargs):
         # 设置项目详情
         sql = 'SELECT userID, project.projectID,projectSerial,projectName,projectBudgetSum,projectStartTime,projectEndTime,projectStatus,projectComment,projectDelete,budgetID,username,departmentName,projectDepartmentID  FROM project left JOIN department ON projectDepartmentID=departmentID left JOIN `user` ON projectChargerID=userID'
         result = db.query(sql)
